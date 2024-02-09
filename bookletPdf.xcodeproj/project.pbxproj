@@ -1,0 +1,525 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2E0E4E032ADAA1A000E846B6 /* BooketUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0E4E022ADAA1A000E846B6 /* BooketUtils.swift */; };
+		2E0E4E082ADAA84600E846B6 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0E4E072ADAA84600E846B6 /* MainView.swift */; };
+		2E0E4E0D2ADAAE6800E846B6 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0E4E0C2ADAAE6800E846B6 /* LoadingView.swift */; };
+		2E0E4E102ADB10B300E846B6 /* AppCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0E4E0F2ADB10B300E846B6 /* AppCache.swift */; };
+		2E0E4E122ADB177B00E846B6 /* PDFPageThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0E4E112ADB177B00E846B6 /* PDFPageThumbnail.swift */; };
+		2E0E4E152ADB1C7F00E846B6 /* PDFPageThumbnailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0E4E142ADB1C7F00E846B6 /* PDFPageThumbnailViewModel.swift */; };
+		2E2E44272AC3CC8E00DC757F /* bookletPdfApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E44262AC3CC8E00DC757F /* bookletPdfApp.swift */; };
+		2E2E44292AC3CC8E00DC757F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E44282AC3CC8E00DC757F /* ContentView.swift */; };
+		2E2E442B2AC3CC8F00DC757F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E2E442A2AC3CC8F00DC757F /* Assets.xcassets */; };
+		2E2E442E2AC3CC8F00DC757F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E2E442D2AC3CC8F00DC757F /* Preview Assets.xcassets */; };
+		2E2E44372AC46C5200DC757F /* AppPDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E44362AC46C5200DC757F /* AppPDF.swift */; };
+		2E2E443A2AC4807C00DC757F /* PDFReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E44392AC4807C00DC757F /* PDFReader.swift */; };
+		2E2E443F2AC480B100DC757F /* PDFViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E443E2AC480B100DC757F /* PDFViewer.swift */; };
+		2E2E44412AC49B9200DC757F /* Resume.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2E2E44402AC49B9200DC757F /* Resume.pdf */; };
+		2E2E44442AC49F7A00DC757F /* PDFPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E44432AC49F7A00DC757F /* PDFPageView.swift */; };
+		2E2E44492AC4C08D00DC757F /* PDFDocument+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E44482AC4C08D00DC757F /* PDFDocument+Extensions.swift */; };
+		2E50DE1A2AC607E800F3FCCF /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E50DE192AC607E800F3FCCF /* InfoView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2E0E4E022ADAA1A000E846B6 /* BooketUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooketUtils.swift; sourceTree = "<group>"; };
+		2E0E4E072ADAA84600E846B6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		2E0E4E0C2ADAAE6800E846B6 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		2E0E4E0F2ADB10B300E846B6 /* AppCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCache.swift; sourceTree = "<group>"; };
+		2E0E4E112ADB177B00E846B6 /* PDFPageThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPageThumbnail.swift; sourceTree = "<group>"; };
+		2E0E4E142ADB1C7F00E846B6 /* PDFPageThumbnailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPageThumbnailViewModel.swift; sourceTree = "<group>"; };
+		2E0E4E162ADB30F900E846B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2E2E44232AC3CC8E00DC757F /* bookletPdf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bookletPdf.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E2E44262AC3CC8E00DC757F /* bookletPdfApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bookletPdfApp.swift; sourceTree = "<group>"; };
+		2E2E44282AC3CC8E00DC757F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2E2E442A2AC3CC8F00DC757F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2E2E442D2AC3CC8F00DC757F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2E2E44342AC3D74200DC757F /* bookletPdf.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = bookletPdf.entitlements; sourceTree = "<group>"; };
+		2E2E44362AC46C5200DC757F /* AppPDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPDF.swift; sourceTree = "<group>"; };
+		2E2E44392AC4807C00DC757F /* PDFReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReader.swift; sourceTree = "<group>"; };
+		2E2E443E2AC480B100DC757F /* PDFViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewer.swift; sourceTree = "<group>"; };
+		2E2E44402AC49B9200DC757F /* Resume.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Resume.pdf; sourceTree = "<group>"; };
+		2E2E44432AC49F7A00DC757F /* PDFPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPageView.swift; sourceTree = "<group>"; };
+		2E2E44482AC4C08D00DC757F /* PDFDocument+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFDocument+Extensions.swift"; sourceTree = "<group>"; };
+		2E50DE192AC607E800F3FCCF /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2E2E44202AC3CC8E00DC757F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2E0E4E042ADAA82E00E846B6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2E50DE182AC607DC00F3FCCF /* InfoView */,
+				2E0E4E062ADAA83900E846B6 /* Main */,
+				2E2E44282AC3CC8E00DC757F /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2E0E4E052ADAA83100E846B6 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		2E0E4E062ADAA83900E846B6 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2E2E443D2AC480A900DC757F /* PDFViewer */,
+				2E0E4E072ADAA84600E846B6 /* MainView.swift */,
+				2E0E4E0C2ADAAE6800E846B6 /* LoadingView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		2E0E4E0E2ADB10AB00E846B6 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				2E0E4E0F2ADB10B300E846B6 /* AppCache.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		2E0E4E132ADB1C7200E846B6 /* PDFPageThumbnail */ = {
+			isa = PBXGroup;
+			children = (
+				2E0E4E112ADB177B00E846B6 /* PDFPageThumbnail.swift */,
+				2E0E4E142ADB1C7F00E846B6 /* PDFPageThumbnailViewModel.swift */,
+			);
+			path = PDFPageThumbnail;
+			sourceTree = "<group>";
+		};
+		2E2E441A2AC3CC8E00DC757F = {
+			isa = PBXGroup;
+			children = (
+				2E2E44252AC3CC8E00DC757F /* bookletPdf */,
+				2E2E44242AC3CC8E00DC757F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2E2E44242AC3CC8E00DC757F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2E2E44232AC3CC8E00DC757F /* bookletPdf.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2E2E44252AC3CC8E00DC757F /* bookletPdf */ = {
+			isa = PBXGroup;
+			children = (
+				2E0E4E162ADB30F900E846B6 /* Info.plist */,
+				2E0E4E0E2ADB10AB00E846B6 /* Cache */,
+				2E0E4E052ADAA83100E846B6 /* ViewModels */,
+				2E0E4E042ADAA82E00E846B6 /* Views */,
+				2E2E443C2AC480A500DC757F /* Utils */,
+				2E2E44342AC3D74200DC757F /* bookletPdf.entitlements */,
+				2E2E44262AC3CC8E00DC757F /* bookletPdfApp.swift */,
+				2E2E442A2AC3CC8F00DC757F /* Assets.xcassets */,
+				2E2E442C2AC3CC8F00DC757F /* Preview Content */,
+			);
+			path = bookletPdf;
+			sourceTree = "<group>";
+		};
+		2E2E442C2AC3CC8F00DC757F /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				2E2E442D2AC3CC8F00DC757F /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2E2E44352AC46C4300DC757F /* AppPDF */ = {
+			isa = PBXGroup;
+			children = (
+				2E2E44362AC46C5200DC757F /* AppPDF.swift */,
+			);
+			path = AppPDF;
+			sourceTree = "<group>";
+		};
+		2E2E44382AC4806E00DC757F /* PDFReader */ = {
+			isa = PBXGroup;
+			children = (
+				2E2E44392AC4807C00DC757F /* PDFReader.swift */,
+			);
+			path = PDFReader;
+			sourceTree = "<group>";
+		};
+		2E2E443C2AC480A500DC757F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2E0E4E022ADAA1A000E846B6 /* BooketUtils.swift */,
+				2E2E44472AC4C08400DC757F /* Extensions */,
+				2E2E44422AC49B9E00DC757F /* Resources */,
+				2E2E44382AC4806E00DC757F /* PDFReader */,
+				2E2E44352AC46C4300DC757F /* AppPDF */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		2E2E443D2AC480A900DC757F /* PDFViewer */ = {
+			isa = PBXGroup;
+			children = (
+				2E0E4E132ADB1C7200E846B6 /* PDFPageThumbnail */,
+				2E2E443E2AC480B100DC757F /* PDFViewer.swift */,
+				2E2E44432AC49F7A00DC757F /* PDFPageView.swift */,
+			);
+			path = PDFViewer;
+			sourceTree = "<group>";
+		};
+		2E2E44422AC49B9E00DC757F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2E2E44402AC49B9200DC757F /* Resume.pdf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		2E2E44472AC4C08400DC757F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2E2E44482AC4C08D00DC757F /* PDFDocument+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2E50DE182AC607DC00F3FCCF /* InfoView */ = {
+			isa = PBXGroup;
+			children = (
+				2E50DE192AC607E800F3FCCF /* InfoView.swift */,
+			);
+			path = InfoView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2E2E44222AC3CC8E00DC757F /* bookletPdf */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2E2E44312AC3CC8F00DC757F /* Build configuration list for PBXNativeTarget "bookletPdf" */;
+			buildPhases = (
+				2E2E441F2AC3CC8E00DC757F /* Sources */,
+				2E2E44202AC3CC8E00DC757F /* Frameworks */,
+				2E2E44212AC3CC8E00DC757F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = bookletPdf;
+			productName = bookletPdf;
+			productReference = 2E2E44232AC3CC8E00DC757F /* bookletPdf.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2E2E441B2AC3CC8E00DC757F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					2E2E44222AC3CC8E00DC757F = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 2E2E441E2AC3CC8E00DC757F /* Build configuration list for PBXProject "bookletPdf" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2E2E441A2AC3CC8E00DC757F;
+			productRefGroup = 2E2E44242AC3CC8E00DC757F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2E2E44222AC3CC8E00DC757F /* bookletPdf */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2E2E44212AC3CC8E00DC757F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E2E44412AC49B9200DC757F /* Resume.pdf in Resources */,
+				2E2E442E2AC3CC8F00DC757F /* Preview Assets.xcassets in Resources */,
+				2E2E442B2AC3CC8F00DC757F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2E2E441F2AC3CC8E00DC757F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E0E4E032ADAA1A000E846B6 /* BooketUtils.swift in Sources */,
+				2E50DE1A2AC607E800F3FCCF /* InfoView.swift in Sources */,
+				2E0E4E102ADB10B300E846B6 /* AppCache.swift in Sources */,
+				2E2E44442AC49F7A00DC757F /* PDFPageView.swift in Sources */,
+				2E0E4E0D2ADAAE6800E846B6 /* LoadingView.swift in Sources */,
+				2E0E4E082ADAA84600E846B6 /* MainView.swift in Sources */,
+				2E0E4E122ADB177B00E846B6 /* PDFPageThumbnail.swift in Sources */,
+				2E2E44292AC3CC8E00DC757F /* ContentView.swift in Sources */,
+				2E2E44372AC46C5200DC757F /* AppPDF.swift in Sources */,
+				2E0E4E152ADB1C7F00E846B6 /* PDFPageThumbnailViewModel.swift in Sources */,
+				2E2E44492AC4C08D00DC757F /* PDFDocument+Extensions.swift in Sources */,
+				2E2E44272AC3CC8E00DC757F /* bookletPdfApp.swift in Sources */,
+				2E2E443F2AC480B100DC757F /* PDFViewer.swift in Sources */,
+				2E2E443A2AC4807C00DC757F /* PDFReader.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2E2E442F2AC3CC8F00DC757F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2E2E44302AC3CC8F00DC757F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2E2E44322AC3CC8F00DC757F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = bookletPdf/bookletPdf.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_ASSET_PATHS = "\"bookletPdf/Preview Content\"";
+				DEVELOPMENT_TEAM = 84D2TM7KGZ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = bookletPdf/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Booklet PDF";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSDesktopFolderUsageDescription = "App needs desktop folder usage";
+				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "App needs to access documents folder";
+				INFOPLIST_KEY_NSDownloadsFolderUsageDescription = "App needs to access download folder";
+				INFOPLIST_KEY_NSFileProviderDomainUsageDescription = "App needs file provider";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = uz.sbd.bookletPdf;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2E2E44332AC3CC8F00DC757F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = bookletPdf/bookletPdf.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_ASSET_PATHS = "\"bookletPdf/Preview Content\"";
+				DEVELOPMENT_TEAM = 84D2TM7KGZ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = bookletPdf/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Booklet PDF";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSDesktopFolderUsageDescription = "App needs desktop folder usage";
+				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "App needs to access documents folder";
+				INFOPLIST_KEY_NSDownloadsFolderUsageDescription = "App needs to access download folder";
+				INFOPLIST_KEY_NSFileProviderDomainUsageDescription = "App needs file provider";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = uz.sbd.bookletPdf;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2E2E441E2AC3CC8E00DC757F /* Build configuration list for PBXProject "bookletPdf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E2E442F2AC3CC8F00DC757F /* Debug */,
+				2E2E44302AC3CC8F00DC757F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2E2E44312AC3CC8F00DC757F /* Build configuration list for PBXNativeTarget "bookletPdf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E2E44322AC3CC8F00DC757F /* Debug */,
+				2E2E44332AC3CC8F00DC757F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2E2E441B2AC3CC8E00DC757F /* Project object */;
+}
