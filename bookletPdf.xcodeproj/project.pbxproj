@@ -24,6 +24,8 @@
 		2E2E44442AC49F7A00DC757F /* PDFPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E44432AC49F7A00DC757F /* PDFPageView.swift */; };
 		2E2E44492AC4C08D00DC757F /* PDFDocument+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E44482AC4C08D00DC757F /* PDFDocument+Extensions.swift */; };
 		2E50DE1A2AC607E800F3FCCF /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E50DE192AC607E800F3FCCF /* InfoView.swift */; };
+		AC0E8CF52B8CBC71004BAA97 /* PagePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0E8CF32B8CBC71004BAA97 /* PagePreview.swift */; };
+		AC0E8CF62B8CBC71004BAA97 /* PreviewPageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0E8CF42B8CBC71004BAA97 /* PreviewPageItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		2E2E44432AC49F7A00DC757F /* PDFPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPageView.swift; sourceTree = "<group>"; };
 		2E2E44482AC4C08D00DC757F /* PDFDocument+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFDocument+Extensions.swift"; sourceTree = "<group>"; };
 		2E50DE192AC607E800F3FCCF /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		AC0E8CF32B8CBC71004BAA97 /* PagePreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagePreview.swift; sourceTree = "<group>"; };
+		AC0E8CF42B8CBC71004BAA97 /* PreviewPageItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewPageItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,13 +72,6 @@
 				2E2E44282AC3CC8E00DC757F /* ContentView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		2E0E4E052ADAA83100E846B6 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		2E0E4E062ADAA83900E846B6 /* Main */ = {
@@ -125,7 +122,6 @@
 			children = (
 				2E0E4E162ADB30F900E846B6 /* Info.plist */,
 				2E0E4E0E2ADB10AB00E846B6 /* Cache */,
-				2E0E4E052ADAA83100E846B6 /* ViewModels */,
 				2E0E4E042ADAA82E00E846B6 /* Views */,
 				2E2E443C2AC480A500DC757F /* Utils */,
 				2E2E44342AC3D74200DC757F /* bookletPdf.entitlements */,
@@ -175,6 +171,8 @@
 		2E2E443D2AC480A900DC757F /* PDFViewer */ = {
 			isa = PBXGroup;
 			children = (
+				AC0E8CF32B8CBC71004BAA97 /* PagePreview.swift */,
+				AC0E8CF42B8CBC71004BAA97 /* PreviewPageItem.swift */,
 				2E0E4E132ADB1C7200E846B6 /* PDFPageThumbnail */,
 				2E2E443E2AC480B100DC757F /* PDFViewer.swift */,
 				2E2E44432AC49F7A00DC757F /* PDFPageView.swift */,
@@ -285,11 +283,13 @@
 				2E0E4E082ADAA84600E846B6 /* MainView.swift in Sources */,
 				2E0E4E122ADB177B00E846B6 /* PDFPageThumbnail.swift in Sources */,
 				2E2E44292AC3CC8E00DC757F /* ContentView.swift in Sources */,
+				AC0E8CF52B8CBC71004BAA97 /* PagePreview.swift in Sources */,
 				2E2E44372AC46C5200DC757F /* AppPDF.swift in Sources */,
 				2E0E4E152ADB1C7F00E846B6 /* PDFPageThumbnailViewModel.swift in Sources */,
 				2E2E44492AC4C08D00DC757F /* PDFDocument+Extensions.swift in Sources */,
 				2E2E44272AC3CC8E00DC757F /* bookletPdfApp.swift in Sources */,
 				2E2E443F2AC480B100DC757F /* PDFViewer.swift in Sources */,
+				AC0E8CF62B8CBC71004BAA97 /* PreviewPageItem.swift in Sources */,
 				2E2E443A2AC4807C00DC757F /* PDFReader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,7 +425,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"bookletPdf/Preview Content\"";
-				DEVELOPMENT_TEAM = 84D2TM7KGZ;
+				DEVELOPMENT_TEAM = 636RKPCKH4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = bookletPdf/Info.plist;
@@ -446,10 +446,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = uz.sbd.bookletPdf;
+				PRODUCT_BUNDLE_IDENTIFIER = "uz.sbd.bookletPdf-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -466,7 +466,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"bookletPdf/Preview Content\"";
-				DEVELOPMENT_TEAM = 84D2TM7KGZ;
+				DEVELOPMENT_TEAM = 636RKPCKH4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = bookletPdf/Info.plist;
@@ -487,10 +487,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = uz.sbd.bookletPdf;
+				PRODUCT_BUNDLE_IDENTIFIER = "uz.sbd.bookletPdf-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
