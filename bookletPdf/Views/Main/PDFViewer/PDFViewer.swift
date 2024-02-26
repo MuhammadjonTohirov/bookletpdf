@@ -7,9 +7,12 @@
 
 import SwiftUI
 import PDFKit
+import QuickLook
 
 struct PDFViewer: View {
     var document: PDFDocument
+    @State private var show: Bool = false
+    @State private var page: Int = 0
     @State private var screenSize: CGRect = .zero
     var body: some View {
         VStack {
@@ -28,27 +31,6 @@ struct PDFViewer: View {
         }
     }
     
-    var horizontalListView: some View {
-        ScrollView(.horizontal) {
-            LazyHStack(spacing: 20) {
-                ForEach(0..<document.pageCount, id: \.self) { page in
-                    PDFPageView(
-                        page: document.page(at: page)!,
-                        pageNumber: page + 1,
-                        key: "\(page + 1)_\(document.documentURL!.lastPathComponent)"
-                    )
-                }
-            }
-            .padding(.horizontal, 20)
-            .frame(height: 240)
-        }
-        .background {
-            Rectangle()
-                .foregroundStyle(Color.init(uiColor: .secondarySystemBackground))
-                .ignoresSafeArea()
-        }
-    }
-    
     var gridView: some View {
         ScrollView {
             LazyVGrid(
@@ -63,6 +45,12 @@ struct PDFViewer: View {
                         key: "\(page + 1)_\(document.documentURL!.lastPathComponent)",
                         size: .init(width: 150, height: 230)
                     )
+                    .onTapGesture {
+                        self.page = page
+                        show.toggle()
+                        let _ = print(self.page, 1111)
+                        
+                    }
                     .frame(width: 100, height: 180)
                 }
             }
@@ -74,9 +62,15 @@ struct PDFViewer: View {
                 .foregroundStyle(Color.init(uiColor: .secondarySystemBackground))
                 .ignoresSafeArea()
         }
+        .fullScreenCover(isPresented: $show, content: {
+            PagePreview(
+                document: document,
+                pageNumber: $page,
+                show: $show)
+            
+        })
     }
 }
-
 
 
 #Preview {

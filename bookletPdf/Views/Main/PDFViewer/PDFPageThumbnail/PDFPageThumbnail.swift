@@ -34,7 +34,7 @@ struct PDFPageThumbnail: View {
         if let image = viewModel.image {
             Image(uiImage: image)
                 .resizable()
-                .aspectRatio(contentMode: .fill)
+                .aspectRatio(contentMode: .fit)
                 .clipped()
         } else {
             RoundedRectangle(cornerRadius: 8)
