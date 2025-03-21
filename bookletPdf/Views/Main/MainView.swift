@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PDFKit
+import BookletPDFKit
 
 enum ContentViewState {
     case initial
@@ -15,61 +16,35 @@ enum ContentViewState {
 }
 
 struct MainView: View {
-    @State private var pdfUrl: URL?
-    @State private var showFileImporter = false
-    @State private var showFileExporter = false
-    @State private var isConverting: Bool = false
-    @State private var state: ContentViewState = .initial
-    @State private var showInfo = false
-    
+    @StateObject var viewModel: MainViewModel = .init()
+
     private var documentName: String {
-        pdfUrl?.lastPathComponent ?? ""
+        viewModel.document?.name ?? ""
     }
     
     private var document: PDFDocument? {
-        if let pdfUrl {
-            return PDFDocument(url: pdfUrl)
-        }
-        
-        return nil
+        viewModel.document?.document
     }
     
     var body: some View {
         NavigationStack {
             innerBody
-                .toolbar(content: {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button(action: {showInfo = true}, label: {
-                            Image(systemName: "info.circle")
-                        })
-                        .buttonStyle(BorderedButtonStyle())
-                    }
-                })
-                .sheet(isPresented: $showInfo, content: {
-                    NavigationView {
-                        InfoView()
-                    }
-                })
                 .navigationTitle(
-                    pdfUrl?.lastPathComponent ?? ""
+                    viewModel.pdfUrl?.lastPathComponent ?? ""
                 )
-                .navigationBarTitleDisplayMode(.inline)
+                .navigationTitleInline()
         }
-        .fileImporter(isPresented: $showFileImporter, allowedContentTypes: [.pdf], onCompletion: { result in
-            DispatchQueue.global(qos: .background).async {
-                do {
-                    let _url = AppPDF(url: try result.get()).createTemporaryPdfFromUrl
-                    DispatchQueue.main.async {
-                        self.pdfUrl = _url
-                        self.state = .selectedPdf
-                    }
-                } catch {
-                    print("Error")
+        .fileImporter(
+            isPresented: $viewModel.showFileImporter,
+            allowedContentTypes: [.pdf],
+            onCompletion: { result in
+                if let url = try? result.get() {
+                    viewModel.setImportedDocument(url)
                 }
             }
-        })
+        )
         .fileExporter(
-            isPresented: $showFileExporter,
+            isPresented: $viewModel.showFileExporter,
             item: document,
             contentTypes: [.pdf],
             onCompletion: { newUrl in
@@ -80,77 +55,113 @@ struct MainView: View {
     private var innerBody: some View {
         VStack(alignment: .leading) {
 
-            if let pdfUrl, !isConverting {
+            if let pdfUrl = viewModel.pdfUrl, !viewModel.isConverting {
                 pdfViewer(pdfUrl)
             } else {
-                if isConverting {
+                if viewModel.isConverting {
                     LoadingView(title: "Converting ...", message: documentName)
                 } else {
-                    Button(action: {
-                        openFinder()
-                    }, label: {
-                        Text("Select pdf file")
-                            .font(.system(size: 14))
-                    })
-                    .buttonStyle(BorderedButtonStyle())
+                    initialView
                 }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
+    private var initialView: some View {
+        VStack {
+            #if os(macOS)
+            Image(systemName: "square.and.arrow.down")
+                .font(.system(
+                    size: 32,
+                    weight: .ultraLight,
+                    design: .rounded
+                ))
+                .foregroundColor(.secondary)
+                .padding(.bottom, 8)
+            Text("Drag and drop pdf file here")
+                .font(.system(size: 14))
+                .foregroundColor(.secondary)
+            
+            Divider()
+                .padding(.vertical)
+            #endif
+            
+            Button(action: {
+                openFinder()
+            }, label: {
+                Text("Select pdf file")
+                    .font(.system(size: 14))
+            })
+            .buttonStyle(BorderedButtonStyle())
+        }
+    }
+    
     @ViewBuilder
     private func pdfViewer(_ _url: URL) -> some View {
         if let doc = PDFDocument(url: _url) {
-            PDFViewer(document: doc)
-                .toolbar(content: {
-                    ToolbarItem(placement: .topBarLeading) {
-                        Button(action: {
-                            openFinder()
-                        }, label: {
-                            Image(systemName: "folder")
-                                .font(.system(size: 14))
-                        })
-                        .buttonStyle(BorderedButtonStyle())
-                    }
-                })
-                .toolbar(content: {
-                    ToolbarItem(placement: .bottomBar) {
-                        bottomActions
-                    }
-                })
+            PDFViewer(
+                document: doc,
+                onClickPage: { pageIndex in
+                    
+                }
+            )
+            .toolbar(content: {
+                ToolbarItem(placement: .automaticOrTopLeading) {
+                    Button(action: {
+                        openFinder()
+                    }, label: {
+                        Image(systemName: "folder")
+                            .font(.system(size: 14))
+                    })
+                    .buttonStyle(BorderedButtonStyle())
+                }
+            })
+            .toolbar(content: {
+                ToolbarItem(placement: .buttomBarOrPrimary) {
+                    bottomActions
+                }
+            })
         }
     }
     
     private var bottomActions: some View {
         HStack {
-            Button(action: {
-                state = .initial
-                pdfUrl = nil
-            }, label: {
-                Text("Clear")
-                    .font(.system(size: 14))
-            })
+            if viewModel.state == .selectedPdf {
+                Button(action: {
+                    viewModel.state = .initial
+                    viewModel.pdfUrl = nil
+                }, label: {
+                    Text("Clear")
+                        .font(.system(size: 14))
+                })
+            }
             
-            Button(action: {
-                if state == .convertedPdf {
-                    state = .initial
-                    pdfUrl = nil
-                    return
-                }
-                
-                self.isConverting = true
-                AppPDF(url: self.pdfUrl).makeBookletPDF { newPdfUrl in
-                    self.pdfUrl = nil
-                    self.pdfUrl = newPdfUrl
-                    self.state = newPdfUrl != nil ? .convertedPdf : self.state
-                    self.isConverting = false
-                }
-            }, label: {
-                Text(state == .convertedPdf ? "Clear" : "Convert to booklet")
-                    .font(.system(size: 14))
-            })
-            .opacity(isConverting || state == .convertedPdf ? 0 : 1)
+            if !viewModel.isConverting || viewModel.state != .convertedPdf {
+                Button(action: {
+                    if viewModel.state == .convertedPdf {
+                        viewModel.state = .initial
+                        viewModel.pdfUrl = nil
+                        return
+                    }
+                    
+                    self.viewModel.isConverting = true
+                    if let pdf = self.viewModel.pdfUrl {
+                        PDF2B2GeneratorUseCaseImpl().makeBookletPDF(url: pdf) { newPdfUrl in
+                            Task { @MainActor in
+                                self.viewModel.pdfUrl = nil
+                                self.viewModel.pdfUrl = newPdfUrl
+                                self.viewModel.state = newPdfUrl != nil ? .convertedPdf : self.viewModel.state
+                                self.viewModel.isConverting = false
+                            }
+                        }
+                    }
+                }, label: {
+                    Text(viewModel.state == .convertedPdf ? "Clear" : "Convert to booklet")
+                        .font(.system(size: 14))
+                })
+            }
+            
             Spacer()
             Button(action: {
                 self.saveFile()
@@ -161,11 +172,20 @@ struct MainView: View {
     }
     
     private func openFinder() {
-        showFileImporter = true
+        if ProcessInfo.isPreviewing {
+            openDefaultDocument()
+            return
+        }
+        viewModel.showFileImporter = true
     }
     
     private func saveFile() {
-        showFileExporter = true
+        viewModel.showFileExporter = true
+    }
+    
+    private func openDefaultDocument() {
+        self.viewModel.pdfUrl = Bundle.main.url(forResource: "Resume", withExtension: "pdf")
+        self.viewModel.state = .selectedPdf
     }
 }
 

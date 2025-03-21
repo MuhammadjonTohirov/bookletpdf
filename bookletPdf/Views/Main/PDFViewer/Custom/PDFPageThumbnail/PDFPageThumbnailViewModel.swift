@@ -8,13 +8,14 @@
 import Foundation
 import SwiftUI
 import PDFKit
+import BookletPDFKit
 
 class PDFThumbnailViewModel: ObservableObject {
     var page: PDFPage
     var key: String
     var size: CGSize = .init(width: 100, height: 200)
     var isLoaded: Bool = false
-    @Published var image: UIImage?
+    @Published var image: FImage?
     var isAppeard: Bool = false
     init(page: PDFPage, key: String, size: CGSize) {
         self.page = page
@@ -45,7 +46,7 @@ class PDFThumbnailViewModel: ObservableObject {
             if let d = AppCache.shared.load(key: self.key) {
                 self.isLoaded = true
                 withAnimation {
-                    self.image = UIImage(data: d)
+                    self.image = FImage(data: d)
                 }
             }
         }
@@ -61,7 +62,7 @@ class PDFThumbnailViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.isLoaded = true
                 withAnimation {
-                    self.image = UIImage(data: imageData)
+                    self.image = FImage(data: imageData)
                 }
             }
         }

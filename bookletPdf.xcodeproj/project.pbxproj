@@ -3,38 +3,39 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E0E4E032ADAA1A000E846B6 /* BooketUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0E4E022ADAA1A000E846B6 /* BooketUtils.swift */; };
 		2E0E4E082ADAA84600E846B6 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0E4E072ADAA84600E846B6 /* MainView.swift */; };
 		2E0E4E0D2ADAAE6800E846B6 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0E4E0C2ADAAE6800E846B6 /* LoadingView.swift */; };
 		2E0E4E102ADB10B300E846B6 /* AppCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0E4E0F2ADB10B300E846B6 /* AppCache.swift */; };
-		2E0E4E122ADB177B00E846B6 /* PDFPageThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0E4E112ADB177B00E846B6 /* PDFPageThumbnail.swift */; };
-		2E0E4E152ADB1C7F00E846B6 /* PDFPageThumbnailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0E4E142ADB1C7F00E846B6 /* PDFPageThumbnailViewModel.swift */; };
 		2E2E44272AC3CC8E00DC757F /* bookletPdfApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E44262AC3CC8E00DC757F /* bookletPdfApp.swift */; };
 		2E2E44292AC3CC8E00DC757F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E44282AC3CC8E00DC757F /* ContentView.swift */; };
 		2E2E442B2AC3CC8F00DC757F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E2E442A2AC3CC8F00DC757F /* Assets.xcassets */; };
 		2E2E442E2AC3CC8F00DC757F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E2E442D2AC3CC8F00DC757F /* Preview Assets.xcassets */; };
-		2E2E44372AC46C5200DC757F /* AppPDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E44362AC46C5200DC757F /* AppPDF.swift */; };
-		2E2E443A2AC4807C00DC757F /* PDFReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E44392AC4807C00DC757F /* PDFReader.swift */; };
-		2E2E443F2AC480B100DC757F /* PDFViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E443E2AC480B100DC757F /* PDFViewer.swift */; };
 		2E2E44412AC49B9200DC757F /* Resume.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2E2E44402AC49B9200DC757F /* Resume.pdf */; };
-		2E2E44442AC49F7A00DC757F /* PDFPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E44432AC49F7A00DC757F /* PDFPageView.swift */; };
-		2E2E44492AC4C08D00DC757F /* PDFDocument+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E44482AC4C08D00DC757F /* PDFDocument+Extensions.swift */; };
 		2E50DE1A2AC607E800F3FCCF /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E50DE192AC607E800F3FCCF /* InfoView.swift */; };
-		AC0E8CF52B8CBC71004BAA97 /* PagePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0E8CF32B8CBC71004BAA97 /* PagePreview.swift */; };
-		AC0E8CF62B8CBC71004BAA97 /* PreviewPageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0E8CF42B8CBC71004BAA97 /* PreviewPageItem.swift */; };
+		5229A9852D2B806D00C75302 /* BookletPDFKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5229A9842D2B806D00C75302 /* BookletPDFKit */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		5257CEF02D6B6120003211BA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		2E0E4E022ADAA1A000E846B6 /* BooketUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooketUtils.swift; sourceTree = "<group>"; };
 		2E0E4E072ADAA84600E846B6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2E0E4E0C2ADAAE6800E846B6 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		2E0E4E0F2ADB10B300E846B6 /* AppCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCache.swift; sourceTree = "<group>"; };
-		2E0E4E112ADB177B00E846B6 /* PDFPageThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPageThumbnail.swift; sourceTree = "<group>"; };
-		2E0E4E142ADB1C7F00E846B6 /* PDFPageThumbnailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPageThumbnailViewModel.swift; sourceTree = "<group>"; };
 		2E0E4E162ADB30F900E846B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2E2E44232AC3CC8E00DC757F /* bookletPdf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bookletPdf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E2E44262AC3CC8E00DC757F /* bookletPdfApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bookletPdfApp.swift; sourceTree = "<group>"; };
@@ -42,22 +43,24 @@
 		2E2E442A2AC3CC8F00DC757F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E2E442D2AC3CC8F00DC757F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2E2E44342AC3D74200DC757F /* bookletPdf.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = bookletPdf.entitlements; sourceTree = "<group>"; };
-		2E2E44362AC46C5200DC757F /* AppPDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPDF.swift; sourceTree = "<group>"; };
-		2E2E44392AC4807C00DC757F /* PDFReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReader.swift; sourceTree = "<group>"; };
-		2E2E443E2AC480B100DC757F /* PDFViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewer.swift; sourceTree = "<group>"; };
 		2E2E44402AC49B9200DC757F /* Resume.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Resume.pdf; sourceTree = "<group>"; };
-		2E2E44432AC49F7A00DC757F /* PDFPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPageView.swift; sourceTree = "<group>"; };
-		2E2E44482AC4C08D00DC757F /* PDFDocument+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFDocument+Extensions.swift"; sourceTree = "<group>"; };
 		2E50DE192AC607E800F3FCCF /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
-		AC0E8CF32B8CBC71004BAA97 /* PagePreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagePreview.swift; sourceTree = "<group>"; };
-		AC0E8CF42B8CBC71004BAA97 /* PreviewPageItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewPageItem.swift; sourceTree = "<group>"; };
+		5229A9822D2B7F8900C75302 /* BookletPDFKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BookletPDFKit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		5229A9862D2B84B100C75302 /* Sidebar */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Sidebar; sourceTree = "<group>"; };
+		5257CEF82D6B8AF0003211BA /* Custom */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Custom; sourceTree = "<group>"; };
+		5257CEFE2D6B8AF7003211BA /* Native */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Native; sourceTree = "<group>"; };
+		5257CF032D6B8F80003211BA /* ViewModel */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModel; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2E2E44202AC3CC8E00DC757F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5229A9852D2B806D00C75302 /* BookletPDFKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +70,7 @@
 		2E0E4E042ADAA82E00E846B6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5229A9862D2B84B100C75302 /* Sidebar */,
 				2E50DE182AC607DC00F3FCCF /* InfoView */,
 				2E0E4E062ADAA83900E846B6 /* Main */,
 				2E2E44282AC3CC8E00DC757F /* ContentView.swift */,
@@ -77,6 +81,7 @@
 		2E0E4E062ADAA83900E846B6 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				5257CF032D6B8F80003211BA /* ViewModel */,
 				2E2E443D2AC480A900DC757F /* PDFViewer */,
 				2E0E4E072ADAA84600E846B6 /* MainView.swift */,
 				2E0E4E0C2ADAAE6800E846B6 /* LoadingView.swift */,
@@ -92,19 +97,12 @@
 			path = Cache;
 			sourceTree = "<group>";
 		};
-		2E0E4E132ADB1C7200E846B6 /* PDFPageThumbnail */ = {
-			isa = PBXGroup;
-			children = (
-				2E0E4E112ADB177B00E846B6 /* PDFPageThumbnail.swift */,
-				2E0E4E142ADB1C7F00E846B6 /* PDFPageThumbnailViewModel.swift */,
-			);
-			path = PDFPageThumbnail;
-			sourceTree = "<group>";
-		};
 		2E2E441A2AC3CC8E00DC757F = {
 			isa = PBXGroup;
 			children = (
+				5229A9822D2B7F8900C75302 /* BookletPDFKit */,
 				2E2E44252AC3CC8E00DC757F /* bookletPdf */,
+				5229A9832D2B806D00C75302 /* Frameworks */,
 				2E2E44242AC3CC8E00DC757F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -140,30 +138,10 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		2E2E44352AC46C4300DC757F /* AppPDF */ = {
-			isa = PBXGroup;
-			children = (
-				2E2E44362AC46C5200DC757F /* AppPDF.swift */,
-			);
-			path = AppPDF;
-			sourceTree = "<group>";
-		};
-		2E2E44382AC4806E00DC757F /* PDFReader */ = {
-			isa = PBXGroup;
-			children = (
-				2E2E44392AC4807C00DC757F /* PDFReader.swift */,
-			);
-			path = PDFReader;
-			sourceTree = "<group>";
-		};
 		2E2E443C2AC480A500DC757F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				2E0E4E022ADAA1A000E846B6 /* BooketUtils.swift */,
-				2E2E44472AC4C08400DC757F /* Extensions */,
 				2E2E44422AC49B9E00DC757F /* Resources */,
-				2E2E44382AC4806E00DC757F /* PDFReader */,
-				2E2E44352AC46C4300DC757F /* AppPDF */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -171,11 +149,8 @@
 		2E2E443D2AC480A900DC757F /* PDFViewer */ = {
 			isa = PBXGroup;
 			children = (
-				AC0E8CF32B8CBC71004BAA97 /* PagePreview.swift */,
-				AC0E8CF42B8CBC71004BAA97 /* PreviewPageItem.swift */,
-				2E0E4E132ADB1C7200E846B6 /* PDFPageThumbnail */,
-				2E2E443E2AC480B100DC757F /* PDFViewer.swift */,
-				2E2E44432AC49F7A00DC757F /* PDFPageView.swift */,
+				5257CEFE2D6B8AF7003211BA /* Native */,
+				5257CEF82D6B8AF0003211BA /* Custom */,
 			);
 			path = PDFViewer;
 			sourceTree = "<group>";
@@ -188,20 +163,19 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		2E2E44472AC4C08400DC757F /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				2E2E44482AC4C08D00DC757F /* PDFDocument+Extensions.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		2E50DE182AC607DC00F3FCCF /* InfoView */ = {
 			isa = PBXGroup;
 			children = (
 				2E50DE192AC607E800F3FCCF /* InfoView.swift */,
 			);
 			path = InfoView;
+			sourceTree = "<group>";
+		};
+		5229A9832D2B806D00C75302 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,10 +188,17 @@
 				2E2E441F2AC3CC8E00DC757F /* Sources */,
 				2E2E44202AC3CC8E00DC757F /* Frameworks */,
 				2E2E44212AC3CC8E00DC757F /* Resources */,
+				5257CEF02D6B6120003211BA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				5229A9862D2B84B100C75302 /* Sidebar */,
+				5257CEF82D6B8AF0003211BA /* Custom */,
+				5257CEFE2D6B8AF7003211BA /* Native */,
+				5257CF032D6B8F80003211BA /* ViewModel */,
 			);
 			name = bookletPdf;
 			productName = bookletPdf;
@@ -275,22 +256,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E0E4E032ADAA1A000E846B6 /* BooketUtils.swift in Sources */,
 				2E50DE1A2AC607E800F3FCCF /* InfoView.swift in Sources */,
 				2E0E4E102ADB10B300E846B6 /* AppCache.swift in Sources */,
-				2E2E44442AC49F7A00DC757F /* PDFPageView.swift in Sources */,
 				2E0E4E0D2ADAAE6800E846B6 /* LoadingView.swift in Sources */,
 				2E0E4E082ADAA84600E846B6 /* MainView.swift in Sources */,
-				2E0E4E122ADB177B00E846B6 /* PDFPageThumbnail.swift in Sources */,
 				2E2E44292AC3CC8E00DC757F /* ContentView.swift in Sources */,
-				AC0E8CF52B8CBC71004BAA97 /* PagePreview.swift in Sources */,
-				2E2E44372AC46C5200DC757F /* AppPDF.swift in Sources */,
-				2E0E4E152ADB1C7F00E846B6 /* PDFPageThumbnailViewModel.swift in Sources */,
-				2E2E44492AC4C08D00DC757F /* PDFDocument+Extensions.swift in Sources */,
 				2E2E44272AC3CC8E00DC757F /* bookletPdfApp.swift in Sources */,
-				2E2E443F2AC480B100DC757F /* PDFViewer.swift in Sources */,
-				AC0E8CF62B8CBC71004BAA97 /* PreviewPageItem.swift in Sources */,
-				2E2E443A2AC4807C00DC757F /* PDFReader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,7 +396,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"bookletPdf/Preview Content\"";
-				DEVELOPMENT_TEAM = 636RKPCKH4;
+				DEVELOPMENT_TEAM = 84D2TM7KGZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = bookletPdf/Info.plist;
@@ -441,16 +412,20 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "uz.sbd.bookletPdf-";
+				PRODUCT_BUNDLE_IDENTIFIER = uz.sbd.bookletPdf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = NO;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -466,7 +441,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"bookletPdf/Preview Content\"";
-				DEVELOPMENT_TEAM = 636RKPCKH4;
+				DEVELOPMENT_TEAM = 84D2TM7KGZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = bookletPdf/Info.plist;
@@ -482,16 +457,20 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "uz.sbd.bookletPdf-";
+				PRODUCT_BUNDLE_IDENTIFIER = uz.sbd.bookletPdf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = NO;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -520,6 +499,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5229A9842D2B806D00C75302 /* BookletPDFKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BookletPDFKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2E2E441B2AC3CC8E00DC757F /* Project object */;
 }

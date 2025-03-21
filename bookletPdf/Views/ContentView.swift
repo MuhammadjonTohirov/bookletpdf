@@ -8,8 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var selectedMenu: MenuOption? = .home
     var body: some View {
-        MainView()
+        NavigationSplitView {
+            SidebarView(selectedMenu: $selectedMenu)
+        } detail: {
+            switch selectedMenu {
+            case .home:
+                MainView()
+            case .help:
+                InfoView()
+            case .settings:
+                Text("Settings")
+            default:
+                EmptyView()
+            }
+        }
+
     }
 }
 

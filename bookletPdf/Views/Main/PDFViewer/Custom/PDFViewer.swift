@@ -14,6 +14,9 @@ struct PDFViewer: View {
     @State private var show: Bool = false
     @State private var page: Int = 0
     @State private var screenSize: CGRect = .zero
+    
+    var onClickPage: ((Int) -> Void)?
+    
     var body: some View {
         VStack {
             gridView
@@ -26,8 +29,7 @@ struct PDFViewer: View {
                             }
                     })
                 }
-        }.onAppear {
-            
+            Divider()
         }
     }
     
@@ -43,13 +45,10 @@ struct PDFViewer: View {
                         page: document.page(at: page)!,
                         pageNumber: page + 1,
                         key: "\(page + 1)_\(document.documentURL!.lastPathComponent)",
-                        size: .init(width: 150, height: 230)
+                        size: .init(width: 120, height: 160)
                     )
                     .onTapGesture {
-                        self.page = page
-                        show.toggle()
-                        let _ = print(self.page, 1111)
-                        
+                        self.onClickPage?(page)
                     }
                     .frame(width: 100, height: 180)
                 }
@@ -62,16 +61,8 @@ struct PDFViewer: View {
                 .foregroundStyle(Color.init(uiColor: .secondarySystemBackground))
                 .ignoresSafeArea()
         }
-        .fullScreenCover(isPresented: $show, content: {
-            PagePreview(
-                document: document,
-                pageNumber: $page,
-                show: $show)
-            
-        })
     }
 }
-
 
 #Preview {
     PDFViewer(document: PDFDocument(url: Bundle.main.url(forResource: "Resume", withExtension: "pdf")!)!)

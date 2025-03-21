@@ -7,6 +7,6 @@
 
 import Foundation
 
-enum BookletType {
+public enum BookletType {
     case type2B2
 }

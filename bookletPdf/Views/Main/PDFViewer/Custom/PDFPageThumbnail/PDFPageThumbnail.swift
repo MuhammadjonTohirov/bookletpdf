@@ -8,10 +8,11 @@
 import Foundation
 import SwiftUI
 import PDFKit
+import BookletPDFKit
 
 struct PDFPageThumbnail: View {
     @StateObject var viewModel: PDFThumbnailViewModel
-    @State private var image: UIImage? = nil
+    @State private var image: FImage? = nil
 
     var body: some View {
         imageView
@@ -19,8 +20,6 @@ struct PDFPageThumbnail: View {
     
     private var imageView: some View {
         imageui
-            .cornerRadius(10)
-            .shadow(radius: 3, x: 0, y: 1)
             .onAppear {
                 viewModel.onAppear()
             }
@@ -32,14 +31,22 @@ struct PDFPageThumbnail: View {
     @ViewBuilder
     private var imageui: some View {
         if let image = viewModel.image {
-            Image(uiImage: image)
+            Image(fImage: image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .clipped()
+                .cornerRadius(10)
+                .shadow(radius: 3, x: 0, y: 1)
+
+            .frame(
+                width: viewModel.size.width,
+                height: viewModel.size.height
+            )
+                
         } else {
             RoundedRectangle(cornerRadius: 8)
-                .foregroundStyle(Color.init(uiColor: .secondarySystemBackground))
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .foregroundStyle(
+                    .clear
+                )
                 .overlay {
                     ProgressView()
                 }

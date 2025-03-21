@@ -7,15 +7,16 @@
 
 import SwiftUI
 import PDFKit
-import AppKit
+import BookletPDFKit
 
 struct PagePreview: View {
     var document : PDFDocument
     @Binding var pageNumber : Int
     @Binding var show : Bool
     @State private var screenSize: CGRect = .zero
-    @State var mainPage : UIImage!
+    @State var mainPage : FImage!
     @State var scrollViewProxy : ScrollViewProxy!
+    
     var body: some View {
         VStack(alignment: .center) {
             Button(action: {
@@ -84,9 +85,9 @@ struct PagePreview: View {
     private var mainImage: some View {
         GeometryReader { proxy in
             if let imageData = self.document.page(at: pageNumber)!.thumbnail(of: .init(width: proxy.size.width - 200, height: proxy.size.height), for: .trimBox).jpegData(compressionQuality: 1) {
-                let uiImage = UIImage(data: imageData)
-                if let image = uiImage{
-                    Image(uiImage: image).resizable().aspectRatio(contentMode: .fit).frame(maxWidth: .infinity, alignment: .center)
+                let uiImage = FImage(data: imageData)
+                if let image = uiImage {
+                    Image(fImage: image).resizable().aspectRatio(contentMode: .fit).frame(maxWidth: .infinity, alignment: .center)
                 }
             }else{
                 RoundedRectangle(cornerRadius: 8)

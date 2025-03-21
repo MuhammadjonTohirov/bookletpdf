@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import PDFKit
+import PDFKit.PDFDocument
 import SwiftUI
 
-extension PDFDocument: Transferable {
+extension PDFDocument: @retroactive Transferable {
     public static var transferRepresentation: some TransferRepresentation {
         DataRepresentation(contentType: .pdf) { pdf in
                 if let data = pdf.dataRepresentation() {
@@ -38,7 +38,7 @@ extension PDFDocument: Transferable {
         }
      }
     
-    func addBlankPages(to pdf: PDFDocument, count: Int) {
+    public func addBlankPages(to pdf: PDFDocument, count: Int) {
         for _ in 0..<count {
             let blankPage = PDFPage()
             pdf.insert(blankPage, at: pdf.pageCount)
@@ -83,9 +83,7 @@ extension PDFDocument: Transferable {
             
             try? FileManager.default.removeItem(at: url)
             
-            DispatchQueue.main.async {
-                completion(saveURL)
-            }
+            completion(saveURL)
             return
         }
     }

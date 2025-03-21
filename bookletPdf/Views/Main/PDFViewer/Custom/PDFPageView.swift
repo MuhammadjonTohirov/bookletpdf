@@ -17,11 +17,22 @@ struct PDFPageView: View {
     
     var body: some View {
         VStack {
-            PDFPageThumbnail(viewModel: .init(page: page, key: key, size: size))
-                .padding(.bottom, 4)
+            PDFPageThumbnail(
+                viewModel: .init(page: page, key: key, size: size)
+            )
+            .padding(.bottom, 4)
             Text("\(pageNumber)")
                 .font(.system(size: 12))
                 .foregroundStyle(Color.init(uiColor: .secondaryLabel))
         }
     }
+}
+
+#Preview {
+    let doc = PDFDocument(url: Bundle.main.url(forResource: "Resume", withExtension: "pdf")!)!
+    PDFPageView(
+        page: doc.page(at: 0)!,
+        pageNumber: 1,
+        key: "pdf"
+    )
 }
