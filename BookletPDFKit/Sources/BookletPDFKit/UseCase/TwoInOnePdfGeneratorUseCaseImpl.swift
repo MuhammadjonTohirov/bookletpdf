@@ -8,12 +8,13 @@
 import Foundation
 import PDFKit
 
-public protocol PDF2B2GeneratorUseCase {
+public protocol BookletPDFGeneratorUseCase {
     func makeBookletPDF(url: URL, completion: @Sendable @escaping (URL?) -> Void)
 }
 
-public final class PDF2B2GeneratorUseCaseImpl: PDF2B2GeneratorUseCase {
+public struct TwoInOnePdfGeneratorUseCaseImpl: BookletPDFGeneratorUseCase {
     public init() {}
+    
     public func makeBookletPDF(url: URL, completion: @Sendable @escaping (URL?) -> Void) {
         makeDocumentAsBooklet(url, completion: completion)
     }
@@ -22,7 +23,7 @@ public final class PDF2B2GeneratorUseCaseImpl: PDF2B2GeneratorUseCase {
         DispatchQueue.global(qos: .utility).async {
             autoreleasepool {
                 if let originalPDF = PDFDocument(url: url) {
-                    originalPDF.converTo(booklet: .type2B2, completion: completion)
+                    originalPDF.converTo(booklet: .type2, completion: completion)
                 }
             }
         }

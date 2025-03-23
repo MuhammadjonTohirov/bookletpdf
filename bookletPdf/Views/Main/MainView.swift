@@ -16,7 +16,7 @@ enum ContentViewState {
 }
 
 struct MainView: View {
-    @StateObject var viewModel: MainViewModel = .init()
+    @EnvironmentObject var viewModel: MainViewModel
 
     private var documentName: String {
         viewModel.document?.name ?? ""
@@ -54,7 +54,6 @@ struct MainView: View {
     
     private var innerBody: some View {
         VStack(alignment: .leading) {
-
             if let pdfUrl = viewModel.pdfUrl, !viewModel.isConverting {
                 pdfViewer(pdfUrl)
             } else {
@@ -125,6 +124,7 @@ struct MainView: View {
         }
     }
     
+    // Add this to the bottomActions in MainView.swift
     private var bottomActions: some View {
         HStack {
             if viewModel.state == .selectedPdf {
@@ -139,23 +139,7 @@ struct MainView: View {
             
             if !viewModel.isConverting || viewModel.state != .convertedPdf {
                 Button(action: {
-                    if viewModel.state == .convertedPdf {
-                        viewModel.state = .initial
-                        viewModel.pdfUrl = nil
-                        return
-                    }
-                    
-                    self.viewModel.isConverting = true
-                    if let pdf = self.viewModel.pdfUrl {
-                        PDF2B2GeneratorUseCaseImpl().makeBookletPDF(url: pdf) { newPdfUrl in
-                            Task { @MainActor in
-                                self.viewModel.pdfUrl = nil
-                                self.viewModel.pdfUrl = newPdfUrl
-                                self.viewModel.state = newPdfUrl != nil ? .convertedPdf : self.viewModel.state
-                                self.viewModel.isConverting = false
-                            }
-                        }
-                    }
+                    self.viewModel.convertToBooklet()
                 }, label: {
                     Text(viewModel.state == .convertedPdf ? "Clear" : "Convert to booklet")
                         .font(.system(size: 14))
@@ -163,6 +147,12 @@ struct MainView: View {
             }
             
             Spacer()
+            
+            // Add print button here when document is loaded
+            if viewModel.state == .convertedPdf || viewModel.state == .selectedPdf {
+                printToolbarButton
+            }
+            
             Button(action: {
                 self.saveFile()
             }, label: {

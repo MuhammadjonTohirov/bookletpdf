@@ -25,7 +25,7 @@ class PDFThumbnailViewModel: ObservableObject {
     
     lazy var imageLoaderItem: DispatchWorkItem = {
         autoreleasepool {
-            let item = DispatchWorkItem {
+            let item = DispatchWorkItem(flags: .barrier) {
                 if AppCache.shared.hasItem(key: self.key) {
                     self.loadImageFromCache()
                     return

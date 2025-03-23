@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @State var selectedMenu: MenuOption? = .home
+    @EnvironmentObject var mainViewModel: MainViewModel
+    
     var body: some View {
         NavigationSplitView {
             SidebarView(selectedMenu: $selectedMenu)
@@ -16,6 +18,7 @@ struct ContentView: View {
             switch selectedMenu {
             case .home:
                 MainView()
+                    .environmentObject(mainViewModel)
             case .help:
                 InfoView()
             case .settings:
@@ -30,4 +33,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environmentObject(MainViewModel())
 }

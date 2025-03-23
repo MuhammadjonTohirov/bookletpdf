@@ -16,6 +16,8 @@
 		2E2E442E2AC3CC8F00DC757F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E2E442D2AC3CC8F00DC757F /* Preview Assets.xcassets */; };
 		2E2E44412AC49B9200DC757F /* Resume.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2E2E44402AC49B9200DC757F /* Resume.pdf */; };
 		2E50DE1A2AC607E800F3FCCF /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E50DE192AC607E800F3FCCF /* InfoView.swift */; };
+		2EE0AF592D8E559F00E348EE /* PrintButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE0AF582D8E559F00E348EE /* PrintButton.swift */; };
+		2EE0AF5C2D8E55D100E348EE /* AppMenuCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE0AF5B2D8E55D100E348EE /* AppMenuCommand.swift */; };
 		5229A9852D2B806D00C75302 /* BookletPDFKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5229A9842D2B806D00C75302 /* BookletPDFKit */; };
 /* End PBXBuildFile section */
 
@@ -45,10 +47,13 @@
 		2E2E44342AC3D74200DC757F /* bookletPdf.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = bookletPdf.entitlements; sourceTree = "<group>"; };
 		2E2E44402AC49B9200DC757F /* Resume.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Resume.pdf; sourceTree = "<group>"; };
 		2E50DE192AC607E800F3FCCF /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		2EE0AF582D8E559F00E348EE /* PrintButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintButton.swift; sourceTree = "<group>"; };
+		2EE0AF5B2D8E55D100E348EE /* AppMenuCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMenuCommand.swift; sourceTree = "<group>"; };
 		5229A9822D2B7F8900C75302 /* BookletPDFKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BookletPDFKit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		2EE0AF032D8DEAD500E348EE /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
 		5229A9862D2B84B100C75302 /* Sidebar */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Sidebar; sourceTree = "<group>"; };
 		5257CEF82D6B8AF0003211BA /* Custom */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Custom; sourceTree = "<group>"; };
 		5257CEFE2D6B8AF7003211BA /* Native */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Native; sourceTree = "<group>"; };
@@ -84,6 +89,7 @@
 				5257CF032D6B8F80003211BA /* ViewModel */,
 				2E2E443D2AC480A900DC757F /* PDFViewer */,
 				2E0E4E072ADAA84600E846B6 /* MainView.swift */,
+				2EE0AF582D8E559F00E348EE /* PrintButton.swift */,
 				2E0E4E0C2ADAAE6800E846B6 /* LoadingView.swift */,
 			);
 			path = Main;
@@ -141,7 +147,9 @@
 		2E2E443C2AC480A500DC757F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				2EE0AF032D8DEAD500E348EE /* Services */,
 				2E2E44422AC49B9E00DC757F /* Resources */,
+				2EE0AF5B2D8E55D100E348EE /* AppMenuCommand.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -195,6 +203,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				2EE0AF032D8DEAD500E348EE /* Services */,
 				5229A9862D2B84B100C75302 /* Sidebar */,
 				5257CEF82D6B8AF0003211BA /* Custom */,
 				5257CEFE2D6B8AF7003211BA /* Native */,
@@ -256,9 +265,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EE0AF592D8E559F00E348EE /* PrintButton.swift in Sources */,
 				2E50DE1A2AC607E800F3FCCF /* InfoView.swift in Sources */,
 				2E0E4E102ADB10B300E846B6 /* AppCache.swift in Sources */,
 				2E0E4E0D2ADAAE6800E846B6 /* LoadingView.swift in Sources */,
+				2EE0AF5C2D8E55D100E348EE /* AppMenuCommand.swift in Sources */,
 				2E0E4E082ADAA84600E846B6 /* MainView.swift in Sources */,
 				2E2E44292AC3CC8E00DC757F /* ContentView.swift in Sources */,
 				2E2E44272AC3CC8E00DC757F /* bookletPdfApp.swift in Sources */,

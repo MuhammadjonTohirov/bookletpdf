@@ -8,5 +8,6 @@
 import Foundation
 
 public enum BookletType {
-    case type2B2
+    case type2    // 2 pages per sheet (booklet format)
+    case type4    // 4 pages per sheet (4-in-1 format)
 }

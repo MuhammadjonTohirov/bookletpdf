@@ -47,4 +47,31 @@ final class MainViewModel: ObservableObject {
             url: url
         )
     }
+    
+    @MainActor
+    func convertToBooklet() {
+        guard let pdf = self.pdfUrl else {
+            return
+        }
+
+        self.isConverting = true
+        
+        if state == .convertedPdf {
+            state = .initial
+            pdfUrl = nil
+            return
+        }
+
+        TwoInOnePdfGeneratorUseCaseImpl().makeBookletPDF(url: pdf) { newPdfUrl in
+            Task { @MainActor in
+                if let newPdfUrl {
+                    self.setDocument(newPdfUrl)
+                }
+                
+                self.pdfUrl = newPdfUrl
+                self.state = newPdfUrl != nil ? .convertedPdf : self.state
+                self.isConverting = false
+            }
+        }
+    }
 }
