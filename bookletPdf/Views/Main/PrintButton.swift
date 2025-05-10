@@ -7,10 +7,12 @@
 
 import SwiftUI
 import PDFKit
+import BookletPDFKit
 
 struct PrintButton: View {
     var documentURL: URL?
     var isEnabled: Bool
+    var bookletType: BookletType // Add this parameter
     
     @State private var showingPrintError = false
     @State private var errorMessage = ""
@@ -31,7 +33,13 @@ struct PrintButton: View {
                 printDocument()
             }
         } message: {
-            Text("""
+            Text(bookletType == .type2 ? twoInOneInstructions : fourInOneInstructions)
+        }
+        // Rest of implementation...
+    }
+    
+    private var twoInOneInstructions: String {
+            """
             When the print dialog appears:
             
             1. Select "Pages per Sheet: 2" in the Layout section
@@ -39,13 +47,21 @@ struct PrintButton: View {
             3. For best results with double-sided printing:
                - First print odd pages
                - Then flip paper and print even pages
-            """)
-        }
-        .alert("Print Error", isPresented: $showingPrintError) {
-            Button("OK", role: .cancel) { }
-        } message: {
-            Text(errorMessage)
-        }
+            """
+    }
+    
+    private var fourInOneInstructions: String {
+            """
+            For 4-in-1 booklet printing:
+            
+            1. Select "Pages per Sheet: 1" (pages are already arranged 4-up)
+            2. Set paper orientation to match your document
+            3. For double-sided printing:
+               - Print all pages
+               - Ensure "Print on both sides" is selected
+               - Choose "Flip on short edge" binding option
+            4. After printing, fold pages in half twice to create your booklet
+            """
     }
     
     private func printDocument() {
@@ -68,7 +84,8 @@ extension MainView {
     var printToolbarButton: some View {
         PrintButton(
             documentURL: viewModel.document?.url,
-            isEnabled: viewModel.document != nil && !viewModel.isConverting
+            isEnabled: viewModel.document != nil && !viewModel.isConverting,
+            bookletType: .type2
         )
     }
 }

@@ -24,26 +24,25 @@ class PDFThumbnailViewModel: ObservableObject {
     }
     
     lazy var imageLoaderItem: DispatchWorkItem = {
-        autoreleasepool {
-            let item = DispatchWorkItem(flags: .barrier) {
-                if AppCache.shared.hasItem(key: self.key) {
-                    self.loadImageFromCache()
-                    return
-                }
-                
-                self.loadImageFromPageAndStore()
+        let item = DispatchWorkItem(qos: .utility, flags: .barrier) {
+            if AppCache.shared.hasItem(key: self.key) {
+                self.loadImageFromCache()
+                return
             }
             
-            return item
+            self.loadImageFromPageAndStore()
         }
+        
+        return item
     }()
     
     private func loadImageFromCache() {
         guard isAppeard else {
             return
         }
-        DispatchQueue.main.async {
-            if let d = AppCache.shared.load(key: self.key) {
+        
+        if let d = AppCache.shared.load(key: self.key) {
+            DispatchQueue.main.async {
                 self.isLoaded = true
                 withAnimation {
                     self.image = FImage(data: d)

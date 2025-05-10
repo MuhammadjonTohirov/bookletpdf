@@ -61,8 +61,8 @@ final class MainViewModel: ObservableObject {
             pdfUrl = nil
             return
         }
-
-        TwoInOnePdfGeneratorUseCaseImpl().makeBookletPDF(url: pdf) { newPdfUrl in
+        
+        FourInOneGeneratorUseCaseImpl().makeFourInOnePDF(url: pdf) { newPdfUrl in
             Task { @MainActor in
                 if let newPdfUrl {
                     self.setDocument(newPdfUrl)
@@ -71,6 +71,7 @@ final class MainViewModel: ObservableObject {
                 self.pdfUrl = newPdfUrl
                 self.state = newPdfUrl != nil ? .convertedPdf : self.state
                 self.isConverting = false
+                
             }
         }
     }

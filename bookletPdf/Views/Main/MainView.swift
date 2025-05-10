@@ -127,7 +127,7 @@ struct MainView: View {
     // Add this to the bottomActions in MainView.swift
     private var bottomActions: some View {
         HStack {
-            if viewModel.state == .selectedPdf {
+            if viewModel.state == .convertedPdf || viewModel.state == .selectedPdf {
                 Button(action: {
                     viewModel.state = .initial
                     viewModel.pdfUrl = nil
@@ -137,11 +137,11 @@ struct MainView: View {
                 })
             }
             
-            if !viewModel.isConverting || viewModel.state != .convertedPdf {
+            if !viewModel.isConverting && viewModel.state != .convertedPdf {
                 Button(action: {
                     self.viewModel.convertToBooklet()
                 }, label: {
-                    Text(viewModel.state == .convertedPdf ? "Clear" : "Convert to booklet")
+                    Text("Convert to booklet")
                         .font(.system(size: 14))
                 })
             }

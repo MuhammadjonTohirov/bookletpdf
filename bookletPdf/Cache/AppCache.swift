@@ -77,41 +77,45 @@ final class AppCache {
     }
     
     func load(key: String) -> Data? {
-        guard let versionUrl = self.versionUrl else {
-            print("❌ Error: versionUrl is nil")
-            return nil
-        }
-
-        let url: URL
-        if #available(macOS 15.0, iOS 17.0, *) {
-            url = versionUrl.appendingPathComponent(key, conformingTo: .image)
-        } else {
-            url = versionUrl.appendingPathComponent(key)
-        }
-
-        do {
-            return try Data(contentsOf: url)
-        } catch {
-            print("❌ Error loading image data: \(error)")
-            return nil
+        queue.sync {
+            guard let versionUrl = self.versionUrl else {
+                print("❌ Error: versionUrl is nil")
+                return nil
+            }
+            
+            let url: URL
+            if #available(macOS 15.0, iOS 17.0, *) {
+                url = versionUrl.appendingPathComponent(key, conformingTo: .image)
+            } else {
+                url = versionUrl.appendingPathComponent(key)
+            }
+            
+            do {
+                return try Data(contentsOf: url)
+            } catch {
+                print("❌ Error loading image data: \(error)")
+                return nil
+            }
         }
     }
     
     func hasItem(key: String) -> Bool {
-        guard let versionUrl = self.versionUrl else {
-            print("❌ Error: versionUrl is nil")
-            return false
+        queue.sync {
+            guard let versionUrl = self.versionUrl else {
+                print("❌ Error: versionUrl is nil")
+                return false
+            }
+            
+            let url: URL
+            if #available(macOS 15.0, iOS 17.0, *) {
+                url = versionUrl.appendingPathComponent(key, conformingTo: .image)
+            } else {
+                url = versionUrl.appendingPathComponent(key)
+            }
+            
+            let fileExists = fileManager.fileExists(atPath: url.path)
+            print("🔍 Checking cache file: \(url.path) -> Exists: \(fileExists)")
+            return fileExists
         }
-
-        let url: URL
-        if #available(macOS 15.0, iOS 17.0, *) {
-            url = versionUrl.appendingPathComponent(key, conformingTo: .image)
-        } else {
-            url = versionUrl.appendingPathComponent(key)
-        }
-
-        let fileExists = fileManager.fileExists(atPath: url.path)
-        print("🔍 Checking cache file: \(url.path) -> Exists: \(fileExists)")
-        return fileExists
     }
 }
