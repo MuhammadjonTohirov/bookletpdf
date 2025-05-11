@@ -13,26 +13,48 @@ struct ContentView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     var body: some View {
-        navigationSplitViewLayout
+        #if os(macOS)
+        macNavigationView
+        #else
+        iosNavigationView
+        #endif
     }
     
-    var navigationSplitViewLayout: some View {
+    // iOS-specific navigation
+    var iosNavigationView: some View {
         NavigationSplitView {
             SidebarView(selectedMenu: $selectedMenu)
         } detail: {
-            switch selectedMenu {
-            case .converter:
-                MainView()
-                    .environmentObject(mainViewModel)
-            case .help:
-                InfoView()
-            case .settings:
-                SettingsView()
-            default:
-                // If no menu is selected, default to converter
-                MainView()
-                    .environmentObject(mainViewModel)
-            }
+            detailView
+        }
+    }
+    
+    // macOS-specific navigation with improved styling
+    var macNavigationView: some View {
+        NavigationSplitView {
+            SidebarView(selectedMenu: $selectedMenu)
+        } detail: {
+            detailView
+                .frame(minWidth: 600)
+        }
+        .navigationSplitViewStyle(.balanced)
+    }
+    
+    // Common detail view for both platforms
+    @ViewBuilder
+    var detailView: some View {
+        switch selectedMenu {
+        case .converter:
+            MainView()
+                .environmentObject(mainViewModel)
+        case .help:
+            InfoView()
+        case .settings:
+            SettingsView()
+        default:
+            // If no menu is selected, default to converter
+            MainView()
+                .environmentObject(mainViewModel)
         }
     }
 }
