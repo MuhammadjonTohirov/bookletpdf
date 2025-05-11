@@ -55,6 +55,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		2E3F6B122DD0CAD500D52D83 /* Settings */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Settings; sourceTree = "<group>"; };
 		2EE0AF032D8DEAD500E348EE /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
 		5229A9862D2B84B100C75302 /* Sidebar */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Sidebar; sourceTree = "<group>"; };
 		5257CEF82D6B8AF0003211BA /* Custom */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Custom; sourceTree = "<group>"; };
@@ -77,6 +78,7 @@
 		2E0E4E042ADAA82E00E846B6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2E3F6B122DD0CAD500D52D83 /* Settings */,
 				5229A9862D2B84B100C75302 /* Sidebar */,
 				2E50DE182AC607DC00F3FCCF /* InfoView */,
 				2E0E4E062ADAA83900E846B6 /* Main */,
@@ -206,6 +208,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				2E3F6B122DD0CAD500D52D83 /* Settings */,
 				2EE0AF032D8DEAD500E348EE /* Services */,
 				5229A9862D2B84B100C75302 /* Sidebar */,
 				5257CEF82D6B8AF0003211BA /* Custom */,

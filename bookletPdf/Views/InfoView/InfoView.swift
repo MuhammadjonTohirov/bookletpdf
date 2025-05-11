@@ -18,7 +18,7 @@ struct InfoView: View {
     var body: some View {
         WebViewRepresentable(htmlContent: htmlContent)
             .navigationTitle("Info")
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitleInline()
             .overlay {
                 ProgressView()
                     .opacity(isLoading ? 1 : 0)

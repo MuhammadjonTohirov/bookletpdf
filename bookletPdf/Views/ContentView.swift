@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var selectedMenu: MenuOption? = .home
+    @State var selectedMenu: MenuOption? = .converter
     @EnvironmentObject var mainViewModel: MainViewModel
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
@@ -21,19 +21,22 @@ struct ContentView: View {
             SidebarView(selectedMenu: $selectedMenu)
         } detail: {
             switch selectedMenu {
-            case .home:
+            case .converter:
                 MainView()
                     .environmentObject(mainViewModel)
             case .help:
                 InfoView()
             case .settings:
-                Text("Settings")
+                SettingsView()
             default:
-                EmptyView()
+                // If no menu is selected, default to converter
+                MainView()
+                    .environmentObject(mainViewModel)
             }
         }
     }
 }
+
 #Preview {
     ContentView()
         .environmentObject(MainViewModel())

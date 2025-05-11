@@ -34,7 +34,8 @@ final class AppCache {
     }()
     
     // Create the version URL only once, not every time it's accessed
-    private let versionUrl: URL? = {
+    // Make this public to allow cache clearing from settings
+    let versionUrl: URL? = {
         guard let cacheDir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
             return nil
         }
@@ -104,6 +105,24 @@ final class AppCache {
             let fileExists = fileManager.fileExists(atPath: url.path)
             print("🔍 Checking cache file: \(url.path) -> Exists: \(fileExists)")
             return fileExists
+        }
+    }
+    
+    // Added method for clearing cache from settings
+    func clearCache() -> Bool {
+        guard let versionUrl = self.versionUrl else { return false }
+        
+        return queue.sync(flags: .barrier) {
+            do {
+                let contents = try fileManager.contentsOfDirectory(at: versionUrl, includingPropertiesForKeys: nil)
+                for fileURL in contents {
+                    try fileManager.removeItem(at: fileURL)
+                }
+                return true
+            } catch {
+                print("❌ Error clearing cache: \(error)")
+                return false
+            }
         }
     }
 }
