@@ -43,7 +43,7 @@ struct bookletPdfApp: App {
     #endif
     
     @State private var menuBarExtraShown: Bool = true
-    @StateObject private var mainViewModel = MainViewModel()
+    @StateObject private var mainViewModel = DocumentConvertViewModel()
 
     var body: some Scene {
         WindowGroup("Main Window", id: "main-window") {

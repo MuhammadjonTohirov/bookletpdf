@@ -5,6 +5,7 @@
 //  Created by applebro on 14/10/23.
 //
 
+// Modified version of MainView.swift with confirmation alert
 import SwiftUI
 import PDFKit
 import BookletPDFKit
@@ -15,8 +16,10 @@ enum ContentViewState {
     case convertedPdf
 }
 
-struct MainView: View {
-    @EnvironmentObject var viewModel: MainViewModel
+struct DocumentConvertView: View {
+    @EnvironmentObject var viewModel: DocumentConvertViewModel
+    @State private var showConvertConfirmation = false
+    @State private var tempBookletType: BookletType = .type2
 
     private var documentName: String {
         (viewModel.document?.name.nilIfEmpty ?? "").putIfEmpty(viewModel.document?.url?.lastPathComponent ?? "Unknown document")
@@ -59,6 +62,15 @@ struct MainView: View {
             onCompletion: { newUrl in
             print("Exported at \(newUrl)")
         })
+        .alert("Confirm Conversion", isPresented: $showConvertConfirmation) {
+            Button("Cancel", role: .cancel) { }
+            Button("Convert to \(tempBookletType == .type2 ? "2-in-1" : "4-in-1")") {
+                viewModel.bookletType = tempBookletType
+                viewModel.convertToBooklet()
+            }
+        } message: {
+            Text("Do you want to convert this PDF to \(tempBookletType == .type2 ? "2-in-1" : "4-in-1") booklet format?")
+        }
     }
     
     private var innerBody: some View {
@@ -168,7 +180,8 @@ struct MainView: View {
                 #endif
                 
                 Button(action: {
-                    self.viewModel.convertToBooklet()
+                    tempBookletType = viewModel.bookletType
+                    showConvertConfirmation = true
                 }, label: {
                     Text("Convert")
                         .font(.system(size: 14))
@@ -219,6 +232,6 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView()
-        .environmentObject(MainViewModel())
+    DocumentConvertView()
+        .environmentObject(DocumentConvertViewModel())
 }

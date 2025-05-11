@@ -80,7 +80,7 @@ struct PrintButton: View {
 }
 
 // Extension to MainView to add the print button
-extension MainView {
+extension DocumentConvertView {
     var printToolbarButton: some View {
         #if os(macOS)
         PrintButton(

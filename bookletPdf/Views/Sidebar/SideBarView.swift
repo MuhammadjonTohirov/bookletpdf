@@ -161,13 +161,13 @@ struct MacSidebarView: View {
             .padding(.vertical, 6)
             .contentShape(Rectangle())
         }
-        .listRowBackground(
-            RoundedRectangle(cornerRadius: 6)
-                .fill(selectedMenu == menu ?
-                      Color.accentColor.opacity(0.15) :
-                      (hoverItem == menu ? Color.gray.opacity(0.1) : Color.clear))
-                .padding(.horizontal, 4)
-        )
+//        .listRowBackground(
+//            RoundedRectangle(cornerRadius: 6)
+//                .fill(selectedMenu == menu ?
+//                      Color.accentColor.opacity(0.15) :
+//                      (hoverItem == menu ? Color.gray.opacity(0.1) : Color.clear))
+//                .padding(.horizontal, 4)
+//        )
         .onHover { hovering in
             hoverItem = hovering ? menu : nil
         }

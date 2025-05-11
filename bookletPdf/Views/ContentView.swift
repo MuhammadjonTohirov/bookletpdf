@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State var selectedMenu: MenuOption? = .converter
-    @EnvironmentObject var mainViewModel: MainViewModel
+    @EnvironmentObject var mainViewModel: DocumentConvertViewModel
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     var body: some View {
@@ -45,7 +45,7 @@ struct ContentView: View {
     var detailView: some View {
         switch selectedMenu {
         case .converter:
-            MainView()
+            DocumentConvertView()
                 .environmentObject(mainViewModel)
         case .help:
             InfoView()
@@ -53,7 +53,7 @@ struct ContentView: View {
             SettingsView()
         default:
             // If no menu is selected, default to converter
-            MainView()
+            DocumentConvertView()
                 .environmentObject(mainViewModel)
         }
     }
@@ -61,5 +61,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .environmentObject(MainViewModel())
+        .environmentObject(DocumentConvertViewModel())
 }

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E0E4E082ADAA84600E846B6 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0E4E072ADAA84600E846B6 /* MainView.swift */; };
+		2E0E4E082ADAA84600E846B6 /* DocumentConvertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0E4E072ADAA84600E846B6 /* DocumentConvertView.swift */; };
 		2E0E4E0D2ADAAE6800E846B6 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0E4E0C2ADAAE6800E846B6 /* LoadingView.swift */; };
 		2E0E4E102ADB10B300E846B6 /* AppCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0E4E0F2ADB10B300E846B6 /* AppCache.swift */; };
 		2E2E44272AC3CC8E00DC757F /* bookletPdfApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E44262AC3CC8E00DC757F /* bookletPdfApp.swift */; };
@@ -36,7 +36,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2E0E4E072ADAA84600E846B6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		2E0E4E072ADAA84600E846B6 /* DocumentConvertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentConvertView.swift; sourceTree = "<group>"; };
 		2E0E4E0C2ADAAE6800E846B6 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		2E0E4E0F2ADB10B300E846B6 /* AppCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCache.swift; sourceTree = "<group>"; };
 		2E0E4E162ADB30F900E846B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 			children = (
 				5257CF032D6B8F80003211BA /* ViewModel */,
 				2E2E443D2AC480A900DC757F /* PDFViewer */,
-				2E0E4E072ADAA84600E846B6 /* MainView.swift */,
+				2E0E4E072ADAA84600E846B6 /* DocumentConvertView.swift */,
 				2EE0AF582D8E559F00E348EE /* PrintButton.swift */,
 				2E0E4E0C2ADAAE6800E846B6 /* LoadingView.swift */,
 			);
@@ -277,7 +277,7 @@
 				2E0E4E102ADB10B300E846B6 /* AppCache.swift in Sources */,
 				2E0E4E0D2ADAAE6800E846B6 /* LoadingView.swift in Sources */,
 				2EE0AF5C2D8E55D100E348EE /* AppMenuCommand.swift in Sources */,
-				2E0E4E082ADAA84600E846B6 /* MainView.swift in Sources */,
+				2E0E4E082ADAA84600E846B6 /* DocumentConvertView.swift in Sources */,
 				2E2E44292AC3CC8E00DC757F /* ContentView.swift in Sources */,
 				2E2E44272AC3CC8E00DC757F /* bookletPdfApp.swift in Sources */,
 			);

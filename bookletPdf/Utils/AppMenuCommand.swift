@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct AppMenuCommands: Commands {
-    @ObservedObject var viewModel: MainViewModel
+    @ObservedObject var viewModel: DocumentConvertViewModel
     
     var body: some Commands {
         CommandGroup(after: .printItem) {

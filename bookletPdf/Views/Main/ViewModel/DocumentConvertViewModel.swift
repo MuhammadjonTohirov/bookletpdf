@@ -16,7 +16,7 @@ struct PDFDocumentObject {
     var url: URL?
 }
 
-final class MainViewModel: ObservableObject {
+final class DocumentConvertViewModel: ObservableObject {
     @Published var pdfUrl: URL?
     @Published var showFileImporter = false
     @Published var showFileExporter = false

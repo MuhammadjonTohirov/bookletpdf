@@ -9,29 +9,26 @@ import SwiftUI
 import BookletPDFKit
 
 struct SettingsView: View {
+    @StateObject private var viewModel = SettingsViewModel()
+    
     var body: some View {
         #if os(macOS)
-        MacSettingsView()
+        MacSettingsView(viewModel: viewModel)
         #else
-        iOSSettingsView()
+        iOSSettingsView(viewModel: viewModel)
         #endif
     }
 }
 
 #if os(iOS)
 struct iOSSettingsView: View {
-    @State private var showClearCacheConfirmation = false
-    @State private var cacheCleared = false
-    
-    // App version information
-    private let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
-    private let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1"
+    @ObservedObject var viewModel: SettingsViewModel
     
     var body: some View {
         Form {
             Section("Cache") {
                 Button(action: {
-                    showClearCacheConfirmation = true
+                    viewModel.showClearCacheConfirmation = true
                 }) {
                     HStack {
                         Image(systemName: "trash")
@@ -41,7 +38,19 @@ struct iOSSettingsView: View {
                 }
                 .buttonStyle(.plain)
                 
-                if cacheCleared {
+                HStack {
+                    Text("Current cache size:")
+                    Text(viewModel.cacheSize)
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    Button("Refresh") {
+                        viewModel.calculateCacheSize()
+                    }
+                    .buttonStyle(.borderless)
+                    .font(.caption)
+                }
+                
+                if viewModel.cacheCleared {
                     Text("Cache cleared successfully!")
                         .foregroundColor(.green)
                         .font(.caption)
@@ -64,7 +73,7 @@ struct iOSSettingsView: View {
                     Text("PDF Booklet Maker")
                         .font(.headline)
                     
-                    Text("Version \(appVersion) (\(buildNumber))")
+                    Text("Version \(viewModel.appVersion) (\(viewModel.buildNumber))")
                         .font(.caption)
                         .foregroundColor(.secondary)
                     
@@ -78,24 +87,13 @@ struct iOSSettingsView: View {
             }
         }
         .navigationTitle("Settings")
-        .alert("Clear Cache", isPresented: $showClearCacheConfirmation) {
+        .alert("Clear Cache", isPresented: $viewModel.showClearCacheConfirmation) {
             Button("Cancel", role: .cancel) { }
             Button("Clear", role: .destructive) {
-                clearCache()
+                viewModel.clearCache()
             }
         } message: {
             Text("This will clear all cached PDF thumbnails. Are you sure you want to continue?")
-        }
-    }
-    
-    private func clearCache() {
-        if AppCache.shared.clearCache() {
-            cacheCleared = true
-            
-            // Hide the success message after a delay
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                cacheCleared = false
-            }
         }
     }
 }
@@ -103,13 +101,7 @@ struct iOSSettingsView: View {
 
 #if os(macOS)
 struct MacSettingsView: View {
-    @State private var showClearCacheConfirmation = false
-    @State private var cacheCleared = false
-    @State private var cacheSize: String = "Calculating..."
-    
-    // App version information
-    private let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.1"
-    private let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "2"
+    @ObservedObject var viewModel: SettingsViewModel
     
     var body: some View {
         VStack(spacing: 0) {
@@ -128,11 +120,11 @@ struct MacSettingsView: View {
                             
                             HStack {
                                 Text("Current cache size:")
-                                Text(cacheSize)
+                                Text(viewModel.cacheSize)
                                     .foregroundColor(.secondary)
                                 Spacer()
                                 Button("Calculate") {
-                                    calculateCacheSize()
+                                    viewModel.calculateCacheSize()
                                 }
                                 .buttonStyle(.link)
                             }
@@ -140,7 +132,7 @@ struct MacSettingsView: View {
                             
                             HStack {
                                 Button(action: {
-                                    showClearCacheConfirmation = true
+                                    viewModel.showClearCacheConfirmation = true
                                 }) {
                                     Label("Clear Cache", systemImage: "trash")
                                 }
@@ -148,7 +140,7 @@ struct MacSettingsView: View {
                                 
                                 Spacer()
                                 
-                                if cacheCleared {
+                                if viewModel.cacheCleared {
                                     Label("Cache cleared successfully!", systemImage: "checkmark.circle.fill")
                                         .foregroundColor(.green)
                                         .font(.callout)
@@ -172,7 +164,7 @@ struct MacSettingsView: View {
                             Divider()
                             
                             Button(action: {
-                                openHelp()
+                                viewModel.openHelp()
                             }) {
                                 Label("Open Help", systemImage: "book.pages")
                                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -204,7 +196,7 @@ struct MacSettingsView: View {
                         Text("PDF Booklet Maker")
                             .font(.headline)
                         
-                        Text("Version \(appVersion) (\(buildNumber))")
+                        Text("Version \(viewModel.appVersion) (\(viewModel.buildNumber))")
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }
@@ -221,73 +213,28 @@ struct MacSettingsView: View {
             }
         }
         .frame(minWidth: 500, minHeight: 400)
-        .onAppear {
-            calculateCacheSize()
-        }
-        .alert("Clear Cache", isPresented: $showClearCacheConfirmation) {
+        .alert("Clear Cache", isPresented: $viewModel.showClearCacheConfirmation) {
             Button("Cancel", role: .cancel) { }
             Button("Clear", role: .destructive) {
-                clearCache()
+                viewModel.clearCache()
             }
         } message: {
             Text("This will clear all cached PDF thumbnails. Are you sure you want to continue?")
         }
     }
-    
-    private func openHelp() {
-        // Navigate to help view - in the macOS version, we could open a separate window or push to the navigation stack
-        if (NSApplication.shared.keyWindow?.windowController) != nil {
-            // Simulate navigation to Help view (this would be implemented differently in a real app)
-            NotificationCenter.default.post(name: NSNotification.Name("OpenHelpView"), object: nil)
-        }
+}
+#endif
+
+#if os(iOS)
+#Preview("iOS Settings View") {
+    NavigationStack {
+        iOSSettingsView(viewModel: SettingsViewModel())
     }
-    
-    private func clearCache() {
-        if AppCache.shared.clearCache() {
-            cacheCleared = true
-            cacheSize = "0 bytes"
-            
-            // Hide the success message after a delay
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                cacheCleared = false
-            }
-        }
-    }
-    
-    private func calculateCacheSize() {
-        cacheSize = "Calculating..."
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            let size = getCacheFolderSize()
-            DispatchQueue.main.async {
-                cacheSize = size
-            }
-        }
-    }
-    
-    private func getCacheFolderSize() -> String {
-        guard let versionUrl = AppCache.shared.versionUrl else { return "N/A" }
-        
-        do {
-            let contents = try FileManager.default.contentsOfDirectory(at: versionUrl, includingPropertiesForKeys: [.fileSizeKey])
-            
-            let size = try contents.reduce(0) { (result, url) -> Int in
-                let resourceValues = try url.resourceValues(forKeys: [.fileSizeKey])
-                return result + (resourceValues.fileSize ?? 0)
-            }
-            
-            // Format size to human-readable string
-            return formatFileSize(size)
-        } catch {
-            return "Error calculating size"
-        }
-    }
-    
-    private func formatFileSize(_ size: Int) -> String {
-        let formatter = ByteCountFormatter()
-        formatter.allowedUnits = [.useKB, .useMB]
-        formatter.countStyle = .file
-        return formatter.string(fromByteCount: Int64(size))
-    }
+}
+#endif
+
+#if os(macOS)
+#Preview("macOS Settings View") {
+    MacSettingsView(viewModel: SettingsViewModel())
 }
 #endif
