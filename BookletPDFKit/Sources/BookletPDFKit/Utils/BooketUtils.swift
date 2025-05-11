@@ -8,7 +8,6 @@
 import Foundation
 
 public enum BookletType {
-    case type2        // 2 pages per sheet (traditional booklet)
-    case type4Grid    // 4 pages per sheet in grid layout (not booklet)
-    case type4Booklet // 4 pages per sheet arranged for booklet folding
+    case type2    // 2 pages per sheet (booklet format)
+    case type4    // 4 pages per sheet (4-in-1 format)
 }

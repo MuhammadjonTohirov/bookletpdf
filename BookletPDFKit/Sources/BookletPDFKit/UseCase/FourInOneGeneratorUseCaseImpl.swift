@@ -7,116 +7,118 @@
 
 import Foundation
 import PDFKit
+#if canImport(UIKit)
+import UIKit
+typealias OSImage = UIImage
+#elseif canImport(AppKit)
+import AppKit
+typealias OSImage = NSImage
+#endif
 
-public protocol FourInOneGeneratorUseCase: Sendable {
-    func makeFourInOnePDF(url: URL, completion: @Sendable @escaping (URL?) -> Void)
-}
-
-public final class FourInOneGeneratorUseCaseImpl: FourInOneGeneratorUseCase {
+public final class FourInOneGeneratorUseCaseImpl: BookletPDFGeneratorUseCase {
     public init() {}
     
-    public func makeFourInOnePDF(url: URL, completion: @Sendable @escaping (URL?) -> Void) {
-        makeDocumentAsBooklet(url, completion: completion)
-    }
-
-    private func makeDocumentAsBooklet(_ url: URL, completion: @Sendable @escaping (URL?) -> Void) {
+    public func makeBookletPDF(url: URL, completion: @Sendable @escaping (URL?) -> Void) {
         DispatchQueue.global(qos: .utility).async {
             autoreleasepool {
                 if let originalPDF = PDFDocument(url: url) {
                     self.convertToFourInOneBooklet(originalPDF: originalPDF, url: url, completion: completion)
+                } else {
+                    completion(nil)
                 }
             }
         }
     }
     
-    private func convertToFourInOneBooklet(originalPDF: PDFDocument, url: URL, completion: @escaping (URL?) -> Void) {
-        var pageCount = originalPDF.pageCount
-        
-        // Calculate blank pages needed to make total divisible by 8 (4 pages per sheet, front and back)
-        let blankPagesNeeded = (8 - (pageCount % 8)) % 8
-        
-        if blankPagesNeeded > 0 {
-            originalPDF.addBlankPages(count: blankPagesNeeded)
-            pageCount = originalPDF.pageCount
-        }
-        
-        let resultPDF = PDFDocument()
-        
-        // Total number of sheets needed (each sheet has 4 pages on front and 4 on back)
-        let sheetCount = pageCount / 8
-        
-        for sheetIndex in 0..<sheetCount {
-            // For each sheet, we need to create 2 pages (front and back)
-            // Front page arrangement (for sheet N): [8N+8, 8N+1, 8N+4, 8N+5]
-            // Back page arrangement (for sheet N): [8N+2, 8N+7, 8N+3, 8N+6]
-            
-            // Front page
-            let frontPageIndices = [
-                pageCount - 1 - (sheetIndex * 8),     // Last page of this signature
-                (sheetIndex * 8),                     // First page of this signature
-                (sheetIndex * 8) + 3,                 // Fourth page
-                pageCount - 1 - (sheetIndex * 8) - 3  // Fifth-last page
-            ]
-            
-            if let frontPage = createFourInOnePage(from: originalPDF, pageIndices: frontPageIndices) {
-                resultPDF.insert(frontPage, at: resultPDF.pageCount)
-            }
-            
-            // Back page
-            let backPageIndices = [
-                (sheetIndex * 8) + 1,                 // Second page
-                pageCount - 1 - (sheetIndex * 8) - 1, // Second-last page
-                (sheetIndex * 8) + 2,                 // Third page
-                pageCount - 1 - (sheetIndex * 8) - 2  // Third-last page
-            ]
-            
-            if let backPage = createFourInOnePage(from: originalPDF, pageIndices: backPageIndices) {
-                resultPDF.insert(backPage, at: resultPDF.pageCount)
+    private func convertToFourInOneBooklet(
+        originalPDF: PDFDocument,
+        url: URL,
+        completion: @escaping (URL?) -> Void
+    ) {
+        // 1. Collect all pages
+        var pages: [PDFPage] = []
+        for i in 0..<originalPDF.pageCount {
+            if let pg = originalPDF.page(at: i) {
+                pages.append(pg)
             }
         }
-        
-        // Save the resulting PDF
-        if let saveURL = FileManager.default.urls(
-            for: .documentDirectory,
-            in: .userDomainMask).first?.appendingPathComponent("four_in_one_booklet_\(url.lastPathComponent)") {
-            
-            try? FileManager.default.removeItem(at: saveURL)
-            resultPDF.write(to: saveURL)
-            try? FileManager.default.removeItem(at: url)
-            
-            completion(saveURL)
+        guard let first = pages.first else {
+            completion(nil)
             return
         }
         
-        completion(nil)
-    }
-
-    private func createFourInOnePage(from pdf: PDFDocument, pageIndices: [Int]) -> PDFPage? {
-        // Standard letter size
-        let pageWidth: CGFloat = 612
-        let pageHeight: CGFloat = 792
+        // 2. Determine page size
+        let mediaBox = first.bounds(for: .mediaBox)
+        let size = mediaBox.size
         
-        // Calculate the size for each sub-page
-        let subPageWidth = pageWidth / 2
-        let subPageHeight = pageHeight / 2
-        
-        // Create a new PDF context
-        let pdfData = NSMutableData()
-        
-        // Platform-specific implementation (keeping your existing code structure)
-        #if os(iOS)
-        // iOS implementation
-        // ...similar to your existing code but using pageIndices instead of sequential pages
-        #elseif os(macOS)
-        // macOS implementation
-        // ...similar to your existing code but using pageIndices instead of sequential pages
+        // 3. Create a white blank OSImage of that size
+        let blankImage: OSImage = {
+        #if canImport(UIKit)
+            let renderer = UIGraphicsImageRenderer(size: size)
+            return renderer.image { ctx in
+                UIColor.white.setFill()
+                ctx.fill(CGRect(origin: .zero, size: size))
+            }
+        #elseif canImport(AppKit)
+            let img = OSImage(size: size)
+            img.lockFocus()
+            NSColor.white.setFill()
+            NSBezierPath(rect: CGRect(origin: .zero, size: size)).fill()
+            img.unlockFocus()
+            return img
         #endif
+        }()
         
-        // Create a PDFDocument from the generated data
-        if let newPDFDocument = PDFDocument(data: pdfData as Data) {
-            return newPDFDocument.page(at: 0)
+        // 4. Make a PDFPage from it
+        guard let blankPage = PDFPage(image: blankImage) else {
+            completion(nil)
+            return
         }
         
-        return nil
+        // 5. Pad to multiple of 8
+        let remainder = pages.count % 8
+        if remainder != 0 {
+            for _ in 0..<(8 - remainder) {
+                pages.append(blankPage)
+            }
+        }
+        let total = pages.count
+        let sheets = total / 8
+        
+        // 6. Reorder into 4-up booklet
+        let result = PDFDocument()
+        for k in 0..<sheets {
+            // low-end pages
+            let l1 = 1 + 4*k, l2 = 2 + 4*k, l3 = 3 + 4*k, l4 = 4 + 4*k
+            // high-end pages
+            let h1 = total - 4*k, h2 = total - 4*k - 1, h3 = total - 4*k - 2, h4 = total - 4*k - 3
+            
+            let fSeq = [h1, l1, h3, l3]
+            let bSeq = [h2, l2, h4, l4]
+            let seq  = fSeq + bSeq
+            
+            print("Sheet \(k+1) page order: \(seq.map(String.init).joined(separator: ", "))")
+            
+            for idx in seq {
+                result.insert(pages[idx - 1], at: result.pageCount)
+            }
+        }
+        
+        // 7. Save out
+        guard let docs = FileManager.default
+            .urls(for: .documentDirectory, in: .userDomainMask)
+            .first else {
+            completion(nil)
+            return
+        }
+        let saveURL = docs.appendingPathComponent("four_in_one_booklet_\(url.lastPathComponent)")
+        
+        try? FileManager.default.removeItem(at: saveURL)
+        if result.write(to: saveURL) {
+            try? FileManager.default.removeItem(at: url)
+            completion(saveURL)
+        } else {
+            completion(nil)
+        }
     }
 }

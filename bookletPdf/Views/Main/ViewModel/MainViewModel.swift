@@ -25,6 +25,8 @@ final class MainViewModel: ObservableObject {
     
     @Published var document: PDFDocumentObject?
     
+    var generator: (any BookletPDFGeneratorUseCase)?
+    
     func setImportedDocument(_ url: URL) {
         DispatchQueue.global(qos: .background).async {
             guard let _url = try? DublicateFileUseCaseImpl().duplicateFile(at: url) else {
@@ -36,6 +38,10 @@ final class MainViewModel: ObservableObject {
                 self.state = .selectedPdf
             }
         }
+    }
+    
+    func set(generator: any BookletPDFGeneratorUseCase) {
+        self.generator = generator
     }
     
     private func setDocument(_ url: URL) {
@@ -62,7 +68,7 @@ final class MainViewModel: ObservableObject {
             return
         }
         
-        FourInOneGeneratorUseCaseImpl().makeFourInOnePDF(url: pdf) { newPdfUrl in
+        generator?.makeBookletPDF(url: pdf) { newPdfUrl in
             Task { @MainActor in
                 if let newPdfUrl {
                     self.setDocument(newPdfUrl)
