@@ -22,20 +22,34 @@ final class MainViewModel: ObservableObject {
     @Published var showFileExporter = false
     @Published var isConverting: Bool = false
     @Published var state: ContentViewState = .initial
+    @Published var bookletType: BookletType = .type2  // Add this line
     
     @Published var document: PDFDocumentObject?
     
     var generator: (any BookletPDFGeneratorUseCase)?
     
+    func setupGenerator() {
+        switch bookletType {
+        case .type2:
+            self.generator = TwoInOnePdfGeneratorUseCaseImpl()
+        case .type4:
+            self.generator = FourInOneGeneratorUseCaseImpl()
+        }
+    }
+    
     func setImportedDocument(_ url: URL) {
         DispatchQueue.global(qos: .background).async {
             guard let _url = try? DublicateFileUseCaseImpl().duplicateFile(at: url) else {
-                 return
+                return
             }
             
             DispatchQueue.main.async {
                 self.pdfUrl = _url
                 self.state = .selectedPdf
+                self.document = .init(
+                    document: .init(url: _url)!,
+                    name: _url.lastPathComponent
+                )
             }
         }
     }
@@ -59,7 +73,7 @@ final class MainViewModel: ObservableObject {
         guard let pdf = self.pdfUrl else {
             return
         }
-
+        
         self.isConverting = true
         
         if state == .convertedPdf {
@@ -67,6 +81,9 @@ final class MainViewModel: ObservableObject {
             pdfUrl = nil
             return
         }
+        
+        // Make sure the appropriate generator is configured
+        setupGenerator()
         
         generator?.makeBookletPDF(url: pdf) { newPdfUrl in
             Task { @MainActor in
@@ -77,7 +94,6 @@ final class MainViewModel: ObservableObject {
                 self.pdfUrl = newPdfUrl
                 self.state = newPdfUrl != nil ? .convertedPdf : self.state
                 self.isConverting = false
-                
             }
         }
     }

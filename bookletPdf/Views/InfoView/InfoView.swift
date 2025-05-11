@@ -6,58 +6,76 @@
 //
 
 import SwiftUI
+import WebKit
 
 struct InfoView: View {
+    
+    @State
+    private var htmlContent: String = "" // Replace this with your actual HTML string
+    
     var body: some View {
-        List {
-            Text("Welcome to Booklet Generator! 📚")
-            Section(header: Text("About the app")) {
-                Text("Transform regular PDFs into booklets effortlessly. Select your PDF, and our app rearranges pages into a neat booklet format, ready for printing. Simplify your printing tasks with our intuitive interface. Download now and experience the magic! 🚀")
-                
-            }
-            
-            Section(header: Text("Generating Booklet")) {
-                Text("Click button \"Select pdf file\"")
-                Text("Pick a PDF document")
-                Text("Click button \"Convert to booklet\"")
-                Text("Wait a while till the process finishes")
-                Text("The pdf document should be visible by reordering pages from original PDF document")
-            }
-            
-            Section(header: Text("Printing")) {
-                HStack {
-                    Text("Click button")
-                    Image(systemName: "square.and.arrow.up")
-                    Text("to save the document")
+        WebViewRepresentable(htmlContent: htmlContent)
+            .navigationTitle("Info")
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                if let durl = Bundle.main.url(forResource: "Info", withExtension: "html"),
+                   let dstr = try? String.init(contentsOf: durl, encoding: .utf8) {
+                    htmlContent = dstr
                 }
-                
-                Text("Open generated document")
-                
-                HStack {
-                    Text("Click")
-                    Image(systemName: "command")
-                    Text("+  P")
-                }
-                
-                Text("In layout section change value of \"Pages per sheet\" into 2")
-                
-                Text("In Paper handling section change value of \"Sheets to print\" into \"Odd only\"")
-                
-                Text("Click button \"Print\"")
-                
-                Text("After printing only odd pages turn around the papers and repeat the same proccess")
-                
-                Text("Except")
-                
-                Text("In layout section select second option from \"Layout direction\"")
-                
-                Text("In Paper handling section change value of \"Sheets to print\" into \"Even only\"")
             }
-        }
-        .navigationTitle("Info")
     }
 }
 
+// WebView wrapper for SwiftUI that works on both platforms
+struct WebViewRepresentable: View {
+    let htmlContent: String
+    
+    var body: some View {
+        #if os(iOS)
+        iOSWebView(htmlContent: htmlContent)
+        #elseif os(macOS)
+        macOSWebView(htmlContent: htmlContent)
+        #endif
+    }
+}
+
+#if os(iOS)
+// iOS implementation
+struct iOSWebView: UIViewRepresentable {
+    let htmlContent: String
+    
+    func makeUIView(context: Context) -> WKWebView {
+        let webView = WKWebView()
+        webView.backgroundColor = .systemBackground
+        webView.isOpaque = false
+        return webView
+    }
+    
+    func updateUIView(_ webView: WKWebView, context: Context) {
+        webView.loadHTMLString(htmlContent, baseURL: nil)
+    }
+}
+#endif
+
+#if os(macOS)
+// macOS implementation
+struct macOSWebView: NSViewRepresentable {
+    let htmlContent: String
+    
+    func makeNSView(context: Context) -> WKWebView {
+        let webView = WKWebView()
+        webView.setValue(false, forKey: "drawsBackground")
+        return webView
+    }
+    
+    func updateNSView(_ webView: WKWebView, context: Context) {
+        webView.loadHTMLString(htmlContent, baseURL: nil)
+    }
+}
+#endif
+
 #Preview {
-    InfoView()
+    NavigationStack {
+        InfoView()
+    }
 }

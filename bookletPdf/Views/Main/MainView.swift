@@ -19,7 +19,14 @@ struct MainView: View {
     @EnvironmentObject var viewModel: MainViewModel
 
     private var documentName: String {
-        viewModel.document?.name ?? ""
+        (viewModel.document?.name.nilIfEmpty ?? "").putIfEmpty(viewModel.document?.url?.lastPathComponent ?? "Unknown document")
+    }
+    
+    private var documentInfo: String {
+        [
+            documentName,
+            "\(document?.pageCount ?? 0) pages"
+        ].joined(separator: ", ")
     }
     
     private var document: PDFDocument? {
@@ -28,11 +35,13 @@ struct MainView: View {
     
     var body: some View {
         NavigationStack {
-            innerBody
-                .navigationTitle(
-                    viewModel.pdfUrl?.lastPathComponent ?? ""
-                )
-                .navigationTitleInline()
+            ZStack {
+                Theme.Colors.background
+                    .ignoresSafeArea()
+
+                innerBody
+                    .navigationTitleInline()
+            }
         }
         .fileImporter(
             isPresented: $viewModel.showFileImporter,
@@ -53,8 +62,21 @@ struct MainView: View {
     }
     
     private var innerBody: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             if let pdfUrl = viewModel.pdfUrl, !viewModel.isConverting {
+                HStack {
+                    Text(documentInfo)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .padding(.horizontal, 20)
+                    Spacer()
+                }
+                .background(Theme.Colors.background)
+                
+                Divider()
+                    .padding(.vertical, 4)
+                    .background(Theme.Colors.background)
+                
                 pdfViewer(pdfUrl)
             } else {
                 if viewModel.isConverting {
@@ -69,23 +91,6 @@ struct MainView: View {
     
     private var initialView: some View {
         VStack {
-            #if os(macOS)
-            Image(systemName: "square.and.arrow.down")
-                .font(.system(
-                    size: 32,
-                    weight: .ultraLight,
-                    design: .rounded
-                ))
-                .foregroundColor(.secondary)
-                .padding(.bottom, 8)
-            Text("Drag and drop pdf file here")
-                .font(.system(size: 14))
-                .foregroundColor(.secondary)
-            
-            Divider()
-                .padding(.vertical)
-            #endif
-            
             Button(action: {
                 openFinder()
             }, label: {
@@ -120,11 +125,16 @@ struct MainView: View {
                 ToolbarItem(placement: .buttomBarOrPrimary) {
                     bottomActions
                 }
+                
+                #if os(iOS)
+                ToolbarItem(placement: .topBarTrailing) {
+                    topBarTrailingActions
+                }
+                #endif
             })
         }
     }
     
-    // Add this to the bottomActions in MainView.swift
     private var bottomActions: some View {
         HStack {
             if viewModel.state == .convertedPdf || viewModel.state == .selectedPdf {
@@ -136,8 +146,14 @@ struct MainView: View {
                         .font(.system(size: 14))
                 })
             }
-            
+            Divider()
             if !viewModel.isConverting && viewModel.state != .convertedPdf {
+                #if os(macOS)
+                BookletTypeSelector(selectedType: $viewModel.bookletType)
+                    .frame(maxWidth: 250)
+                    .padding(.horizontal)
+                #endif
+                
                 Button(action: {
                     self.viewModel.convertToBooklet()
                 }, label: {
@@ -161,6 +177,14 @@ struct MainView: View {
         }
     }
     
+    private var topBarTrailingActions: some View {
+        #if os(iOS)
+        BookletTypeSelector(selectedType: $viewModel.bookletType)
+        #else
+        EmptyView()
+        #endif
+    }
+    
     private func openFinder() {
         if ProcessInfo.isPreviewing {
             openDefaultDocument()
@@ -174,11 +198,12 @@ struct MainView: View {
     }
     
     private func openDefaultDocument() {
-        self.viewModel.pdfUrl = Bundle.main.url(forResource: "Resume", withExtension: "pdf")
+        self.viewModel.setImportedDocument(Bundle.main.url(forResource: "Resume", withExtension: "pdf")!)
         self.viewModel.state = .selectedPdf
     }
 }
 
 #Preview {
     MainView()
+        .environmentObject(MainViewModel())
 }

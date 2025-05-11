@@ -22,8 +22,8 @@ class PrinterService: PrinterServiceProtocol {
     
     private init() {}
     
-    func printPDF(url: URL, from view: NSView) -> Bool {
 #if os(macOS)
+    func printPDF(url: URL, from view: NSView) -> Bool {
         // Create print operation from file URL
         let printOperation = NSPrintOperation(view: view, printInfo: NSPrintInfo.shared)
         printOperation.showsPrintPanel = true
@@ -31,11 +31,15 @@ class PrinterService: PrinterServiceProtocol {
         
         // Run the print operation modally
         return printOperation.run()
-#else
-        return false
-#endif
     }
+#endif
     
+#if os(iOS)
+    func printPDF(url: URL, from view: UIView) -> Bool {
+        return false
+    }
+#endif
+
     // Print PDF using shell command
     func printPDF(url: URL) -> Bool {
         #if os(macOS)

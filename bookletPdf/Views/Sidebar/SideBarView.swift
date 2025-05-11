@@ -23,7 +23,7 @@ struct SidebarView: View {
         List(selection: $selectedMenu) { 
             Section("Menu") {
                 ForEach(MenuOption.allCases) { menu in
-                    NavigationLink(menu.rawValue, value: menu)
+                    NavigationLink(menu.rawValue.capitalized, value: menu)
                 }
             }
         }

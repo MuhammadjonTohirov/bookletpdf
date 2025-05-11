@@ -82,10 +82,14 @@ struct PrintButton: View {
 // Extension to MainView to add the print button
 extension MainView {
     var printToolbarButton: some View {
+        #if os(macOS)
         PrintButton(
             documentURL: viewModel.document?.url,
             isEnabled: viewModel.document != nil && !viewModel.isConverting,
-            bookletType: .type2
+            bookletType: viewModel.bookletType  // Update this line to use the selected type
         )
+        #else
+        EmptyView()
+        #endif
     }
 }

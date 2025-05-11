@@ -8,6 +8,7 @@
 import SwiftUI
 import PDFKit
 import QuickLook
+import BookletPDFKit
 
 struct PDFViewer: View {
     var document: PDFDocument
@@ -18,7 +19,7 @@ struct PDFViewer: View {
     var onClickPage: ((Int) -> Void)?
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             gridView
                 .opacity(screenSize.width == 0 ? 0 : 1)
                 .background {
@@ -58,7 +59,7 @@ struct PDFViewer: View {
         }
         .background {
             Rectangle()
-                .foregroundStyle(Color.init(uiColor: .secondarySystemBackground))
+                .foregroundStyle(Theme.Colors.background)
                 .ignoresSafeArea()
         }
     }

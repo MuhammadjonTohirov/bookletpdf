@@ -20,8 +20,8 @@ public extension View {
     func navigationTitleInline() -> some View {
         #if os(iOS)
         return self.navigationBarTitleDisplayMode(.inline)
-        #endif
-        
+        #else
         return self
+        #endif
     }
 }

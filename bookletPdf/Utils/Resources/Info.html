@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --text-color: #333333;
+            --accent-color: #0077CC;
+            --background-color: #FFFFFF;
+            --section-bg: #F8F9FA;
+            --border-color: #EEEEEE;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-color: #E5E5E5;
+                --accent-color: #4DA3FF;
+                --background-color: #1E1E1E;
+                --section-bg: #2D2D2D;
+                --border-color: #3D3D3D;
+            }
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 16px;
+            font-size: 16px;
+        }
+        
+        h1, h2, h3, h4 {
+            color: var(--accent-color);
+            margin-top: 24px;
+            margin-bottom: 16px;
+        }
+        
+        h1 {
+            font-size: 28px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+        
+        h2 {
+            font-size: 22px;
+            margin-top: 32px;
+        }
+        
+        h3 {
+            font-size: 18px;
+            margin-top: 24px;
+        }
+        
+        h4 {
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        
+        p {
+            margin: 12px 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            padding: 10px;
+            background-color: var(--section-bg);
+            border-radius: 8px;
+        }
+        
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            color: var(--accent-color);
+        }
+        
+        .feature-text {
+            flex: 1;
+        }
+        
+        .steps-container {
+            counter-reset: step-counter;
+            margin-left: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            counter-increment: step-counter;
+            font-weight: bold;
+            margin-right: 12px;
+            min-width: 20px;
+            text-align: right;
+        }
+        
+        .step-number::before {
+            content: counter(step-counter) ".";
+        }
+        
+        .step-text {
+            flex: 1;
+        }
+        
+        .bullet-container {
+            margin-left: 48px;
+            margin-bottom: 16px;
+        }
+        
+        .bullet-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        
+        .bullet {
+            margin-right: 12px;
+        }
+        
+        .bullet::before {
+            content: "•";
+        }
+        
+        .bullet-text {
+            flex: 1;
+        }
+        
+        .section {
+            padding: 16px;
+            margin-bottom: 24px;
+            border-radius: 8px;
+            background-color: var(--section-bg);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-style: italic;
+        }
+        
+        /* iOS-friendly styles */
+        .ios-padding {
+            padding: 0 4px;
+        }
+        
+        .keyboard-shortcut {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background-color: var(--section-bg);
+            border: 1px solid var(--border-color);
+            font-family: menlo, monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Booklet Generator! 📚</h1>
+        
+        <div class="section">
+            <h2>About the App</h2>
+            <p>
+                Transform regular PDFs into booklets effortlessly. Our app rearranges your PDF pages into a professional
+                booklet format ready for printing. With support for both 2-in-1 and 4-in-1 layouts, you can create the
+                perfect booklet for your needs.
+            </p>
+        </div>
+        
+        <div class="section">
+            <h2>Features</h2>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                        <rect x="9" y="9" width="6" height="6"></rect>
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <strong>2-in-1 Booklet Format:</strong> Traditional booklet layout with 2 pages per sheet
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <strong>4-in-1 Booklet Format:</strong> Compact layout with 4 pages per sheet, perfect for small booklets
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="4" y1="21" x2="4" y2="14"></line>
+                        <line x1="4" y1="10" x2="4" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12" y2="3"></line>
+                        <line x1="20" y1="21" x2="20" y2="16"></line>
+                        <line x1="20" y1="12" x2="20" y2="3"></line>
+                        <line x1="1" y1="14" x2="7" y2="14"></line>
+                        <line x1="9" y1="8" x2="15" y2="8"></line>
+                        <line x1="17" y1="16" x2="23" y2="16"></line>
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <strong>Simple Interface:</strong> Intuitive controls make booklet creation easy
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <strong>Preview Mode:</strong> See how your booklet will look before printing
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                        <rect x="6" y="14" width="12" height="8"></rect>
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <strong>Optimized for Printing:</strong> Automatically arranges pages in the correct order for proper folding
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>How to Use</h2>
+            
+            <h3>Generating a Booklet</h3>
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Click the "<strong>Select PDF File</strong>" button</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Choose your PDF document from the file picker</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Select your preferred layout (2-in-1 or 4-in-1)</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Click "<strong>Convert to Booklet</strong>"</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Wait a moment while the process completes</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Your booklet-formatted PDF will appear with reordered pages</div>
+                </div>
+            </div>
+            
+            <h3>Printing Your Booklet</h3>
+            
+            <h4>For 2-in-1 Booklets:</h4>
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Click the "<strong>Share</strong>" button (📤) to save your document</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Open the generated document in your PDF viewer</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Press <span class="keyboard-shortcut">⌘</span> + <span class="keyboard-shortcut">P</span> to open the print dialog</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">In the Layout section:</div>
+                </div>
+                
+                <div class="bullet-container">
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Set "<strong>Pages per Sheet</strong>" to <strong>2</strong></div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Choose the appropriate "<strong>Layout Direction</strong>"</div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">In the Paper Handling section:</div>
+                </div>
+                
+                <div class="bullet-container">
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">First print: Set "<strong>Pages to Print</strong>" to "<strong>Odd Only</strong>"</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Click "<strong>Print</strong>"</div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">After printing odd pages, reinsert the paper and:</div>
+                </div>
+                
+                <div class="bullet-container">
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Set "<strong>Pages to Print</strong>" to "<strong>Even Only</strong>"</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Select the second option from "<strong>Layout Direction</strong>"</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Click "<strong>Print</strong>"</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h4>For 4-in-1 Booklets:</h4>
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Click the "<strong>Share</strong>" button (📤) to save your document</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Open the generated document in your PDF viewer</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Press <span class="keyboard-shortcut">⌘</span> + <span class="keyboard-shortcut">P</span> to open the print dialog</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">In the Layout section:</div>
+                </div>
+                
+                <div class="bullet-container">
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Set "<strong>Pages per Sheet</strong>" to <strong>1</strong> (pages are already arranged 4-up)</div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">For double-sided printing:</div>
+                </div>
+                
+                <div class="bullet-container">
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Print all pages</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Ensure "<strong>Print on Both Sides</strong>" is selected</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Choose "<strong>Flip on Short Edge</strong>" binding option</div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">After printing, fold pages in half twice to create your booklet</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Tips for Best Results</h2>
+            
+            <div class="bullet-container" style="margin-left: 12px;">
+                <div class="bullet-item">
+                    <div class="bullet"></div>
+                    <div class="bullet-text">Use paper that's thick enough to prevent ink bleeding through</div>
+                </div>
+                <div class="bullet-item">
+                    <div class="bullet"></div>
+                    <div class="bullet-text">For larger documents, consider printing in smaller sections</div>
+                </div>
+                <div class="bullet-item">
+                    <div class="bullet"></div>
+                    <div class="bullet-text">Test with a few pages first to ensure your printer handles the layout correctly</div>
+                </div>
+                <div class="bullet-item">
+                    <div class="bullet"></div>
+                    <div class="bullet-text">For professional finish, consider using a stapler designed for booklets</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Thank you for using Booklet Generator!</p>
+        </div>
+    </div>
+</body>
+</html>
