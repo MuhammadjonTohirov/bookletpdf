@@ -10,8 +10,13 @@ import SwiftUI
 struct ContentView: View {
     @State var selectedMenu: MenuOption? = .home
     @EnvironmentObject var mainViewModel: MainViewModel
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     var body: some View {
+        navigationSplitViewLayout
+    }
+    
+    var navigationSplitViewLayout: some View {
         NavigationSplitView {
             SidebarView(selectedMenu: $selectedMenu)
         } detail: {
@@ -27,10 +32,8 @@ struct ContentView: View {
                 EmptyView()
             }
         }
-
     }
 }
-
 #Preview {
     ContentView()
         .environmentObject(MainViewModel())

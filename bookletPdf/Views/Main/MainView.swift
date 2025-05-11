@@ -82,23 +82,21 @@ struct MainView: View {
                 if viewModel.isConverting {
                     LoadingView(title: "Converting ...", message: documentName)
                 } else {
-                    initialView
+                    openFinderView
                 }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
-    private var initialView: some View {
-        VStack {
-            Button(action: {
-                openFinder()
-            }, label: {
-                Text("Select pdf file")
-                    .font(.system(size: 14))
-            })
-            .buttonStyle(BorderedButtonStyle())
-        }
+    private var openFinderView: some View {
+        Button(action: {
+            openFinder()
+        }, label: {
+            Text("Select pdf file")
+                .font(.system(size: 14))
+        })
+        .buttonStyle(BorderedButtonStyle())
     }
     
     @ViewBuilder
@@ -112,13 +110,7 @@ struct MainView: View {
             )
             .toolbar(content: {
                 ToolbarItem(placement: .automaticOrTopLeading) {
-                    Button(action: {
-                        openFinder()
-                    }, label: {
-                        Image(systemName: "folder")
-                            .font(.system(size: 14))
-                    })
-                    .buttonStyle(BorderedButtonStyle())
+                    openFolderToolbar
                 }
             })
             .toolbar(content: {
@@ -135,6 +127,26 @@ struct MainView: View {
         }
     }
     
+    private var openFolderToolbar: some View {
+        Button(action: {
+            openFinder()
+        }, label: {
+            Image(systemName: "folder")
+                .font(.system(size: 14))
+        })
+        .buttonStyle(BorderedButtonStyle())
+    }
+    
+    private var clearButton: some View {
+        #if os(macOS)
+        Text("Clear")
+            .font(.system(size: 14))
+        #else
+        Image(systemName: "trash")
+            .font(.system(size: 14))
+        #endif
+    }
+    
     private var bottomActions: some View {
         HStack {
             if viewModel.state == .convertedPdf || viewModel.state == .selectedPdf {
@@ -142,11 +154,12 @@ struct MainView: View {
                     viewModel.state = .initial
                     viewModel.pdfUrl = nil
                 }, label: {
-                    Text("Clear")
-                        .font(.system(size: 14))
+                    clearButton
                 })
             }
+            
             Divider()
+            
             if !viewModel.isConverting && viewModel.state != .convertedPdf {
                 #if os(macOS)
                 BookletTypeSelector(selectedType: $viewModel.bookletType)
@@ -157,7 +170,7 @@ struct MainView: View {
                 Button(action: {
                     self.viewModel.convertToBooklet()
                 }, label: {
-                    Text("Convert to booklet")
+                    Text("Convert")
                         .font(.system(size: 14))
                 })
             }
@@ -179,7 +192,9 @@ struct MainView: View {
     
     private var topBarTrailingActions: some View {
         #if os(iOS)
-        BookletTypeSelector(selectedType: $viewModel.bookletType)
+        HStack {
+            BookletTypeSelector(selectedType: $viewModel.bookletType)
+        }
         #else
         EmptyView()
         #endif

@@ -2,10 +2,6 @@
 //  AppCache.swift
 //  bookletPdf
 //
-//  Created by applebro on 14/10/23.
-//
-
-import Foundation
 
 import Foundation
 
@@ -15,8 +11,9 @@ final class AppCache {
     private let fileManager = FileManager.default
     private let queue = DispatchQueue(label: "com.bookletPdf.appCache", attributes: .concurrent)
     
-    private lazy var appCacheUrl: URL? = {
-        guard let cacheDir = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+    // Use a lazily initialized constant for the cache directory to ensure it's only created once
+    private let appCacheUrl: URL? = {
+        guard let cacheDir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
             print("❌ Error: Could not find cache directory")
             return nil
         }
@@ -24,9 +21,9 @@ final class AppCache {
         let cacheURL = cacheDir.appendingPathComponent("AppCache", isDirectory: true)
         
         // Ensure cache directory exists
-        if !fileManager.fileExists(atPath: cacheURL.path) {
+        if !FileManager.default.fileExists(atPath: cacheURL.path) {
             do {
-                try fileManager.createDirectory(at: cacheURL, withIntermediateDirectories: true)
+                try FileManager.default.createDirectory(at: cacheURL, withIntermediateDirectories: true)
                 print("✅ Created cache directory at: \(cacheURL.path)")
             } catch {
                 print("❌ Error creating cache directory: \(error)")
@@ -36,14 +33,19 @@ final class AppCache {
         return cacheURL
     }()
     
-    private lazy var versionUrl: URL? = {
-        guard let cacheURL = appCacheUrl else { return nil }
-        let versionedURL = cacheURL.appendingPathComponent(version, isDirectory: true)
+    // Create the version URL only once, not every time it's accessed
+    private let versionUrl: URL? = {
+        guard let cacheDir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+            return nil
+        }
+        
+        let cacheURL = cacheDir.appendingPathComponent("AppCache", isDirectory: true)
+        let versionedURL = cacheURL.appendingPathComponent("1", isDirectory: true)
         
         // Ensure versioned cache directory exists
-        if !fileManager.fileExists(atPath: versionedURL.path) {
+        if !FileManager.default.fileExists(atPath: versionedURL.path) {
             do {
-                try fileManager.createDirectory(at: versionedURL, withIntermediateDirectories: true)
+                try FileManager.default.createDirectory(at: versionedURL, withIntermediateDirectories: true)
                 print("✅ Created versioned cache directory at: \(versionedURL.path)")
             } catch {
                 print("❌ Error creating versioned cache directory: \(error)")
@@ -53,20 +55,24 @@ final class AppCache {
         return versionedURL
     }()
     
+    // Helper method to safely get the file URL for a key
+    private func fileUrl(for key: String) -> URL? {
+        guard let versionUrl = self.versionUrl else {
+            print("❌ Error: versionUrl is nil")
+            return nil
+        }
+        
+        if #available(macOS 15.0, iOS 17.0, *) {
+            return versionUrl.appendingPathComponent(key, conformingTo: .image)
+        } else {
+            return versionUrl.appendingPathComponent(key)
+        }
+    }
+    
     func save(imageData: Data, key: String) {
         queue.async(flags: .barrier) { // Ensure thread safety
-            guard let versionUrl = self.versionUrl else {
-                print("❌ Error: versionUrl is nil")
-                return
-            }
-
-            let url: URL
-            if #available(macOS 15.0, iOS 17.0, *) {
-                url = versionUrl.appendingPathComponent(key, conformingTo: .image)
-            } else {
-                url = versionUrl.appendingPathComponent(key) // Fallback for older macOS versions
-            }
-
+            guard let url = self.fileUrl(for: key) else { return }
+            
             do {
                 try imageData.write(to: url)
                 print("✅ Saved item to \(url.absoluteString)")
@@ -77,18 +83,9 @@ final class AppCache {
     }
     
     func load(key: String) -> Data? {
-        queue.sync {
-            guard let versionUrl = self.versionUrl else {
-                print("❌ Error: versionUrl is nil")
-                return nil
-            }
-            
-            let url: URL
-            if #available(macOS 15.0, iOS 17.0, *) {
-                url = versionUrl.appendingPathComponent(key, conformingTo: .image)
-            } else {
-                url = versionUrl.appendingPathComponent(key)
-            }
+        // Using sync because we need to return the result
+        return queue.sync {
+            guard let url = self.fileUrl(for: key) else { return nil }
             
             do {
                 return try Data(contentsOf: url)
@@ -100,18 +97,9 @@ final class AppCache {
     }
     
     func hasItem(key: String) -> Bool {
-        queue.sync {
-            guard let versionUrl = self.versionUrl else {
-                print("❌ Error: versionUrl is nil")
-                return false
-            }
-            
-            let url: URL
-            if #available(macOS 15.0, iOS 17.0, *) {
-                url = versionUrl.appendingPathComponent(key, conformingTo: .image)
-            } else {
-                url = versionUrl.appendingPathComponent(key)
-            }
+        // Using sync because we need to return the result
+        return queue.sync {
+            guard let url = self.fileUrl(for: key) else { return false }
             
             let fileExists = fileManager.fileExists(atPath: url.path)
             print("🔍 Checking cache file: \(url.path) -> Exists: \(fileExists)")

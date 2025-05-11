@@ -9,20 +9,31 @@ import SwiftUI
 import WebKit
 
 struct InfoView: View {
+    @State
+    private var isLoading: Bool = true
     
     @State
-    private var htmlContent: String = "" // Replace this with your actual HTML string
+    private var htmlContent: String = ""
     
     var body: some View {
         WebViewRepresentable(htmlContent: htmlContent)
             .navigationTitle("Info")
             .navigationBarTitleDisplayMode(.inline)
+            .overlay {
+                ProgressView()
+                    .opacity(isLoading ? 1 : 0)
+            }
             .onAppear {
                 if let durl = Bundle.main.url(forResource: "Info", withExtension: "html"),
                    let dstr = try? String.init(contentsOf: durl, encoding: .utf8) {
                     htmlContent = dstr
                 }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    isLoading = false
+                }
             }
+            .animation(.easeInOut, value: isLoading)
     }
 }
 
