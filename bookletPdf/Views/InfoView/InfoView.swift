@@ -7,6 +7,7 @@
 
 import SwiftUI
 import WebKit
+import BookletCore
 
 struct InfoView: View {
     var body: some View {
@@ -25,7 +26,7 @@ struct iOSInfoView: View {
     
     var body: some View {
         WebViewRepresentable(htmlContent: htmlContent)
-            .navigationTitle("Help")
+            .navigationTitle("str.help".localize)
             .navigationBarTitleDisplayMode(.inline)
             .overlay {
                 ProgressView()
@@ -55,7 +56,7 @@ struct MacInfoView: View {
         VStack(spacing: 0) {
             // Header with title
             HStack {
-                Text("PDF Booklet Maker Help")
+                Text("str.app_help_title".localize)
                     .font(.title)
                     .fontWeight(.medium)
                 Spacer()
@@ -75,7 +76,7 @@ struct MacInfoView: View {
                                     .controlSize(.large)
                                     .scaleEffect(1.2)
                                 
-                                Text("Loading help content...")
+                                Text("str.loading_help_content".localize)
                                     .font(.headline)
                                     .foregroundColor(.secondary)
                                     .padding(.top, 12)

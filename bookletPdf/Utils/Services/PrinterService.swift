@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import PDFKit
+import BookletCore
 
 #if os(macOS)
 import AppKit
@@ -79,7 +80,7 @@ class PrinterService: PrinterServiceProtocol {
     #if os(macOS)
     private func showBookletPrintInstructions() {
         let alert = NSAlert()
-        alert.messageText = "Booklet Printing Instructions"
+        alert.messageText = "str.printing_instructions_title".localize
         alert.informativeText = """
         The document will open in Preview. When printing:
         

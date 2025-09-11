@@ -20,6 +20,9 @@
 		2EE0AF592D8E559F00E348EE /* PrintButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE0AF582D8E559F00E348EE /* PrintButton.swift */; };
 		2EE0AF5C2D8E55D100E348EE /* AppMenuCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE0AF5B2D8E55D100E348EE /* AppMenuCommand.swift */; };
 		5229A9852D2B806D00C75302 /* BookletPDFKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5229A9842D2B806D00C75302 /* BookletPDFKit */; };
+		52A930112E72872100DC862D /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 52A930102E72872100DC862D /* Localizable.xcstrings */; };
+		52A930192E72A81300DC862D /* BookletCore in Frameworks */ = {isa = PBXBuildFile; productRef = 52A930182E72A81300DC862D /* BookletCore */; };
+		52A9301B2E72AE0300DC862D /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9301A2E72AE0300DC862D /* LanguageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,6 +55,9 @@
 		2EE0AF582D8E559F00E348EE /* PrintButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintButton.swift; sourceTree = "<group>"; };
 		2EE0AF5B2D8E55D100E348EE /* AppMenuCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMenuCommand.swift; sourceTree = "<group>"; };
 		5229A9822D2B7F8900C75302 /* BookletPDFKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BookletPDFKit; sourceTree = "<group>"; };
+		52A930102E72872100DC862D /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		52A930122E72A39200DC862D /* BookletCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BookletCore; sourceTree = "<group>"; };
+		52A9301A2E72AE0300DC862D /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -61,6 +67,7 @@
 		5257CEF82D6B8AF0003211BA /* Custom */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Custom; sourceTree = "<group>"; };
 		5257CEFE2D6B8AF7003211BA /* Native */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Native; sourceTree = "<group>"; };
 		5257CF032D6B8F80003211BA /* ViewModel */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModel; sourceTree = "<group>"; };
+		52A930132E72A74E00DC862D /* Extensions */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Extensions; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52A930192E72A81300DC862D /* BookletCore in Frameworks */,
 				5229A9852D2B806D00C75302 /* BookletPDFKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -110,6 +118,7 @@
 		2E2E441A2AC3CC8E00DC757F = {
 			isa = PBXGroup;
 			children = (
+				52A930122E72A39200DC862D /* BookletCore */,
 				5229A9822D2B7F8900C75302 /* BookletPDFKit */,
 				2E2E44252AC3CC8E00DC757F /* bookletPdf */,
 				5229A9832D2B806D00C75302 /* Frameworks */,
@@ -151,6 +160,8 @@
 		2E2E443C2AC480A500DC757F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				52A9301A2E72AE0300DC862D /* LanguageManager.swift */,
+				52A930132E72A74E00DC862D /* Extensions */,
 				2EE0AF032D8DEAD500E348EE /* Services */,
 				2E2E44422AC49B9E00DC757F /* Resources */,
 				2EE0AF5B2D8E55D100E348EE /* AppMenuCommand.swift */,
@@ -172,6 +183,7 @@
 			children = (
 				2E2E44402AC49B9200DC757F /* Resume.pdf */,
 				2E3F6B102DD0BF4E00D52D83 /* Info.html */,
+				52A930102E72872100DC862D /* Localizable.xcstrings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -214,6 +226,7 @@
 				5257CEF82D6B8AF0003211BA /* Custom */,
 				5257CEFE2D6B8AF7003211BA /* Native */,
 				5257CF032D6B8F80003211BA /* ViewModel */,
+				52A930132E72A74E00DC862D /* Extensions */,
 			);
 			name = bookletPdf;
 			productName = bookletPdf;
@@ -242,6 +255,9 @@
 			knownRegions = (
 				en,
 				Base,
+				uz,
+				de,
+				fr,
 			);
 			mainGroup = 2E2E441A2AC3CC8E00DC757F;
 			productRefGroup = 2E2E44242AC3CC8E00DC757F /* Products */;
@@ -259,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E3F6B112DD0BF4E00D52D83 /* Info.html in Resources */,
+				52A930112E72872100DC862D /* Localizable.xcstrings in Resources */,
 				2E2E44412AC49B9200DC757F /* Resume.pdf in Resources */,
 				2E2E442E2AC3CC8F00DC757F /* Preview Assets.xcassets in Resources */,
 				2E2E442B2AC3CC8F00DC757F /* Assets.xcassets in Resources */,
@@ -276,6 +293,7 @@
 				2E50DE1A2AC607E800F3FCCF /* InfoView.swift in Sources */,
 				2E0E4E102ADB10B300E846B6 /* AppCache.swift in Sources */,
 				2E0E4E0D2ADAAE6800E846B6 /* LoadingView.swift in Sources */,
+				52A9301B2E72AE0300DC862D /* LanguageManager.swift in Sources */,
 				2EE0AF5C2D8E55D100E348EE /* AppMenuCommand.swift in Sources */,
 				2E0E4E082ADAA84600E846B6 /* DocumentConvertView.swift in Sources */,
 				2E2E44292AC3CC8E00DC757F /* ContentView.swift in Sources */,
@@ -345,6 +363,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -401,6 +420,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -522,6 +542,10 @@
 		5229A9842D2B806D00C75302 /* BookletPDFKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BookletPDFKit;
+		};
+		52A930182E72A81300DC862D /* BookletCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BookletCore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -7,16 +7,28 @@
 
 import Foundation
 import SwiftUI
+import BookletCore
 
 enum MenuOption: String, Identifiable {
     // Main section
-    case converter = "Converter"
-    case help = "Help"
+    case converter = "converter"
+    case help = "help"
     
     // Settings section
-    case settings = "Settings"
+    case settings = "settings"
     
     var id: String { self.rawValue }
+    
+    var localizedTitle: String {
+        switch self {
+        case .converter:
+            return "str.converter".localize
+        case .help:
+            return "str.help".localize
+        case .settings:
+            return "str.settings".localize
+        }
+    }
     
     // Group menu items by section
     static var mainItems: [MenuOption] {
@@ -58,18 +70,18 @@ struct iOSSidebarView: View {
     
     var body: some View {
         List(selection: $selectedMenu) {
-            Section("Main") {
+            Section("str.main".localize) {
                 ForEach(MenuOption.mainItems, id: \.id) { menu in
                     NavigationLink(value: menu) {
-                        Label(menu.rawValue, systemImage: menu.icon)
+                        Label(menu.localizedTitle, systemImage: menu.icon)
                     }
                 }
             }
             
-            Section("Settings") {
+            Section("str.settings".localize) {
                 ForEach(MenuOption.settingsItems, id: \.id) { menu in
                     NavigationLink(value: menu) {
-                        Label(menu.rawValue, systemImage: menu.icon)
+                        Label(menu.localizedTitle, systemImage: menu.icon)
                     }
                 }
             }
@@ -78,7 +90,7 @@ struct iOSSidebarView: View {
             Section {
                 HStack {
                     Spacer()
-                    Text("Powered by SBD LLC")
+                    Text("str.powered_by".localize)
                         .font(.caption)
                         .foregroundColor(.secondary)
                     Spacer()
@@ -86,7 +98,7 @@ struct iOSSidebarView: View {
             }
         }
         .listStyle(.sidebar)
-        .navigationTitle("PDF Booklet Maker")
+        .navigationTitle("str.app_name".localize)
     }
 }
 #endif
@@ -153,7 +165,7 @@ struct MacSidebarView: View {
                     .foregroundColor(selectedMenu == menu ? .accentColor : .primary)
                     .frame(width: 24, height: 24)
                 
-                Text(menu.rawValue)
+                Text(menu.localizedTitle)
                     .font(.body)
                 
                 Spacer()

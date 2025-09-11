@@ -7,6 +7,7 @@
 
 import SwiftUI
 import BookletPDFKit
+import BookletCore
 
 struct SettingsView: View {
     @StateObject private var viewModel = SettingsViewModel()
@@ -26,24 +27,36 @@ struct iOSSettingsView: View {
     
     var body: some View {
         Form {
-            Section("Cache") {
+            Section("str.language".localize) {
+                NavigationLink(destination: LanguageSelectionView(viewModel: viewModel)) {
+                    HStack {
+                        Image(systemName: "globe")
+                        Text("str.select_language".localize)
+                        Spacer()
+                        Text(viewModel.selectedLanguage.name)
+                            .foregroundColor(.secondary)
+                    }
+                }
+            }
+            
+            Section("str.cache".localize) {
                 Button(action: {
                     viewModel.showClearCacheConfirmation = true
                 }) {
                     HStack {
                         Image(systemName: "trash")
                             .foregroundColor(.red)
-                        Text("Clear Cache")
+                        Text("str.clear_cache".localize)
                     }
                 }
                 .buttonStyle(.plain)
                 
                 HStack {
-                    Text("Current cache size:")
+                    Text("str.current_cache_size".localize)
                     Text(viewModel.cacheSize)
                         .foregroundColor(.secondary)
                     Spacer()
-                    Button("Refresh") {
+                    Button("str.refresh".localize) {
                         viewModel.calculateCacheSize()
                     }
                     .buttonStyle(.borderless)
@@ -51,18 +64,18 @@ struct iOSSettingsView: View {
                 }
                 
                 if viewModel.cacheCleared {
-                    Text("Cache cleared successfully!")
+                    Text("str.cache_cleared_success".localize)
                         .foregroundColor(.green)
                         .font(.caption)
                         .padding(.top, 4)
                 }
             }
             
-            Section("Help & Support") {
+            Section("str.help_support".localize) {
                 NavigationLink(destination: InfoView()) {
                     HStack {
                         Image(systemName: "questionmark.circle")
-                        Text("Help")
+                        Text("str.help".localize)
                     }
                 }
             }
@@ -70,14 +83,14 @@ struct iOSSettingsView: View {
             // App information at the bottom
             Section {
                 VStack(alignment: .center, spacing: 4) {
-                    Text("PDF Booklet Maker")
+                    Text("str.app_name".localize)
                         .font(.headline)
                     
-                    Text("Version \(viewModel.appVersion) (\(viewModel.buildNumber))")
+                    Text("str.version_format".localize.localize(arguments: viewModel.appVersion, viewModel.buildNumber))
                         .font(.caption)
                         .foregroundColor(.secondary)
                     
-                    Text("Powered by SBD LLC")
+                    Text("str.powered_by".localize)
                         .font(.caption2)
                         .foregroundColor(.secondary)
                         .padding(.top, 4)
@@ -86,14 +99,14 @@ struct iOSSettingsView: View {
                 .padding(.vertical, 8)
             }
         }
-        .navigationTitle("Settings")
-        .alert("Clear Cache", isPresented: $viewModel.showClearCacheConfirmation) {
-            Button("Cancel", role: .cancel) { }
-            Button("Clear", role: .destructive) {
+        .navigationTitle("str.settings".localize)
+        .alert("str.clear_cache".localize, isPresented: $viewModel.showClearCacheConfirmation) {
+            Button("str.cancel".localize, role: .cancel) { }
+            Button("str.clear".localize, role: .destructive) {
                 viewModel.clearCache()
             }
         } message: {
-            Text("This will clear all cached PDF thumbnails. Are you sure you want to continue?")
+            Text("str.clear_cache_confirmation".localize)
         }
     }
 }
@@ -107,10 +120,29 @@ struct MacSettingsView: View {
         VStack(spacing: 0) {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
-                    // Cache Management Section
-                    GroupBox(label: Label("Cache Management", systemImage: "folder.badge.gearshape")) {
+                    // Language Selection Section
+                    GroupBox(label: Label("str.language".localize, systemImage: "globe")) {
                         VStack(alignment: .leading, spacing: 12) {
-                            Text("PDF thumbnails are cached to improve performance. You can clear the cache to free up disk space.")
+                            Text("str.language_description".localize)
+                                .font(.callout)
+                                .foregroundColor(.secondary)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .padding(.top, 4)
+                            
+                            Divider()
+                            
+                            LanguageSelectionView(viewModel: viewModel)
+                            .padding(.top, 4)
+                        }
+                        .padding()
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal)
+
+                    // Cache Management Section
+                    GroupBox(label: Label("str.cache_management".localize, systemImage: "folder.badge.gearshape")) {
+                        VStack(alignment: .leading, spacing: 12) {
+                            Text("str.cache_description".localize)
                                 .font(.callout)
                                 .foregroundColor(.secondary)
                                 .fixedSize(horizontal: false, vertical: true)
@@ -119,11 +151,11 @@ struct MacSettingsView: View {
                             Divider()
                             
                             HStack {
-                                Text("Current cache size:")
+                                Text("str.current_cache_size".localize)
                                 Text(viewModel.cacheSize)
                                     .foregroundColor(.secondary)
                                 Spacer()
-                                Button("Calculate") {
+                                Button("str.calculate".localize) {
                                     viewModel.calculateCacheSize()
                                 }
                                 .buttonStyle(.link)
@@ -134,14 +166,14 @@ struct MacSettingsView: View {
                                 Button(action: {
                                     viewModel.showClearCacheConfirmation = true
                                 }) {
-                                    Label("Clear Cache", systemImage: "trash")
+                                    Label("str.clear_cache".localize, systemImage: "trash")
                                 }
                                 .controlSize(.large)
                                 
                                 Spacer()
                                 
                                 if viewModel.cacheCleared {
-                                    Label("Cache cleared successfully!", systemImage: "checkmark.circle.fill")
+                                    Label("str.cache_cleared_success".localize, systemImage: "checkmark.circle.fill")
                                         .foregroundColor(.green)
                                         .font(.callout)
                                 }
@@ -153,9 +185,9 @@ struct MacSettingsView: View {
                     .padding(.horizontal)
                     
                     // Help & Support Section
-                    GroupBox(label: Label("Help & Support", systemImage: "questionmark.circle")) {
+                    GroupBox(label: Label("str.help_support".localize, systemImage: "questionmark.circle")) {
                         VStack(alignment: .leading, spacing: 12) {
-                            Text("Need help with the app? Check out our help section for guides and troubleshooting tips.")
+                            Text("str.help_description".localize)
                                 .font(.callout)
                                 .foregroundColor(.secondary)
                                 .fixedSize(horizontal: false, vertical: true)
@@ -193,17 +225,17 @@ struct MacSettingsView: View {
                         .padding(.trailing, 4)
                     
                     VStack(alignment: .leading, spacing: 2) {
-                        Text("PDF Booklet Maker")
+                        Text("str.app_name".localize)
                             .font(.headline)
                         
-                        Text("Version \(viewModel.appVersion) (\(viewModel.buildNumber))")
+                        Text("str.version_format".localize.localize(arguments: viewModel.appVersion, viewModel.buildNumber))
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }
                     
                     Spacer()
                     
-                    Text("Powered by SBD LLC")
+                    Text("str.powered_by".localize)
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -213,13 +245,13 @@ struct MacSettingsView: View {
             }
         }
         .frame(minWidth: 500, minHeight: 400)
-        .alert("Clear Cache", isPresented: $viewModel.showClearCacheConfirmation) {
-            Button("Cancel", role: .cancel) { }
-            Button("Clear", role: .destructive) {
+        .alert("str.clear_cache".localize, isPresented: $viewModel.showClearCacheConfirmation) {
+            Button("str.cancel".localize, role: .cancel) { }
+            Button("str.clear".localize, role: .destructive) {
                 viewModel.clearCache()
             }
         } message: {
-            Text("This will clear all cached PDF thumbnails. Are you sure you want to continue?")
+            Text("str.clear_cache_confirmation".localize)
         }
     }
 }

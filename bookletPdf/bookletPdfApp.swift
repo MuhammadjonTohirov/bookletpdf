@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import BookletCore
 #if os(iOS)
 import UIKit
 #endif
@@ -44,19 +45,21 @@ struct bookletPdfApp: App {
     
     @State private var menuBarExtraShown: Bool = true
     @StateObject private var mainViewModel = DocumentConvertViewModel()
+    @StateObject private var languageManager = LanguageManager()
 
     var body: some Scene {
-        WindowGroup("Main Window", id: "main-window") {
+        WindowGroup("str.main_window".localize, id: "main-window") {
             ContentView()
                 .environmentObject(mainViewModel)
+                .environmentObject(languageManager)
         }
         .commands {
             AppMenuCommands(viewModel: mainViewModel)
         }
         
         #if os(macOS)
-        WindowGroup("PDF Viewer", id: "pdf-viewer") {
-            Text("PDF Viewer")
+        WindowGroup("str.pdf_viewer".localize, id: "pdf-viewer") {
+            Text("str.pdf_viewer".localize)
         }
         #endif
     }

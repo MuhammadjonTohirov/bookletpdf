@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import BookletCore
 import PDFKit
 import BookletPDFKit
 
@@ -25,11 +26,11 @@ struct PrintButton: View {
             Image(systemName: "printer")
                 .imageScale(.medium)
         }
-        .help("Print document")
+        .help("str.print_document".localize)
         .disabled(!isEnabled)
-        .alert("Booklet Printing Instructions", isPresented: $showingInstructions) {
-            Button("Cancel", role: .cancel) { }
-            Button("Print") {
+        .alert("str.printing_instructions_title".localize, isPresented: $showingInstructions) {
+            Button("str.cancel".localize, role: .cancel) { }
+            Button("str.print".localize) {
                 printDocument()
             }
         } message: {
@@ -39,34 +40,16 @@ struct PrintButton: View {
     }
     
     private var twoInOneInstructions: String {
-            """
-            When the print dialog appears:
-            
-            1. Select "Pages per Sheet: 2" in the Layout section
-            2. Choose appropriate orientation for your booklet
-            3. For best results with double-sided printing:
-               - First print odd pages
-               - Then flip paper and print even pages
-            """
+        "str.printing_instructions_2in1".localize
     }
     
     private var fourInOneInstructions: String {
-            """
-            For 4-in-1 booklet printing:
-            
-            1. Select "Pages per Sheet: 1" (pages are already arranged 4-up)
-            2. Set paper orientation to match your document
-            3. For double-sided printing:
-               - Print all pages
-               - Ensure "Print on both sides" is selected
-               - Choose "Flip on short edge" binding option
-            4. After printing, fold pages in half twice to create your booklet
-            """
+        "str.printing_instructions_4in1".localize
     }
     
     private func printDocument() {
         guard let url = documentURL, isEnabled else {
-            showError(message: "No document is currently open for printing.")
+            showError(message: "str.no_document_for_printing".localize)
             return
         }
         

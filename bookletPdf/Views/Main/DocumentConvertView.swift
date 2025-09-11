@@ -9,6 +9,7 @@
 import SwiftUI
 import PDFKit
 import BookletPDFKit
+import BookletCore
 
 enum ContentViewState {
     case initial
@@ -22,13 +23,13 @@ struct DocumentConvertView: View {
     @State private var tempBookletType: BookletType = .type2
 
     private var documentName: String {
-        (viewModel.document?.name.nilIfEmpty ?? "").putIfEmpty(viewModel.document?.url?.lastPathComponent ?? "Unknown document")
+        (viewModel.document?.name)?.putIfEmpty(viewModel.document?.url?.lastPathComponent ?? "str.unknown_document".localize) ?? ""
     }
     
     private var documentInfo: String {
         [
             documentName,
-            "\(document?.pageCount ?? 0) pages"
+            "str.pages_count".localize.localize(arguments: document?.pageCount ?? 0)
         ].joined(separator: ", ")
     }
     
@@ -62,14 +63,14 @@ struct DocumentConvertView: View {
             onCompletion: { newUrl in
             print("Exported at \(newUrl)")
         })
-        .alert("Confirm Conversion", isPresented: $showConvertConfirmation) {
-            Button("Cancel", role: .cancel) { }
-            Button("Convert to \(tempBookletType == .type2 ? "2-in-1" : "4-in-1")") {
+        .alert("str.confirm_conversion".localize, isPresented: $showConvertConfirmation) {
+            Button("str.cancel".localize, role: .cancel) { }
+            Button("str.convert_to".localize.localize(arguments: tempBookletType == .type2 ? "str.format_2in1".localize : "str.format_4in1".localize)) {
                 viewModel.bookletType = tempBookletType
                 viewModel.convertToBooklet()
             }
         } message: {
-            Text("Do you want to convert this PDF to \(tempBookletType == .type2 ? "2-in-1" : "4-in-1") booklet format?")
+            Text("str.convert_confirmation_message".localize.localize(arguments: tempBookletType == .type2 ? "str.format_2in1".localize : "str.format_4in1".localize))
         }
     }
     
@@ -92,7 +93,7 @@ struct DocumentConvertView: View {
                 pdfViewer(pdfUrl)
             } else {
                 if viewModel.isConverting {
-                    LoadingView(title: "Converting ...", message: documentName)
+                    LoadingView(title: "str.converting".localize, message: documentName)
                 } else {
                     openFinderView
                 }
@@ -105,7 +106,7 @@ struct DocumentConvertView: View {
         Button(action: {
             openFinder()
         }, label: {
-            Text("Select pdf file")
+            Text("str.select_pdf_file".localize)
                 .font(.system(size: 14))
         })
         .buttonStyle(BorderedButtonStyle())
@@ -151,7 +152,7 @@ struct DocumentConvertView: View {
     
     private var clearButton: some View {
         #if os(macOS)
-        Text("Clear")
+        Text("str.clear".localize)
             .font(.system(size: 14))
         #else
         Image(systemName: "trash")
@@ -183,7 +184,7 @@ struct DocumentConvertView: View {
                     tempBookletType = viewModel.bookletType
                     showConvertConfirmation = true
                 }, label: {
-                    Text("Convert")
+                    Text("str.convert".localize)
                         .font(.system(size: 14))
                 })
             }
