@@ -21,6 +21,7 @@ struct DocumentConvertView: View {
     @EnvironmentObject var viewModel: DocumentConvertViewModel
     @State private var showConvertConfirmation = false
     @State private var tempBookletType: BookletType = .type2
+    @State private var showComparison = false
 
     private var documentName: String {
         (viewModel.document?.name)?.putIfEmpty(viewModel.document?.url?.lastPathComponent ?? "str.unknown_document".localize) ?? ""
@@ -90,7 +91,23 @@ struct DocumentConvertView: View {
                     .padding(.vertical, 4)
                     .background(Theme.Colors.background)
                 
-                pdfViewer(pdfUrl)
+                previewContent
+                .toolbar(content: {
+                    ToolbarItem(placement: .automaticOrTopLeading) {
+                        openFolderToolbar
+                    }
+                })
+                .toolbar(content: {
+                    ToolbarItem(placement: .buttomBarOrPrimary) {
+                        bottomActions
+                    }
+                    
+                    #if os(iOS)
+                    ToolbarItem(placement: .topBarTrailing) {
+                        topBarTrailingActions
+                    }
+                    #endif
+                })
             } else {
                 if viewModel.isConverting {
                     LoadingView(title: "str.converting".localize, message: documentName)
@@ -113,30 +130,22 @@ struct DocumentConvertView: View {
     }
     
     @ViewBuilder
-    private func pdfViewer(_ _url: URL) -> some View {
-        if let doc = PDFDocument(url: _url) {
-            PDFViewer(
-                document: doc,
-                onClickPage: { pageIndex in
-                    
-                }
+    private var previewContent: some View {
+        if showComparison && viewModel.state == .convertedPdf,
+           let original = viewModel.originalDocument,
+           let converted = viewModel.document {
+            PDFComparisonView(
+                originalDocument: original.document,
+                convertedDocument: converted.document,
+                originalTitle: original.name,
+                convertedTitle: converted.name
             )
-            .toolbar(content: {
-                ToolbarItem(placement: .automaticOrTopLeading) {
-                    openFolderToolbar
-                }
-            })
-            .toolbar(content: {
-                ToolbarItem(placement: .buttomBarOrPrimary) {
-                    bottomActions
-                }
-                
-                #if os(iOS)
-                ToolbarItem(placement: .topBarTrailing) {
-                    topBarTrailingActions
-                }
-                #endif
-            })
+        } else if let doc = document {
+            PDFPreviewView(
+                document: doc,
+                title: documentName,
+                isConverted: viewModel.state == .convertedPdf
+            )
         }
     }
     
@@ -164,14 +173,31 @@ struct DocumentConvertView: View {
         HStack {
             if viewModel.state == .convertedPdf || viewModel.state == .selectedPdf {
                 Button(action: {
-                    viewModel.state = .initial
-                    viewModel.pdfUrl = nil
+                    viewModel.clearDocuments()
                 }, label: {
                     clearButton
                 })
             }
             
             Divider()
+            
+            // Comparison toggle for converted documents
+            if viewModel.state == .convertedPdf && viewModel.originalDocument != nil {
+                Button(action: {
+                    showComparison.toggle()
+                }, label: {
+                    HStack(spacing: 4) {
+                        Image(systemName: showComparison ? "rectangle.split.2x1" : "rectangle.split.2x1.fill")
+                        #if os(macOS)
+                        Text("str.show_comparison".localize)
+                            .font(.system(size: 14))
+                        #endif
+                    }
+                })
+                .buttonStyle(.bordered)
+                
+                Divider()
+            }
             
             if !viewModel.isConverting && viewModel.state != .convertedPdf {
                 #if os(macOS)
@@ -207,7 +233,16 @@ struct DocumentConvertView: View {
     private var topBarTrailingActions: some View {
         #if os(iOS)
         HStack {
-            BookletTypeSelector(selectedType: $viewModel.bookletType)
+            if viewModel.state == .convertedPdf && viewModel.originalDocument != nil {
+                Button(action: {
+                    showComparison.toggle()
+                }, label: {
+                    Image(systemName: showComparison ? "rectangle.split.2x1.fill" : "rectangle.split.2x1")
+                })
+                .help("str.show_comparison".localize)
+            } else if viewModel.state != .convertedPdf {
+                BookletTypeSelector(selectedType: $viewModel.bookletType)
+            }
         }
         #else
         EmptyView()

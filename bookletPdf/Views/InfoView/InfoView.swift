@@ -33,7 +33,7 @@ struct iOSInfoView: View {
                     .opacity(isLoading ? 1 : 0)
             }
             .onAppear {
-                if let durl = Bundle.main.url(forResource: "Info", withExtension: "html"),
+                if let durl = HelpInfoProvider.helpInfoUrl,
                    let dstr = try? String.init(contentsOf: durl, encoding: .utf8) {
                     htmlContent = dstr
                 }
@@ -93,7 +93,7 @@ struct MacInfoView: View {
         }
         .frame(minWidth: 600, minHeight: 500)
         .onAppear {
-            if let durl = Bundle.main.url(forResource: "Info", withExtension: "html"),
+            if let durl = HelpInfoProvider.helpInfoUrl,
                let dstr = try? String.init(contentsOf: durl, encoding: .utf8) {
                 htmlContent = dstr
             }

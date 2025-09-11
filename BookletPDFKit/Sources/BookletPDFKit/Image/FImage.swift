@@ -22,7 +22,7 @@ public protocol FImageProtocol {
 
 #if canImport(UIKit)
 import UIKit
-extension FImage {
+public extension FImage {
     var image: UIImage? {
         guard let imageData = self._imageData else {
             return nil
@@ -35,7 +35,7 @@ extension FImage {
 
 #if canImport(AppKit)
 import AppKit
-extension FImage {
+public extension FImage {
     var image: NSImage? {
         guard let imageData = self._imageData else {
             return nil

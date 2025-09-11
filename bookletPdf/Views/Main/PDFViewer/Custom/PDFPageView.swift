@@ -17,7 +17,7 @@ struct PDFPageView: View {
     
     var body: some View {
         VStack {
-            PDFPageThumbnail(
+            PDFThumbnail(
                 viewModel: .init(page: page, key: key, size: size)
             )
             .padding(.bottom, 4)

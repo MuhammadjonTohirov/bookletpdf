@@ -25,6 +25,7 @@ final class DocumentConvertViewModel: ObservableObject {
     @Published var bookletType: BookletType = .type2  // Add this line
     
     @Published var document: PDFDocumentObject?
+    @Published var originalDocument: PDFDocumentObject? // Store original for comparison
     
     var generator: (any BookletPDFGeneratorUseCase)?
     
@@ -46,10 +47,13 @@ final class DocumentConvertViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.pdfUrl = _url
                 self.state = .selectedPdf
-                self.document = .init(
+                let pdfDoc = PDFDocumentObject(
                     document: .init(url: _url)!,
-                    name: _url.lastPathComponent
+                    name: _url.lastPathComponent,
+                    url: _url
                 )
+                self.document = pdfDoc
+                self.originalDocument = pdfDoc // Store original for comparison
             }
         }
     }
@@ -96,5 +100,12 @@ final class DocumentConvertViewModel: ObservableObject {
                 self.isConverting = false
             }
         }
+    }
+    
+    func clearDocuments() {
+        self.document = nil
+        self.originalDocument = nil
+        self.pdfUrl = nil
+        self.state = .initial
     }
 }

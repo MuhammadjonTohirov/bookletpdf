@@ -113,9 +113,11 @@ struct MacSidebarView: View {
         VStack(spacing: 0) {
             // App Title
             HStack {
-                Image(systemName: "doc.viewfinder")
-                    .font(.title2)
-                Text("PDF Booklet Maker")
+                Image("img_logo_white")
+                    .resizable()
+                    .frame(width: 24, height: 24)
+                
+                Text("Booklet PDF")
                     .font(.headline)
                 Spacer()
             }
@@ -162,7 +164,7 @@ struct MacSidebarView: View {
             HStack(spacing: 12) {
                 Image(systemName: menu.icon)
                     .font(.system(size: 14))
-                    .foregroundColor(selectedMenu == menu ? .accentColor : .primary)
+                    .foregroundColor(selectedMenu == menu ? .white : .primary)
                     .frame(width: 24, height: 24)
                 
                 Text(menu.localizedTitle)

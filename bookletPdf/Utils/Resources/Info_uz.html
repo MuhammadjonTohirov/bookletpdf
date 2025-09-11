@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --text-color: #333333;
+            --accent-color: #0077CC;
+            --background-color: #FFFFFF;
+            --section-bg: #F8F9FA;
+            --border-color: #EEEEEE;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-color: #E5E5E5;
+                --accent-color: #4DA3FF;
+                --background-color: #1E1E1E;
+                --section-bg: #2D2D2D;
+                --border-color: #3D3D3D;
+            }
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 16px;
+            font-size: 16px;
+        }
+        
+        h1, h2, h3, h4 {
+            color: var(--accent-color);
+            margin-top: 24px;
+            margin-bottom: 16px;
+        }
+        
+        h1 {
+            font-size: 28px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+        
+        h2 {
+            font-size: 22px;
+            margin-top: 32px;
+        }
+        
+        h3 {
+            font-size: 18px;
+            margin-top: 24px;
+        }
+        
+        h4 {
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        
+        p {
+            margin: 12px 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            padding: 10px;
+            background-color: var(--section-bg);
+            border-radius: 8px;
+        }
+        
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            color: var(--accent-color);
+        }
+        
+        .feature-text {
+            flex: 1;
+        }
+        
+        .steps-container {
+            counter-reset: step-counter;
+            margin-left: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            counter-increment: step-counter;
+            font-weight: bold;
+            margin-right: 12px;
+            min-width: 20px;
+            text-align: right;
+        }
+        
+        .step-number::before {
+            content: counter(step-counter) ".";
+        }
+        
+        .step-text {
+            flex: 1;
+        }
+        
+        .bullet-container {
+            margin-left: 48px;
+            margin-bottom: 16px;
+        }
+        
+        .bullet-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        
+        .bullet {
+            margin-right: 12px;
+        }
+        
+        .bullet::before {
+            content: "•";
+        }
+        
+        .bullet-text {
+            flex: 1;
+        }
+        
+        .section {
+            padding: 16px;
+            margin-bottom: 24px;
+            border-radius: 8px;
+            background-color: var(--section-bg);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-style: italic;
+        }
+        
+        /* iOS-friendly styles */
+        .ios-padding {
+            padding: 0 4px;
+        }
+        
+        .keyboard-shortcut {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background-color: var(--section-bg);
+            border: 1px solid var(--border-color);
+            font-family: menlo, monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kitobcha Generatoriga Xush Kelibsiz! 📚</h1>
+        
+        <div class="section">
+            <h2>Ilova Haqida</h2>
+            <p>
+                Oddiy PDF fayllarni kitobchaga osonlikcha aylantiring. Bizning ilovamiz sizning PDF sahifalaringizni 
+                professional kitobcha formatiga o'tkazadi va chop etishga tayyor qiladi. 2-dan-1 va 4-dan-1 joylashuvlarni 
+                qo'llab-quvvatlagan holda, ehtiyojlaringizga mos mukammal kitobcha yaratishingiz mumkin.
+            </p>
+        </div>
+        
+        <div class="section">
+            <h2>Xususiyatlar</h2>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                        <rect x="9" y="9" width="6" height="6"></rect>
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <strong>2-dan-1 Kitobcha Formati:</strong> Har bir varaqdagi 2 ta sahifa bilan an'anaviy kitobcha joylashuvi
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <strong>4-dan-1 Kitobcha Formati:</strong> Har bir varaqdagi 4 ta sahifa bilan ixcham joylashuv, kichik kitobchalar uchun mukammal
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="4" y1="21" x2="4" y2="14"></line>
+                        <line x1="4" y1="10" x2="4" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12" y2="3"></line>
+                        <line x1="20" y1="21" x2="20" y2="16"></line>
+                        <line x1="20" y1="12" x2="20" y2="3"></line>
+                        <line x1="1" y1="14" x2="7" y2="14"></line>
+                        <line x1="9" y1="8" x2="15" y2="8"></line>
+                        <line x1="17" y1="16" x2="23" y2="16"></line>
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <strong>Sodda Interfeys:</strong> Kitobcha yaratishni oson qiluvchi intuitiv boshqaruv elementlari
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <strong>Oldindan Ko'rish Rejimi:</strong> Chop etishdan oldin kitobchangiz qanday ko'rinishini ko'ring
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                        <rect x="6" y="14" width="12" height="8"></rect>
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <strong>Chop Etish Uchun Optimizatsiyalangan:</strong> To'g'ri buklash uchun sahifalarni avtomatik ravishda to'g'ri tartibda joylashtiradi
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Qanday Foydalanish</h2>
+            
+            <h3>Kitobcha Yaratish</h3>
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">« <strong>PDF Fayl Tanlash</strong> » tugmasini bosing</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Fayl tanlashdan PDF hujjatingizni tanlang</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Afzal ko'rgan joylashuvingizni tanlang (2-dan-1 yoki 4-dan-1)</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">« <strong>Kitobchaga Aylantirish</strong> » tugmasini bosing</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Jarayon tugaguncha bir oz kuting</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Kitobcha formatidagi PDF qayta tartibga solingan sahifalar bilan paydo bo'ladi</div>
+                </div>
+            </div>
+            
+            <h3>Kitobchangizni Chop Etish</h3>
+            
+            <h4>2-dan-1 Kitobchalar Uchun:</h4>
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Hujjatingizni saqlash uchun « <strong>Ulashish</strong> » tugmasini (📤) bosing</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Yaratilgan hujjatni PDF ko'ruvchisida oching</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Chop etish dialogini ochish uchun <span class="keyboard-shortcut">⌘</span> + <span class="keyboard-shortcut">P</span> ni bosing</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Joylashuv bo'limida:</div>
+                </div>
+                
+                <div class="bullet-container">
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">« <strong>Sahifalar har varag</strong> »ni <strong>2</strong>ga o'rnating</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Tegishli « <strong>Joylashuv Yo'nalishi</strong> »ni tanlang</div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Qog'oz Boshqaruvi bo'limida:</div>
+                </div>
+                
+                <div class="bullet-container">
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Birinchi chop etish: « <strong>Chop Etiladigan Sahifalar</strong> »ni « <strong>Faqat Toq</strong> »ga o'rnating</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">« <strong>Chop Etish</strong> » tugmasini bosing</div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Toq sahifalarni chop etgandan keyin, qog'ozni qayta kiriting va:</div>
+                </div>
+                
+                <div class="bullet-container">
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">« <strong>Chop Etiladigan Sahifalar</strong> »ni « <strong>Faqat Juft</strong> »ga o'rnating</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">« <strong>Joylashuv Yo'nalishi</strong> »dan ikkinchi variantni tanlang</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">« <strong>Chop Etish</strong> » tugmasini bosing</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h4>4-dan-1 Kitobchalar Uchun:</h4>
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Hujjatingizni saqlash uchun « <strong>Ulashish</strong> » tugmasini (📤) bosing</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Yaratilgan hujjatni PDF ko'ruvchisida oching</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Chop etish dialogini ochish uchun <span class="keyboard-shortcut">⌘</span> + <span class="keyboard-shortcut">P</span> ni bosing</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Joylashuv bo'limida:</div>
+                </div>
+                
+                <div class="bullet-container">
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">« <strong>Sahifalar har varag</strong> »ni <strong>1</strong>ga o'rnating (sahifalar allaqachon 4-tadan joylashtirilgan)</div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Ikki tomonlama chop etish uchun:</div>
+                </div>
+                
+                <div class="bullet-container">
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Barcha sahifalarni chop eting</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">« <strong>Ikki Tomondan Chop Etish</strong> » tanlanganligiga ishonch hosil qiling</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">« <strong>Qisqa Chekka Boylab Aylantirish</strong> » bog'lash variantini tanlang</div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Chop etgandan keyin, kitobchangizni yaratish uchun sahifalarni ikki marta yarmga bukling</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Eng Yaxshi Natijalar Uchun Maslahatlar</h2>
+            
+            <div class="bullet-container" style="margin-left: 12px;">
+                <div class="bullet-item">
+                    <div class="bullet"></div>
+                    <div class="bullet-text">Siyoh o'tib ketishining oldini olish uchun etarlicha qalin qog'oz ishlating</div>
+                </div>
+                <div class="bullet-item">
+                    <div class="bullet"></div>
+                    <div class="bullet-text">Katta hujjatlar uchun kichik bo'limlar bo'yicha chop etishni ko'rib chiqing</div>
+                </div>
+                <div class="bullet-item">
+                    <div class="bullet"></div>
+                    <div class="bullet-text">Printeringiz joylashuvni to'g'ri ishlov berishiga ishonch hosil qilish uchun avval bir necha sahifa bilan sinab ko'ring</div>
+                </div>
+                <div class="bullet-item">
+                    <div class="bullet"></div>
+                    <div class="bullet-text">Professional natija uchun kitobchalar uchun mo'ljallangan stepler ishlatishni ko'rib chiqing</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Kitobcha Generatoridan foydalanganingiz uchun rahmat!</p>
+        </div>
+    </div>
+</body>
+</html>

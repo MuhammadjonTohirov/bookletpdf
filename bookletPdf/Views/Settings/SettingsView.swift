@@ -180,7 +180,7 @@ struct MacSettingsView: View {
                             }
                             .padding(.top, 8)
                         }
-                        .padding(.vertical, 8)
+                        .padding()
                     }
                     .padding(.horizontal)
                     
@@ -205,7 +205,7 @@ struct MacSettingsView: View {
                             .buttonStyle(.link)
                             .padding(.top, 4)
                         }
-                        .padding(.vertical, 8)
+                        .padding()
                     }
                     .padding(.horizontal)
                     

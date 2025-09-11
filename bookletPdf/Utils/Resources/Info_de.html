@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --text-color: #333333;
+            --accent-color: #0077CC;
+            --background-color: #FFFFFF;
+            --section-bg: #F8F9FA;
+            --border-color: #EEEEEE;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-color: #E5E5E5;
+                --accent-color: #4DA3FF;
+                --background-color: #1E1E1E;
+                --section-bg: #2D2D2D;
+                --border-color: #3D3D3D;
+            }
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 16px;
+            font-size: 16px;
+        }
+        
+        h1, h2, h3, h4 {
+            color: var(--accent-color);
+            margin-top: 24px;
+            margin-bottom: 16px;
+        }
+        
+        h1 {
+            font-size: 28px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+        
+        h2 {
+            font-size: 22px;
+            margin-top: 32px;
+        }
+        
+        h3 {
+            font-size: 18px;
+            margin-top: 24px;
+        }
+        
+        h4 {
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        
+        p {
+            margin: 12px 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            padding: 10px;
+            background-color: var(--section-bg);
+            border-radius: 8px;
+        }
+        
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            color: var(--accent-color);
+        }
+        
+        .feature-text {
+            flex: 1;
+        }
+        
+        .steps-container {
+            counter-reset: step-counter;
+            margin-left: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            counter-increment: step-counter;
+            font-weight: bold;
+            margin-right: 12px;
+            min-width: 20px;
+            text-align: right;
+        }
+        
+        .step-number::before {
+            content: counter(step-counter) ".";
+        }
+        
+        .step-text {
+            flex: 1;
+        }
+        
+        .bullet-container {
+            margin-left: 48px;
+            margin-bottom: 16px;
+        }
+        
+        .bullet-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        
+        .bullet {
+            margin-right: 12px;
+        }
+        
+        .bullet::before {
+            content: "•";
+        }
+        
+        .bullet-text {
+            flex: 1;
+        }
+        
+        .section {
+            padding: 16px;
+            margin-bottom: 24px;
+            border-radius: 8px;
+            background-color: var(--section-bg);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-style: italic;
+        }
+        
+        /* iOS-friendly styles */
+        .ios-padding {
+            padding: 0 4px;
+        }
+        
+        .keyboard-shortcut {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background-color: var(--section-bg);
+            border: 1px solid var(--border-color);
+            font-family: menlo, monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Willkommen beim Broschüren Generator! 📚</h1>
+        
+        <div class="section">
+            <h2>Über die App</h2>
+            <p>
+                Verwandeln Sie gewöhnliche PDFs mühelos in Broschüren. Unsere App ordnet Ihre PDF-Seiten 
+                in ein professionelles Broschürenformat um, das sofort für den Druck bereit ist. Mit 
+                Unterstützung für 2-in-1 und 4-in-1 Layouts können Sie die perfekte Broschüre für 
+                Ihre Bedürfnisse erstellen.
+            </p>
+        </div>
+        
+        <div class="section">
+            <h2>Funktionen</h2>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                        <rect x="9" y="9" width="6" height="6"></rect>
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <strong>2-in-1 Broschürenformat:</strong> Traditionelles Broschürenlayout mit 2 Seiten pro Blatt
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <strong>4-in-1 Broschürenformat:</strong> Kompaktes Layout mit 4 Seiten pro Blatt, perfekt für kleine Broschüren
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="4" y1="21" x2="4" y2="14"></line>
+                        <line x1="4" y1="10" x2="4" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12" y2="3"></line>
+                        <line x1="20" y1="21" x2="20" y2="16"></line>
+                        <line x1="20" y1="12" x2="20" y2="3"></line>
+                        <line x1="1" y1="14" x2="7" y2="14"></line>
+                        <line x1="9" y1="8" x2="15" y2="8"></line>
+                        <line x1="17" y1="16" x2="23" y2="16"></line>
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <strong>Einfache Oberfläche:</strong> Intuitive Bedienelemente machen das Erstellen von Broschüren einfach
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <strong>Vorschau-Modus:</strong> Sehen Sie, wie Ihre Broschüre vor dem Drucken aussehen wird
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                        <rect x="6" y="14" width="12" height="8"></rect>
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <strong>Für Druck optimiert:</strong> Ordnet automatisch Seiten in der richtigen Reihenfolge für ordnungsgemäßes Falten
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Anleitung</h2>
+            
+            <h3>Eine Broschüre erstellen</h3>
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Klicken Sie auf die Schaltfläche "<strong>PDF-Datei auswählen</strong>"</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Wählen Sie Ihr PDF-Dokument aus der Dateiauswahl</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Wählen Sie Ihr bevorzugtes Layout (2-in-1 oder 4-in-1)</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Klicken Sie auf "<strong>In Broschüre konvertieren</strong>"</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Warten Sie einen Moment, bis der Vorgang abgeschlossen ist</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Ihr broschürenformatiertes PDF erscheint mit neu angeordneten Seiten</div>
+                </div>
+            </div>
+            
+            <h3>Ihre Broschüre drucken</h3>
+            
+            <h4>Für 2-in-1 Broschüren:</h4>
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Klicken Sie auf die "<strong>Teilen</strong>"-Schaltfläche (📤), um Ihr Dokument zu speichern</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Öffnen Sie das generierte Dokument in Ihrem PDF-Betrachter</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Drücken Sie <span class="keyboard-shortcut">⌘</span> + <span class="keyboard-shortcut">P</span>, um den Druckdialog zu öffnen</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Im Layout-Bereich:</div>
+                </div>
+                
+                <div class="bullet-container">
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Setzen Sie "<strong>Seiten pro Blatt</strong>" auf <strong>2</strong></div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Wählen Sie die entsprechende "<strong>Layout-Richtung</strong>"</div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Im Bereich Papierhandhabung:</div>
+                </div>
+                
+                <div class="bullet-container">
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Erster Druck: Setzen Sie "<strong>Zu druckende Seiten</strong>" auf "<strong>Nur ungerade</strong>"</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Klicken Sie auf "<strong>Drucken</strong>"</div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Nach dem Drucken der ungeraden Seiten, legen Sie das Papier wieder ein und:</div>
+                </div>
+                
+                <div class="bullet-container">
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Setzen Sie "<strong>Zu druckende Seiten</strong>" auf "<strong>Nur gerade</strong>"</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Wählen Sie die zweite Option aus "<strong>Layout-Richtung</strong>"</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Klicken Sie auf "<strong>Drucken</strong>"</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h4>Für 4-in-1 Broschüren:</h4>
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Klicken Sie auf die "<strong>Teilen</strong>"-Schaltfläche (📤), um Ihr Dokument zu speichern</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Öffnen Sie das generierte Dokument in Ihrem PDF-Betrachter</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Drücken Sie <span class="keyboard-shortcut">⌘</span> + <span class="keyboard-shortcut">P</span>, um den Druckdialog zu öffnen</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Im Layout-Bereich:</div>
+                </div>
+                
+                <div class="bullet-container">
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Setzen Sie "<strong>Seiten pro Blatt</strong>" auf <strong>1</strong> (Seiten sind bereits 4-fach angeordnet)</div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Für doppelseitigen Druck:</div>
+                </div>
+                
+                <div class="bullet-container">
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Drucken Sie alle Seiten</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Stellen Sie sicher, dass "<strong>Beidseitig drucken</strong>" ausgewählt ist</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Wählen Sie die Bindeoption "<strong>An kurzer Kante umblättern</strong>"</div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Nach dem Drucken falten Sie die Seiten zweimal in der Mitte, um Ihre Broschüre zu erstellen</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Tipps für beste Ergebnisse</h2>
+            
+            <div class="bullet-container" style="margin-left: 12px;">
+                <div class="bullet-item">
+                    <div class="bullet"></div>
+                    <div class="bullet-text">Verwenden Sie Papier, das dick genug ist, um ein Durchscheinen der Tinte zu verhindern</div>
+                </div>
+                <div class="bullet-item">
+                    <div class="bullet"></div>
+                    <div class="bullet-text">Bei größeren Dokumenten erwägen Sie das Drucken in kleineren Abschnitten</div>
+                </div>
+                <div class="bullet-item">
+                    <div class="bullet"></div>
+                    <div class="bullet-text">Testen Sie zuerst mit ein paar Seiten, um sicherzustellen, dass Ihr Drucker das Layout korrekt verarbeitet</div>
+                </div>
+                <div class="bullet-item">
+                    <div class="bullet"></div>
+                    <div class="bullet-text">Für ein professionelles Finish erwägen Sie die Verwendung eines für Broschüren geeigneten Hefters</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Vielen Dank, dass Sie den Broschüren Generator verwenden!</p>
+        </div>
+    </div>
+</body>
+</html>
