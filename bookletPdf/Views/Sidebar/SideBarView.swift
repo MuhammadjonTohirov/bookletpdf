@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import BookletPDFKit
 
 enum MenuOption: String, Identifiable {
     // Main section
@@ -52,41 +53,129 @@ struct SidebarView: View {
 }
 
 #if os(iOS)
-// iOS implementation
+// iOS implementation with modern design
 struct iOSSidebarView: View {
     @Binding var selectedMenu: MenuOption?
     
     var body: some View {
         List(selection: $selectedMenu) {
-            Section("Main") {
-                ForEach(MenuOption.mainItems, id: \.id) { menu in
-                    NavigationLink(value: menu) {
-                        Label(menu.rawValue, systemImage: menu.icon)
-                    }
-                }
-            }
+            // App header section
+            headerSection
             
-            Section("Settings") {
-                ForEach(MenuOption.settingsItems, id: \.id) { menu in
-                    NavigationLink(value: menu) {
-                        Label(menu.rawValue, systemImage: menu.icon)
-                    }
-                }
-            }
+            // Main section
+            mainSection
             
-            // Footer section with company info
-            Section {
-                HStack {
-                    Spacer()
-                    Text("Powered by SBD LLC")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Spacer()
-                }
-            }
+            // Settings section
+            settingsSection
+            
+            // Footer section
+            footerSection
         }
         .listStyle(.sidebar)
         .navigationTitle("PDF Booklet Maker")
+        .background(Theme.Colors.background)
+        .smoothTransition()
+    }
+    
+    private var headerSection: some View {
+        Section {
+            HStack(spacing: Theme.Spacing.sm) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: Theme.CornerRadius.small)
+                        .fill(Theme.Colors.primary.opacity(0.1))
+                        .frame(width: 40, height: 40)
+                    Image(systemName: "doc.viewfinder")
+                        .font(.system(size: 20, weight: .semibold))
+                        .foregroundColor(Theme.Colors.primary)
+                }
+                
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("PDF Booklet Maker")
+                        .font(Theme.Typography.headline)
+                        .foregroundColor(Theme.Colors.primaryText)
+                    Text("Convert PDFs to booklets")
+                        .font(Theme.Typography.caption)
+                        .foregroundColor(Theme.Colors.secondaryText)
+                }
+                
+                Spacer()
+            }
+            .padding(.vertical, Theme.Spacing.xs)
+            .listRowBackground(Color.clear)
+            .listRowSeparator(.hidden)
+        }
+    }
+    
+    private var mainSection: some View {
+        Section {
+            ForEach(MenuOption.mainItems, id: \.id) { menu in
+                NavigationLink(value: menu) {
+                    HStack(spacing: Theme.Spacing.sm) {
+                        Image(systemName: menu.icon)
+                            .font(.system(size: 18, weight: .medium))
+                            .foregroundColor(selectedMenu == menu ? Theme.Colors.primary : Theme.Colors.secondaryText)
+                            .frame(width: 24, height: 24)
+                        
+                        Text(menu.rawValue)
+                            .font(Theme.Typography.body)
+                            .foregroundColor(Theme.Colors.primaryText)
+                    }
+                    .padding(.vertical, Theme.Spacing.xs)
+                }
+                .listRowBackground(
+                    RoundedRectangle(cornerRadius: Theme.CornerRadius.small)
+                        .fill(selectedMenu == menu ? Theme.Colors.primary.opacity(0.1) : Color.clear)
+                )
+            }
+        } header: {
+            Text("Main")
+                .font(Theme.Typography.subheadline)
+                .foregroundColor(Theme.Colors.secondaryText)
+                .textCase(.uppercase)
+        }
+    }
+    
+    private var settingsSection: some View {
+        Section(header: Text("Settings")
+            .font(Theme.Typography.subheadline)
+            .foregroundColor(Theme.Colors.secondaryText)
+            .textCase(.uppercase)
+        ) {
+            ForEach(MenuOption.settingsItems, id: \.id) { menu in
+                NavigationLink(value: menu) {
+                    HStack(spacing: Theme.Spacing.sm) {
+                        Image(systemName: menu.icon)
+                            .font(.system(size: 18, weight: .medium))
+                            .foregroundColor(selectedMenu == menu ? Theme.Colors.primary : Theme.Colors.secondaryText)
+                            .frame(width: 24, height: 24)
+                        
+                        Text(menu.rawValue)
+                            .font(Theme.Typography.body)
+                            .foregroundColor(Theme.Colors.primaryText)
+                    }
+                    .padding(.vertical, Theme.Spacing.xs)
+                }
+                .listRowBackground(
+                    RoundedRectangle(cornerRadius: Theme.CornerRadius.small)
+                        .fill(selectedMenu == menu ? Theme.Colors.primary.opacity(0.1) : Color.clear)
+                )
+            }
+        }
+    }
+    
+    private var footerSection: some View {
+        Section {
+            HStack {
+                Spacer()
+                Text("© 2025 SBD LLC")
+                    .font(Theme.Typography.caption)
+                    .foregroundColor(Theme.Colors.tertiaryText)
+                Spacer()
+            }
+            .padding(.vertical, Theme.Spacing.sm)
+            .listRowBackground(Color.clear)
+            .listRowSeparator(.hidden)
+        }
     }
 }
 #endif
@@ -99,77 +188,119 @@ struct MacSidebarView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            // App Title
-            HStack {
-                Image(systemName: "doc.viewfinder")
-                    .font(.title2)
-                Text("PDF Booklet Maker")
-                    .font(.headline)
+            // Modern App Header
+            HStack(spacing: Theme.Spacing.sm) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: Theme.CornerRadius.small)
+                        .fill(Theme.Colors.primary.opacity(0.15))
+                        .frame(width: 32, height: 32)
+                    Image(systemName: "doc.viewfinder")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(Theme.Colors.primary)
+                }
+                
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("PDF Booklet")
+                        .font(Theme.Typography.headline)
+                        .foregroundColor(Theme.Colors.primaryText)
+                    Text("Maker")
+                        .font(Theme.Typography.subheadline)
+                        .foregroundColor(Theme.Colors.secondaryText)
+                }
+                
                 Spacer()
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
-            .background(Color(NSColor.controlBackgroundColor))
+            .padding(Theme.Spacing.md)
+            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: Theme.CornerRadius.medium))
+            .padding(.horizontal, Theme.Spacing.md)
+            .padding(.top, Theme.Spacing.md)
             
-            Divider()
-            
-            // Menu Items
-            List(selection: $selectedMenu) {
-                Section(header: Text("Main").font(.caption).foregroundColor(.secondary)) {
+            // Menu Items with modern styling
+            VStack(spacing: Theme.Spacing.sm) {
+                // Main section
+                VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
+                    Text("Main")
+                        .sectionHeader()
+                    
                     ForEach(MenuOption.mainItems, id: \.id) { menu in
-                        menuItem(menu)
+                        modernMenuItem(menu)
                     }
                 }
                 
-                Section(header: Text("Settings").font(.caption).foregroundColor(.secondary)) {
+                // Settings section
+                VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
+                    Text("Settings")
+                        .sectionHeader()
+                    
                     ForEach(MenuOption.settingsItems, id: \.id) { menu in
-                        menuItem(menu)
+                        modernMenuItem(menu)
                     }
                 }
             }
-            .listStyle(.sidebar)
+            .padding(.horizontal, Theme.Spacing.md)
+            .padding(.top, Theme.Spacing.lg)
             
-            Divider()
+            Spacer()
             
-            // Footer
-            HStack {
-                Spacer()
-                Text("Powered by SBD LLC")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                Spacer()
+            // Modern Footer
+            VStack(spacing: Theme.Spacing.xs) {
+                Rectangle()
+                    .fill(Theme.Colors.divider)
+                    .frame(height: 0.5)
+                    .padding(.horizontal, Theme.Spacing.md)
+                
+                Text("© 2025 SBD LLC")
+                    .font(Theme.Typography.caption)
+                    .foregroundColor(Theme.Colors.tertiaryText)
+                    .padding(.vertical, Theme.Spacing.sm)
             }
-            .padding(.vertical, 10)
-            .background(Color(NSColor.controlBackgroundColor))
         }
-        .frame(minWidth: 220)
+        .frame(minWidth: 240)
+        .background(Theme.Colors.background)
     }
     
-    private func menuItem(_ menu: MenuOption) -> some View {
-        NavigationLink(value: menu) {
-            HStack(spacing: 12) {
+    private func modernMenuItem(_ menu: MenuOption) -> some View {
+        Button(action: {
+            withAnimation(.easeInOut(duration: 0.2)) {
+                selectedMenu = menu
+            }
+        }) {
+            HStack(spacing: Theme.Spacing.sm) {
                 Image(systemName: menu.icon)
-                    .font(.system(size: 14))
-                    .foregroundColor(selectedMenu == menu ? .accentColor : .primary)
-                    .frame(width: 24, height: 24)
+                    .font(.system(size: 16, weight: .medium))
+                    .foregroundColor(selectedMenu == menu ? Theme.Colors.primary : Theme.Colors.secondaryText)
+                    .frame(width: 20, height: 20)
                 
                 Text(menu.rawValue)
-                    .font(.body)
+                    .font(selectedMenu == menu ? Theme.Typography.bodyMedium : Theme.Typography.body)
+                    .foregroundColor(selectedMenu == menu ? Theme.Colors.primary : Theme.Colors.primaryText)
                 
                 Spacer()
+                
+                if selectedMenu == menu {
+                    Circle()
+                        .fill(Theme.Colors.primary)
+                        .frame(width: 4, height: 4)
+                        .transition(.scale.combined(with: .opacity))
+                }
             }
-            .padding(.vertical, 6)
-            .contentShape(Rectangle())
+            .padding(.horizontal, Theme.Spacing.md)
+            .padding(.vertical, Theme.Spacing.sm)
+            .background(
+                RoundedRectangle(cornerRadius: Theme.CornerRadius.small)
+                    .fill(selectedMenu == menu ? 
+                          Theme.Colors.primary.opacity(0.1) :
+                          (hoverItem == menu ? Theme.Colors.secondaryBackground : Color.clear))
+            )
+            .scaleEffect(hoverItem == menu ? 1.02 : 1.0)
+            .animation(.easeInOut(duration: 0.15), value: hoverItem)
+            .animation(.easeInOut(duration: 0.2), value: selectedMenu)
         }
-//        .listRowBackground(
-//            RoundedRectangle(cornerRadius: 6)
-//                .fill(selectedMenu == menu ?
-//                      Color.accentColor.opacity(0.15) :
-//                      (hoverItem == menu ? Color.gray.opacity(0.1) : Color.clear))
-//                .padding(.horizontal, 4)
-//        )
+        .buttonStyle(PlainButtonStyle())
         .onHover { hovering in
-            hoverItem = hovering ? menu : nil
+            withAnimation(.easeInOut(duration: 0.15)) {
+                hoverItem = hovering ? menu : nil
+            }
         }
     }
 }
