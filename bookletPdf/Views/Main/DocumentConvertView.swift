@@ -9,6 +9,7 @@
 import SwiftUI
 import PDFKit
 import BookletPDFKit
+import BookletCore
 
 enum ContentViewState {
     case initial
@@ -20,15 +21,16 @@ struct DocumentConvertView: View {
     @EnvironmentObject var viewModel: DocumentConvertViewModel
     @State private var showConvertConfirmation = false
     @State private var tempBookletType: BookletType = .type2
+    @State private var showComparison = false
 
     private var documentName: String {
-        (viewModel.document?.name.nilIfEmpty ?? "").putIfEmpty(viewModel.document?.url?.lastPathComponent ?? "Unknown document")
+        (viewModel.document?.name)?.putIfEmpty(viewModel.document?.url?.lastPathComponent ?? "str.unknown_document".localize) ?? ""
     }
     
     private var documentInfo: String {
         [
             documentName,
-            "\(document?.pageCount ?? 0) pages"
+            "str.pages_count".localize(arguments: document?.pageCount ?? 0)
         ].joined(separator: ", ")
     }
     
@@ -70,99 +72,45 @@ struct DocumentConvertView: View {
             onCompletion: { newUrl in
             print("Exported at \(newUrl)")
         })
-        .alert("Confirm Conversion", isPresented: $showConvertConfirmation) {
-            Button("Cancel", role: .cancel) { }
-            Button("Convert to \(tempBookletType == .type2 ? "2-in-1" : "4-in-1")") {
+        .alert("str.confirm_conversion".localize, isPresented: $showConvertConfirmation) {
+            Button("str.cancel".localize, role: .cancel) { }
+            Button("str.convert_to".localize.localize(arguments: tempBookletType == .type2 ? "str.format_2in1".localize : "str.format_4in1".localize)) {
                 viewModel.bookletType = tempBookletType
                 viewModel.convertToBooklet()
             }
         } message: {
-            Text("Do you want to convert this PDF to \(tempBookletType == .type2 ? "2-in-1" : "4-in-1") booklet format?")
+            Text("str.convert_confirmation_message".localize.localize(arguments: tempBookletType == .type2 ? "str.format_2in1".localize : "str.format_4in1".localize))
         }
     }
     
     private var innerBody: some View {
         VStack(alignment: .leading, spacing: 0) {
-            if let pdfUrl = viewModel.pdfUrl, !viewModel.isConverting {
-                VStack(spacing: 0) {
-                    // Enhanced document info header
-                    HStack(spacing: Theme.Spacing.md) {
-                        // Document icon
-                        ZStack {
-                            RoundedRectangle(cornerRadius: Theme.CornerRadius.small)
-                                .fill(Theme.Colors.primary.opacity(0.1))
-                                .frame(width: 44, height: 44)
-                            
-                            Image(systemName: "doc.text.fill")
-                                .font(.system(size: 20, weight: .medium))
-                                .foregroundColor(Theme.Colors.primary)
-                        }
-                        
-                        // Document info
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(documentName)
-                                .font(Theme.Typography.headline)
-                                .foregroundColor(Theme.Colors.primaryText)
-                                .lineLimit(1)
-                                .truncationMode(.middle)
-                            
-                            HStack(spacing: Theme.Spacing.sm) {
-                                Text("\(document?.pageCount ?? 0) pages")
-                                    .font(Theme.Typography.subheadline)
-                                    .foregroundColor(Theme.Colors.secondaryText)
-                                
-                                Text("•")
-                                    .font(Theme.Typography.subheadline)
-                                    .foregroundColor(Theme.Colors.secondaryText)
-                                
-                                HStack(spacing: Theme.Spacing.xs) {
-                                    Circle()
-                                        .fill(Theme.Colors.success)
-                                        .frame(width: 6, height: 6)
-                                    Text("Ready to convert")
-                                        .font(Theme.Typography.subheadline)
-                                        .foregroundColor(Theme.Colors.success)
-                                }
-                            }
-                        }
-                        
-                        Spacer(minLength: 0)
-                        
-                        // Quick action buttons
-                        HStack(spacing: Theme.Spacing.xs) {
-                            Button(action: {
-                                withAnimation(.easeInOut(duration: 0.3)) {
-                                    viewModel.state = .initial
-                                    viewModel.pdfUrl = nil
-                                }
-                            }) {
-                                Image(systemName: "xmark")
-                                    .font(.system(size: 12, weight: .medium))
-                                    .foregroundColor(Theme.Colors.secondaryText)
-                            }
-                            .buttonStyle(.borderless)
-                            .frame(width: 24, height: 24)
-                            .background(Theme.Colors.tertiaryBackground, in: Circle())
-                        }
+            if let _ = viewModel.pdfUrl, !viewModel.isConverting {
+                documentInfoView
+                
+                Divider()
+                    .background(Theme.Colors.background)
+                
+                previewContent
+                .toolbar(content: {
+                    ToolbarItem(placement: .automaticOrTopLeading) {
+                        openFolderToolbar
                     }
-                    .padding(.horizontal, Theme.Spacing.lg)
-                    .padding(.vertical, Theme.Spacing.md)
-                    .background {
-                        Rectangle()
-                            .fill(.regularMaterial)
-                            .overlay(
-                                Rectangle()
-                                    .fill(Theme.Colors.divider)
-                                    .frame(height: 0.5),
-                                alignment: .bottom
-                            )
+                })
+                .toolbar(content: {
+                    ToolbarItem(placement: .buttomBarOrPrimary) {
+                        bottomActions
                     }
                     
-                    pdfViewer(pdfUrl)
-                }
+                    #if os(iOS)
+                    ToolbarItem(placement: .topBarTrailing) {
+                        topBarTrailingActions
+                    }
+                    #endif
+                })
             } else {
                 if viewModel.isConverting {
-                    LoadingView(title: "Converting ...", message: documentName)
+                    LoadingView(title: "str.converting".localize, message: documentName)
                 } else {
                     openFinderView
                 }
@@ -171,76 +119,72 @@ struct DocumentConvertView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
-    private var openFinderView: some View {
-        VStack(spacing: Theme.Spacing.lg) {
-            // Modern empty state illustration
-            ZStack {
-                RoundedRectangle(cornerRadius: Theme.CornerRadius.large)
-                    .fill(.regularMaterial)
-                    .frame(width: 120, height: 120)
-                    .overlay(
-                        Image(systemName: "doc.viewfinder")
-                            .font(.system(size: 48))
-                            .foregroundColor(Theme.Colors.primary.opacity(0.8))
-                    )
-            }
-            
-            VStack(spacing: Theme.Spacing.sm) {
-                Text("Select PDF File")
-                    .font(Theme.Typography.title2)
-                    .foregroundColor(Theme.Colors.primaryText)
-                
-                Text("Choose a PDF document to convert into a booklet format")
-                    .font(Theme.Typography.body)
+    private var documentInfoView: some View {
+        HStack(spacing: Theme.Spacing.md) {
+            HStack(spacing: Theme.Spacing.sm) {
+                Text(documentInfo)
+                    .font(Theme.Typography.subheadline)
                     .foregroundColor(Theme.Colors.secondaryText)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, Theme.Spacing.lg)
             }
+
+            Spacer(minLength: 0)
             
-            Button(action: {
-                openFinder()
-            }) {
-                HStack(spacing: Theme.Spacing.sm) {
-                    Image(systemName: "folder.badge.plus")
-                        .font(.system(size: 16, weight: .medium))
-                    Text("Browse Files")
-                        .font(Theme.Typography.bodyMedium)
+            // Quick action buttons
+            HStack(spacing: Theme.Spacing.xs) {
+                Button(action: {
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        viewModel.state = .initial
+                        viewModel.pdfUrl = nil
+                    }
+                }) {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundColor(Theme.Colors.secondaryText)
                 }
-                .padding(.horizontal, Theme.Spacing.lg)
-                .padding(.vertical, Theme.Spacing.md)
+                .buttonStyle(.borderless)
+                .frame(width: 24, height: 24)
+                .background(Theme.Colors.tertiaryBackground, in: Circle())
             }
-            .modernButtonStyle(style: .primary)
-            .hoverEffect()
         }
-        .padding(Theme.Spacing.xl)
-        .smoothTransition()
+        .padding(.horizontal, Theme.Spacing.lg)
+        .padding(.vertical, Theme.Spacing.md)
+        .background(Theme.Colors.glassSurface)
     }
     
     @ViewBuilder
-    private func pdfViewer(_ _url: URL) -> some View {
-        if let doc = PDFDocument(url: _url) {
-            PDFViewer(
-                document: doc,
-                onClickPage: { pageIndex in
-                    
-                }
+    private func pdfViewer(_ url: URL) -> some View {
+        if let document: PDFDocument = .init(url: url) {
+            PDFPreviewView(document: document, title: "", isConverted: false)
+        }
+    }
+    
+    private var openFinderView: some View {
+        Button(action: {
+            openFinder()
+        }, label: {
+            Text("str.select_pdf_file".localize)
+                .font(.system(size: 14))
+        })
+        .buttonStyle(BorderedButtonStyle())
+    }
+    
+    @ViewBuilder
+    private var previewContent: some View {
+        if showComparison && viewModel.state == .convertedPdf,
+           let original = viewModel.originalDocument,
+           let converted = viewModel.document {
+            PDFComparisonView(
+                originalDocument: original.document,
+                convertedDocument: converted.document,
+                originalTitle: original.name,
+                convertedTitle: converted.name
             )
-            .toolbar(content: {
-                ToolbarItem(placement: .automaticOrTopLeading) {
-                    openFolderToolbar
-                }
-            })
-            .toolbar(content: {
-                ToolbarItem(placement: .buttomBarOrPrimary) {
-                    bottomActions
-                }
-                
-                #if os(iOS)
-                ToolbarItem(placement: .topBarTrailing) {
-                    topBarTrailingActions
-                }
-                #endif
-            })
+        } else if let doc = document {
+            PDFPreviewView(
+                document: doc,
+                title: documentName,
+                isConverted: viewModel.state == .convertedPdf
+            )
         }
     }
     
@@ -256,7 +200,7 @@ struct DocumentConvertView: View {
     
     private var clearButton: some View {
         #if os(macOS)
-        Text("Clear")
+        Text("str.clear".localize)
             .font(.system(size: 14))
         #else
         Image(systemName: "trash")
@@ -269,45 +213,50 @@ struct DocumentConvertView: View {
             // Clear/Reset button
             if viewModel.state == .convertedPdf || viewModel.state == .selectedPdf {
                 Button(action: {
-                    withAnimation(.easeInOut(duration: 0.3)) {
-                        viewModel.state = .initial
-                        viewModel.pdfUrl = nil
-                    }
-                }) {
-                    HStack(spacing: Theme.Spacing.xs) {
-                        Image(systemName: "arrow.clockwise")
-                            .font(.system(size: 14, weight: .medium))
-                        #if os(macOS)
-                        Text("Clear")
-                            .font(Theme.Typography.callout)
-                        #endif
-                    }
-                }
+                    viewModel.clearDocuments()
+                }, label: {
+                    clearButton
+                })
             }
             
-            // Booklet type selector (macOS)
-            #if os(macOS)
+            Divider()
+            
+            // Comparison toggle for converted documents
+            if viewModel.state == .convertedPdf && viewModel.originalDocument != nil {
+                Button(action: {
+                    showComparison.toggle()
+                }, label: {
+                    HStack(spacing: 4) {
+                        Image(systemName: showComparison ? "rectangle.split.2x1" : "rectangle.split.2x1.fill")
+                        #if os(macOS)
+                        Text("str.show_comparison".localize)
+                            .font(.system(size: 14))
+                        #endif
+                    }
+                })
+                .buttonStyle(.bordered)
+                
+                Divider()
+            }
+            
             if !viewModel.isConverting && viewModel.state != .convertedPdf {
                 
                 BookletTypeSelector(selectedType: $viewModel.bookletType)
             }
-            #endif
+            
+            if #available(iOS 26.0, *) {
+                Spacer()
+            }
             
             // Convert button
             if !viewModel.isConverting && viewModel.state != .convertedPdf {
                 Button(action: {
                     tempBookletType = viewModel.bookletType
                     showConvertConfirmation = true
-                }) {
-                    HStack(spacing: Theme.Spacing.xs) {
-                        Image(systemName: "doc.text.viewfinder")
-                            .font(.system(size: 14, weight: .medium))
-                        Text("Convert to Booklet")
-                            .font(Theme.Typography.bodyMedium)
-                    }
-                    .padding(.horizontal, Theme.Spacing.md)
-                    .padding(.vertical, Theme.Spacing.sm)
-                }
+                }, label: {
+                    Text("str.convert".localize)
+                        .font(.system(size: 14))
+                })
             }
             
             // Action buttons group
@@ -327,12 +276,22 @@ struct DocumentConvertView: View {
                 .modernButtonStyle(style: .secondary)
             }
         }
+        .padding(.horizontal, 10)
     }
     
     private var topBarTrailingActions: some View {
         #if os(iOS)
         HStack {
-            BookletTypeSelector(selectedType: $viewModel.bookletType)
+            if viewModel.state == .convertedPdf && viewModel.originalDocument != nil {
+                Button(action: {
+                    showComparison.toggle()
+                }, label: {
+                    Image(systemName: showComparison ? "rectangle.split.2x1.fill" : "rectangle.split.2x1")
+                })
+                .help("str.show_comparison".localize)
+            } else if viewModel.state != .convertedPdf {
+                BookletTypeSelector(selectedType: $viewModel.bookletType)
+            }
         }
         #else
         EmptyView()

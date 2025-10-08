@@ -7,6 +7,7 @@
 
 import SwiftUI
 import WebKit
+import BookletCore
 
 struct InfoView: View {
     var body: some View {
@@ -25,14 +26,14 @@ struct iOSInfoView: View {
     
     var body: some View {
         WebViewRepresentable(htmlContent: htmlContent)
-            .navigationTitle("Help")
+            .navigationTitle("str.help".localize)
             .navigationBarTitleDisplayMode(.inline)
             .overlay {
                 ProgressView()
                     .opacity(isLoading ? 1 : 0)
             }
             .onAppear {
-                if let durl = Bundle.main.url(forResource: "Info", withExtension: "html"),
+                if let durl = HelpInfoProvider.helpInfoUrl,
                    let dstr = try? String.init(contentsOf: durl, encoding: .utf8) {
                     htmlContent = dstr
                 }
@@ -55,7 +56,7 @@ struct MacInfoView: View {
         VStack(spacing: 0) {
             // Header with title
             HStack {
-                Text("PDF Booklet Maker Help")
+                Text("str.app_help_title".localize)
                     .font(.title)
                     .fontWeight(.medium)
                 Spacer()
@@ -75,7 +76,7 @@ struct MacInfoView: View {
                                     .controlSize(.large)
                                     .scaleEffect(1.2)
                                 
-                                Text("Loading help content...")
+                                Text("str.loading_help_content".localize)
                                     .font(.headline)
                                     .foregroundColor(.secondary)
                                     .padding(.top, 12)
@@ -92,7 +93,7 @@ struct MacInfoView: View {
         }
         .frame(minWidth: 600, minHeight: 500)
         .onAppear {
-            if let durl = Bundle.main.url(forResource: "Info", withExtension: "html"),
+            if let durl = HelpInfoProvider.helpInfoUrl,
                let dstr = try? String.init(contentsOf: durl, encoding: .utf8) {
                 htmlContent = dstr
             }

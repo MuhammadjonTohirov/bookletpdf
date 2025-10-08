@@ -33,7 +33,7 @@ public extension NSColor {
 
     // System Backgrounds
     static var systemBackground: NSColor {
-        NSColor(named: "systemBackground") ?? NSColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        NSColor(named: "systemBackground") ?? NSColor.controlBackgroundColor
     }
     static var secondarySystemBackground: NSColor {
         NSColor(named: "secondarySystemBackground") ?? NSColor(red: 0.95, green: 0.95, blue: 0.97, alpha: 1.0)
@@ -44,10 +44,10 @@ public extension NSColor {
 
     // Labels
     static var label: NSColor {
-        NSColor(named: "label") ?? NSColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        NSColor(named: "label") ?? NSColor.textColor
     }
     static var secondaryLabel: NSColor {
-        NSColor(named: "secondaryLabel") ?? NSColor(red: 0.6, green: 0.6, blue: 0.65, alpha: 1.0)
+        NSColor(named: "secondaryLabel") ?? NSColor.disabledControlTextColor
     }
     static var tertiaryLabel: NSColor {
         NSColor(named: "tertiaryLabel") ?? NSColor(red: 0.7, green: 0.7, blue: 0.75, alpha: 1.0)

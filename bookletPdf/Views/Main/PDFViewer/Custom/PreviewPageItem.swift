@@ -19,11 +19,11 @@ struct PreviewPageItem: View {
     var body: some View {
         VStack {
             if selectedPage == pageNumber - 1 {
-                PDFPageThumbnail(viewModel: .init(page: page, key: key, size: size))
+                PDFThumbnail(viewModel: .init(page: page, key: key, size: size))
                     .padding(.bottom, 4)
                     .border(.blue, width: 2)
             }else{
-                PDFPageThumbnail(viewModel: .init(page: page, key: key, size: size))
+                PDFThumbnail(viewModel: .init(page: page, key: key, size: size))
             }
             Text("\(pageNumber)")
                 .font(.system(size: 12))

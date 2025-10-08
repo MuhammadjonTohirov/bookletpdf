@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --text-color: #333333;
+            --accent-color: #0077CC;
+            --background-color: #FFFFFF;
+            --section-bg: #F8F9FA;
+            --border-color: #EEEEEE;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-color: #E5E5E5;
+                --accent-color: #4DA3FF;
+                --background-color: #1E1E1E;
+                --section-bg: #2D2D2D;
+                --border-color: #3D3D3D;
+            }
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 16px;
+            font-size: 16px;
+        }
+        
+        h1, h2, h3, h4 {
+            color: var(--accent-color);
+            margin-top: 24px;
+            margin-bottom: 16px;
+        }
+        
+        h1 {
+            font-size: 28px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+        
+        h2 {
+            font-size: 22px;
+            margin-top: 32px;
+        }
+        
+        h3 {
+            font-size: 18px;
+            margin-top: 24px;
+        }
+        
+        h4 {
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        
+        p {
+            margin: 12px 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            padding: 10px;
+            background-color: var(--section-bg);
+            border-radius: 8px;
+        }
+        
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            color: var(--accent-color);
+        }
+        
+        .feature-text {
+            flex: 1;
+        }
+        
+        .steps-container {
+            counter-reset: step-counter;
+            margin-left: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            counter-increment: step-counter;
+            font-weight: bold;
+            margin-right: 12px;
+            min-width: 20px;
+            text-align: right;
+        }
+        
+        .step-number::before {
+            content: counter(step-counter) ".";
+        }
+        
+        .step-text {
+            flex: 1;
+        }
+        
+        .bullet-container {
+            margin-left: 48px;
+            margin-bottom: 16px;
+        }
+        
+        .bullet-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        
+        .bullet {
+            margin-right: 12px;
+        }
+        
+        .bullet::before {
+            content: "•";
+        }
+        
+        .bullet-text {
+            flex: 1;
+        }
+        
+        .section {
+            padding: 16px;
+            margin-bottom: 24px;
+            border-radius: 8px;
+            background-color: var(--section-bg);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-style: italic;
+        }
+        
+        /* iOS-friendly styles */
+        .ios-padding {
+            padding: 0 4px;
+        }
+        
+        .keyboard-shortcut {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background-color: var(--section-bg);
+            border: 1px solid var(--border-color);
+            font-family: menlo, monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenue dans le Générateur de Livrets ! 📚</h1>
+        
+        <div class="section">
+            <h2>À propos de l'application</h2>
+            <p>
+                Transformez facilement des PDF ordinaires en livrets. Notre application réorganise les pages de votre PDF 
+                dans un format de livret professionnel prêt pour l'impression. Avec la prise en charge des mises en page 
+                2-en-1 et 4-en-1, vous pouvez créer le livret parfait pour vos besoins.
+            </p>
+        </div>
+        
+        <div class="section">
+            <h2>Fonctionnalités</h2>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                        <rect x="9" y="9" width="6" height="6"></rect>
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <strong>Format Livret 2-en-1 :</strong> Mise en page traditionnelle avec 2 pages par feuille
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <strong>Format Livret 4-en-1 :</strong> Mise en page compacte avec 4 pages par feuille, parfaite pour les petits livrets
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="4" y1="21" x2="4" y2="14"></line>
+                        <line x1="4" y1="10" x2="4" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12" y2="3"></line>
+                        <line x1="20" y1="21" x2="20" y2="16"></line>
+                        <line x1="20" y1="12" x2="20" y2="3"></line>
+                        <line x1="1" y1="14" x2="7" y2="14"></line>
+                        <line x1="9" y1="8" x2="15" y2="8"></line>
+                        <line x1="17" y1="16" x2="23" y2="16"></line>
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <strong>Interface Simple :</strong> Contrôles intuitifs qui rendent la création de livrets facile
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <strong>Mode Aperçu :</strong> Voyez à quoi ressemblera votre livret avant impression
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                        <rect x="6" y="14" width="12" height="8"></rect>
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <strong>Optimisé pour l'Impression :</strong> Organise automatiquement les pages dans l'ordre correct pour un pliage approprié
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Comment Utiliser</h2>
+            
+            <h3>Génération d'un Livret</h3>
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Cliquez sur le bouton « <strong>Sélectionner un fichier PDF</strong> »</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Choisissez votre document PDF dans le sélecteur de fichiers</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Sélectionnez votre mise en page préférée (2-en-1 ou 4-en-1)</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Cliquez sur « <strong>Convertir en Livret</strong> »</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Attendez un moment pendant que le processus se termine</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Votre PDF au format livret apparaîtra avec les pages réorganisées</div>
+                </div>
+            </div>
+            
+            <h3>Impression de Votre Livret</h3>
+            
+            <h4>Pour les Livrets 2-en-1 :</h4>
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Cliquez sur le bouton « <strong>Partager</strong> » (📤) pour sauvegarder votre document</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Ouvrez le document généré dans votre lecteur PDF</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Appuyez sur <span class="keyboard-shortcut">⌘</span> + <span class="keyboard-shortcut">P</span> pour ouvrir la boîte de dialogue d'impression</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Dans la section Mise en page :</div>
+                </div>
+                
+                <div class="bullet-container">
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Réglez « <strong>Pages par feuille</strong> » sur <strong>2</strong></div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Choisissez la « <strong>Direction de mise en page</strong> » appropriée</div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Dans la section Gestion du papier :</div>
+                </div>
+                
+                <div class="bullet-container">
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Première impression : Réglez « <strong>Pages à imprimer</strong> » sur « <strong>Impaires uniquement</strong> »</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Cliquez sur « <strong>Imprimer</strong> »</div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Après avoir imprimé les pages impaires, réinsérez le papier et :</div>
+                </div>
+                
+                <div class="bullet-container">
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Réglez « <strong>Pages à imprimer</strong> » sur « <strong>Paires uniquement</strong> »</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Sélectionnez la deuxième option de « <strong>Direction de mise en page</strong> »</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Cliquez sur « <strong>Imprimer</strong> »</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h4>Pour les Livrets 4-en-1 :</h4>
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Cliquez sur le bouton « <strong>Partager</strong> » (📤) pour sauvegarder votre document</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Ouvrez le document généré dans votre lecteur PDF</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Appuyez sur <span class="keyboard-shortcut">⌘</span> + <span class="keyboard-shortcut">P</span> pour ouvrir la boîte de dialogue d'impression</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Dans la section Mise en page :</div>
+                </div>
+                
+                <div class="bullet-container">
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Réglez « <strong>Pages par feuille</strong> » sur <strong>1</strong> (les pages sont déjà arrangées en 4)</div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Pour l'impression recto-verso :</div>
+                </div>
+                
+                <div class="bullet-container">
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Imprimez toutes les pages</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Assurez-vous que « <strong>Imprimer des deux côtés</strong> » est sélectionné</div>
+                    </div>
+                    <div class="bullet-item">
+                        <div class="bullet"></div>
+                        <div class="bullet-text">Choisissez l'option de reliure « <strong>Retourner sur le bord court</strong> »</div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number"></div>
+                    <div class="step-text">Après impression, pliez les pages en deux fois pour créer votre livret</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Conseils pour de Meilleurs Résultats</h2>
+            
+            <div class="bullet-container" style="margin-left: 12px;">
+                <div class="bullet-item">
+                    <div class="bullet"></div>
+                    <div class="bullet-text">Utilisez du papier suffisamment épais pour éviter que l'encre ne traverse</div>
+                </div>
+                <div class="bullet-item">
+                    <div class="bullet"></div>
+                    <div class="bullet-text">Pour les documents volumineux, envisagez d'imprimer par sections plus petites</div>
+                </div>
+                <div class="bullet-item">
+                    <div class="bullet"></div>
+                    <div class="bullet-text">Testez d'abord avec quelques pages pour vous assurer que votre imprimante gère correctement la mise en page</div>
+                </div>
+                <div class="bullet-item">
+                    <div class="bullet"></div>
+                    <div class="bullet-text">Pour une finition professionnelle, envisagez d'utiliser une agrafeuse conçue pour les livrets</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Merci d'utiliser le Générateur de Livrets !</p>
+        </div>
+    </div>
+</body>
+</html>

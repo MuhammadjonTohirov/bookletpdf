@@ -7,17 +7,29 @@
 
 import Foundation
 import SwiftUI
+import BookletCore
 import BookletPDFKit
 
 enum MenuOption: String, Identifiable {
     // Main section
-    case converter = "Converter"
-    case help = "Help"
+    case converter = "converter"
+    case help = "help"
     
     // Settings section
-    case settings = "Settings"
+    case settings = "settings"
     
     var id: String { self.rawValue }
+    
+    var localizedTitle: String {
+        switch self {
+        case .converter:
+            return "str.converter".localize
+        case .help:
+            return "str.help".localize
+        case .settings:
+            return "str.settings".localize
+        }
+    }
     
     // Group menu items by section
     static var mainItems: [MenuOption] {
@@ -59,123 +71,35 @@ struct iOSSidebarView: View {
     
     var body: some View {
         List(selection: $selectedMenu) {
-            // App header section
-            headerSection
+            Section("str.main".localize) {
+                ForEach(MenuOption.mainItems, id: \.id) { menu in
+                    NavigationLink(value: menu) {
+                        Label(menu.localizedTitle, systemImage: menu.icon)
+                    }
+                }
+            }
             
-            // Main section
-            mainSection
+            Section("str.settings".localize) {
+                ForEach(MenuOption.settingsItems, id: \.id) { menu in
+                    NavigationLink(value: menu) {
+                        Label(menu.localizedTitle, systemImage: menu.icon)
+                    }
+                }
+            }
             
-            // Settings section
-            settingsSection
-            
-            // Footer section
-            footerSection
+            // Footer section with company info
+            Section {
+                HStack {
+                    Spacer()
+                    Text("str.powered_by".localize)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    Spacer()
+                }
+            }
         }
         .listStyle(.sidebar)
-        .navigationTitle("PDF Booklet Maker")
-        .background(Theme.Colors.background)
-        .smoothTransition()
-    }
-    
-    private var headerSection: some View {
-        Section {
-            HStack(spacing: Theme.Spacing.sm) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: Theme.CornerRadius.small)
-                        .fill(Theme.Colors.primary.opacity(0.1))
-                        .frame(width: 40, height: 40)
-                    Image(systemName: "doc.viewfinder")
-                        .font(.system(size: 20, weight: .semibold))
-                        .foregroundColor(Theme.Colors.primary)
-                }
-                
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("PDF Booklet Maker")
-                        .font(Theme.Typography.headline)
-                        .foregroundColor(Theme.Colors.primaryText)
-                    Text("Convert PDFs to booklets")
-                        .font(Theme.Typography.caption)
-                        .foregroundColor(Theme.Colors.secondaryText)
-                }
-                
-                Spacer()
-            }
-            .padding(.vertical, Theme.Spacing.xs)
-            .listRowBackground(Color.clear)
-            .listRowSeparator(.hidden)
-        }
-    }
-    
-    private var mainSection: some View {
-        Section {
-            ForEach(MenuOption.mainItems, id: \.id) { menu in
-                NavigationLink(value: menu) {
-                    HStack(spacing: Theme.Spacing.sm) {
-                        Image(systemName: menu.icon)
-                            .font(.system(size: 18, weight: .medium))
-                            .foregroundColor(selectedMenu == menu ? Theme.Colors.primary : Theme.Colors.secondaryText)
-                            .frame(width: 24, height: 24)
-                        
-                        Text(menu.rawValue)
-                            .font(Theme.Typography.body)
-                            .foregroundColor(Theme.Colors.primaryText)
-                    }
-                    .padding(.vertical, Theme.Spacing.xs)
-                }
-                .listRowBackground(
-                    RoundedRectangle(cornerRadius: Theme.CornerRadius.small)
-                        .fill(selectedMenu == menu ? Theme.Colors.primary.opacity(0.1) : Color.clear)
-                )
-            }
-        } header: {
-            Text("Main")
-                .font(Theme.Typography.subheadline)
-                .foregroundColor(Theme.Colors.secondaryText)
-                .textCase(.uppercase)
-        }
-    }
-    
-    private var settingsSection: some View {
-        Section(header: Text("Settings")
-            .font(Theme.Typography.subheadline)
-            .foregroundColor(Theme.Colors.secondaryText)
-            .textCase(.uppercase)
-        ) {
-            ForEach(MenuOption.settingsItems, id: \.id) { menu in
-                NavigationLink(value: menu) {
-                    HStack(spacing: Theme.Spacing.sm) {
-                        Image(systemName: menu.icon)
-                            .font(.system(size: 18, weight: .medium))
-                            .foregroundColor(selectedMenu == menu ? Theme.Colors.primary : Theme.Colors.secondaryText)
-                            .frame(width: 24, height: 24)
-                        
-                        Text(menu.rawValue)
-                            .font(Theme.Typography.body)
-                            .foregroundColor(Theme.Colors.primaryText)
-                    }
-                    .padding(.vertical, Theme.Spacing.xs)
-                }
-                .listRowBackground(
-                    RoundedRectangle(cornerRadius: Theme.CornerRadius.small)
-                        .fill(selectedMenu == menu ? Theme.Colors.primary.opacity(0.1) : Color.clear)
-                )
-            }
-        }
-    }
-    
-    private var footerSection: some View {
-        Section {
-            HStack {
-                Spacer()
-                Text("© 2025 SBD LLC")
-                    .font(Theme.Typography.caption)
-                    .foregroundColor(Theme.Colors.tertiaryText)
-                Spacer()
-            }
-            .padding(.vertical, Theme.Spacing.sm)
-            .listRowBackground(Color.clear)
-            .listRowSeparator(.hidden)
-        }
+        .navigationTitle("str.app_name".localize)
     }
 }
 #endif
@@ -188,26 +112,14 @@ struct MacSidebarView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            // Modern App Header
-            HStack(spacing: Theme.Spacing.sm) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: Theme.CornerRadius.small)
-                        .fill(Theme.Colors.primary.opacity(0.15))
-                        .frame(width: 32, height: 32)
-                    Image(systemName: "doc.viewfinder")
-                        .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(Theme.Colors.primary)
-                }
+            // App Title
+            HStack {
+                Image("img_logo_white")
+                    .resizable()
+                    .frame(width: 24, height: 24)
                 
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("PDF Booklet")
-                        .font(Theme.Typography.headline)
-                        .foregroundColor(Theme.Colors.primaryText)
-                    Text("Maker")
-                        .font(Theme.Typography.subheadline)
-                        .foregroundColor(Theme.Colors.secondaryText)
-                }
-                
+                Text("Booklet PDF")
+                    .font(.headline)
                 Spacer()
             }
             .padding(Theme.Spacing.md)
@@ -219,7 +131,7 @@ struct MacSidebarView: View {
             VStack(spacing: Theme.Spacing.sm) {
                 // Main section
                 VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
-                    Text("Main")
+                    Text("str.main".localize)
                         .sectionHeader()
                     
                     ForEach(MenuOption.mainItems, id: \.id) { menu in
@@ -229,7 +141,7 @@ struct MacSidebarView: View {
                 
                 // Settings section
                 VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
-                    Text("Settings")
+                    Text("str.settings".localize)
                         .sectionHeader()
                     
                     ForEach(MenuOption.settingsItems, id: \.id) { menu in
@@ -249,7 +161,7 @@ struct MacSidebarView: View {
                     .frame(height: 0.5)
                     .padding(.horizontal, Theme.Spacing.md)
                 
-                Text("© 2025 SBD LLC")
+                Text("str.powered_by".localize)
                     .font(Theme.Typography.caption)
                     .foregroundColor(Theme.Colors.tertiaryText)
                     .padding(.vertical, Theme.Spacing.sm)
@@ -267,13 +179,13 @@ struct MacSidebarView: View {
         }) {
             HStack(spacing: Theme.Spacing.sm) {
                 Image(systemName: menu.icon)
-                    .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(selectedMenu == menu ? Theme.Colors.primary : Theme.Colors.secondaryText)
-                    .frame(width: 20, height: 20)
+
+                    .font(.system(size: 14))
+                    .foregroundColor(selectedMenu == menu ? .white : .primary)
+                    .frame(width: 24, height: 24)
                 
-                Text(menu.rawValue)
-                    .font(selectedMenu == menu ? Theme.Typography.bodyMedium : Theme.Typography.body)
-                    .foregroundColor(selectedMenu == menu ? Theme.Colors.primary : Theme.Colors.primaryText)
+                Text(menu.localizedTitle)
+                    .font(.body)
                 
                 Spacer()
                 
@@ -290,7 +202,7 @@ struct MacSidebarView: View {
                 RoundedRectangle(cornerRadius: Theme.CornerRadius.small)
                     .fill(selectedMenu == menu ? 
                           Theme.Colors.primary.opacity(0.1) :
-                          (hoverItem == menu ? Theme.Colors.secondaryBackground : Color.clear))
+                            (hoverItem == menu ? Theme.Colors.secondaryBackground.opacity(0.5) : Color.clear))
             )
             .scaleEffect(hoverItem == menu ? 1.02 : 1.0)
             .animation(.easeInOut(duration: 0.15), value: hoverItem)
@@ -305,3 +217,7 @@ struct MacSidebarView: View {
     }
 }
 #endif
+
+#Preview {
+    SidebarView(selectedMenu: .init(get: {nil}, set: {_ in }))
+}

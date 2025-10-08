@@ -12,9 +12,9 @@ public enum Theme {
     // MARK: - Colors
     public enum Colors {
         // Background Colors - Adaptive to light/dark mode
-        public static let background = Color(.systemBackground)
-        public static let secondaryBackground = Color(.secondarySystemBackground)
-        public static let tertiaryBackground = Color(.tertiarySystemBackground)
+        public static var background: Color { Color(.systemBackground) }
+        public static var secondaryBackground: Color { Color(.secondarySystemBackground) }
+        public static var tertiaryBackground: Color { Color(.tertiarySystemBackground) }
         
         // Surface Colors with Glassmorphism - Adaptive
         public static var glassSurface: Color {
@@ -25,7 +25,7 @@ public enum Theme {
         }
         
         // Primary Colors - Using accent color which adapts
-        public static let primary = Color.accentColor
+        public static var primary: Color { Color.accentColor }
         public static var primaryLight: Color {
             Color.accentColor.opacity(0.8)
         }
@@ -34,15 +34,15 @@ public enum Theme {
         }
         
         // Text Colors - Using system labels that adapt
-        public static let primaryText = Color(.label)
-        public static let secondaryText = Color(.secondaryLabel)
-        public static let tertiaryText = Color(.tertiaryLabel)
+        public static var primaryText: Color { Color(.label) }
+        public static var secondaryText: Color { Color(.secondaryLabel) }
+        public static var tertiaryText: Color { Color(.tertiaryLabel) }
         
         // Semantic Colors
-        public static let success = Color.green
-        public static let warning = Color.orange
-        public static let error = Color.red
-        public static let info = Color.blue
+        public static var success: Color { Color.green }
+        public static var warning: Color { Color.orange }
+        public static var error: Color { Color.red }
+        public static var info: Color { Color.blue }
         
         // Border and Divider Colors
         public static var border: Color {

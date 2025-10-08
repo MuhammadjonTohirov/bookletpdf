@@ -10,7 +10,7 @@ import SwiftUI
 import PDFKit
 import BookletPDFKit
 
-struct PDFPageThumbnail: View {
+struct PDFThumbnail: View {
     @StateObject var viewModel: PDFThumbnailViewModel
     @State private var image: FImage? = nil
 
