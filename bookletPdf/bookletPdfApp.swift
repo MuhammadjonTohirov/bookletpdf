@@ -49,7 +49,7 @@ struct bookletPdfApp: App {
 
     var body: some Scene {
         WindowGroup(id: "main-window") {
-            ContentView()
+            MainView()
                 .environmentObject(mainViewModel)
                 .environmentObject(languageManager)
         }

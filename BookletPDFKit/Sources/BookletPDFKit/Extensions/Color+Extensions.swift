@@ -36,7 +36,7 @@ public extension NSColor {
         NSColor(named: "systemBackground") ?? NSColor.controlBackgroundColor
     }
     static var secondarySystemBackground: NSColor {
-        NSColor(named: "secondarySystemBackground") ?? NSColor(red: 0.95, green: 0.95, blue: 0.97, alpha: 1.0)
+        NSColor(named: "secondarySystemBackground") ?? NSColor.textBackgroundColor
     }
     static var tertiarySystemBackground: NSColor {
         NSColor(named: "tertiarySystemBackground") ?? NSColor(red: 0.89, green: 0.89, blue: 0.91, alpha: 1.0)

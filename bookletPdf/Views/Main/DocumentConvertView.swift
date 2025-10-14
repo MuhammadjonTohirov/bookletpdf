@@ -143,7 +143,7 @@ struct DocumentConvertView: View {
                 }
                 .buttonStyle(.borderless)
                 .frame(width: 24, height: 24)
-                .background(Theme.Colors.tertiaryBackground, in: Circle())
+                .background(Theme.Colors.secondaryBackground, in: Circle())
             }
         }
         .padding(.horizontal, Theme.Spacing.lg)
@@ -273,7 +273,6 @@ struct DocumentConvertView: View {
                     Image(systemName: "square.and.arrow.up")
                         .font(.system(size: 16, weight: .medium))
                 }
-                .modernButtonStyle(style: .secondary)
             }
         }
         .padding(.horizontal, 10)

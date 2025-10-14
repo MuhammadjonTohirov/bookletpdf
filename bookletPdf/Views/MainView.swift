@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MainView: View {
     @State var selectedMenu: MenuOption? = .converter
     @EnvironmentObject var mainViewModel: DocumentConvertViewModel
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
@@ -60,6 +60,6 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    MainView()
         .environmentObject(DocumentConvertViewModel())
 }
