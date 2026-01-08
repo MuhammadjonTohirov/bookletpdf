@@ -24,7 +24,8 @@ struct DocumentConvertView: View {
     @State private var showComparison = false
 
     private var documentName: String {
-        (viewModel.document?.name)?.putIfEmpty(viewModel.document?.url?.lastPathComponent ?? "str.unknown_document".localize) ?? ""
+        let name = (viewModel.document?.name)?.putIfEmpty(viewModel.document?.url?.lastPathComponent ?? "str.unknown_document".localize) ?? "Untitled.pdf"
+        return name.isEmpty ? "Untitled.pdf" : name
     }
     
     private var documentInfo: String {
@@ -69,6 +70,7 @@ struct DocumentConvertView: View {
             isPresented: $viewModel.showFileExporter,
             item: document,
             contentTypes: [.pdf],
+            defaultFilename: documentName,
             onCompletion: { newUrl in
             print("Exported at \(newUrl)")
         })

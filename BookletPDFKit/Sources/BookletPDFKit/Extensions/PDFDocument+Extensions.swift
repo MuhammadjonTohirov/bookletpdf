@@ -32,10 +32,6 @@ extension PDFDocument: @retroactive Transferable {
                 return Data()
             }
         }
-        
-        FileRepresentation(exportedContentType: .pdf) { pdf in
-            SentTransferredFile(pdf.documentURL!)
-        }
      }
     
     public func addBlankPages(count: Int) {

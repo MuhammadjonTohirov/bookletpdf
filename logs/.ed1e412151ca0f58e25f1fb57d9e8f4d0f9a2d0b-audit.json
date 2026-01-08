@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/logs/.ed1e412151ca0f58e25f1fb57d9e8f4d0f9a2d0b-audit.json",
+    "files": [
+        {
+            "date": 1767886784130,
+            "name": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/logs/mcp-puppeteer-2026-01-08.log",
+            "hash": "b5714001bb41087fe31f6b89743fe6b0fc03935a16a0705f646a615161acb53b"
+        }
+    ],
+    "hashType": "sha256"
+}
