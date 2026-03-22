@@ -4,6 +4,7 @@ import BookletPDFKit
 struct BookletLayoutOption: View {
     let type: BookletType
     let isSelected: Bool
+    var isLocked: Bool = false
     let action: () -> Void
     let infoAction: () -> Void
 
@@ -29,9 +30,17 @@ struct BookletLayoutOption: View {
                         .frame(width: 80, height: 56)
 
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(title)
-                            .font(Theme.Fonts.cardTitle)
-                            .foregroundStyle(Theme.Colors.primaryText)
+                        HStack(spacing: 6) {
+                            Text(title)
+                                .font(Theme.Fonts.cardTitle)
+                                .foregroundStyle(Theme.Colors.primaryText)
+
+                            if isLocked {
+                                Image(systemName: "lock.fill")
+                                    .font(.system(size: 12))
+                                    .foregroundStyle(Theme.Colors.secondaryText)
+                            }
+                        }
 
                         Text(subtitle)
                             .font(Theme.Fonts.subtitle)
@@ -41,6 +50,8 @@ struct BookletLayoutOption: View {
                     Spacer(minLength: 0)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(Theme.Layout.screenPadding)
+                .background(RoundedRectangle(cornerRadius: 20).foregroundStyle(.background.opacity(0.01)))
             }
             .buttonStyle(.plain)
 
@@ -53,8 +64,8 @@ struct BookletLayoutOption: View {
             }
             .buttonStyle(.plain)
             .accessibilityLabel(Text("str.view_printing_instructions"))
+            .padding(Theme.Layout.screenPadding)
         }
-        .padding(Theme.Layout.screenPadding)
         .background {
             if isSelected {
                 RoundedRectangle(cornerRadius: Theme.CornerRadius.section)

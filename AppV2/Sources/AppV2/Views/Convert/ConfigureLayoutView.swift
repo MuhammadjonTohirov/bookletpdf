@@ -4,8 +4,10 @@ import BookletPDFKit
 
 struct ConfigureLayoutView: View {
     @EnvironmentObject private var viewModel: DocumentConvertViewModel
+    @ObservedObject private var storeManager = StoreKitManager.shared
     @State private var showCoverImporter = false
     @State private var showPrintingGuide = false
+    @State private var showPurchasePrompt = false
     @State private var printingGuideType: BookletType = .type2
 
     var body: some View {
@@ -47,6 +49,9 @@ struct ConfigureLayoutView: View {
         }
         .sheet(isPresented: $showPrintingGuide) {
             BookletPrintingGuideSheet(type: printingGuideType)
+        }
+        .sheet(isPresented: $showPurchasePrompt) {
+            PurchasePromptView(storeManager: storeManager)
         }
         #if os(iOS)
         .navigationDestination(isPresented: $viewModel.showExport) {
@@ -100,7 +105,14 @@ struct ConfigureLayoutView: View {
             BookletLayoutOption(
                 type: .type4,
                 isSelected: viewModel.bookletType == .type4,
-                action: { viewModel.bookletType = .type4 },
+                isLocked: !storeManager.isFourInOnePurchased,
+                action: {
+                    if storeManager.isFourInOnePurchased {
+                        viewModel.bookletType = .type4
+                    } else {
+                        showPurchasePrompt = true
+                    }
+                },
                 infoAction: { presentPrintingGuide(for: .type4) }
             )
         }

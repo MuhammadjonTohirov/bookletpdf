@@ -19,7 +19,9 @@ public enum ContentViewState {
 
 struct DocumentConvertView: View {
     @EnvironmentObject var viewModel: DocumentConvertViewModel
+    @ObservedObject private var storeManager = StoreKitManager.shared
     @State private var showConvertConfirmation = false
+    @State private var showPurchasePrompt = false
     @State private var tempBookletType: BookletType = .type2
     @State private var showComparison = false
 
@@ -93,6 +95,9 @@ struct DocumentConvertView: View {
         } message: {
             let format = tempBookletType == .type2 ? String(localized: "str.format_2in1") : String(localized: "str.format_4in1")
             Text("\(String(localized: "str.convert_confirmation_message")) \(format)")
+        }
+        .sheet(isPresented: $showPurchasePrompt) {
+            PurchasePromptView(storeManager: storeManager)
         }
     }
     
@@ -254,7 +259,11 @@ struct DocumentConvertView: View {
             
             if !viewModel.isConverting && viewModel.state != .convertedPdf {
                 
-                BookletTypeSelector(selectedType: $viewModel.bookletType)
+                BookletTypeSelector(
+                        selectedType: $viewModel.bookletType,
+                        storeManager: storeManager,
+                        onLockedTap: { showPurchasePrompt = true }
+                    )
             }
             
             if #available(iOS 26.0, *) {
@@ -264,8 +273,12 @@ struct DocumentConvertView: View {
             // Convert button
             if !viewModel.isConverting && viewModel.state != .convertedPdf {
                 Button(action: {
-                    tempBookletType = viewModel.bookletType
-                    showConvertConfirmation = true
+                    if viewModel.bookletType == .type4 && !storeManager.isFourInOnePurchased {
+                        showPurchasePrompt = true
+                    } else {
+                        tempBookletType = viewModel.bookletType
+                        showConvertConfirmation = true
+                    }
                 }, label: {
                     Text("str.convert")
                         .font(.system(size: 14))
@@ -302,7 +315,11 @@ struct DocumentConvertView: View {
                 })
                 .help("str.show_comparison")
             } else if viewModel.state != .convertedPdf {
-                BookletTypeSelector(selectedType: $viewModel.bookletType)
+                BookletTypeSelector(
+                        selectedType: $viewModel.bookletType,
+                        storeManager: storeManager,
+                        onLockedTap: { showPurchasePrompt = true }
+                    )
             }
         }
         #else

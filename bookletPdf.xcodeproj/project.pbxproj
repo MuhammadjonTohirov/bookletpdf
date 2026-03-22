@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11D9EC722F70882B00969099 /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 11D9EC712F70882B00969099 /* Configuration.storekit */; };
 		2E2E44272AC3CC8E00DC757F /* bookletPdfApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E44262AC3CC8E00DC757F /* bookletPdfApp.swift */; };
 		2E2E442B2AC3CC8F00DC757F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E2E442A2AC3CC8F00DC757F /* Assets.xcassets */; };
 		2E2E442E2AC3CC8F00DC757F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E2E442D2AC3CC8F00DC757F /* Preview Assets.xcassets */; };
@@ -36,6 +37,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		11D9EC712F70882B00969099 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		2E0E4E162ADB30F900E846B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2E2E44232AC3CC8E00DC757F /* bookletPdf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bookletPdf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E2E44262AC3CC8E00DC757F /* bookletPdfApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bookletPdfApp.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 		2E2E44252AC3CC8E00DC757F /* bookletPdf */ = {
 			isa = PBXGroup;
 			children = (
+				11D9EC712F70882B00969099 /* Configuration.storekit */,
 				2E0E4E162ADB30F900E846B6 /* Info.plist */,
 				2E2E44342AC3D74200DC757F /* bookletPdf.entitlements */,
 				2E2E44262AC3CC8E00DC757F /* bookletPdfApp.swift */,
@@ -208,6 +211,7 @@
 				52A930CF2E72DE0100DC862D /* Info_de.html in Resources */,
 				2E2E44412AC49B9200DC757F /* Resume.pdf in Resources */,
 				2E2E442E2AC3CC8F00DC757F /* Preview Assets.xcassets in Resources */,
+				11D9EC722F70882B00969099 /* Configuration.storekit in Resources */,
 				2E2E442B2AC3CC8F00DC757F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,7 +358,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = bookletPdf/bookletPdf.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"bookletPdf/Preview Content\"";
 				DEVELOPMENT_TEAM = V3H6LJGQAD;
 				ENABLE_APP_SANDBOX = YES;
@@ -411,7 +415,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = bookletPdf/bookletPdf.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"bookletPdf/Preview Content\"";
 				DEVELOPMENT_TEAM = V3H6LJGQAD;
 				ENABLE_APP_SANDBOX = YES;
