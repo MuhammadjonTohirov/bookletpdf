@@ -1,0 +1,131 @@
+{
+  "": {
+    "swift-dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/master.swiftdeps"
+  },
+  "/Users/r/Documents/Development/Personal/Startups/bookletpdf/BookletPDFKit/Sources/BookletPDFKit/BookletPDFKit.swift": {
+    "dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/BookletPDFKit.d",
+    "object": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/BookletPDFKit.swift.o",
+    "swiftmodule": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/BookletPDFKit~partial.swiftmodule",
+    "swift-dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/BookletPDFKit.swiftdeps",
+    "diagnostics": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/BookletPDFKit.dia"
+  },
+  "/Users/r/Documents/Development/Personal/Startups/bookletpdf/BookletPDFKit/Sources/BookletPDFKit/Extensions/Color+Extensions.swift": {
+    "dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/Color+Extensions.d",
+    "object": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/Color+Extensions.swift.o",
+    "swiftmodule": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/Color+Extensions~partial.swiftmodule",
+    "swift-dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/Color+Extensions.swiftdeps",
+    "diagnostics": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/Color+Extensions.dia"
+  },
+  "/Users/r/Documents/Development/Personal/Startups/bookletpdf/BookletPDFKit/Sources/BookletPDFKit/Extensions/Image+Extensions.swift": {
+    "dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/Image+Extensions.d",
+    "object": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/Image+Extensions.swift.o",
+    "swiftmodule": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/Image+Extensions~partial.swiftmodule",
+    "swift-dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/Image+Extensions.swiftdeps",
+    "diagnostics": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/Image+Extensions.dia"
+  },
+  "/Users/r/Documents/Development/Personal/Startups/bookletpdf/BookletPDFKit/Sources/BookletPDFKit/Extensions/OSImage.swift": {
+    "dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/OSImage.d",
+    "object": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/OSImage.swift.o",
+    "swiftmodule": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/OSImage~partial.swiftmodule",
+    "swift-dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/OSImage.swiftdeps",
+    "diagnostics": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/OSImage.dia"
+  },
+  "/Users/r/Documents/Development/Personal/Startups/bookletpdf/BookletPDFKit/Sources/BookletPDFKit/Extensions/PDFDocument+CoverPage.swift": {
+    "dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/PDFDocument+CoverPage.d",
+    "object": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/PDFDocument+CoverPage.swift.o",
+    "swiftmodule": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/PDFDocument+CoverPage~partial.swiftmodule",
+    "swift-dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/PDFDocument+CoverPage.swiftdeps",
+    "diagnostics": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/PDFDocument+CoverPage.dia"
+  },
+  "/Users/r/Documents/Development/Personal/Startups/bookletpdf/BookletPDFKit/Sources/BookletPDFKit/Extensions/PDFDocument+Extensions.swift": {
+    "dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/PDFDocument+Extensions.d",
+    "object": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/PDFDocument+Extensions.swift.o",
+    "swiftmodule": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/PDFDocument+Extensions~partial.swiftmodule",
+    "swift-dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/PDFDocument+Extensions.swiftdeps",
+    "diagnostics": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/PDFDocument+Extensions.dia"
+  },
+  "/Users/r/Documents/Development/Personal/Startups/bookletpdf/BookletPDFKit/Sources/BookletPDFKit/Extensions/ProcessInfo+Extensions.swift": {
+    "dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/ProcessInfo+Extensions.d",
+    "object": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/ProcessInfo+Extensions.swift.o",
+    "swiftmodule": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/ProcessInfo+Extensions~partial.swiftmodule",
+    "swift-dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/ProcessInfo+Extensions.swiftdeps",
+    "diagnostics": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/ProcessInfo+Extensions.dia"
+  },
+  "/Users/r/Documents/Development/Personal/Startups/bookletpdf/BookletPDFKit/Sources/BookletPDFKit/Extensions/ToolbarItem+.swift": {
+    "dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/ToolbarItem+.d",
+    "object": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/ToolbarItem+.swift.o",
+    "swiftmodule": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/ToolbarItem+~partial.swiftmodule",
+    "swift-dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/ToolbarItem+.swiftdeps",
+    "diagnostics": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/ToolbarItem+.dia"
+  },
+  "/Users/r/Documents/Development/Personal/Startups/bookletpdf/BookletPDFKit/Sources/BookletPDFKit/Extensions/View+Extensions.swift": {
+    "dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/View+Extensions.d",
+    "object": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/View+Extensions.swift.o",
+    "swiftmodule": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/View+Extensions~partial.swiftmodule",
+    "swift-dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/View+Extensions.swiftdeps",
+    "diagnostics": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/View+Extensions.dia"
+  },
+  "/Users/r/Documents/Development/Personal/Startups/bookletpdf/BookletPDFKit/Sources/BookletPDFKit/Image/FImage.swift": {
+    "dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/FImage.d",
+    "object": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/FImage.swift.o",
+    "swiftmodule": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/FImage~partial.swiftmodule",
+    "swift-dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/FImage.swiftdeps",
+    "diagnostics": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/FImage.dia"
+  },
+  "/Users/r/Documents/Development/Personal/Startups/bookletpdf/BookletPDFKit/Sources/BookletPDFKit/UseCase/BookletGeneratorFactory.swift": {
+    "dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/BookletGeneratorFactory.d",
+    "object": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/BookletGeneratorFactory.swift.o",
+    "swiftmodule": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/BookletGeneratorFactory~partial.swiftmodule",
+    "swift-dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/BookletGeneratorFactory.swiftdeps",
+    "diagnostics": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/BookletGeneratorFactory.dia"
+  },
+  "/Users/r/Documents/Development/Personal/Startups/bookletpdf/BookletPDFKit/Sources/BookletPDFKit/UseCase/DuplicateFileUseCase.swift": {
+    "dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/DuplicateFileUseCase.d",
+    "object": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/DuplicateFileUseCase.swift.o",
+    "swiftmodule": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/DuplicateFileUseCase~partial.swiftmodule",
+    "swift-dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/DuplicateFileUseCase.swiftdeps",
+    "diagnostics": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/DuplicateFileUseCase.dia"
+  },
+  "/Users/r/Documents/Development/Personal/Startups/bookletpdf/BookletPDFKit/Sources/BookletPDFKit/UseCase/FourInOneGeneratorUseCaseImpl.swift": {
+    "dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/FourInOneGeneratorUseCaseImpl.d",
+    "object": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/FourInOneGeneratorUseCaseImpl.swift.o",
+    "swiftmodule": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/FourInOneGeneratorUseCaseImpl~partial.swiftmodule",
+    "swift-dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/FourInOneGeneratorUseCaseImpl.swiftdeps",
+    "diagnostics": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/FourInOneGeneratorUseCaseImpl.dia"
+  },
+  "/Users/r/Documents/Development/Personal/Startups/bookletpdf/BookletPDFKit/Sources/BookletPDFKit/UseCase/PrepareBookletInputUseCase.swift": {
+    "dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/PrepareBookletInputUseCase.d",
+    "object": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/PrepareBookletInputUseCase.swift.o",
+    "swiftmodule": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/PrepareBookletInputUseCase~partial.swiftmodule",
+    "swift-dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/PrepareBookletInputUseCase.swiftdeps",
+    "diagnostics": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/PrepareBookletInputUseCase.dia"
+  },
+  "/Users/r/Documents/Development/Personal/Startups/bookletpdf/BookletPDFKit/Sources/BookletPDFKit/UseCase/TwoInOnePdfGeneratorUseCaseImpl.swift": {
+    "dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/TwoInOnePdfGeneratorUseCaseImpl.d",
+    "object": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/TwoInOnePdfGeneratorUseCaseImpl.swift.o",
+    "swiftmodule": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/TwoInOnePdfGeneratorUseCaseImpl~partial.swiftmodule",
+    "swift-dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/TwoInOnePdfGeneratorUseCaseImpl.swiftdeps",
+    "diagnostics": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/TwoInOnePdfGeneratorUseCaseImpl.dia"
+  },
+  "/Users/r/Documents/Development/Personal/Startups/bookletpdf/BookletPDFKit/Sources/BookletPDFKit/Utils/BooketUtils.swift": {
+    "dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/BooketUtils.d",
+    "object": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/BooketUtils.swift.o",
+    "swiftmodule": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/BooketUtils~partial.swiftmodule",
+    "swift-dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/BooketUtils.swiftdeps",
+    "diagnostics": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/BooketUtils.dia"
+  },
+  "/Users/r/Documents/Development/Personal/Startups/bookletpdf/BookletPDFKit/Sources/BookletPDFKit/Utils/BookletFileStorage.swift": {
+    "dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/BookletFileStorage.d",
+    "object": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/BookletFileStorage.swift.o",
+    "swiftmodule": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/BookletFileStorage~partial.swiftmodule",
+    "swift-dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/BookletFileStorage.swiftdeps",
+    "diagnostics": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/BookletFileStorage.dia"
+  },
+  "/Users/r/Documents/Development/Personal/Startups/bookletpdf/BookletPDFKit/Sources/BookletPDFKit/Utils/Theme.swift": {
+    "dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/Theme.d",
+    "object": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/Theme.swift.o",
+    "swiftmodule": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/Theme~partial.swiftmodule",
+    "swift-dependencies": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/Theme.swiftdeps",
+    "diagnostics": "/Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/.build/arm64-apple-macosx/debug/BookletPDFKit.build/Theme.dia"
+  }
+}

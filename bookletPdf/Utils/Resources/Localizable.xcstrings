@@ -1,47 +1,72 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
-    },
-    "%lld" : {
-
-    },
-    "%lld / %lld" : {
+    "open.help" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hilfe öffnen"
+          }
+        },
         "en" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$lld / %2$lld"
+            "state" : "translated",
+            "value" : "Open Help"
           }
-        }
-      }
-    },
-    "+%lld" : {
-
-    },
-    "Booklet PDF" : {
-
-    },
-    "Open Help" : {
-
-    },
-    "PDF Viewer" : {
-
-    },
-    "Settings" : {
-      "extractionState" : "stale",
-      "localizations" : {
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir l'aide"
+          }
+        },
         "uz" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sozlamalar"
+            "value" : "Yordam"
           }
         },
         "uz-UZ" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sozlamalar"
+            "value" : "Yordam"
+          }
+        }
+      }
+    },
+    "str.add_cover_image" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coverbild hinzufügen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Cover Image"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter une image de couverture"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muqova rasm qo'shish"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muqova rasm qo'shish"
           }
         }
       }
@@ -112,6 +137,251 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "PDF Buklet Yaratuvchi"
+          }
+        }
+      }
+    },
+    "str.appearance" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erscheinungsbild"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appearance"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apparence"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tashqi ko'rinish"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tashqi ko'rinish"
+          }
+        }
+      }
+    },
+    "str.appearance_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wählen Sie das Erscheinungsbild der App. System folgt den Geräteeinstellungen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose the app appearance. System follows your device settings."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisissez l'apparence de l'application. Système suit les paramètres de votre appareil."
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ilova ko'rinishini tanlang. Tizim qurilma sozlamalariga amal qiladi."
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ilova ko'rinishini tanlang. Tizim qurilma sozlamalariga amal qiladi."
+          }
+        }
+      }
+    },
+    "str.back" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zurück"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retour"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Orqaga"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Orqaga"
+          }
+        }
+      }
+    },
+    "str.book_cover" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buchcover"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Book Cover"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couverture"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kitob muqovasi"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kitob muqovasi"
+          }
+        }
+      }
+    },
+    "str.booklet_layout" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Broschürenlayout"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Booklet Layout"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mise en page"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buklet tartibi"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buklet tartibi"
+          }
+        }
+      }
+    },
+    "str.booklet_ready" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Broschüre fertig!"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Booklet Ready!"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brochure prête !"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buklet tayyor!"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buklet tayyor!"
+          }
+        }
+      }
+    },
+    "str.booklet_ready_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ihre Broschüre wurde erfolgreich erstellt."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your booklet has been created successfully."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Votre brochure a été créée avec succès."
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bukletingiz muvaffaqiyatli yaratildi."
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bukletingiz muvaffaqiyatli yaratildi."
           }
         }
       }
@@ -606,6 +876,41 @@
         }
       }
     },
+    "str.close" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schließen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fermer"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yopish"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yopish"
+          }
+        }
+      }
+    },
     "str.comparison_view" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -641,6 +946,76 @@
         }
       }
     },
+    "str.configure_layout" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Layout konfigurieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configure Layout"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurer la mise en page"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tartibni sozlash"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tartibni sozlash"
+          }
+        }
+      }
+    },
+    "str.configure_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wählen Sie Ihren Broschürentyp und Einstellungen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose your booklet type and settings"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisissez le type et les paramètres de votre brochure"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buklet turi va sozlamalarini tanlang"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buklet turi va sozlamalarini tanlang"
+          }
+        }
+      }
+    },
     "str.confirm_conversion" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -672,6 +1047,41 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tasdiqlash Conversion"
+          }
+        }
+      }
+    },
+    "str.conversion_history" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konvertierungsverlauf"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conversion History"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Historique des conversions"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konvertatsiya tarixi"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konvertatsiya tarixi"
           }
         }
       }
@@ -746,6 +1156,41 @@
         }
       }
     },
+    "str.convert_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwandeln Sie Ihr PDF in eine druckbare Broschüre"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transform your PDF into a printable booklet"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transformez votre PDF en brochure imprimable"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF faylingizni bosma bukletga aylantiring"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF faylingizni bosma bukletga aylantiring"
+          }
+        }
+      }
+    },
     "str.convert_to" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -777,6 +1222,41 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aylantirish To %@"
+          }
+        }
+      }
+    },
+    "str.convert_to_booklet" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In Broschüre umwandeln"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Convert to Booklet"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Convertir en brochure"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bukletga aylantirish"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bukletga aylantirish"
           }
         }
       }
@@ -886,6 +1366,111 @@
         }
       }
     },
+    "str.converting_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bitte warten Sie, während Ihre Broschüre erstellt wird..."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please wait while your booklet is being created..."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Veuillez patienter pendant la création de votre brochure..."
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bukletingiz yaratilayotganda kutib turing..."
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bukletingiz yaratilayotganda kutib turing..."
+          }
+        }
+      }
+    },
+    "str.cover_added" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coverbild hinzugefügt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cover Image Added"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Image de couverture ajoutée"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muqova rasm qo'shildi"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muqova rasm qo'shildi"
+          }
+        }
+      }
+    },
+    "str.create_booklet" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Broschüre erstellen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create Booklet"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Créer la brochure"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buklet yaratish"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buklet yaratish"
+          }
+        }
+      }
+    },
     "str.current_cache_size" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -952,6 +1537,251 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Joriy til:"
+          }
+        }
+      }
+    },
+    "str.duplex_printing" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Doppelseitiger Druck"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duplex Printing"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impression recto-verso"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikki tomonlama chop etish"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikki tomonlama chop etish"
+          }
+        }
+      }
+    },
+    "str.error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fehler"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreur"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xato"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xato"
+          }
+        }
+      }
+    },
+    "str.file_not_found" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datei nicht gefunden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File Not Found"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fichier introuvable"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fayl topilmadi"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fayl topilmadi"
+          }
+        }
+      }
+    },
+    "str.file_not_found_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Datei wurde möglicherweise verschoben oder gelöscht."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This file may have been moved or deleted."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ce fichier a peut-être été déplacé ou supprimé."
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu fayl ko'chirilgan yoki o'chirilgan bo'lishi mumkin."
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu fayl ko'chirilgan yoki o'chirilgan bo'lishi mumkin."
+          }
+        }
+      }
+    },
+    "str.finish_return_home" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fertig & zur Startseite"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finish & Return Home"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terminer et retourner à l'accueil"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tugatish va bosh sahifaga qaytish"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tugatish va bosh sahifaga qaytish"
+          }
+        }
+      }
+    },
+    "str.folds_in_half" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wird in der Mitte gefaltet"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folds in half"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se plie en deux"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yarmiga buklanadi"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yarmiga buklanadi"
+          }
+        }
+      }
+    },
+    "str.folds_into_quarters" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wird in Viertel gefaltet"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folds into quarters"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se plie en quatre"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To'rt qismga buklanadi"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To'rt qismga buklanadi"
           }
         }
       }
@@ -1096,6 +1926,76 @@
         }
       }
     },
+    "str.help_about_body" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwandeln Sie gewöhnliche PDFs mühelos in Broschüren. Unsere App ordnet Ihre PDF-Seiten in ein professionelles Broschürenformat um, das sofort für den Druck bereit ist. Mit Unterstützung für 2-in-1 und 4-in-1 Layouts können Sie die perfekte Broschüre für Ihre Bedürfnisse erstellen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transform regular PDFs into booklets effortlessly. Our app rearranges your PDF pages into a professional booklet format ready for printing. With support for both 2-in-1 and 4-in-1 layouts, you can create the perfect booklet for your needs."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transformez facilement des PDF ordinaires en livrets. Notre application réorganise les pages de votre PDF dans un format de livret professionnel prêt pour l'impression. Avec la prise en charge des mises en page 2-en-1 et 4-en-1, vous pouvez créer le livret parfait pour vos besoins."
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oddiy PDF fayllarni kitobchaga osonlikcha aylantiring. Bizning ilovamiz sizning PDF sahifalaringizni professional kitobcha formatiga o'tkazadi va chop etishga tayyor qiladi. 2-dan-1 va 4-dan-1 joylashuvlarni qo'llab-quvvatlagan holda, ehtiyojlaringizga mos mukammal kitobcha yaratishingiz mumkin."
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oddiy PDF fayllarni kitobchaga osonlikcha aylantiring. Bizning ilovamiz sizning PDF sahifalaringizni professional kitobcha formatiga o'tkazadi va chop etishga tayyor qiladi. 2-dan-1 va 4-dan-1 joylashuvlarni qo'llab-quvvatlagan holda, ehtiyojlaringizga mos mukammal kitobcha yaratishingiz mumkin."
+          }
+        }
+      }
+    },
+    "str.help_about_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Über die App"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About the App"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "À propos de l'application"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ilova Haqida"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ilova Haqida"
+          }
+        }
+      }
+    },
     "str.help_description" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1131,6 +2031,2246 @@
         }
       }
     },
+    "str.help_feature_2in1_desc" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Traditionelles Broschürenlayout mit 2 Seiten pro Blatt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Traditional booklet layout with 2 pages per sheet"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mise en page traditionnelle avec 2 pages par feuille"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Har bir varaqdagi 2 ta sahifa bilan an'anaviy kitobcha joylashuvi"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Har bir varaqdagi 2 ta sahifa bilan an'anaviy kitobcha joylashuvi"
+          }
+        }
+      }
+    },
+    "str.help_feature_2in1_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2-in-1 Broschürenformat"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2-in-1 Booklet Format"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Format Livret 2-en-1"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2-dan-1 Kitobcha Formati"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2-dan-1 Kitobcha Formati"
+          }
+        }
+      }
+    },
+    "str.help_feature_4in1_desc" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kompaktes Layout mit 4 Seiten pro Blatt, perfekt für kleine Broschüren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compact layout with 4 pages per sheet, perfect for small booklets"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mise en page compacte avec 4 pages par feuille, parfaite pour les petits livrets"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Har bir varaqdagi 4 ta sahifa bilan ixcham joylashuv, kichik kitobchalar uchun mukammal"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Har bir varaqdagi 4 ta sahifa bilan ixcham joylashuv, kichik kitobchalar uchun mukammal"
+          }
+        }
+      }
+    },
+    "str.help_feature_4in1_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4-in-1 Broschürenformat"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4-in-1 Booklet Format"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Format Livret 4-en-1"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4-dan-1 Kitobcha Formati"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4-dan-1 Kitobcha Formati"
+          }
+        }
+      }
+    },
+    "str.help_feature_preview_desc" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sehen Sie, wie Ihre Broschüre vor dem Drucken aussehen wird"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See how your booklet will look before printing"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voyez à quoi ressemblera votre livret avant impression"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chop etishdan oldin kitobchangiz qanday ko'rinishini ko'ring"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chop etishdan oldin kitobchangiz qanday ko'rinishini ko'ring"
+          }
+        }
+      }
+    },
+    "str.help_feature_preview_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vorschau-Modus"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preview Mode"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mode Aperçu"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oldindan Ko'rish Rejimi"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oldindan Ko'rish Rejimi"
+          }
+        }
+      }
+    },
+    "str.help_feature_print_desc" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordnet automatisch Seiten in der richtigen Reihenfolge für ordnungsgemäßes Falten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatically arranges pages in the correct order for proper folding"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Organise automatiquement les pages dans l'ordre correct pour un pliage approprié"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To'g'ri buklash uchun sahifalarni avtomatik ravishda to'g'ri tartibda joylashtiradi"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To'g'ri buklash uchun sahifalarni avtomatik ravishda to'g'ri tartibda joylashtiradi"
+          }
+        }
+      }
+    },
+    "str.help_feature_print_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für Druck optimiert"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Optimized for Printing"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Optimisé pour l'Impression"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chop Etish Uchun Optimizatsiyalangan"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chop Etish Uchun Optimizatsiyalangan"
+          }
+        }
+      }
+    },
+    "str.help_feature_simple_desc" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intuitive Bedienelemente machen das Erstellen von Broschüren einfach"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intuitive controls make booklet creation easy"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contrôles intuitifs qui rendent la création de livrets facile"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kitobcha yaratishni oson qiluvchi intuitiv boshqaruv elementlari"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kitobcha yaratishni oson qiluvchi intuitiv boshqaruv elementlari"
+          }
+        }
+      }
+    },
+    "str.help_feature_simple_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einfache Oberfläche"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simple Interface"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Interface Simple"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sodda Interfeys"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sodda Interfeys"
+          }
+        }
+      }
+    },
+    "str.help_features_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Funktionen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Features"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fonctionnalités"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xususiyatlar"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xususiyatlar"
+          }
+        }
+      }
+    },
+    "str.help_footer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vielen Dank, dass Sie den Broschüren Generator verwenden!"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thank you for using Booklet Generator!"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Merci d'utiliser le Générateur de Livrets !"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kitobcha Generatoridan foydalanganingiz uchun rahmat!"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kitobcha Generatoridan foydalanganingiz uchun rahmat!"
+          }
+        }
+      }
+    },
+    "str.help_generate_step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klicken Sie auf die Schaltfläche \"PDF-Datei auswählen\""
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Click the \"Select PDF File\" button"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cliquez sur le bouton \"Sélectionner un fichier PDF\""
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"PDF Fayl Tanlash\" tugmasini bosing"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"PDF Fayl Tanlash\" tugmasini bosing"
+          }
+        }
+      }
+    },
+    "str.help_generate_step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wählen Sie Ihr PDF-Dokument aus der Dateiauswahl"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose your PDF document from the file picker"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisissez votre document PDF dans le sélecteur de fichiers"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fayl tanlashdan PDF hujjatingizni tanlang"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fayl tanlashdan PDF hujjatingizni tanlang"
+          }
+        }
+      }
+    },
+    "str.help_generate_step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wählen Sie Ihr bevorzugtes Layout (2-in-1 oder 4-in-1)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select your preferred layout (2-in-1 or 4-in-1)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionnez votre mise en page préférée (2-en-1 ou 4-en-1)"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afzal ko'rgan joylashuvingizni tanlang (2-dan-1 yoki 4-dan-1)"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afzal ko'rgan joylashuvingizni tanlang (2-dan-1 yoki 4-dan-1)"
+          }
+        }
+      }
+    },
+    "str.help_generate_step4" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klicken Sie auf \"In Broschüre konvertieren\""
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Click \"Convert to Booklet\""
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cliquez sur \"Convertir en Livret\""
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Kitobchaga Aylantirish\" tugmasini bosing"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Kitobchaga Aylantirish\" tugmasini bosing"
+          }
+        }
+      }
+    },
+    "str.help_generate_step5" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warten Sie einen Moment, bis der Vorgang abgeschlossen ist"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wait a moment while the process completes"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attendez un moment pendant que le processus se termine"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jarayon tugaguncha bir oz kuting"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jarayon tugaguncha bir oz kuting"
+          }
+        }
+      }
+    },
+    "str.help_generate_step6" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ihr broschürenformatiertes PDF erscheint mit neu angeordneten Seiten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your booklet-formatted PDF will appear with reordered pages"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Votre PDF au format livret apparaîtra avec les pages réorganisées"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kitobcha formatidagi PDF qayta tartibga solingan sahifalar bilan paydo bo'ladi"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kitobcha formatidagi PDF qayta tartibga solingan sahifalar bilan paydo bo'ladi"
+          }
+        }
+      }
+    },
+    "str.help_howto_generate_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine Broschüre erstellen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generating a Booklet"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Génération d'un Livret"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kitobcha Yaratish"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kitobcha Yaratish"
+          }
+        }
+      }
+    },
+    "str.help_howto_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anleitung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How to Use"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comment Utiliser"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qanday Foydalanish"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qanday Foydalanish"
+          }
+        }
+      }
+    },
+    "str.help_print_2in1_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drucken: 2-in-1 Broschüren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Printing: 2-in-1 Booklets"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impression : Livrets 2-en-1"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chop etish: 2-dan-1 Kitobchalar"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chop etish: 2-dan-1 Kitobchalar"
+          }
+        }
+      }
+    },
+    "str.help_print_4in1_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drucken: 4-in-1 Broschüren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Printing: 4-in-1 Booklets"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impression : Livrets 4-en-1"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chop etish: 4-dan-1 Kitobchalar"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chop etish: 4-dan-1 Kitobchalar"
+          }
+        }
+      }
+    },
+    "str.help_print2_step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klicken Sie auf \"Teilen\" (📤), um Ihr Dokument zu speichern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Click the \"Share\" button (📤) to save your document"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cliquez sur \"Partager\" (📤) pour sauvegarder votre document"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hujjatingizni saqlash uchun \"Ulashish\" tugmasini (📤) bosing"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hujjatingizni saqlash uchun \"Ulashish\" tugmasini (📤) bosing"
+          }
+        }
+      }
+    },
+    "str.help_print2_step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öffnen Sie das generierte Dokument in Ihrem PDF-Betrachter"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the generated document in your PDF viewer"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrez le document généré dans votre lecteur PDF"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yaratilgan hujjatni PDF ko'ruvchisida oching"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yaratilgan hujjatni PDF ko'ruvchisida oching"
+          }
+        }
+      }
+    },
+    "str.help_print2_step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drücken Sie ⌘ + P, um den Druckdialog zu öffnen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press ⌘ + P to open the print dialog"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appuyez sur ⌘ + P pour ouvrir la boîte de dialogue d'impression"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chop etish dialogini ochish uchun ⌘ + P ni bosing"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chop etish dialogini ochish uchun ⌘ + P ni bosing"
+          }
+        }
+      }
+    },
+    "str.help_print2_step4" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Im Layout-Bereich:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In the Layout section:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dans la section Mise en page :"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Joylashuv bo'limida:"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Joylashuv bo'limida:"
+          }
+        }
+      }
+    },
+    "str.help_print2_step4a" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setzen Sie \"Seiten pro Blatt\" auf 2"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set \"Pages per Sheet\" to 2"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réglez \"Pages par feuille\" sur 2"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Sahifalar har varag\"ni 2ga o'rnating"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Sahifalar har varag\"ni 2ga o'rnating"
+          }
+        }
+      }
+    },
+    "str.help_print2_step4b" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwenden Sie für den ersten Durchgang das erste Symbol bei \"Layout-Richtung\""
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For the first pass, use the first \"Layout Direction\" icon"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pour le premier passage, utilisez la premiere icone de « Direction de mise en page »"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Birinchi o'tish uchun \"Joylashuv yo'nalishi\"dagi birinchi ikonadan foydalaning"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Birinchi o'tish uchun \"Joylashuv yo'nalishi\"dagi birinchi ikonadan foydalaning"
+          }
+        }
+      }
+    },
+    "str.help_print2_duplex_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wenn Ihr Drucker automatischen Duplexdruck unterstützt:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If your printer supports automatic duplex:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si votre imprimante prend en charge le recto-verso automatique :"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Agar printeringiz avtomatik ikki tomonlama chop etishni qo'llab-quvvatlasa:"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Agar printeringiz avtomatik ikki tomonlama chop etishni qo'llab-quvvatlasa:"
+          }
+        }
+      }
+    },
+    "str.help_print2_duplex_a" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drucken Sie alle Seiten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Print all pages"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imprimez toutes les pages"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Barcha sahifalarni chop eting"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Barcha sahifalarni chop eting"
+          }
+        }
+      }
+    },
+    "str.help_print2_duplex_b" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lassen Sie \"Seiten pro Blatt\" auf 2 eingestellt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep \"Pages per Sheet\" set to 2"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laissez « Pages par feuille » regle sur 2"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Har varaqdagi sahifalar\"ni 2 holatida qoldiring"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Har varaqdagi sahifalar\"ni 2 holatida qoldiring"
+          }
+        }
+      }
+    },
+    "str.help_print2_duplex_c" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktivieren Sie \"Beidseitig drucken\" und wählen Sie \"An kurzer Kante umblättern\""
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enable \"Print on Both Sides\" and choose \"Flip on Short Edge\""
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activez « Imprimer des deux côtés » et choisissez « Retourner sur le bord court »"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Ikki tomondan chop etish\"ni yoqing va \"Qisqa chekka bo'ylab aylantirish\"ni tanlang"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Ikki tomondan chop etish\"ni yoqing va \"Qisqa chekka bo'ylab aylantirish\"ni tanlang"
+          }
+        }
+      }
+    },
+    "str.help_print2_duplex_d" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktivieren Sie nicht den eigenen \"Broschüre\"-Modus Ihres Druckers"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do not enable your printer's own \"Booklet\" mode"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "N'activez pas le mode « Livret » de votre imprimante"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Printeringizning o'zidagi \"Buklet\" rejimini yoqmang"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Printeringizning o'zidagi \"Buklet\" rejimini yoqmang"
+          }
+        }
+      }
+    },
+    "str.help_print2_manual_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für manuellen Druck (getesteter Arbeitsablauf):"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For manual printing (tested workflow):"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pour l'impression manuelle (flux teste) :"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qo'lda chop etish uchun (sinovdan o'tgan usul):"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qo'lda chop etish uchun (sinovdan o'tgan usul):"
+          }
+        }
+      }
+    },
+    "str.help_print2_step5" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erster Durchgang:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "First pass:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premier passage :"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Birinchi o'tish:"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Birinchi o'tish:"
+          }
+        }
+      }
+    },
+    "str.help_print2_step5a" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setzen Sie \"Zu druckende Blätter\" auf \"Nur ungerade\""
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set \"Sheets to Print\" to \"Odd Only\""
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reglez « Feuilles a imprimer » sur « Impaires uniquement »"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Chop etiladigan varaqlar\"ni \"Faqat toq\"ga o'rnating"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Chop etiladigan varaqlar\"ni \"Faqat toq\"ga o'rnating"
+          }
+        }
+      }
+    },
+    "str.help_print2_step5b" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klicken Sie auf \"Drucken\""
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Click \"Print\""
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cliquez sur \"Imprimer\""
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Chop Etish\" tugmasini bosing"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Chop Etish\" tugmasini bosing"
+          }
+        }
+      }
+    },
+    "str.help_print2_step6" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legen Sie nach dem ersten Durchgang den gedruckten Stapel wieder ein und:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After the first pass, reinsert the printed stack and:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apres le premier passage, reinserez la pile imprimee et :"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Birinchi o'tishdan keyin chop etilgan to'plamni qayta joylang va:"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Birinchi o'tishdan keyin chop etilgan to'plamni qayta joylang va:"
+          }
+        }
+      }
+    },
+    "str.help_print2_step6a" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setzen Sie \"Zu druckende Blätter\" auf \"Nur gerade\""
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set \"Sheets to Print\" to \"Even Only\""
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reglez « Feuilles a imprimer » sur « Paires uniquement »"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Chop etiladigan varaqlar\"ni \"Faqat juft\"ga o'rnating"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Chop etiladigan varaqlar\"ni \"Faqat juft\"ga o'rnating"
+          }
+        }
+      }
+    },
+    "str.help_print2_step6b" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wechseln Sie bei \"Layout-Richtung\" zum zweiten Symbol"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change \"Layout Direction\" to the second icon"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passez « Direction de mise en page » a la deuxieme icone"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Joylashuv yo'nalishi\"ni ikkinchi ikonaga o'zgartiring"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Joylashuv yo'nalishi\"ni ikkinchi ikonaga o'zgartiring"
+          }
+        }
+      }
+    },
+    "str.help_print2_step6c" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klicken Sie auf \"Drucken\", um die Rückseite zu drucken"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Click \"Print\" to print the back side"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cliquez sur « Imprimer » pour imprimer le verso"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Orqa tomonni chop etish uchun \"Chop etish\"ni bosing"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Orqa tomonni chop etish uchun \"Chop etish\"ni bosing"
+          }
+        }
+      }
+    },
+    "str.help_print2_step6d" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wichtig: Drucker verhalten sich unterschiedlich. Wenn die Rückseite auf dem Kopf steht oder vertauscht ist, legen Sie das Papier von der anderen Seite wieder ein oder drehen Sie den Stapel und testen Sie zuerst mit zwei Blättern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Important: printers differ. If the back side comes out upside down or reversed, try inserting the paper from the other side or rotate the stack and test with two sheets first"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Important : les imprimantes different. Si le verso sort a l'envers ou inverse, essayez de reinserer le papier de l'autre cote ou tournez la pile et testez d'abord avec deux feuilles"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muhim: printerlar bir-biridan farq qiladi. Agar orqa tomon teskari yoki almashib chiqsa, qog'ozni boshqa tomondan qayta joylab ko'ring yoki to'plamni aylantirib avval ikki varaq bilan sinab ko'ring"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muhim: printerlar bir-biridan farq qiladi. Agar orqa tomon teskari yoki almashib chiqsa, qog'ozni boshqa tomondan qayta joylab ko'ring yoki to'plamni aylantirib avval ikki varaq bilan sinab ko'ring"
+          }
+        }
+      }
+    },
+    "str.help_print4_step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klicken Sie auf \"Teilen\" (📤), um Ihr Dokument zu speichern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Click the \"Share\" button (📤) to save your document"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cliquez sur \"Partager\" (📤) pour sauvegarder votre document"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hujjatingizni saqlash uchun \"Ulashish\" tugmasini (📤) bosing"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hujjatingizni saqlash uchun \"Ulashish\" tugmasini (📤) bosing"
+          }
+        }
+      }
+    },
+    "str.help_print4_step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öffnen Sie das generierte Dokument in Ihrem PDF-Betrachter"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the generated document in your PDF viewer"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrez le document généré dans votre lecteur PDF"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yaratilgan hujjatni PDF ko'ruvchisida oching"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yaratilgan hujjatni PDF ko'ruvchisida oching"
+          }
+        }
+      }
+    },
+    "str.help_print4_step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drücken Sie ⌘ + P, um den Druckdialog zu öffnen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press ⌘ + P to open the print dialog"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appuyez sur ⌘ + P pour ouvrir la boîte de dialogue d'impression"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chop etish dialogini ochish uchun ⌘ + P ni bosing"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chop etish dialogini ochish uchun ⌘ + P ni bosing"
+          }
+        }
+      }
+    },
+    "str.help_print4_step4" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Im Layout-Bereich:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In the Layout section:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dans la section Mise en page :"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Joylashuv bo'limida:"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Joylashuv bo'limida:"
+          }
+        }
+      }
+    },
+    "str.help_print4_step4a" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setzen Sie \"Seiten pro Blatt\" auf 4"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set \"Pages per Sheet\" to 4"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réglez « Pages par feuille » sur 4"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Har varaqdagi sahifalar\"ni 4 ga o'rnating"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Har varaqdagi sahifalar\"ni 4 ga o'rnating"
+          }
+        }
+      }
+    },
+    "str.help_print4_step4b" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktivieren Sie nicht den eigenen \"Broschüre\"-Modus Ihres Druckers"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do not enable your printer's own \"Booklet\" mode"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "N'activez pas le mode « Livret » de votre imprimante"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Printeringizning o'zidagi \"Buklet\" rejimini yoqmang"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Printeringizning o'zidagi \"Buklet\" rejimini yoqmang"
+          }
+        }
+      }
+    },
+    "str.help_print4_step5" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erster Durchgang:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "First pass:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premier passage :"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Birinchi o'tish:"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Birinchi o'tish:"
+          }
+        }
+      }
+    },
+    "str.help_print4_step5a" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drucken Sie alle Blätter"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Print all sheets"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imprimez toutes les feuilles"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Barcha varaqlarni chop eting"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Barcha varaqlarni chop eting"
+          }
+        }
+      }
+    },
+    "str.help_print4_step5b" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stellen Sie sicher, dass \"Beidseitig drucken\" ausgewählt ist"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ensure \"Print on Both Sides\" is selected"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Assurez-vous que \"Imprimer des deux côtés\" est sélectionné"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Ikki Tomondan Chop Etish\" tanlanganligiga ishonch hosil qiling"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Ikki Tomondan Chop Etish\" tanlanganligiga ishonch hosil qiling"
+          }
+        }
+      }
+    },
+    "str.help_print4_step5c" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wählen Sie die Bindeoption \"An kurzer Kante umblättern\""
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose \"Flip on Short Edge\" binding option"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisissez l'option de reliure \"Retourner sur le bord court\""
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Qisqa Chekka Boylab Aylantirish\" bog'lash variantini tanlang"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Qisqa Chekka Boylab Aylantirish\" bog'lash variantini tanlang"
+          }
+        }
+      }
+    },
+    "str.help_print4_step5d" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktivieren Sie nicht den eigenen \"Broschüre\"-Modus Ihres Druckers"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do not enable your printer's own \"Booklet\" mode"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "N'activez pas le mode « Livret » de votre imprimante"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Printeringizning o'zidagi \"Buklet\" rejimini yoqmang"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Printeringizning o'zidagi \"Buklet\" rejimini yoqmang"
+          }
+        }
+      }
+    },
+    "str.help_print4_manual_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für manuellen Druck (getesteter Ablauf):"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For manual printing (tested workflow):"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pour l'impression manuelle (workflow teste) :"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qo'lda chop etish uchun (sinovdan o'tgan usul):"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qo'lda chop etish uchun (sinovdan o'tgan usul):"
+          }
+        }
+      }
+    },
+    "str.help_print4_manual_a" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lassen Sie \"Seiten pro Blatt\" auf 4"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep \"Pages per Sheet\" set to 4"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gardez « Pages par feuille » sur 4"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Har varaqdagi sahifalar\"ni 4 holatida qoldiring"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Har varaqdagi sahifalar\"ni 4 holatida qoldiring"
+          }
+        }
+      }
+    },
+    "str.help_print4_manual_b" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behalten Sie für beide Durchgänge dieselbe \"Layout-Richtung\" bei"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep the same \"Layout Direction\" for both passes"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gardez la meme « Direction de mise en page » pour les deux passages"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikkala o'tishda ham bir xil \"Joylashuv yo'nalishi\"ni qoldiring"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikkala o'tishda ham bir xil \"Joylashuv yo'nalishi\"ni qoldiring"
+          }
+        }
+      }
+    },
+    "str.help_print4_manual_c" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setzen Sie \"Zu druckende Blätter\" auf \"Nur ungerade\""
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set \"Sheets to Print\" to \"Odd Only\""
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reglez « Feuilles a imprimer » sur « Impaires uniquement »"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Chop etiladigan varaqlar\"ni \"Faqat toq\"ga o'rnating"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Chop etiladigan varaqlar\"ni \"Faqat toq\"ga o'rnating"
+          }
+        }
+      }
+    },
+    "str.help_print4_manual_d" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klicken Sie auf \"Drucken\", um die Vorderseite zu drucken"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Click \"Print\" to print the first side"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cliquez sur « Imprimer » pour imprimer le premier cote"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Birinchi tomonni chop etish uchun \"Chop etish\"ni bosing"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Birinchi tomonni chop etish uchun \"Chop etish\"ni bosing"
+          }
+        }
+      }
+    },
+    "str.help_print4_step6" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nach dem ersten Durchgang legen Sie den gedruckten Stapel wieder ein und:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After the first pass, reinsert the printed stack and:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apres le premier passage, reinserez la pile imprimee et :"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Birinchi o'tishdan keyin chop etilgan to'plamni qayta joylang va:"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Birinchi o'tishdan keyin chop etilgan to'plamni qayta joylang va:"
+          }
+        }
+      }
+    },
+    "str.help_print4_step6a" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nehmen Sie den gedruckten Stapel aus dem Fach"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pull the printed stack out of the tray"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retirez la pile imprimee du bac"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chop etilgan to'plamni lagandan oling"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chop etilgan to'plamni lagandan oling"
+          }
+        }
+      }
+    },
+    "str.help_print4_step6b" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drehen Sie den Stapel um und legen Sie ihn mit der Kopfseite zuerst ein"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flip the stack and insert it head first"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retournez la pile et reinserez-la tete en premier"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To'plamni aylantirib, bosh tomoni bilan birinchi qilib joylang"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To'plamni aylantirib, bosh tomoni bilan birinchi qilib joylang"
+          }
+        }
+      }
+    },
+    "str.help_print4_step6c" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behalten Sie dieselben Druckeinstellungen bei und setzen Sie \"Zu druckende Blätter\" auf \"Nur gerade\""
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep the same print settings and set \"Sheets to Print\" to \"Even Only\""
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gardez les memes reglages d'impression et reglez « Feuilles a imprimer » sur « Paires uniquement »"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bir xil chop etish sozlamalarini saqlang va \"Chop etiladigan varaqlar\"ni \"Faqat juft\"ga o'rnating"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bir xil chop etish sozlamalarini saqlang va \"Chop etiladigan varaqlar\"ni \"Faqat juft\"ga o'rnating"
+          }
+        }
+      }
+    },
+    "str.help_print4_step6d" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wichtig: Drucker unterscheiden sich. Wenn die Rückseite auf dem Kopf steht oder gespiegelt ist, legen Sie das Papier von der anderen Seite ein oder drehen Sie den Stapel und testen Sie zuerst mit zwei Blättern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Important: printers differ. If the back side comes out upside down or reversed, try inserting the paper from the other side or rotate the stack and test with two sheets first"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Important : les imprimantes different. Si le verso sort a l'envers ou inverse, essayez d'inserer le papier par l'autre cote ou faites pivoter la pile et testez d'abord avec deux feuilles"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muhim: printerlar bir-biridan farq qiladi. Agar orqa tomoni teskari yoki noto'g'ri chiqsa, qog'ozni boshqa tomondan joylab ko'ring yoki to'plamni aylantirib, avval ikki varaq bilan sinab ko'ring"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muhim: printerlar bir-biridan farq qiladi. Agar orqa tomoni teskari yoki noto'g'ri chiqsa, qog'ozni boshqa tomondan joylab ko'ring yoki to'plamni aylantirib, avval ikki varaq bilan sinab ko'ring"
+          }
+        }
+      }
+    },
+    "str.help_print4_step7" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nach dem Drucken falten Sie die Seiten zweimal in der Mitte, um Ihre Broschüre zu erstellen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After printing, fold pages in half twice to create your booklet"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apres impression, pliez les pages en deux deux fois pour creer votre livret"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chop etgandan keyin, kitobchangizni yaratish uchun sahifalarni ikki marta yarmga bukling"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chop etgandan keyin, kitobchangizni yaratish uchun sahifalarni ikki marta yarmga bukling"
+          }
+        }
+      }
+    },
     "str.help_support" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1162,6 +4302,286 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yordam & Qo'llab-quvvatlash"
+          }
+        }
+      }
+    },
+    "str.help_tip_1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwenden Sie Papier, das dick genug ist, um ein Durchscheinen der Tinte zu verhindern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use paper that's thick enough to prevent ink bleeding through"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utilisez du papier suffisamment épais pour éviter que l'encre ne traverse"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siyoh o'tib ketishining oldini olish uchun etarlicha qalin qog'oz ishlating"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siyoh o'tib ketishining oldini olish uchun etarlicha qalin qog'oz ishlating"
+          }
+        }
+      }
+    },
+    "str.help_tip_2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bei größeren Dokumenten erwägen Sie das Drucken in kleineren Abschnitten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For larger documents, consider printing in smaller sections"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pour les documents volumineux, envisagez d'imprimer par sections plus petites"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Katta hujjatlar uchun kichik bo'limlar bo'yicha chop etishni ko'rib chiqing"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Katta hujjatlar uchun kichik bo'limlar bo'yicha chop etishni ko'rib chiqing"
+          }
+        }
+      }
+    },
+    "str.help_tip_3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Testen Sie zuerst mit ein paar Seiten, um sicherzustellen, dass Ihr Drucker das Layout korrekt verarbeitet"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Test with a few pages first to ensure your printer handles the layout correctly"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Testez d'abord avec quelques pages pour vous assurer que votre imprimante gère correctement la mise en page"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Printeringiz joylashuvni to'g'ri ishlov berishiga ishonch hosil qilish uchun avval bir necha sahifa bilan sinab ko'ring"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Printeringiz joylashuvni to'g'ri ishlov berishiga ishonch hosil qilish uchun avval bir necha sahifa bilan sinab ko'ring"
+          }
+        }
+      }
+    },
+    "str.help_tip_4" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für ein professionelles Finish erwägen Sie die Verwendung eines für Broschüren geeigneten Hefters"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For professional finish, consider using a stapler designed for booklets"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pour une finition professionnelle, envisagez d'utiliser une agrafeuse conçue pour les livrets"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Professional natija uchun kitobchalar uchun mo'ljallangan stepler ishlatishni ko'rib chiqing"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Professional natija uchun kitobchalar uchun mo'ljallangan stepler ishlatishni ko'rib chiqing"
+          }
+        }
+      }
+    },
+    "str.help_tips_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipps für beste Ergebnisse"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tips for Best Results"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conseils pour de Meilleurs Résultats"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eng Yaxshi Natijalar Uchun Maslahatlar"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eng Yaxshi Natijalar Uchun Maslahatlar"
+          }
+        }
+      }
+    },
+    "str.history" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verlauf"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "History"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Historique"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tarix"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tarix"
+          }
+        }
+      }
+    },
+    "str.how_to_print_mac" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "So drucken Sie auf dem Mac"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How to Print on Mac"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comment imprimer sur Mac"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mac-da qanday chop etish mumkin"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mac-da qanday chop etish mumkin"
+          }
+        }
+      }
+    },
+    "str.imposition_method" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ausschießmethode"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imposition Method"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Méthode d'imposition"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imposition usuli"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imposition usuli"
           }
         }
       }
@@ -1481,6 +4901,41 @@
         }
       }
     },
+    "str.need_help_printing" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hilfe beim Drucken?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Need help printing?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Besoin d'aide pour imprimer ?"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chop etishda yordam kerakmi?"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chop etishda yordam kerakmi?"
+          }
+        }
+      }
+    },
     "str.no_document_for_printing" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1551,6 +5006,76 @@
         }
       }
     },
+    "str.no_history" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch kein Verlauf"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No History Yet"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pas encore d'historique"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tarix hali yo'q"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tarix hali yo'q"
+          }
+        }
+      }
+    },
+    "str.no_history_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ihre konvertierten Broschüren erscheinen hier"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your converted booklets will appear here"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vos brochures converties apparaîtront ici"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konvertatsiya qilingan bukletlaringiz shu yerda ko'rinadi"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konvertatsiya qilingan bukletlaringiz shu yerda ko'rinadi"
+          }
+        }
+      }
+    },
     "str.open_document_first" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1582,6 +5107,76 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Please Ochish A Hujjat First."
+          }
+        }
+      }
+    },
+    "str.open_help" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hilfe öffnen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Help"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir l'aide"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yordamni ochish"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yordamni ochish"
+          }
+        }
+      }
+    },
+    "str.optional_cover_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Optional — wird zur ersten Seite"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Optional — will become the first page"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Optionnel — deviendra la première page"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ixtiyoriy — birinchi sahifa bo'ladi"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ixtiyoriy — birinchi sahifa bo'ladi"
           }
         }
       }
@@ -1621,6 +5216,41 @@
         }
       }
     },
+    "str.original_pages %lld" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Original: %lld Seiten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Original: %lld pages"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Original : %lld pages"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Asl: %lld sahifa"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Asl: %lld sahifa"
+          }
+        }
+      }
+    },
     "str.page_number" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1652,6 +5282,41 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sahifa %lld"
+          }
+        }
+      }
+    },
+    "str.page_order" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seitenreihenfolge"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Page Order"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordre des pages"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sahifa tartibi"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sahifa tartibi"
           }
         }
       }
@@ -1866,6 +5531,76 @@
         }
       }
     },
+    "str.pages_suffix" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seiten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pages"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pages"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "sahifa"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "sahifa"
+          }
+        }
+      }
+    },
+    "str.pdf_document" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF-Dokument"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF Document"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Document PDF"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF hujjat"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF hujjat"
+          }
+        }
+      }
+    },
     "str.pdf_viewer" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1901,37 +5636,142 @@
         }
       }
     },
+    "str.pocket_booklet" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taschenbroschüre"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pocket Booklet"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brochure de poche"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cho'ntak buklet"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cho'ntak buklet"
+          }
+        }
+      }
+    },
+    "str.pocket_booklet_4up" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taschenbroschüre (4-up)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pocket Booklet (4-up)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brochure de poche (4-up)"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cho'ntak buklet (4-up)"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cho'ntak buklet (4-up)"
+          }
+        }
+      }
+    },
     "str.powered_by" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bereitgestellt von SBD LLC"
+            "value" : "Bereitgestellt von TOX LLC"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Powered by SBD LLC"
+            "value" : "Powered by TOX LLC"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Développé par SBD LLC"
+            "value" : "Développé par TOX LLC"
           }
         },
         "uz" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "SBD LLC tomonidan ishlab chiqilgan"
+            "value" : "TOX LLC tomonidan ishlab chiqilgan"
           }
         },
         "uz-UZ" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "SBD LLC tomonidan ishlab chiqilgan"
+            "value" : "TOX LLC tomonidan ishlab chiqilgan"
+          }
+        }
+      }
+    },
+    "str.preview" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vorschau"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preview"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aperçu"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ko'rish"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ko'rish"
           }
         }
       }
@@ -1967,6 +5807,41 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Chop etish"
+          }
+        }
+      }
+    },
+    "str.print_booklet" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Broschüre drucken"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Print Booklet"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imprimer la brochure"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bukletni chop etish"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bukletni chop etish"
           }
         }
       }
@@ -2037,6 +5912,181 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Chop etish Hujjat"
+          }
+        }
+      }
+    },
+    "str.print_instructions_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Druckanweisungen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Printing Instructions"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instructions d'impression"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chop etish ko'rsatmalari"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chop etish ko'rsatmalari"
+          }
+        }
+      }
+    },
+    "str.print_step_1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senden Sie diese Datei per AirDrop oder iCloud an Ihren Mac."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send this file to your Mac via AirDrop or iCloud."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Envoyez ce fichier sur votre Mac via AirDrop ou iCloud."
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu faylni AirDrop yoki iCloud orqali Mac-ga yuboring."
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu faylni AirDrop yoki iCloud orqali Mac-ga yuboring."
+          }
+        }
+      }
+    },
+    "str.print_step_2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öffnen Sie das PDF mit der Vorschau-App."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the PDF using the Preview app."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrez le PDF avec l'application Aperçu."
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF faylni Ko'rish ilovasida oching."
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF faylni Ko'rish ilovasida oching."
+          }
+        }
+      }
+    },
+    "str.print_step_3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gehen Sie zu Datei > Drucken in der Menüleiste."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go to File > Print in the top menu bar."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allez dans Fichier > Imprimer dans la barre de menu."
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yuqori menyudan Fayl > Chop etish ni tanlang."
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yuqori menyudan Fayl > Chop etish ni tanlang."
+          }
+        }
+      }
+    },
+    "str.print_step_4" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wählen Sie Zweiseitig und setzen Sie die Bindung auf Kurze Seite."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select Two-Sided and set binding to Short-Edge."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionnez Recto-verso et définissez la reliure sur Bord court."
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikki tomonlamani tanlang va bog'lashni Qisqa qirra ga o'rnating."
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikki tomonlamani tanlang va bog'lashni Qisqa qirra ga o'rnating."
           }
         }
       }
@@ -2146,6 +6196,41 @@
         }
       }
     },
+    "str.recent_conversions" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Letzte Konvertierungen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recent Conversions"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conversions récentes"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "So'nggi konvertatsiyalar"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "So'nggi konvertatsiyalar"
+          }
+        }
+      }
+    },
     "str.refresh" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2177,6 +6262,111 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yangilash"
+          }
+        }
+      }
+    },
+    "str.reorder_pages" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seiten neu ordnen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reorder Pages"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réorganiser les pages"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sahifalarni qayta tartiblash"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sahifalarni qayta tartiblash"
+          }
+        }
+      }
+    },
+    "str.saddle_stitch" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rückendrahtheftung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saddle Stitch"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Piqûre à cheval"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egar tikish"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egar tikish"
+          }
+        }
+      }
+    },
+    "str.save_share" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speichern & Teilen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save & Share"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrer et partager"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saqlash va ulashish"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saqlash va ulashish"
           }
         }
       }
@@ -2286,6 +6476,41 @@
         }
       }
     },
+    "str.share_pdf" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF teilen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share PDF"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partager le PDF"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF ulashish"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF ulashish"
+          }
+        }
+      }
+    },
     "str.show_comparison" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2317,6 +6542,321 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Taqqoslash Ko'rsatish"
+          }
+        }
+      }
+    },
+    "str.standard_booklet" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standardbroschüre"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard Booklet"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brochure standard"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standart buklet"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standart buklet"
+          }
+        }
+      }
+    },
+    "str.standard_booklet_2up" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standardbroschüre (2-up)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard Booklet (2-up)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brochure standard (2-up)"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standart buklet (2-up)"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standart buklet (2-up)"
+          }
+        }
+      }
+    },
+    "str.supports_500_pages" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unterstützt bis zu 500 Seiten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supports up to 500 pages"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prend en charge jusqu'à 500 pages"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "500 sahifagacha qo'llab-quvvatlanadi"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "500 sahifagacha qo'llab-quvvatlanadi"
+          }
+        }
+      }
+    },
+    "str.tap_to_select_pdf" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippen zum Auswählen einer PDF"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap to Select PDF"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appuyez pour sélectionner un PDF"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF tanlash uchun bosing"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF tanlash uchun bosing"
+          }
+        }
+      }
+    },
+    "str.theme" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thema"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theme"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thème"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mavzu"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mavzu"
+          }
+        }
+      }
+    },
+    "str.theme_dark" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dunkel"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dark"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sombre"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qorong'u"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qorong'u"
+          }
+        }
+      }
+    },
+    "str.theme_light" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hell"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Light"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clair"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yorug'"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yorug'"
+          }
+        }
+      }
+    },
+    "str.theme_system" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "System"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "System"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Système"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tizim"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tizim"
+          }
+        }
+      }
+    },
+    "str.today" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heute"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aujourd'hui"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bugun"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bugun"
           }
         }
       }
@@ -2387,6 +6927,111 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Versiya %1$@ (%2$@)"
+          }
+        }
+      }
+    },
+    "str.view_printing_instructions" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Druckanleitung und Tipps anzeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View printing instructions and tips"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir les instructions d'impression et conseils"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chop etish ko'rsatmalari va maslahatlarni ko'rish"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chop etish ko'rsatmalari va maslahatlarni ko'rish"
+          }
+        }
+      }
+    },
+    "str.will_be_first_page" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wird die erste Seite Ihrer Broschüre"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Will be the first page of your booklet"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sera la première page de votre livret"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bukletingizning birinchi sahifasi bo'ladi"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bukletingizning birinchi sahifasi bo'ladi"
+          }
+        }
+      }
+    },
+    "str.yesterday" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yesterday"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hier"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kecha"
+          }
+        },
+        "uz-UZ" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kecha"
           }
         }
       }

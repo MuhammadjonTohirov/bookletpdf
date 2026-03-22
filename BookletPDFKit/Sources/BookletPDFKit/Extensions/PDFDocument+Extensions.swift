@@ -12,28 +12,25 @@ import SwiftUI
 extension PDFDocument: @retroactive Transferable {
     public static var transferRepresentation: some TransferRepresentation {
         DataRepresentation(contentType: .pdf) { pdf in
-                if let data = pdf.dataRepresentation() {
-                    return data
-                } else {
-                    return Data()
-                }
-            } importing: { data in
-                if let pdf = PDFDocument(data: data) {
-                    return pdf
-                } else {
-                    return PDFDocument()
-                }
+            guard let data = pdf.dataRepresentation() else {
+                throw BookletError.exportFailed
             }
-        
-        DataRepresentation(exportedContentType: .pdf) { pdf in
-            if let data = pdf.dataRepresentation() {
-                return data
-            } else {
-                return Data()
+            return data
+        } importing: { data in
+            guard let pdf = PDFDocument(data: data) else {
+                throw BookletError.invalidDocument
             }
+            return pdf
         }
-     }
-    
+
+        DataRepresentation(exportedContentType: .pdf) { pdf in
+            guard let data = pdf.dataRepresentation() else {
+                throw BookletError.exportFailed
+            }
+            return data
+        }
+    }
+
     public func addBlankPages(count: Int) {
         let pageCount = self.pageCount
         for _ in 0..<count {

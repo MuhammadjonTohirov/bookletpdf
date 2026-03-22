@@ -160,7 +160,7 @@ public struct ModernButtonStyle: ButtonStyle {
     private func foregroundColor(_ configuration: Configuration) -> Color {
         switch style {
         case .primary:
-            return Color(.systemBackground) // Adapts to light/dark mode
+            return Theme.Colors.background
         case .destructive:
             return Color.white
         case .secondary, .ghost:

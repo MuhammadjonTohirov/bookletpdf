@@ -1,3 +1,28 @@
 {
+  "permissions": {
+    "allow": [
+      "mcp__filesystem__directory_tree",
+      "mcp__filesystem__read_text_file",
+      "Bash(swift build:*)",
+      "Bash(swift test:*)",
+      "Bash(xcodebuild:*)",
+      "Bash(python3:*)",
+      "Bash(git stash:*)",
+      "mcp__filesystem__list_directory",
+      "mcp__sequential-thinking__sequentialthinking",
+      "mcp__filesystem__read_multiple_files",
+      "Bash(find .:*)",
+      "Bash(sed:*)",
+      "mcp__filesystem__write_file",
+      "Bash(find /Users/r/Documents/Development/Personal/Startups/bookletpdf -name *AppV2Theme* -type f)",
+      "Bash(find /Users/r/Documents/Development/Personal/Startups/bookletpdf -name *Theme* -type f)",
+      "Bash(grep -r \"colorScheme\\\\|preferredColorScheme\\\\|AppTheme\" /Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV1/Sources --include=*.swift)",
+      "Bash(grep -r \"colorScheme\\\\|preferredColorScheme\\\\|AppTheme\" /Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2/Sources --include=*.swift)",
+      "Bash(grep -r \"themeStorageKey\\\\|UserSettings.theme\" /Users/r/Documents/Development/Personal/Startups/bookletpdf --include=*.swift)",
+      "Bash(find /Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV1 -name *.swift -type f)",
+      "Bash(grep -r \"environment.*colorScheme\\\\|\\\\.dark\\\\|\\\\.light\" /Users/r/Documents/Development/Personal/Startups/bookletpdf --include=*.swift)",
+      "Bash(find /Users/r/Documents/Development/Personal/Startups/bookletpdf -name *Color* -o -name *Style*)"
+    ]
+  },
   "enableAllProjectMcpServers": false
 }

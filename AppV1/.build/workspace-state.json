@@ -1,0 +1,41 @@
+{
+  "object" : {
+    "artifacts" : [
+
+    ],
+    "dependencies" : [
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "bookletcore",
+          "kind" : "fileSystem",
+          "location" : "/Users/r/Documents/Development/Personal/Startups/bookletpdf/BookletCore",
+          "name" : "BookletCore"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Users/r/Documents/Development/Personal/Startups/bookletpdf/BookletCore"
+        },
+        "subpath" : "bookletcore"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "bookletpdfkit",
+          "kind" : "fileSystem",
+          "location" : "/Users/r/Documents/Development/Personal/Startups/bookletpdf/BookletPDFKit",
+          "name" : "BookletPDFKit"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Users/r/Documents/Development/Personal/Startups/bookletpdf/BookletPDFKit"
+        },
+        "subpath" : "bookletpdfkit"
+      }
+    ],
+    "prebuilts" : [
+
+    ]
+  },
+  "version" : 7
+}
