@@ -1,3 +1,0 @@
-Apple Swift version 6.3-dev (LLVM 3a427639f2a06cf, Swift 5417f00a58578de)
-Target: arm64-apple-macosx26.0
-Build config: +assertions

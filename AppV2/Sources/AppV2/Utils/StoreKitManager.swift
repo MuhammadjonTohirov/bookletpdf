@@ -18,6 +18,8 @@ final class StoreKitManager: ObservableObject {
     @Published private(set) var fourInOneProduct: Product?
     @Published private(set) var isFourInOnePurchased = false
     @Published private(set) var isLoading = false
+    @Published private(set) var isRestoring = false
+    @Published private(set) var productLoadFailed = false
 
     private var transactionListener: Task<Void, Never>?
 
@@ -32,10 +34,16 @@ final class StoreKitManager: ObservableObject {
     }
 
     func loadProducts() async {
+        productLoadFailed = false
         do {
             let products = try await Product.products(for: [Self.fourInOneProductID])
             fourInOneProduct = products.first
+            if fourInOneProduct == nil {
+                productLoadFailed = true
+                Logging.l(tag: "StoreKitManager", "Product not found for ID: \(Self.fourInOneProductID)")
+            }
         } catch {
+            productLoadFailed = true
             Logging.l(tag: "StoreKitManager", "Failed to load products: \(error)")
         }
     }
@@ -64,6 +72,8 @@ final class StoreKitManager: ObservableObject {
     }
 
     func restorePurchases() async {
+        isRestoring = true
+        defer { isRestoring = false }
         try? await AppStore.sync()
         await updatePurchaseStatus()
     }

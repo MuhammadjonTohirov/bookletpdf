@@ -15,6 +15,16 @@ struct PurchasePromptView: View {
 
     var body: some View {
         VStack(spacing: 24) {
+            HStack {
+                Spacer()
+                Button(action: { dismiss() }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .font(.system(size: 24))
+                        .foregroundStyle(.secondary)
+                }
+                .buttonStyle(.plain)
+            }
+
             Image(systemName: "lock.fill")
                 .font(.system(size: 40))
                 .foregroundColor(.accentColor)
@@ -41,7 +51,16 @@ struct PurchasePromptView: View {
                     }
                 }
                 .buttonStyle(.borderedProminent)
-                .disabled(storeManager.isLoading)
+                .disabled(storeManager.isLoading || storeManager.isRestoring)
+            } else if storeManager.productLoadFailed {
+                Button(action: {
+                    Task { await storeManager.loadProducts() }
+                }) {
+                    Text("str.retry")
+                        .font(.headline)
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
             } else {
                 ProgressView()
             }
@@ -49,11 +68,17 @@ struct PurchasePromptView: View {
             Button(action: {
                 Task { await storeManager.restorePurchases() }
             }) {
-                Text("str.restore_purchases")
-                    .font(.subheadline)
-                    .foregroundColor(.accentColor)
+                if storeManager.isRestoring {
+                    ProgressView()
+                        .controlSize(.small)
+                } else {
+                    Text("str.restore_purchases")
+                        .font(.subheadline)
+                        .foregroundColor(.accentColor)
+                }
             }
             .buttonStyle(.plain)
+            .disabled(storeManager.isLoading || storeManager.isRestoring)
         }
         .padding(32)
         .frame(minWidth: 300, maxWidth: 400)

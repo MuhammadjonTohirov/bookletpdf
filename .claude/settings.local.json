@@ -21,7 +21,13 @@
       "Bash(grep -r \"themeStorageKey\\\\|UserSettings.theme\" /Users/r/Documents/Development/Personal/Startups/bookletpdf --include=*.swift)",
       "Bash(find /Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV1 -name *.swift -type f)",
       "Bash(grep -r \"environment.*colorScheme\\\\|\\\\.dark\\\\|\\\\.light\" /Users/r/Documents/Development/Personal/Startups/bookletpdf --include=*.swift)",
-      "Bash(find /Users/r/Documents/Development/Personal/Startups/bookletpdf -name *Color* -o -name *Style*)"
+      "Bash(find /Users/r/Documents/Development/Personal/Startups/bookletpdf -name *Color* -o -name *Style*)",
+      "Bash(gh auth:*)",
+      "Bash(gh repo:*)",
+      "Bash(gh api:*)",
+      "Bash(ls:*)",
+      "Bash(find /Users/r/Documents/Development/Personal/Startups/bookletpdf -name *.xcstrings -o -name *.strings)",
+      "Bash(git rm:*)"
     ]
   },
   "enableAllProjectMcpServers": false

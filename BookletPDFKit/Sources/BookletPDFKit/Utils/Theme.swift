@@ -165,8 +165,8 @@ public enum Theme {
         public static let itemSpacing: CGFloat = 14
         public static let innerPaddingH: CGFloat = 20
         public static let innerPaddingV: CGFloat = 16
-        public static let buttonPaddingV: CGFloat = 18
-        public static let cardPadding: CGFloat = 14
+        public static let buttonPaddingV: CGFloat = 16
+        public static let cardPadding: CGFloat = 12
         public static let iconSize: CGFloat = 42
         public static let smallIconSize: CGFloat = 32
     }

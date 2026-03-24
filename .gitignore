@@ -1,1 +1,43 @@
 bookletpdf-support/
+
+# Build artifacts
+.build/
+**/.build/
+build/
+DerivedData/
+
+# Xcode
+*.xcuserdata/
+xcuserdata/
+*.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+*.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Swift Package Manager
+Packages/
+Package.pins
+Package.resolved
+.swiftpm/
+
+# CocoaPods (if used)
+Pods/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# Archives
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Misc
+*.moved-aside
+*.hmap
+*.swp
+*~
