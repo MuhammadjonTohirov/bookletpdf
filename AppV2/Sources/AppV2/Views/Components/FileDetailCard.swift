@@ -1,4 +1,5 @@
 import SwiftUI
+import BookletCore
 import BookletPDFKit
 
 struct FileDetailCard: View {
@@ -27,7 +28,7 @@ struct FileDetailCard: View {
                 HStack(spacing: 6) {
                     Image(systemName: "square.stack.3d.up")
                         .font(Theme.Fonts.badge)
-                    Text(String(localized: "str.original_pages \(pageCount)"))
+                    Text("str.original_pages \(pageCount)".localize)
                         .font(Theme.Fonts.caption)
                 }
                 .foregroundStyle(Theme.Colors.secondaryText)

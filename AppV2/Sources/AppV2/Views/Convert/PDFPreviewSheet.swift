@@ -1,4 +1,5 @@
 import SwiftUI
+import BookletCore
 import PDFKit
 
 struct PDFPreviewSheet: View {
@@ -16,7 +17,7 @@ struct PDFPreviewSheet: View {
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
-                            Button(String(localized: "str.close")) {
+                            Button("str.close".localize) {
                                 dismiss()
                             }
                         }
@@ -32,7 +33,7 @@ struct PDFPreviewSheet: View {
                         .font(.headline)
                     Spacer()
                     shareButton
-                    Button(String(localized: "str.close")) {
+                    Button("str.close".localize) {
                         dismiss()
                     }
                 }

@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		114395332F796EE6002FC19E /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 114395322F796EE6002FC19E /* FirebaseAnalytics */; };
+		114395352F796EE6002FC19E /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 114395342F796EE6002FC19E /* FirebaseCrashlytics */; };
+		114395372F796F9D002FC19E /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 114395362F796F9D002FC19E /* FirebaseMessaging */; };
+		114395392F7973B7002FC19E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 114395382F7973B7002FC19E /* GoogleService-Info.plist */; };
+		1143953B2F7973CF002FC19E /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143953A2F7973CF002FC19E /* FirebaseService.swift */; };
+		1184B3312F86255D00C6EF1B /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 1184B3302F86255D00C6EF1B /* GoogleMobileAds */; };
+		1184B3342F86266C00C6EF1B /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1184B3332F86266C00C6EF1B /* BannerAdView.swift */; };
+		1184B3352F86266C00C6EF1B /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1184B3322F86266C00C6EF1B /* AdManager.swift */; };
 		11D9EC722F70882B00969099 /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 11D9EC712F70882B00969099 /* Configuration.storekit */; };
 		2E2E44272AC3CC8E00DC757F /* bookletPdfApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E44262AC3CC8E00DC757F /* bookletPdfApp.swift */; };
 		2E2E442B2AC3CC8F00DC757F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E2E442A2AC3CC8F00DC757F /* Assets.xcassets */; };
@@ -19,7 +27,6 @@
 		52A930CD2E72DE0100DC862D /* Info_fr.html in Resources */ = {isa = PBXBuildFile; fileRef = 52A930CB2E72DE0100DC862D /* Info_fr.html */; };
 		52A930CE2E72DE0100DC862D /* Info_uz.html in Resources */ = {isa = PBXBuildFile; fileRef = 52A930CC2E72DE0100DC862D /* Info_uz.html */; };
 		52A930CF2E72DE0100DC862D /* Info_de.html in Resources */ = {isa = PBXBuildFile; fileRef = 52A930CA2E72DE0100DC862D /* Info_de.html */; };
-		A1B2C3D42F55720000AABB01 /* AppV1 in Frameworks */ = {isa = PBXBuildFile; productRef = A1B2C3D32F55720000AABB01 /* AppV1 */; };
 		B2C3D4E52F55730000BBCC02 /* AppV2 in Frameworks */ = {isa = PBXBuildFile; productRef = B2C3D4E42F55730000BBCC02 /* AppV2 */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +44,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		114395382F7973B7002FC19E /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1143953A2F7973CF002FC19E /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		1184B3322F86266C00C6EF1B /* AdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManager.swift; sourceTree = "<group>"; };
+		1184B3332F86266C00C6EF1B /* BannerAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
 		11D9EC712F70882B00969099 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		2E0E4E162ADB30F900E846B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2E2E44232AC3CC8E00DC757F /* bookletPdf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bookletPdf.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,7 +63,6 @@
 		52A930CA2E72DE0100DC862D /* Info_de.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Info_de.html; sourceTree = "<group>"; };
 		52A930CB2E72DE0100DC862D /* Info_fr.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Info_fr.html; sourceTree = "<group>"; };
 		52A930CC2E72DE0100DC862D /* Info_uz.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Info_uz.html; sourceTree = "<group>"; };
-		A1B2C3D12F55720000AABB01 /* AppV1 */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AppV1; sourceTree = "<group>"; };
 		B2C3D4E22F55730000BBCC02 /* AppV2 */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AppV2; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,10 +71,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1B2C3D42F55720000AABB01 /* AppV1 in Frameworks */,
+				114395372F796F9D002FC19E /* FirebaseMessaging in Frameworks */,
 				B2C3D4E52F55730000BBCC02 /* AppV2 in Frameworks */,
 				52A930192E72A81300DC862D /* BookletCore in Frameworks */,
+				114395352F796EE6002FC19E /* FirebaseCrashlytics in Frameworks */,
+				114395332F796EE6002FC19E /* FirebaseAnalytics in Frameworks */,
 				5229A9852D2B806D00C75302 /* BookletPDFKit in Frameworks */,
+				1184B3312F86255D00C6EF1B /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,7 +87,6 @@
 		2E2E441A2AC3CC8E00DC757F = {
 			isa = PBXGroup;
 			children = (
-				A1B2C3D12F55720000AABB01 /* AppV1 */,
 				B2C3D4E22F55730000BBCC02 /* AppV2 */,
 				52A930122E72A39200DC862D /* BookletCore */,
 				5229A9822D2B7F8900C75302 /* BookletPDFKit */,
@@ -95,6 +107,10 @@
 		2E2E44252AC3CC8E00DC757F /* bookletPdf */ = {
 			isa = PBXGroup;
 			children = (
+				1184B3322F86266C00C6EF1B /* AdManager.swift */,
+				1184B3332F86266C00C6EF1B /* BannerAdView.swift */,
+				1143953A2F7973CF002FC19E /* FirebaseService.swift */,
+				114395382F7973B7002FC19E /* GoogleService-Info.plist */,
 				11D9EC712F70882B00969099 /* Configuration.storekit */,
 				2E0E4E162ADB30F900E846B6 /* Info.plist */,
 				2E2E44342AC3D74200DC757F /* bookletPdf.entitlements */,
@@ -152,6 +168,7 @@
 				2E2E441F2AC3CC8E00DC757F /* Sources */,
 				2E2E44202AC3CC8E00DC757F /* Frameworks */,
 				2E2E44212AC3CC8E00DC757F /* Resources */,
+				1143953C2F7A38CC002FC19E /* Run Script */,
 				5257CEF02D6B6120003211BA /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -190,6 +207,10 @@
 				fr,
 			);
 			mainGroup = 2E2E441A2AC3CC8E00DC757F;
+			packageReferences = (
+				114395312F796EE6002FC19E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				1184B32F2F86255D00C6EF1B /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
 			productRefGroup = 2E2E44242AC3CC8E00DC757F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -211,6 +232,7 @@
 				52A930CF2E72DE0100DC862D /* Info_de.html in Resources */,
 				2E2E44412AC49B9200DC757F /* Resume.pdf in Resources */,
 				2E2E442E2AC3CC8F00DC757F /* Preview Assets.xcassets in Resources */,
+				114395392F7973B7002FC19E /* GoogleService-Info.plist in Resources */,
 				11D9EC722F70882B00969099 /* Configuration.storekit in Resources */,
 				2E2E442B2AC3CC8F00DC757F /* Assets.xcassets in Resources */,
 			);
@@ -218,11 +240,36 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1143953C2F7A38CC002FC19E /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nPLIST=\"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH%Info.plist}GoogleService-Info.plist\"                                                         \n  if [ ! -f \"$PLIST\" ]; then                                                                                                                 \n    PLIST=\"${SRCROOT}/bookletPdf/GoogleService-Info.plist\"                                                                                   \n  fi                                                        \n  \"${BUILD_DIR%Build/*}SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\" -gsp \"$PLIST\"\n  \n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2E2E441F2AC3CC8E00DC757F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1143953B2F7973CF002FC19E /* FirebaseService.swift in Sources */,
+				1184B3342F86266C00C6EF1B /* BannerAdView.swift in Sources */,
+				1184B3352F86266C00C6EF1B /* AdManager.swift in Sources */,
 				2E2E44272AC3CC8E00DC757F /* bookletPdfApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,7 +405,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = bookletPdf/bookletPdf.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"bookletPdf/Preview Content\"";
 				DEVELOPMENT_TEAM = V3H6LJGQAD;
 				ENABLE_APP_SANDBOX = YES;
@@ -373,6 +420,7 @@
 				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
 				ENABLE_RESOURCE_ACCESS_PRINTING = YES;
 				ENABLE_RESOURCE_ACCESS_USB = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = bookletPdf/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Booklet PDF";
@@ -394,7 +442,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = uz.tox.bookletPdf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = NO;
@@ -415,7 +463,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = bookletPdf/bookletPdf.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"bookletPdf/Preview Content\"";
 				DEVELOPMENT_TEAM = V3H6LJGQAD;
 				ENABLE_APP_SANDBOX = YES;
@@ -430,6 +478,7 @@
 				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
 				ENABLE_RESOURCE_ACCESS_PRINTING = YES;
 				ENABLE_RESOURCE_ACCESS_USB = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = bookletPdf/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Booklet PDF";
@@ -451,7 +500,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = uz.tox.bookletPdf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = NO;
@@ -488,7 +537,46 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		114395312F796EE6002FC19E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.11.0;
+			};
+		};
+		1184B32F2F86255D00C6EF1B /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		114395322F796EE6002FC19E /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 114395312F796EE6002FC19E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		114395342F796EE6002FC19E /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 114395312F796EE6002FC19E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		114395362F796F9D002FC19E /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 114395312F796EE6002FC19E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		1184B3302F86255D00C6EF1B /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1184B32F2F86255D00C6EF1B /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
 		5229A9842D2B806D00C75302 /* BookletPDFKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BookletPDFKit;
@@ -496,10 +584,6 @@
 		52A930182E72A81300DC862D /* BookletCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BookletCore;
-		};
-		A1B2C3D32F55720000AABB01 /* AppV1 */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppV1;
 		};
 		B2C3D4E42F55730000BBCC02 /* AppV2 */ = {
 			isa = XCSwiftPackageProductDependency;

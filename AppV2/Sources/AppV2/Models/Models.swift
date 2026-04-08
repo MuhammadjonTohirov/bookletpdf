@@ -1,4 +1,5 @@
 import Foundation
+import BookletCore
 import PDFKit
 
 public enum ContentViewState: Equatable {
@@ -40,9 +41,9 @@ struct RecentConversion: Codable, Identifiable {
     var formattedDate: String {
         let calendar = Calendar.current
         if calendar.isDateInToday(date) {
-            return String(localized: "str.today") + ", " + date.formatted(date: .omitted, time: .shortened)
+            return "str.today".localize + ", " + date.formatted(date: .omitted, time: .shortened)
         } else if calendar.isDateInYesterday(date) {
-            return String(localized: "str.yesterday")
+            return "str.yesterday".localize
         } else {
             return date.formatted(date: .abbreviated, time: .omitted)
         }

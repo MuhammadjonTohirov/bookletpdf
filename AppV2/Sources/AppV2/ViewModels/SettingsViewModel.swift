@@ -4,9 +4,10 @@ import BookletCore
 
 @MainActor
 class SettingsViewModel: ObservableObject {
-    @Published var cacheSize: String = String(localized: "str.calculating")
+    @Published var cacheSize: String = "str.calculating".localize
     @Published var showClearCacheConfirmation = false
     @Published var cacheCleared = false
+    
     @Published var selectedLanguage: Language = UserSettings.language ?? .english {
         didSet {
             guard selectedLanguage != oldValue else { return }
@@ -30,7 +31,7 @@ class SettingsViewModel: ObservableObject {
     }
 
     func calculateCacheSize() {
-        cacheSize = String(localized: "str.calculating")
+        cacheSize = "str.calculating".localize
         let cache = self.cache
         Task.detached {
             let size = cache.cacheFolderSize()
@@ -44,7 +45,7 @@ class SettingsViewModel: ObservableObject {
         if cache.clearCache() {
             RecentConversionsStore.shared.clear()
             cacheCleared = true
-            cacheSize = String(localized: "str.zero_bytes")
+            cacheSize = "str.zero_bytes".localize
 
             Task { @MainActor [weak self] in
                 try? await Task.sleep(for: .seconds(3))

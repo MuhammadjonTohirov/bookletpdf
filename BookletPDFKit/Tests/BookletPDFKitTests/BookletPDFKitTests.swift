@@ -245,6 +245,104 @@ private extension OSColor {
     }
 }
 
-@Test func example() async throws {
-    // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+// MARK: - PDFBrandingUseCase Tests
+
+@Test func brandingAddsTextToEveryPage() throws {
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen, .testBlue],
+        name: "branding-test.pdf"
+    )
+    let originalDoc = PDFDocument(url: sourceURL)!
+    let originalPageCount = originalDoc.pageCount
+
+    let brandedURL = try PDFBrandingUseCaseImpl().applyBranding(to: sourceURL)
+    guard let brandedDoc = PDFDocument(url: brandedURL) else {
+        throw TestError.documentCreationFailed
+    }
+
+    #expect(brandedDoc.pageCount == originalPageCount)
+}
+
+@Test func brandingPreservesPageDimensions() throws {
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen],
+        name: "branding-dimensions.pdf"
+    )
+    let originalDoc = PDFDocument(url: sourceURL)!
+    let originalSize = originalDoc.page(at: 0)!.bounds(for: .mediaBox).size
+
+    let brandedURL = try PDFBrandingUseCaseImpl().applyBranding(to: sourceURL)
+    let brandedDoc = PDFDocument(url: brandedURL)!
+    let brandedSize = brandedDoc.page(at: 0)!.bounds(for: .mediaBox).size
+
+    #expect(abs(originalSize.width - brandedSize.width) < 1)
+    #expect(abs(originalSize.height - brandedSize.height) < 1)
+}
+
+@Test func brandingProducesValidPDF() throws {
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed],
+        name: "branding-valid.pdf"
+    )
+
+    let brandedURL = try PDFBrandingUseCaseImpl().applyBranding(to: sourceURL)
+
+    #expect(FileManager.default.fileExists(atPath: brandedURL.path))
+
+    let data = try Data(contentsOf: brandedURL)
+    #expect(data.count > 0)
+
+    let doc = PDFDocument(url: brandedURL)
+    #expect(doc != nil)
+    #expect(doc!.pageCount == 1)
+}
+
+@Test func brandingThrowsForInvalidURL() throws {
+    let fakeURL = FileManager.default.temporaryDirectory
+        .appendingPathComponent("nonexistent.pdf")
+
+    #expect(throws: BookletError.self) {
+        try PDFBrandingUseCaseImpl().applyBranding(to: fakeURL)
+    }
+}
+
+@Test func brandingWorksWithLargeDocument() throws {
+    let colors: [OSColor] = (0..<20).map { _ in .testRed }
+    let sourceURL = try makeSourcePDF(colors: colors, name: "branding-large.pdf")
+
+    let brandedURL = try PDFBrandingUseCaseImpl().applyBranding(to: sourceURL)
+    let brandedDoc = PDFDocument(url: brandedURL)!
+
+    #expect(brandedDoc.pageCount == 20)
+}
+
+@Test func brandingAfterTwoUpConversion() async throws {
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen, .testBlue, .testOrange],
+        name: "branding-two-up.pdf"
+    )
+
+    let bookletURL = try await TwoInOnePdfGeneratorUseCaseImpl().makeBookletPDF(url: sourceURL)
+    let brandedURL = try PDFBrandingUseCaseImpl().applyBranding(to: bookletURL)
+
+    let bookletDoc = PDFDocument(url: bookletURL)!
+    let brandedDoc = PDFDocument(url: brandedURL)!
+
+    #expect(brandedDoc.pageCount == bookletDoc.pageCount)
+}
+
+@Test func brandingAfterFourUpConversion() async throws {
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen, .testBlue, .testOrange,
+                 .testPink, .testPurple, .testTeal, .testYellow],
+        name: "branding-four-up.pdf"
+    )
+
+    let bookletURL = try await FourInOneGeneratorUseCaseImpl().makeBookletPDF(url: sourceURL)
+    let brandedURL = try PDFBrandingUseCaseImpl().applyBranding(to: bookletURL)
+
+    let bookletDoc = PDFDocument(url: bookletURL)!
+    let brandedDoc = PDFDocument(url: brandedURL)!
+
+    #expect(brandedDoc.pageCount == bookletDoc.pageCount)
 }

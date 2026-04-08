@@ -1,4 +1,5 @@
 import SwiftUI
+import BookletCore
 import PDFKit
 import BookletPDFKit
 
@@ -20,7 +21,7 @@ struct ExportView: View {
         }
         .background(Theme.Colors.secondaryBackground.opacity(Theme.Opacity.faded))
         #if os(iOS)
-        .navigationTitle(Text("str.booklet_ready"))
+        .navigationTitle(Text("str.booklet_ready".localize))
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
         #endif
@@ -29,13 +30,21 @@ struct ExportView: View {
                 PDFPreviewSheet(document: doc, fileName: viewModel.convertedFileName)
             }
         }
+        .alert(Text("str.rate_app_title".localize), isPresented: $viewModel.showRateAppAlert) {
+            Button("str.rate_now".localize) {
+                RateAppService.requestReview()
+            }
+            Button("str.no_thanks".localize, role: .cancel) { }
+        } message: {
+            Text("str.rate_app_message".localize)
+        }
         .sheet(isPresented: $showHelp) {
             #if os(iOS)
             NavigationStack {
                 HelpView()
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
-                            Button(String(localized: "str.close")) {
+                            Button("str.close".localize) {
                                 showHelp = false
                             }
                         }
@@ -45,7 +54,7 @@ struct ExportView: View {
             VStack(spacing: 0) {
                 HStack {
                     Spacer()
-                    Button(String(localized: "str.close")) {
+                    Button("str.close".localize) {
                         showHelp = false
                     }
                 }
@@ -70,11 +79,11 @@ struct ExportView: View {
                     .foregroundStyle(Color.green)
             }
 
-            Text("str.booklet_ready")
+            Text("str.booklet_ready".localize)
                 .font(Theme.Fonts.heroTitle)
                 .foregroundStyle(Theme.Colors.primaryText)
 
-            Text("str.booklet_ready_subtitle")
+            Text("str.booklet_ready_subtitle".localize)
                 .font(Theme.Fonts.cellBody)
                 .foregroundStyle(Theme.Colors.secondaryText)
                 .multilineTextAlignment(.center)
@@ -105,7 +114,7 @@ struct ExportView: View {
                 HStack(spacing: 6) {
                     Text(viewModel.convertedFileSize)
                     Text("\u{2022}")
-                    Text("str.pdf_document")
+                    Text("str.pdf_document".localize)
                 }
                 .font(Theme.Fonts.caption)
                 .foregroundStyle(Theme.Colors.secondaryText)
@@ -127,7 +136,7 @@ struct ExportView: View {
             Button(action: { showPreview = true }) {
                 HStack(spacing: 8) {
                     Image(systemName: "eye")
-                    Text("str.preview")
+                    Text("str.preview".localize)
                 }
                 .font(Theme.Fonts.bodyBold)
                 .frame(maxWidth: .infinity, minHeight: 48)
@@ -143,7 +152,7 @@ struct ExportView: View {
             Button(action: printDocument) {
                 HStack(spacing: 8) {
                     Image(systemName: "printer")
-                    Text("str.print")
+                    Text("str.print".localize)
                 }
                 .font(Theme.Fonts.bodyBold)
                 .frame(maxWidth: .infinity, minHeight: 48)
@@ -156,10 +165,13 @@ struct ExportView: View {
             }
             .buttonStyle(.plain)
 
-            Button(action: { viewModel.showFileExporter = true }) {
+            Button(action: {
+                viewModel.showFileExporter = true
+                AnalyticsReporter.logEvent?(AnalyticsEventName.exportCompleted, nil)
+            }) {
                 HStack(spacing: 8) {
                     Image(systemName: "square.and.arrow.up")
-                    Text("str.share_pdf")
+                    Text("str.share_pdf".localize)
                 }
                 .font(Theme.Fonts.bodyBold)
                 .frame(maxWidth: .infinity, minHeight: 48)
@@ -197,11 +209,11 @@ struct ExportView: View {
                     .foregroundStyle(Color.accentColor)
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("str.need_help_printing")
+                    Text("str.need_help_printing".localize)
                         .font(Theme.Fonts.cellTitle)
                         .foregroundStyle(Theme.Colors.primaryText)
 
-                    Text("str.view_printing_instructions")
+                    Text("str.view_printing_instructions".localize)
                         .font(Theme.Fonts.caption)
                         .foregroundStyle(Theme.Colors.secondaryText)
                 }
@@ -224,7 +236,7 @@ struct ExportView: View {
 
     private var finishButton: some View {
         Button(action: { viewModel.clearDocuments() }) {
-            Text("str.finish_return_home")
+            Text("str.finish_return_home".localize)
                 .font(Theme.Fonts.cardTitle)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, Theme.Layout.buttonPaddingV)

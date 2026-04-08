@@ -1,14 +1,20 @@
 import SwiftUI
 import PDFKit
+import BookletCore
 import BookletPDFKit
 
 struct HomeView: View {
     @EnvironmentObject private var viewModel: DocumentConvertViewModel
+    @ObservedObject private var storeManager = StoreKitManager.shared
     @State private var selectedItem: RecentConversion?
+    @State private var showPurchase = false
 
     var body: some View {
         ScrollView {
             VStack(spacing: 28) {
+                if !storeManager.isPro {
+                    proUpgradeCard
+                }
                 UploadZoneView(action: { viewModel.showFileImporter = true })
                 recentConversionsSection
             }
@@ -16,7 +22,7 @@ struct HomeView: View {
         }
         .background(Theme.Colors.secondaryBackground.opacity(Theme.Opacity.faded))
         #if os(iOS)
-        .navigationTitle(Text("str.convert_to_booklet"))
+        .navigationTitle(Text("str.convert_to_booklet".localize))
         #endif
         .sheet(item: $selectedItem) { item in
             if let url = item.fileURL, item.fileExists, let doc = PDFDocument(url: url) {
@@ -25,6 +31,14 @@ struct HomeView: View {
                 fileNotFoundView(item)
             }
         }
+        .sheet(isPresented: $showPurchase) {
+            PurchasePromptView(storeManager: storeManager)
+                #if os(iOS)
+                .presentationDetents([.large])
+                .presentationDragIndicator(.visible)
+                .presentationCornerRadius(32)
+                #endif
+        }
         #if os(iOS)
         .navigationDestination(isPresented: $viewModel.showConfigureLayout) {
             ConfigureLayoutView()
@@ -32,11 +46,15 @@ struct HomeView: View {
         #endif
     }
 
+    private var proUpgradeCard: some View {
+        ProUpgradeCard(action: { showPurchase = true })
+    }
+
     @ViewBuilder
     private var recentConversionsSection: some View {
         if !viewModel.recentConversions.isEmpty {
             VStack(alignment: .leading, spacing: Theme.Layout.itemSpacing) {
-                Text("str.recent_conversions")
+                Text("str.recent_conversions".localize)
                     .font(Theme.Fonts.sectionTitle)
                     .foregroundStyle(Theme.Colors.primaryText)
 
@@ -103,7 +121,7 @@ struct HomeView: View {
             fileNotFoundContent
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
-                        Button(String(localized: "str.close")) {
+                        Button("str.close".localize) {
                             selectedItem = nil
                         }
                     }
@@ -113,7 +131,7 @@ struct HomeView: View {
         VStack {
             HStack {
                 Spacer()
-                Button(String(localized: "str.close")) {
+                Button("str.close".localize) {
                     selectedItem = nil
                 }
             }
@@ -130,11 +148,11 @@ struct HomeView: View {
                 .font(.system(size: 48, weight: .light))
                 .foregroundStyle(Theme.Colors.tertiaryText)
 
-            Text("str.file_not_found")
+            Text("str.file_not_found".localize)
                 .font(Theme.Fonts.sectionTitle)
                 .foregroundStyle(Theme.Colors.primaryText)
 
-            Text("str.file_not_found_subtitle")
+            Text("str.file_not_found_subtitle".localize)
                 .font(Theme.Fonts.subtitle)
                 .foregroundStyle(Theme.Colors.secondaryText)
                 .multilineTextAlignment(.center)

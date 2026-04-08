@@ -1,4 +1,5 @@
 import SwiftUI
+import BookletCore
 import BookletPDFKit
 
 struct BookletLayoutOption: View {
@@ -10,15 +11,15 @@ struct BookletLayoutOption: View {
 
     private var title: String {
         switch type {
-        case .type2: return String(localized: "str.standard_booklet_2up")
-        case .type4: return String(localized: "str.pocket_booklet_4up")
+        case .type2: return "str.standard_booklet_2up".localize
+        case .type4: return "str.pocket_booklet_4up".localize
         }
     }
 
     private var subtitle: String {
         switch type {
-        case .type2: return String(localized: "str.folds_in_half")
-        case .type4: return String(localized: "str.folds_into_quarters")
+        case .type2: return "str.folds_in_half".localize
+        case .type4: return "str.folds_into_quarters".localize
         }
     }
 
@@ -63,7 +64,7 @@ struct BookletLayoutOption: View {
                     .background(Color.accentColor.opacity(Theme.Opacity.tint), in: Circle())
             }
             .buttonStyle(.plain)
-            .accessibilityLabel(Text("str.view_printing_instructions"))
+            .accessibilityLabel(Text("str.view_printing_instructions".localize))
             .padding(Theme.Layout.screenPadding)
         }
         .background {

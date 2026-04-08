@@ -8,6 +8,8 @@
 import SwiftUI
 import BookletCore
 import AppV2
+import FirebaseMessaging
+import UserNotifications
 #if os(iOS)
 import UIKit
 #endif
@@ -22,6 +24,39 @@ final class AppDelegate: NSObject {
 extension AppDelegate: NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.regular)
+        FirebaseService.configure()
+        FirebaseService.registerForPushNotifications()
+        FirebaseService.log(.appOpened)
+        UNUserNotificationCenter.current().delegate = self
+        Messaging.messaging().delegate = self
+    }
+
+    func application(_ application: NSApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Logging.l(tag: "AppDelegate", "Device token received: \(deviceToken)")
+        FirebaseService.setAPNSToken(deviceToken)
+    }
+
+    func application(_ application: NSApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        Logging.l(tag: "AppDelegate", "Failed to register for remote notifications: \(error.localizedDescription)")
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification
+    ) async -> UNNotificationPresentationOptions {
+        let userInfo = notification.request.content.userInfo
+        Logging.l(tag: "FCM", "Notification received (foreground): \(userInfo)")
+        return [.banner, .badge, .sound]
+    }
+
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse
+    ) async {
+        let userInfo = response.notification.request.content.userInfo
+        Logging.l(tag: "FCM", "Notification tapped: \(userInfo)")
     }
 }
 #endif
@@ -29,10 +64,50 @@ extension AppDelegate: NSApplicationDelegate {
 #if os(iOS)
 extension AppDelegate: UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseService.configure()
+        FirebaseService.registerForPushNotifications()
+        FirebaseService.log(.appOpened)
+        UNUserNotificationCenter.current().delegate = self
+        Messaging.messaging().delegate = self
+        AdManager.shared.configure()
         return true
+    }
+
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        FirebaseService.setAPNSToken(deviceToken)
+    }
+
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        Logging.l(tag: "AppDelegate", "Failed to register for remote notifications: \(error.localizedDescription)")
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification
+    ) async -> UNNotificationPresentationOptions {
+        let userInfo = notification.request.content.userInfo
+        Logging.l(tag: "FCM", "Notification received (foreground): \(userInfo)")
+        return [.banner, .badge, .sound]
+    }
+
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse
+    ) async {
+        let userInfo = response.notification.request.content.userInfo
+        Logging.l(tag: "FCM", "Notification tapped: \(userInfo)")
     }
 }
 #endif
+
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        guard let token = fcmToken else { return }
+        Logging.l(tag: "FCM", "Token: \(token)")
+    }
+}
 
 @main
 struct bookletPdfApp: App {
@@ -63,9 +138,13 @@ struct bookletPdfApp: App {
                 #if os(iOS)
                 .preferredColorScheme(currentTheme.colorScheme)
                 #elseif os(macOS)
+                .frame(minWidth: 900, minHeight: 600)
                 .background(MacWindowAppearanceView(theme: currentTheme))
                 #endif
         }
+        #if os(macOS)
+        .defaultSize(width: 1280, height: 800)
+        #endif
         .commands {
             AppMenuCommands(viewModel: mainViewModel)
         }

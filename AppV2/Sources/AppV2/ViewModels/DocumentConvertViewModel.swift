@@ -2,6 +2,16 @@ import Foundation
 import Combine
 import PDFKit
 import BookletPDFKit
+import BookletCore
+
+extension BookletType {
+    var analyticsName: String {
+        switch self {
+        case .type2: "2-up"
+        case .type4: "4-up"
+        }
+    }
+}
 
 @MainActor
 public final class DocumentConvertViewModel: ObservableObject {
@@ -20,22 +30,26 @@ public final class DocumentConvertViewModel: ObservableObject {
 
     @Published var showConfigureLayout = false
     @Published var showExport = false
+    @Published var showRateAppAlert = false
     @Published var recentConversions: [RecentConversion] = []
 
     private let generatorFactory: BookletGeneratorFactory
     private let duplicateFileUseCase: DuplicateFileUseCase
     private let prepareBookletInputUseCase: PrepareBookletInputUseCase
+    private let brandingUseCase: PDFBrandingUseCase
     private let recentStore: RecentConversionsStore
     private let cache: AppCacheProtocol
 
     public init(
         generatorFactory: BookletGeneratorFactory = BookletGeneratorFactoryImpl(),
         duplicateFileUseCase: DuplicateFileUseCase = DuplicateFileUseCaseImpl(),
-        prepareBookletInputUseCase: PrepareBookletInputUseCase = PrepareBookletInputUseCaseImpl()
+        prepareBookletInputUseCase: PrepareBookletInputUseCase = PrepareBookletInputUseCaseImpl(),
+        brandingUseCase: PDFBrandingUseCase = PDFBrandingUseCaseImpl()
     ) {
         self.generatorFactory = generatorFactory
         self.duplicateFileUseCase = duplicateFileUseCase
         self.prepareBookletInputUseCase = prepareBookletInputUseCase
+        self.brandingUseCase = brandingUseCase
         self.recentStore = RecentConversionsStore.shared
         self.cache = AppCache.shared
     }
@@ -66,6 +80,7 @@ public final class DocumentConvertViewModel: ObservableObject {
                 )
                 self.document = pdfDoc
                 self.originalDocument = pdfDoc
+                AnalyticsReporter.logEvent?(AnalyticsEventName.documentImported, [AnalyticsParamKey.pageCount: doc.pageCount])
             } catch {
                 self.errorMessage = error.localizedDescription
                 self.showError = true
@@ -78,11 +93,14 @@ public final class DocumentConvertViewModel: ObservableObject {
 
         isConverting = true
         state = .converting
+        AnalyticsReporter.logEvent?(AnalyticsEventName.conversionStarted, [AnalyticsParamKey.bookletType: bookletType.analyticsName])
 
         let generator = generatorFactory.makeGenerator(for: bookletType)
         let cache = self.cache
         let coverData = self.coverImageData
         let prepareBookletInputUseCase = self.prepareBookletInputUseCase
+        let brandingUseCase = self.brandingUseCase
+        let shouldBrand = !StoreKitManager.shared.isPro
 
         Task {
             do {
@@ -90,7 +108,11 @@ public final class DocumentConvertViewModel: ObservableObject {
                     at: pdf,
                     coverImageData: coverData
                 )
-                let tempUrl = try await generator.makeBookletPDF(url: preparedInputURL)
+                var tempUrl = try await generator.makeBookletPDF(url: preparedInputURL)
+
+                if shouldBrand {
+                    tempUrl = try brandingUseCase.applyBranding(to: tempUrl)
+                }
 
                 let cachedUrl = cache.moveFileToCache(
                     from: tempUrl,
@@ -105,6 +127,17 @@ public final class DocumentConvertViewModel: ObservableObject {
                     self.isConverting = false
                     self.showExport = true
                     self.saveRecentConversion()
+                    AnalyticsReporter.logEvent?(AnalyticsEventName.conversionCompleted, [
+                        AnalyticsParamKey.bookletType: self.bookletType.analyticsName,
+                        AnalyticsParamKey.pageCount: self.document?.document.pageCount ?? 0
+                    ])
+                    if !UserSettings.hasRatedApp && ConversionLimitManager.shared.totalConversions == 2 {
+                        Task { @MainActor in
+                            try? await Task.sleep(for: .seconds(1))
+                            self.showRateAppAlert = true
+                            AnalyticsReporter.logEvent?(AnalyticsEventName.rateAppShown, nil)
+                        }
+                    }
                 }
             } catch {
                 await MainActor.run { [weak self] in
@@ -113,6 +146,8 @@ public final class DocumentConvertViewModel: ObservableObject {
                     self.showError = true
                     self.isConverting = false
                     self.state = .configuringLayout
+                    AnalyticsReporter.logEvent?(AnalyticsEventName.conversionFailed, [AnalyticsParamKey.error: error.localizedDescription])
+                    AnalyticsReporter.recordError?(error, "convertToBooklet")
                 }
             }
         }
@@ -145,8 +180,8 @@ public final class DocumentConvertViewModel: ObservableObject {
 
     var bookletTypeName: String {
         switch bookletType {
-        case .type2: return String(localized: "str.standard_booklet")
-        case .type4: return String(localized: "str.pocket_booklet")
+        case .type2: return "str.standard_booklet".localize
+        case .type4: return "str.pocket_booklet".localize
         }
     }
 

@@ -1,4 +1,5 @@
 import SwiftUI
+import BookletCore
 import BookletPDFKit
 
 #if os(macOS)
@@ -10,18 +11,18 @@ enum SidebarItem: String, Identifiable, CaseIterable {
 
     var id: String { rawValue }
 
-    var title: LocalizedStringKey {
+    var title: String {
         switch self {
-        case .converter: return "str.converter"
-        case .history: return "str.history"
-        case .help: return "str.help"
-        case .settings: return "str.settings"
+        case .converter: return "str.converter".localize
+        case .history: return "str.history".localize
+        case .help: return "str.help".localize
+        case .settings: return "str.settings".localize
         }
     }
 
     var icon: String {
         switch self {
-        case .converter: return "doc.viewfinder"
+        case .converter: return "doc.on.doc"
         case .history: return "clock.arrow.circlepath"
         case .help: return "questionmark.circle"
         case .settings: return "gear"
@@ -35,6 +36,7 @@ enum SidebarItem: String, Identifiable, CaseIterable {
 struct SidebarView: View {
     @Binding var selectedItem: SidebarItem?
     @State private var hoverItem: SidebarItem?
+    @ObservedObject private var storeManager = StoreKitManager.shared
 
     var body: some View {
         VStack(spacing: 0) {
@@ -46,6 +48,11 @@ struct SidebarView: View {
 
                 Text("Booklet PDF")
                     .font(.headline)
+
+                if storeManager.isPro {
+                    ProBadgeView()
+                }
+
                 Spacer()
             }
             .padding(Theme.Spacing.md)
@@ -56,7 +63,7 @@ struct SidebarView: View {
             // Menu Items
             VStack(spacing: Theme.Spacing.sm) {
                 VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
-                    Text("str.main")
+                    Text("str.main".localize)
                         .sectionHeader()
 
                     ForEach(SidebarItem.mainItems) { item in
@@ -65,7 +72,7 @@ struct SidebarView: View {
                 }
 
                 VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
-                    Text("str.settings")
+                    Text("str.settings".localize)
                         .sectionHeader()
 
                     ForEach(SidebarItem.settingsItems) { item in
@@ -84,7 +91,7 @@ struct SidebarView: View {
                     .frame(height: 0.5)
                     .padding(.horizontal, Theme.Spacing.md)
 
-                Text("str.powered_by")
+                Text("str.powered_by".localize)
                     .font(Theme.Typography.caption)
                     .foregroundStyle(Theme.Colors.tertiaryText)
                     .padding(.vertical, Theme.Spacing.sm)

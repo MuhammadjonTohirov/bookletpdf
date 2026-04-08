@@ -1,4 +1,5 @@
 import SwiftUI
+import BookletCore
 import BookletPDFKit
 
 struct HelpView: View {
@@ -17,7 +18,7 @@ struct HelpView: View {
         }
         .background(Theme.Colors.secondaryBackground.opacity(Theme.Opacity.faded))
         #if os(iOS)
-        .navigationTitle(Text("str.help"))
+        .navigationTitle(Text("str.help".localize))
         .navigationBarTitleDisplayMode(.inline)
         #endif
     }
@@ -29,7 +30,7 @@ struct HelpView: View {
             VStack(alignment: .leading, spacing: 10) {
                 sectionHeader("str.help_about_title")
 
-                Text("str.help_about_body")
+                Text("str.help_about_body".localize)
                     .font(Theme.Fonts.subtitle)
                     .foregroundStyle(Theme.Colors.secondaryText)
                     .fixedSize(horizontal: false, vertical: true)
@@ -60,7 +61,7 @@ struct HelpView: View {
             VStack(alignment: .leading, spacing: 12) {
                 sectionHeader("str.help_howto_title")
 
-                Text("str.help_howto_generate_title")
+                Text("str.help_howto_generate_title".localize)
                     .font(Theme.Fonts.cellTitle)
                     .foregroundStyle(Theme.Colors.primaryText)
 
@@ -172,7 +173,7 @@ struct HelpView: View {
     // MARK: - Footer
 
     private var footerSection: some View {
-        Text("str.help_footer")
+        Text("str.help_footer".localize)
             .font(Theme.Fonts.subtitle)
             .italic()
             .foregroundStyle(Theme.Colors.tertiaryText)
@@ -233,7 +234,7 @@ struct HelpView: View {
 
     private func numberedStep(_ number: Int, text: LocalizedStringKey) -> some View {
         HStack(alignment: .top, spacing: 12) {
-            Text("\(number)")
+            Text(verbatim: number.description)
                 .font(Theme.Fonts.captionBold)
                 .foregroundStyle(Color.accentColor)
                 .frame(width: 24, height: 24)

@@ -1,9 +1,12 @@
 import SwiftUI
+import StoreKit
 import BookletPDFKit
 import BookletCore
 
 struct SettingsView: View {
     @StateObject private var viewModel = SettingsViewModel()
+    @ObservedObject private var storeManager = StoreKitManager.shared
+    @State private var showPurchase = false
     @AppStorage(UserSettings.themeStorageKey, store: UserDefaults(suiteName: UserSettings.suiteName))
     private var themeRawValue: Int = AppTheme.system.rawValue
 
@@ -15,7 +18,10 @@ struct SettingsView: View {
             iOSSettings
             #endif
         }
-        .onAppear { viewModel.onAppear() }
+        .onAppear {
+            viewModel.onAppear()
+            AnalyticsReporter.logEvent?(AnalyticsEventName.settingsOpened, nil)
+        }
     }
 
     private var selectedTheme: AppTheme {
@@ -39,6 +45,9 @@ extension SettingsView {
     var iOSSettings: some View {
         ScrollView {
             VStack(spacing: Theme.Layout.sectionSpacing) {
+                if !storeManager.isPro {
+                    proSection
+                }
                 themeSection
                 languageSection
                 cacheSection
@@ -48,13 +57,23 @@ extension SettingsView {
             .padding(Theme.Layout.screenPadding)
         }
         .background(Theme.Colors.secondaryBackground.opacity(Theme.Opacity.faded))
-        .navigationTitle(Text("str.settings"))
-        .alert(Text("str.clear_cache"), isPresented: $viewModel.showClearCacheConfirmation) {
-            Button("str.cancel", role: .cancel) {}
-            Button("str.clear", role: .destructive) { viewModel.clearCache() }
+        .navigationTitle(Text("str.settings".localize))
+        .alert(Text("str.clear_cache".localize), isPresented: $viewModel.showClearCacheConfirmation) {
+            Button("str.cancel".localize, role: .cancel) {}
+            Button("str.clear".localize, role: .destructive) { viewModel.clearCache() }
         } message: {
-            Text("str.clear_cache_confirmation")
+            Text("str.clear_cache_confirmation".localize)
         }
+        .sheet(isPresented: $showPurchase) {
+            PurchasePromptView(storeManager: storeManager)
+                .presentationDetents([.large])
+                .presentationDragIndicator(.visible)
+                .presentationCornerRadius(32)
+        }
+    }
+
+    private var proSection: some View {
+        ProUpgradeCard(action: { showPurchase = true })
     }
 
     private var themeSection: some View {
@@ -63,11 +82,11 @@ extension SettingsView {
             description: "str.appearance_description"
         ) {
             VStack(alignment: .leading, spacing: 10) {
-                Text("str.theme")
+                Text("str.theme".localize)
                     .font(Theme.Fonts.cellBody)
                     .foregroundStyle(Theme.Colors.primaryText)
 
-                Picker("str.theme", selection: selectedThemeBinding) {
+                Picker("str.theme".localize, selection: selectedThemeBinding) {
                     ForEach(AppTheme.allCases, id: \.self) { theme in
                         Text(theme.name)
                             .tag(theme)
@@ -88,7 +107,7 @@ extension SettingsView {
                 LanguageSelectionView(viewModel: viewModel)
             } label: {
                 HStack(spacing: 12) {
-                    Text("str.current_language")
+                    Text("str.current_language".localize)
                         .font(Theme.Fonts.cellBody)
                         .foregroundStyle(Theme.Colors.primaryText)
 
@@ -98,7 +117,7 @@ extension SettingsView {
                         .font(Theme.Fonts.subtitle)
                         .foregroundStyle(Theme.Colors.secondaryText)
 
-                    Image(systemName: "chevron.right")
+                    Image(systemName: "chevron.right".localize)
                         .font(.system(size: 11, weight: .semibold))
                         .foregroundStyle(Theme.Colors.tertiaryText)
                 }
@@ -116,7 +135,7 @@ extension SettingsView {
             VStack(alignment: .leading, spacing: Theme.Layout.innerPaddingV) {
                 HStack(alignment: .center, spacing: 12) {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("str.current_cache_size")
+                        Text("str.current_cache_size".localize)
                             .font(Theme.Fonts.cellBody)
                             .foregroundStyle(Theme.Colors.primaryText)
 
@@ -127,7 +146,7 @@ extension SettingsView {
 
                     Spacer()
 
-                    Button("str.calculate") {
+                    Button("str.calculate".localize) {
                         viewModel.calculateCacheSize()
                     }
                     .buttonStyle(.plain)
@@ -144,7 +163,7 @@ extension SettingsView {
                 }
 
                 Button(action: { viewModel.showClearCacheConfirmation = true }) {
-                    Label("str.clear_cache", systemImage: "trash")
+                    Label("str.clear_cache".localize, systemImage: "trash")
                         .font(Theme.Fonts.cellBody)
                         .foregroundStyle(Theme.Colors.primaryText)
                         .padding(.horizontal, 12)
@@ -161,7 +180,7 @@ extension SettingsView {
                 .buttonStyle(.plain)
 
                 if viewModel.cacheCleared {
-                    Label("str.cache_cleared_success", systemImage: "checkmark.circle.fill")
+                    Label("str.cache_cleared_success".localize, systemImage: "checkmark.circle.fill")
                         .font(Theme.Fonts.captionBold)
                         .foregroundStyle(Theme.Colors.success)
                         .padding(.horizontal, 14)
@@ -194,11 +213,46 @@ extension SettingsView {
                         )
 
                     VStack(alignment: .leading, spacing: 3) {
-                        Text("str.open_help")
+                        Text("str.open_help".localize)
                             .font(Theme.Fonts.cellTitle)
                             .foregroundStyle(Theme.Colors.primaryText)
 
-                        Text("str.help")
+                        Text("str.help".localize)
+                            .font(Theme.Fonts.subtitle)
+                            .foregroundStyle(Theme.Colors.secondaryText)
+                    }
+
+                    Spacer()
+
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 11, weight: .semibold))
+                        .foregroundStyle(Theme.Colors.tertiaryText)
+                }
+                .padding(Theme.Layout.cardPadding)
+                .background(
+                    Theme.Colors.secondaryBackground.opacity(Theme.Opacity.faded),
+                    in: RoundedRectangle(cornerRadius: Theme.CornerRadius.card)
+                )
+            }
+            .buttonStyle(.plain)
+
+            Button(action: { RateAppService.requestReview() }) {
+                HStack(spacing: 12) {
+                    Image(systemName: "star.fill")
+                        .font(Theme.Fonts.smallIcon)
+                        .foregroundStyle(.yellow)
+                        .frame(width: 40, height: 40)
+                        .background(
+                            Color.yellow.opacity(Theme.Opacity.tint),
+                            in: RoundedRectangle(cornerRadius: Theme.CornerRadius.medium)
+                        )
+
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text("str.rate_app".localize)
+                            .font(Theme.Fonts.cellTitle)
+                            .foregroundStyle(Theme.Colors.primaryText)
+
+                        Text("str.rate_app_subtitle".localize)
                             .font(Theme.Fonts.subtitle)
                             .foregroundStyle(Theme.Colors.secondaryText)
                     }
@@ -256,15 +310,15 @@ extension SettingsView {
 
     private var appInfoSection: some View {
         VStack(spacing: 8) {
-            Text("str.app_name")
+            Text("str.app_name".localize)
                 .font(Theme.Fonts.cellTitle)
                 .foregroundStyle(Theme.Colors.primaryText)
 
-            Text(String(format: String(localized: "str.version_format"), viewModel.appVersion, viewModel.buildNumber))
+            Text(String(format: String("str.version_format".localize), viewModel.appVersion, viewModel.buildNumber))
                 .font(Theme.Fonts.badge)
                 .foregroundStyle(Theme.Colors.secondaryText)
 
-            Text("str.powered_by")
+            Text("str.powered_by".localize)
                 .font(Theme.Fonts.badge)
                 .foregroundStyle(Theme.Colors.tertiaryText)
                 .padding(.top, 2)
@@ -288,6 +342,10 @@ extension SettingsView {
     var macOSSettings: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: Theme.Spacing.lg) {
+                if !storeManager.isPro {
+                    macProSection
+                }
+
                 macSection(
                     title: "str.appearance",
                     systemImage: "circle.lefthalf.filled",
@@ -402,11 +460,45 @@ extension SettingsView {
                                 )
 
                             VStack(alignment: .leading, spacing: 3) {
-                                Text("str.open_help")
+                                Text("str.open_help".localize)
                                     .font(Theme.Fonts.cellTitle)
                                     .foregroundStyle(Theme.Colors.primaryText)
 
-                                Text("str.help")
+                                Text("str.help".localize)
+                                    .font(Theme.Fonts.subtitle)
+                                    .foregroundStyle(Theme.Colors.secondaryText)
+                            }
+
+                            Spacer()
+
+                            Image(systemName: "chevron.right")
+                                .font(.system(size: 11, weight: .semibold))
+                                .foregroundStyle(Theme.Colors.tertiaryText)
+                        }
+                        .background(
+                            Theme.Colors.secondaryBackground.opacity(Theme.Opacity.faded),
+                            in: RoundedRectangle(cornerRadius: Theme.CornerRadius.card)
+                        )
+                    }
+                    .buttonStyle(.plain)
+
+                    Button(action: { RateAppService.requestReview() }) {
+                        HStack(spacing: 12) {
+                            Image(systemName: "star.fill")
+                                .font(Theme.Fonts.smallIcon)
+                                .foregroundStyle(.yellow)
+                                .frame(width: 40, height: 40)
+                                .background(
+                                    Color.yellow.opacity(Theme.Opacity.tint),
+                                    in: RoundedRectangle(cornerRadius: Theme.CornerRadius.medium)
+                                )
+
+                            VStack(alignment: .leading, spacing: 3) {
+                                Text("str.rate_app".localize)
+                                    .font(Theme.Fonts.cellTitle)
+                                    .foregroundStyle(Theme.Colors.primaryText)
+
+                                Text("str.rate_app_subtitle".localize)
                                     .font(Theme.Fonts.subtitle)
                                     .foregroundStyle(Theme.Colors.secondaryText)
                             }
@@ -431,12 +523,20 @@ extension SettingsView {
         }
         .background(Theme.Colors.secondaryBackground.opacity(Theme.Opacity.faded))
         .frame(minWidth: 620, minHeight: 520)
-        .alert(Text("str.clear_cache"), isPresented: $viewModel.showClearCacheConfirmation) {
+        .alert(Text("str.clear_cache".localize), isPresented: $viewModel.showClearCacheConfirmation) {
             Button("str.cancel", role: .cancel) {}
             Button("str.clear", role: .destructive) { viewModel.clearCache() }
         } message: {
-            Text("str.clear_cache_confirmation")
+            Text("str.clear_cache_confirmation".localize)
         }
+        .sheet(isPresented: $showPurchase) {
+            PurchasePromptView(storeManager: storeManager)
+                .frame(minWidth: 420, minHeight: 520)
+        }
+    }
+
+    private var macProSection: some View {
+        ProUpgradeCard(action: { showPurchase = true })
     }
 
     private func macSection<Content: View>(
@@ -508,18 +608,18 @@ extension SettingsView {
     private var macAppInfoSection: some View {
         HStack(spacing: 16) {
             VStack(alignment: .leading, spacing: 4) {
-                Text("str.app_name")
+                Text("str.app_name".localize)
                     .font(Theme.Fonts.cellTitle)
                     .foregroundStyle(Theme.Colors.primaryText)
 
-                Text(String(format: String(localized: "str.version_format"), viewModel.appVersion, viewModel.buildNumber))
+                Text(String(format: "str.version_format".localize, viewModel.appVersion, viewModel.buildNumber))
                     .font(Theme.Fonts.badge)
                     .foregroundStyle(Theme.Colors.secondaryText)
             }
 
             Spacer()
 
-            Text("str.powered_by")
+            Text("str.powered_by".localize)
                 .font(Theme.Fonts.badge)
                 .foregroundStyle(Theme.Colors.tertiaryText)
         }

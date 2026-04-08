@@ -1,6 +1,7 @@
 import SwiftUI
 import PDFKit
 import UniformTypeIdentifiers
+import BookletCore
 
 #if os(iOS)
 enum AppTab: String, CaseIterable {
@@ -8,17 +9,17 @@ enum AppTab: String, CaseIterable {
     case history
     case settings
 
-    var title: LocalizedStringKey {
+    var title: String {
         switch self {
-        case .convert: return "str.convert"
-        case .history: return "str.history"
-        case .settings: return "str.settings"
+        case .convert: return "str.convert".localize
+        case .history: return "str.history".localize
+        case .settings: return "str.settings".localize
         }
     }
 
     var icon: String {
         switch self {
-        case .convert: return "doc.viewfinder"
+        case .convert: return "doc.on.doc"
         case .history: return "clock.arrow.circlepath"
         case .settings: return "gear"
         }
@@ -28,12 +29,24 @@ enum AppTab: String, CaseIterable {
 struct AppTabView: View {
     @State private var selectedTab: AppTab = .convert
     @EnvironmentObject private var viewModel: DocumentConvertViewModel
+    @EnvironmentObject private var languageManager: LanguageManager
+    @ObservedObject private var storeManager = StoreKitManager.shared
+    @ObservedObject private var conversionLimit = ConversionLimitManager.shared
 
     var body: some View {
-        TabView(selection: $selectedTab) {
-            convertTab
-            historyTab
-            settingsTab
+        VStack(spacing: 0) {
+            if !storeManager.isPro && conversionLimit.hasReachedFreeLimit,
+               let banner = AdService.bannerView {
+                banner()
+                    .frame(height: 50)
+            }
+
+            TabView(selection: $selectedTab) {
+                convertTab
+                historyTab
+                settingsTab
+            }
+            .id(languageManager.currentLanguage)
         }
         .fileImporter(
             isPresented: $viewModel.showFileImporter,
@@ -49,7 +62,7 @@ struct AppTabView: View {
             defaultFilename: viewModel.convertedFileName
         ) { _ in }
         .alert(
-            Text("str.error"),
+            Text("str.error".localize),
             isPresented: $viewModel.showError,
             presenting: viewModel.errorMessage
         ) { _ in
@@ -62,6 +75,13 @@ struct AppTabView: View {
     private var convertTab: some View {
         NavigationStack {
             HomeView()
+                .toolbar {
+                    if storeManager.isPro {
+                        ToolbarItem(placement: .topBarLeading) {
+                            ProBadgeView()
+                        }
+                    }
+                }
         }
         .tabItem {
             Label(AppTab.convert.title, systemImage: AppTab.convert.icon)
@@ -72,7 +92,7 @@ struct AppTabView: View {
     private var historyTab: some View {
         NavigationStack {
             HistoryView()
-                .navigationTitle(Text("str.history"))
+                .navigationTitle(Text("str.history".localize))
         }
         .tabItem {
             Label(AppTab.history.title, systemImage: AppTab.history.icon)

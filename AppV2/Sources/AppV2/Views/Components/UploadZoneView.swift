@@ -1,4 +1,5 @@
 import SwiftUI
+import BookletCore
 import BookletPDFKit
 
 struct UploadZoneView: View {
@@ -29,17 +30,10 @@ struct UploadZoneView: View {
                 }
                 .padding(.bottom, Theme.Layout.innerPaddingH)
 
-                Text("str.tap_to_select_pdf")
+                Text("str.tap_to_select_pdf".localize)
                     .font(Theme.Fonts.pageTitle)
                     .foregroundStyle(Theme.Colors.primaryText)
                     .padding(.bottom, 8)
-
-//                Text("str.supports_500_pages")
-//                    .font(Theme.Fonts.cellBody)
-//                    .foregroundStyle(Theme.Colors.secondaryText)
-//                    .padding(.horizontal, 16)
-//                    .padding(.vertical, 6)
-//                    .background(Theme.Colors.secondaryBackground.opacity(Theme.Opacity.half), in: Capsule())
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 40)

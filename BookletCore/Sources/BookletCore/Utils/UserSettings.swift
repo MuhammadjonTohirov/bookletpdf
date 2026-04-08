@@ -37,6 +37,15 @@ public actor UserSettings {
         }
     }
 
+    static public var hasRatedApp: Bool {
+        get {
+            UserDefaults(suiteName: suiteName)?.bool(forKey: "hasRatedApp") ?? false
+        }
+        set {
+            UserDefaults(suiteName: suiteName)?.set(newValue, forKey: "hasRatedApp")
+        }
+    }
+
     static public var theme: AppTheme {
         get {
             let raw = UserDefaults(suiteName: suiteName)?.integer(forKey: themeStorageKey) ?? 0

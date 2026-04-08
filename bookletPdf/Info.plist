@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict/>
+<dict>
+	<key>SKAdNetworkItems</key>
+	<array>
+		<dict>
+			<key>SKAdNetworkIdentifier</key>
+			<string>cstr6suwn9.skadnetwork</string>
+		</dict>
+	</array>
+	<key>APP_STORE_ID</key>
+	<string>6760976459</string>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-3869807878238093~8000759652</string>
+	<key>NSApplicationCrashOnExceptions</key>
+	<true/>
+</dict>
 </plist>

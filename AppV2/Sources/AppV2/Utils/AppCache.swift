@@ -99,7 +99,7 @@ final class AppCache: AppCacheProtocol, @unchecked Sendable {
     }
 
     func cacheFolderSize() -> String {
-        guard let versionUrl else { return String(localized: "str.cache_not_available") }
+        guard let versionUrl else { return "str.cache_not_available".localize }
         do {
             let contents = try FileManager.default.contentsOfDirectory(at: versionUrl, includingPropertiesForKeys: [.fileSizeKey])
             let size = try contents.reduce(0) { result, url in
@@ -111,7 +111,7 @@ final class AppCache: AppCacheProtocol, @unchecked Sendable {
             formatter.countStyle = .file
             return formatter.string(fromByteCount: Int64(size))
         } catch {
-            return String(localized: "str.cache_size_error")
+            return "str.cache_size_error".localize
         }
     }
 }

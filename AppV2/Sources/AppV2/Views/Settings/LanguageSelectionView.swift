@@ -53,7 +53,7 @@ extension LanguageSelectionView {
                 }
             }
         }
-        .navigationTitle(Text("str.select_language"))
+        .navigationTitle(Text("str.select_language".localize))
         .navigationBarTitleDisplayMode(.inline)
     }
 }
@@ -65,7 +65,7 @@ extension LanguageSelectionView {
 extension LanguageSelectionView {
     var macOSLanguageSelection: some View {
         HStack {
-            Text("str.current_language")
+            Text("str.current_language".localize)
             Spacer()
             Picker("", selection: $viewModel.selectedLanguage) {
                 ForEach(viewModel.availableLanguages, id: \.self) { language in

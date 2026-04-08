@@ -17,6 +17,19 @@ final class StoreKitManager: ObservableObject {
 
     @Published private(set) var fourInOneProduct: Product?
     @Published private(set) var isFourInOnePurchased = false
+
+    var isPro: Bool {
+        #if DEBUG
+        return debugIsPro ?? isFourInOnePurchased
+        #else
+        return isFourInOnePurchased
+        #endif
+    }
+
+    #if DEBUG
+    /// Set to `false` to force free tier in debug builds, `nil` to use real purchase status
+    var debugIsPro: Bool? = false
+    #endif
     @Published private(set) var isLoading = false
     @Published private(set) var isRestoring = false
     @Published private(set) var productLoadFailed = false
@@ -25,8 +38,7 @@ final class StoreKitManager: ObservableObject {
 
     private init() {
         transactionListener = listenForTransactions()
-        Task { await loadProducts() }
-        Task { await updatePurchaseStatus() }
+        Task { await refreshStoreState() }
     }
 
     deinit {
@@ -48,6 +60,14 @@ final class StoreKitManager: ObservableObject {
         }
     }
 
+    func refreshStoreState() async {
+        if fourInOneProduct == nil || productLoadFailed {
+            await loadProducts()
+        }
+
+        _ = await refreshPurchaseStatus()
+    }
+
     func purchase() async throws -> Bool {
         guard let product = fourInOneProduct else { return false }
 
@@ -60,8 +80,8 @@ final class StoreKitManager: ObservableObject {
         case .success(let verification):
             let transaction = try checkVerified(verification)
             await transaction.finish()
-            await updatePurchaseStatus()
-            return true
+            AnalyticsReporter.logEvent?(AnalyticsEventName.purchaseCompleted, [AnalyticsParamKey.productID: product.id])
+            return await refreshPurchaseStatus()
         case .userCancelled:
             return false
         case .pending:
@@ -71,33 +91,66 @@ final class StoreKitManager: ObservableObject {
         }
     }
 
-    func restorePurchases() async {
+    func restorePurchases() async throws -> Bool {
         isRestoring = true
         defer { isRestoring = false }
-        try? await AppStore.sync()
-        await updatePurchaseStatus()
+
+        Logging.l(tag: "StoreKitManager", "Starting restore flow")
+        try await AppStore.sync()
+
+        let restored = await refreshPurchaseStatus()
+        Logging.l(tag: "StoreKitManager", "Restore flow finished. Restored entitlement: \(restored)")
+        if restored {
+            AnalyticsReporter.logEvent?(AnalyticsEventName.purchaseRestored, nil)
+            return true
+        }
+
+        throw StoreError.nothingToRestore
     }
 
-    private func updatePurchaseStatus() async {
+    func refreshPurchaseStatus() async -> Bool {
+        let isPurchased = await hasActiveEntitlement()
+        isFourInOnePurchased = isPurchased
+
+        Logging.l(
+            tag: "StoreKitManager",
+            "4-in-1 entitlement status updated. Purchased: \(isPurchased)"
+        )
+
+        return isPurchased
+    }
+
+    private func hasActiveEntitlement() async -> Bool {
         for await result in Transaction.currentEntitlements {
             if case .verified(let transaction) = result,
-               transaction.productID == Self.fourInOneProductID {
-                isFourInOnePurchased = true
-                return
+               transaction.productID == Self.fourInOneProductID,
+               isActive(transaction) {
+                return true
             }
         }
-        isFourInOnePurchased = false
+
+        if let latest = await Transaction.latest(for: Self.fourInOneProductID),
+           case .verified(let transaction) = latest,
+           isActive(transaction) {
+            return true
+        }
+
+        return false
     }
 
     private func listenForTransactions() -> Task<Void, Never> {
-        Task.detached { [weak self] in
+        Task { [weak self] in
             for await result in Transaction.updates {
                 if case .verified(let transaction) = result {
+                    await self?.refreshPurchaseStatus()
                     await transaction.finish()
-                    await self?.updatePurchaseStatus()
                 }
             }
         }
+    }
+
+    private func isActive(_ transaction: Transaction) -> Bool {
+        transaction.revocationDate == nil
     }
 
     private func checkVerified<T>(_ result: VerificationResult<T>) throws -> T {
@@ -112,11 +165,14 @@ final class StoreKitManager: ObservableObject {
 
 enum StoreError: LocalizedError {
     case failedVerification
+    case nothingToRestore
 
     var errorDescription: String? {
         switch self {
         case .failedVerification:
-            return String(localized: "str.purchase_verification_failed")
+            return "str.purchase_verification_failed".localize
+        case .nothingToRestore:
+            return "No previous 4-in-1 purchase was found for this Apple Account."
         }
     }
 }

@@ -1,4 +1,5 @@
 import SwiftUI
+import BookletCore
 import PDFKit
 import BookletPDFKit
 
@@ -31,11 +32,11 @@ struct HistoryView: View {
                 .font(.system(size: 48, weight: .light))
                 .foregroundStyle(Theme.Colors.tertiaryText)
 
-            Text("str.no_history")
+            Text("str.no_history".localize)
                 .font(.system(size: 20, weight: .bold))
                 .foregroundStyle(Theme.Colors.primaryText)
 
-            Text("str.no_history_subtitle")
+            Text("str.no_history_subtitle".localize)
                 .font(Theme.Fonts.cellBody)
                 .foregroundStyle(Theme.Colors.secondaryText)
                 .multilineTextAlignment(.center)
@@ -84,7 +85,7 @@ struct HistoryView: View {
                         .padding(.vertical, 2)
                         .background(Color.accentColor.opacity(Theme.Opacity.tint), in: Capsule())
 
-                    Text("\(item.pageCount) " + String(localized: "str.pages_suffix"))
+                    Text("\(item.pageCount) " + "str.pages_suffix".localize)
                         .font(Theme.Fonts.badge)
                         .foregroundStyle(Theme.Colors.tertiaryText)
                 }
@@ -117,11 +118,11 @@ struct HistoryView: View {
                     .font(.system(size: 48, weight: .light))
                     .foregroundStyle(Theme.Colors.tertiaryText)
 
-                Text("str.file_not_found")
+                Text("str.file_not_found".localize)
                     .font(Theme.Fonts.sectionTitle)
                     .foregroundStyle(Theme.Colors.primaryText)
 
-                Text("str.file_not_found_subtitle")
+                Text("str.file_not_found_subtitle".localize)
                     .font(Theme.Fonts.subtitle)
                     .foregroundStyle(Theme.Colors.secondaryText)
                     .multilineTextAlignment(.center)
@@ -129,7 +130,7 @@ struct HistoryView: View {
             .padding(40)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(String(localized: "str.close")) {
+                    Button("str.close".localize) {
                         selectedItem = nil
                     }
                 }

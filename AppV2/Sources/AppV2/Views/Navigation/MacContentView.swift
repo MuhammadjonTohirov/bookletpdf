@@ -1,4 +1,5 @@
 import SwiftUI
+import BookletCore
 import PDFKit
 import UniformTypeIdentifiers
 import BookletPDFKit
@@ -7,6 +8,7 @@ import BookletPDFKit
 struct MacContentView: View {
     @State private var selectedItem: SidebarItem? = .converter
     @EnvironmentObject private var viewModel: DocumentConvertViewModel
+    @EnvironmentObject private var languageManager: LanguageManager
 
     var body: some View {
         NavigationSplitView {
@@ -15,6 +17,7 @@ struct MacContentView: View {
             detailView
                 .frame(minWidth: 600)
         }
+        .id(languageManager.currentLanguage)
         .navigationSplitViewStyle(.balanced)
         .fileImporter(
             isPresented: $viewModel.showFileImporter,
@@ -30,7 +33,7 @@ struct MacContentView: View {
             defaultFilename: viewModel.convertedFileName
         ) { _ in }
         .alert(
-            Text("str.error"),
+            Text("str.error".localize),
             isPresented: $viewModel.showError,
             presenting: viewModel.errorMessage
         ) { _ in

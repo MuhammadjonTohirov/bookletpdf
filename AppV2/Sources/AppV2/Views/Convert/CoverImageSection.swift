@@ -1,4 +1,5 @@
 import SwiftUI
+import BookletCore
 import BookletPDFKit
 
 struct CoverImageSection: View {
@@ -8,7 +9,7 @@ struct CoverImageSection: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Layout.itemSpacing) {
-            Text("str.book_cover")
+            Text("str.book_cover".localize)
                 .font(Theme.Fonts.sectionTitle)
                 .foregroundStyle(Theme.Colors.primaryText)
 
@@ -27,11 +28,11 @@ struct CoverImageSection: View {
                     .font(.system(size: 28, weight: .light))
                     .foregroundStyle(Theme.Colors.secondaryText)
 
-                Text("str.add_cover_image")
+                Text("str.add_cover_image".localize)
                     .font(Theme.Fonts.bodyMedium)
                     .foregroundStyle(Theme.Colors.primaryText)
 
-                Text("str.optional_cover_subtitle")
+                Text("str.optional_cover_subtitle".localize)
                     .font(Theme.Fonts.caption)
                     .foregroundStyle(Theme.Colors.secondaryText)
             }
@@ -56,11 +57,11 @@ struct CoverImageSection: View {
                 .clipShape(RoundedRectangle(cornerRadius: Theme.CornerRadius.icon))
 
             VStack(alignment: .leading, spacing: 4) {
-                Text("str.cover_added")
+                Text("str.cover_added".localize)
                     .font(Theme.Fonts.bodyBold)
                     .foregroundStyle(Theme.Colors.primaryText)
 
-                Text("str.will_be_first_page")
+                Text("str.will_be_first_page".localize)
                     .font(Theme.Fonts.caption)
                     .foregroundStyle(Theme.Colors.secondaryText)
             }

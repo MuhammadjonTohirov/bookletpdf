@@ -1,14 +1,28 @@
 import SwiftUI
 import UniformTypeIdentifiers
+import BookletCore
 import BookletPDFKit
+
+private enum ConfigureLayoutSheet: Identifiable {
+    case printingGuide
+    case purchase
+
+    var id: Int {
+        switch self {
+        case .printingGuide: 0
+        case .purchase: 1
+        }
+    }
+}
 
 struct ConfigureLayoutView: View {
     @EnvironmentObject private var viewModel: DocumentConvertViewModel
     @ObservedObject private var storeManager = StoreKitManager.shared
     @State private var showCoverImporter = false
-    @State private var showPrintingGuide = false
-    @State private var showPurchasePrompt = false
+    @State private var activeSheet: ConfigureLayoutSheet?
     @State private var printingGuideType: BookletType = .type2
+    @State private var showDailyLimitAlert = false
+    @ObservedObject private var conversionLimit = ConversionLimitManager.shared
 
     var body: some View {
         ScrollView {
@@ -22,14 +36,14 @@ struct ConfigureLayoutView: View {
         }
         .background(Theme.Colors.secondaryBackground.opacity(Theme.Opacity.faded))
         #if os(iOS)
-        .navigationTitle(Text("str.configure_layout"))
+        .navigationTitle(Text("str.configure_layout".localize))
         .navigationBarTitleDisplayMode(.inline)
         #endif
         #if os(macOS)
         .toolbar {
             ToolbarItem(placement: .navigation) {
                 Button(action: { viewModel.clearDocuments() }) {
-                    Label("str.back", systemImage: "chevron.left")
+                    Label("str.back".localize, systemImage: "chevron.left")
                 }
                 .disabled(viewModel.isConverting)
             }
@@ -47,11 +61,18 @@ struct ConfigureLayoutView: View {
         ) { result in
             handleCoverImageResult(result)
         }
-        .sheet(isPresented: $showPrintingGuide) {
-            BookletPrintingGuideSheet(type: printingGuideType)
-        }
-        .sheet(isPresented: $showPurchasePrompt) {
-            PurchasePromptView(storeManager: storeManager)
+        .sheet(item: $activeSheet) { sheet in
+            switch sheet {
+            case .printingGuide:
+                BookletPrintingGuideSheet(type: printingGuideType)
+            case .purchase:
+                PurchasePromptView(storeManager: storeManager)
+                    #if os(iOS)
+                    .presentationDetents([.large])
+                    .presentationDragIndicator(.visible)
+                    .presentationCornerRadius(32)
+                    #endif
+            }
         }
         #if os(iOS)
         .navigationDestination(isPresented: $viewModel.showExport) {
@@ -83,6 +104,9 @@ struct ConfigureLayoutView: View {
             let accessed = url.startAccessingSecurityScopedResource()
             defer { if accessed { url.stopAccessingSecurityScopedResource() } }
             viewModel.coverImageData = try? Data(contentsOf: url)
+            if viewModel.coverImageData != nil {
+                AnalyticsReporter.logEvent?(AnalyticsEventName.coverImageAdded, nil)
+            }
         case .failure(let error):
             viewModel.errorMessage = error.localizedDescription
             viewModel.showError = true
@@ -91,7 +115,7 @@ struct ConfigureLayoutView: View {
 
     private var layoutSelectionSection: some View {
         VStack(alignment: .leading, spacing: Theme.Layout.itemSpacing) {
-            Text("str.booklet_layout")
+            Text("str.booklet_layout".localize)
                 .font(Theme.Fonts.sectionTitle)
                 .foregroundStyle(Theme.Colors.primaryText)
 
@@ -105,12 +129,12 @@ struct ConfigureLayoutView: View {
             BookletLayoutOption(
                 type: .type4,
                 isSelected: viewModel.bookletType == .type4,
-                isLocked: !storeManager.isFourInOnePurchased,
+                isLocked: !storeManager.isPro,
                 action: {
-                    if storeManager.isFourInOnePurchased {
+                    if storeManager.isPro {
                         viewModel.bookletType = .type4
                     } else {
-                        showPurchasePrompt = true
+                        activeSheet = .purchase
                     }
                 },
                 infoAction: { presentPrintingGuide(for: .type4) }
@@ -119,9 +143,9 @@ struct ConfigureLayoutView: View {
     }
 
     private var convertButton: some View {
-        Button(action: { viewModel.convertToBooklet() }) {
+        Button(action: handleConvert) {
             HStack(spacing: 10) {
-                Text("str.reorder_pages")
+                Text("str.reorder_pages".localize)
                     .font(Theme.Fonts.cardTitle)
                 Image(systemName: "arrow.right")
                     .font(.system(size: 16, weight: .semibold))
@@ -134,10 +158,44 @@ struct ConfigureLayoutView: View {
         .buttonStyle(.plain)
         .disabled(viewModel.isConverting)
         .padding(.top, 8)
+        .alert(Text("str.daily_limit_reached".localize), isPresented: $showDailyLimitAlert) {
+            Button("str.upgrade_to_pro".localize) {
+                activeSheet = .purchase
+            }
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text("str.daily_limit_message".localize)
+        }
+    }
+
+    private func handleConvert() {
+        guard !storeManager.isPro else {
+            viewModel.convertToBooklet()
+            return
+        }
+
+        #if os(macOS)
+        guard conversionLimit.canConvertOnMacOS else {
+            showDailyLimitAlert = true
+            return
+        }
+        conversionLimit.recordConversion()
+        viewModel.convertToBooklet()
+        #else
+        if conversionLimit.shouldShowAd, let showAd = AdService.showInterstitial {
+            conversionLimit.recordConversion()
+            showAd {
+                viewModel.convertToBooklet()
+            }
+        } else {
+            conversionLimit.recordConversion()
+            viewModel.convertToBooklet()
+        }
+        #endif
     }
 
     private func presentPrintingGuide(for type: BookletType) {
         printingGuideType = type
-        showPrintingGuide = true
+        activeSheet = .printingGuide
     }
 }

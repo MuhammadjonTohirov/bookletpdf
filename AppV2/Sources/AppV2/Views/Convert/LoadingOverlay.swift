@@ -1,4 +1,5 @@
 import SwiftUI
+import BookletCore
 import BookletPDFKit
 
 struct LoadingOverlay: View {
@@ -30,11 +31,11 @@ struct LoadingOverlay: View {
                 }
 
                 VStack(spacing: 6) {
-                    Text("str.converting")
+                    Text("str.converting".localize)
                         .font(Theme.Fonts.sectionTitle)
                         .foregroundStyle(Theme.Colors.primaryText)
 
-                    Text("str.converting_message")
+                    Text("str.converting_message".localize)
                         .font(Theme.Fonts.subtitle)
                         .foregroundStyle(Theme.Colors.secondaryText)
                 }

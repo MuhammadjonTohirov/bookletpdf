@@ -27,7 +27,12 @@
       "Bash(gh api:*)",
       "Bash(ls:*)",
       "Bash(find /Users/r/Documents/Development/Personal/Startups/bookletpdf -name *.xcstrings -o -name *.strings)",
-      "Bash(git rm:*)"
+      "Bash(git rm:*)",
+      "Bash(git checkout:*)",
+      "Bash(grep -r \"FirebaseAnalytics\\\\|FirebaseCrashlytics\\\\|FirebaseMessaging\" /Users/r/Documents/Development/Personal/Startups/bookletpdf --include=*.swift)",
+      "Bash(find /Users/r/Documents/Development/Personal/Startups/bookletpdf -name *.swift -type f)",
+      "Bash(find /Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2 -name *.swift -type f)",
+      "Bash(/usr/libexec/PlistBuddy -c \"Print :GOOGLE_APP_ID\" /Users/r/Documents/Development/Personal/Startups/bookletpdf/bookletPdf/GoogleService-Info.plist 2>&1)"
     ]
   },
   "enableAllProjectMcpServers": false
