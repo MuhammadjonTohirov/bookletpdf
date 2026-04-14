@@ -28,7 +28,7 @@ struct FileDetailCard: View {
                 HStack(spacing: 6) {
                     Image(systemName: "square.stack.3d.up")
                         .font(Theme.Fonts.badge)
-                    Text("str.original_pages \(pageCount)".localize)
+                    Text("str.original_pages %lld".localize(arguments: pageCount))
                         .font(Theme.Fonts.caption)
                 }
                 .foregroundStyle(Theme.Colors.secondaryText)

@@ -28,7 +28,7 @@ final class StoreKitManager: ObservableObject {
 
     #if DEBUG
     /// Set to `false` to force free tier in debug builds, `nil` to use real purchase status
-    var debugIsPro: Bool? = false
+    var debugIsPro: Bool? = nil
     #endif
     @Published private(set) var isLoading = false
     @Published private(set) var isRestoring = false
@@ -108,6 +108,7 @@ final class StoreKitManager: ObservableObject {
         throw StoreError.nothingToRestore
     }
 
+    @discardableResult
     func refreshPurchaseStatus() async -> Bool {
         let isPurchased = await hasActiveEntitlement()
         isFourInOnePurchased = isPurchased
