@@ -169,7 +169,9 @@ struct ConfigureLayoutView: View {
     }
 
     private func handleConvert() {
+        Logging.l(tag: "Ads", "handleConvert isPro=\(storeManager.isPro) shouldShowAd=\(conversionLimit.shouldShowAd) interstitialWired=\(AdService.showInterstitial != nil)")
         guard !storeManager.isPro else {
+            Logging.l(tag: "Ads", "Skipping ad: user is pro")
             viewModel.convertToBooklet()
             return
         }
@@ -183,11 +185,14 @@ struct ConfigureLayoutView: View {
         viewModel.convertToBooklet()
         #else
         if conversionLimit.shouldShowAd, let showAd = AdService.showInterstitial {
+            Logging.l(tag: "Ads", "Requesting interstitial presentation")
             conversionLimit.recordConversion()
             showAd {
+                Logging.l(tag: "Ads", "Interstitial completion fired, starting conversion")
                 viewModel.convertToBooklet()
             }
         } else {
+            Logging.l(tag: "Ads", "No interstitial path: shouldShowAd=\(conversionLimit.shouldShowAd) wired=\(AdService.showInterstitial != nil)")
             conversionLimit.recordConversion()
             viewModel.convertToBooklet()
         }

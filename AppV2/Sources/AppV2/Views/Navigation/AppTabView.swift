@@ -28,6 +28,7 @@ enum AppTab: String, CaseIterable {
 
 struct AppTabView: View {
     @State private var selectedTab: AppTab = .convert
+    @State private var isBannerDismissed = false
     @EnvironmentObject private var viewModel: DocumentConvertViewModel
     @EnvironmentObject private var languageManager: LanguageManager
     @ObservedObject private var storeManager = StoreKitManager.shared
@@ -35,10 +36,9 @@ struct AppTabView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            if !storeManager.isPro && conversionLimit.hasReachedFreeLimit,
+            if !storeManager.isPro && conversionLimit.shouldShowAd && !isBannerDismissed,
                let banner = AdService.bannerView {
-                banner()
-                    .frame(height: 50)
+                bannerSection(banner: banner)
             }
 
             TabView(selection: $selectedTab) {
@@ -69,6 +69,23 @@ struct AppTabView: View {
             Button("OK", role: .cancel) {}
         } message: { message in
             Text(message)
+        }
+    }
+
+    private func bannerSection(banner: () -> AnyView) -> some View {
+        ZStack(alignment: .topTrailing) {
+            banner()
+                .frame(height: 50)
+            Button {
+                isBannerDismissed = true
+            } label: {
+                Image(systemName: "xmark.circle.fill")
+                    .font(.system(size: 18, weight: .semibold))
+                    .symbolRenderingMode(.palette)
+                    .foregroundStyle(Color(.systemGray), Color(.systemBackground))
+            }
+            .accessibilityLabel(Text("str.close".localize))
+            .padding(4)
         }
     }
 

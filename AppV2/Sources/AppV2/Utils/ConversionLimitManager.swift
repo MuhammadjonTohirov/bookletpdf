@@ -26,7 +26,11 @@ public final class ConversionLimitManager: ObservableObject {
 
     /// Whether the user should see an interstitial ad (iOS)
     var shouldShowAd: Bool {
-        hasReachedFreeLimit
+        #if DEBUG
+        return true
+        #else
+        return hasReachedFreeLimit
+        #endif
     }
 
     /// Whether the user can convert on macOS (1/day after free limit)
