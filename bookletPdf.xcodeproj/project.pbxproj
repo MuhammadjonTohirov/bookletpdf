@@ -409,7 +409,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = bookletPdf/bookletPdf.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"bookletPdf/Preview Content\"";
 				DEVELOPMENT_TEAM = V3H6LJGQAD;
 				ENABLE_APP_SANDBOX = YES;
@@ -435,7 +435,6 @@
 				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "App needs to access documents folder";
 				INFOPLIST_KEY_NSDownloadsFolderUsageDescription = "App needs to access download folder";
 				INFOPLIST_KEY_NSFileProviderDomainUsageDescription = "App needs file provider";
-				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Allow if you want personalized ads";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -468,7 +467,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = bookletPdf/bookletPdf.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"bookletPdf/Preview Content\"";
 				DEVELOPMENT_TEAM = V3H6LJGQAD;
 				ENABLE_APP_SANDBOX = YES;
@@ -494,7 +493,6 @@
 				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "App needs to access documents folder";
 				INFOPLIST_KEY_NSDownloadsFolderUsageDescription = "App needs to access download folder";
 				INFOPLIST_KEY_NSFileProviderDomainUsageDescription = "App needs file provider";
-				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Allow if you want personalized ads";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

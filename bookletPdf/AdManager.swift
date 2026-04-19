@@ -1,7 +1,6 @@
 #if os(iOS)
 import SwiftUI
 import UIKit
-import AppTrackingTransparency
 import GoogleMobileAds
 import AppV2
 
@@ -30,18 +29,9 @@ final class AdManager: NSObject {
             "GADSimulatorID"
         ]
         #endif
+        MobileAds.shared.start { _ in }
         wireAdService()
-        Task { @MainActor in
-            await requestTrackingAuthorization()
-            MobileAds.shared.start { _ in }
-            loadInterstitial()
-        }
-    }
-
-    private func requestTrackingAuthorization() async {
-        guard ATTrackingManager.trackingAuthorizationStatus == .notDetermined else { return }
-        try? await Task.sleep(nanoseconds: 400_000_000)
-        _ = await ATTrackingManager.requestTrackingAuthorization()
+        loadInterstitial()
     }
 
     private func wireAdService() {
