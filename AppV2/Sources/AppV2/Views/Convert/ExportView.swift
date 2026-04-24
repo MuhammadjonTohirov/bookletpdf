@@ -7,6 +7,9 @@ struct ExportView: View {
     @EnvironmentObject private var viewModel: DocumentConvertViewModel
     @State private var showPreview = false
     @State private var showHelp = false
+    #if os(iOS)
+    @State private var showPrintAssistant = false
+    #endif
 
     var body: some View {
         ScrollView {
@@ -30,6 +33,13 @@ struct ExportView: View {
                 PDFPreviewSheet(document: doc, fileName: viewModel.convertedFileName)
             }
         }
+        #if os(iOS)
+        .sheet(isPresented: $showPrintAssistant) {
+            IOSPrintAssistantSheet {
+                try await viewModel.prepareSplitBookletPDFs()
+            }
+        }
+        #endif
         .alert(Text("str.rate_app_title".localize), isPresented: $viewModel.showRateAppAlert) {
             Button("str.rate_now".localize) {
                 RateAppService.requestReview()
@@ -196,8 +206,14 @@ struct ExportView: View {
         printOp.showsProgressPanel = true
         printOp.runModal(for: window, delegate: nil, didRun: nil, contextInfo: nil)
         #elseif os(iOS)
-        guard let url = viewModel.pdfUrl else { return }
-        let _ = PrinterService.shared.printDocument(url: url)
+        // 2-up on iOS is routed through the guided two-step assistant because
+        // `UIPrintInteractionController` cannot filter odd/even sheets. 4-up
+        // falls back to a single print job (backs aren't required).
+        if viewModel.bookletType == .type2 {
+            showPrintAssistant = true
+        } else if let url = viewModel.pdfUrl {
+            let _ = PrinterService.shared.printDocument(url: url)
+        }
         #endif
     }
 

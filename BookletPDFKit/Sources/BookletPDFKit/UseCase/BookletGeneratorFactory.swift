@@ -15,7 +15,7 @@ public struct BookletGeneratorFactoryImpl: BookletGeneratorFactory {
     private let generators: [BookletType: any BookletPDFGeneratorUseCase]
 
     public init(generators: [BookletType: any BookletPDFGeneratorUseCase] = [
-        .type2: TwoInOnePdfGeneratorUseCaseImpl(),
+        .type2: MergedTwoInOneGeneratorUseCaseImpl(),//TwoInOnePdfGeneratorUseCaseImpl(),
         .type4: FourInOneGeneratorUseCaseImpl()
     ]) {
         self.generators = generators

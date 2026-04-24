@@ -8050,6 +8050,461 @@
           }
         }
       }
+    },
+    "str.print_assistant_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Broschüre drucken"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Print Booklet"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imprimer la brochure"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bukletni chop etish"
+          }
+        },
+        "uz-UZ": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bukletni chop etish"
+          }
+        }
+      }
+    },
+    "str.print_assistant_front_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seite 1 drucken"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Print Side 1"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imprimer le côté 1"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1-tomonni chop etish"
+          }
+        },
+        "uz-UZ": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1-tomonni chop etish"
+          }
+        }
+      }
+    },
+    "str.print_assistant_front_body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ihre Broschüre wird in zwei Durchgängen gedruckt. Drucken Sie zuerst Seite 1 — wir führen Sie durch das Umdrehen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your booklet prints in two passes. Print side 1 first — we'll guide you through the flip."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre brochure s'imprime en deux passages. Imprimez d'abord le côté 1 — nous vous guiderons pour le retournement."
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bukletingiz ikki bosqichda chop etiladi. Avval 1-tomonni chop eting — qog'ozni ag'darish bo'yicha sizga yo'l ko'rsatamiz."
+          }
+        },
+        "uz-UZ": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bukletingiz ikki bosqichda chop etiladi. Avval 1-tomonni chop eting — qog'ozni ag'darish bo'yicha sizga yo'l ko'rsatamiz."
+          }
+        }
+      }
+    },
+    "str.print_assistant_back_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Umdrehen & Seite 2 drucken"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flip & Print Side 2"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retourner et imprimer le côté 2"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ag'darib 2-tomonni chop eting"
+          }
+        },
+        "uz-UZ": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ag'darib 2-tomonni chop eting"
+          }
+        }
+      }
+    },
+    "str.print_assistant_back_body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entnehmen Sie die gedruckten Seiten, drehen Sie den Stapel oben-unten um und legen Sie ihn wieder in das Fach. Dann tippen Sie auf Drucken."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Take the printed pages out, flip the whole stack top-to-bottom, and put them back in the tray. Then tap Print."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retirez les pages imprimées, retournez toute la pile haut-bas et replacez-la dans le bac. Puis appuyez sur Imprimer."
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chop etilgan qog'ozlarni oling, ularni tepa-pastga ag'daring va yana printerga joylang. So'ng Chop etishni bosing."
+          }
+        },
+        "uz-UZ": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chop etilgan qog'ozlarni oling, ularni tepa-pastga ag'daring va yana printerga joylang. So'ng Chop etishni bosing."
+          }
+        }
+      }
+    },
+    "str.print_assistant_flip_hint": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oben-unten umdrehen (Kurze Kante)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flip top-to-bottom (short edge)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retourner haut-bas (bord court)"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tepa-pastga ag'daring (qisqa chet)"
+          }
+        },
+        "uz-UZ": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tepa-pastga ag'daring (qisqa chet)"
+          }
+        }
+      }
+    },
+    "str.print_assistant_done_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fertig!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All set!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "C'est prêt !"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tayyor!"
+          }
+        },
+        "uz-UZ": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tayyor!"
+          }
+        }
+      }
+    },
+    "str.print_assistant_done_body": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falten Sie den Stapel in der Mitte und heften Sie den Rücken, um Ihre Broschüre fertigzustellen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fold the stack in half along the center and staple the spine to finish your booklet."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pliez la pile en deux au centre et agrafez la reliure pour terminer votre brochure."
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qog'ozlarni o'rtadan buklang va bukletni yakunlash uchun tikib qo'ying."
+          }
+        },
+        "uz-UZ": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qog'ozlarni o'rtadan buklang va bukletni yakunlash uchun tikib qo'ying."
+          }
+        }
+      }
+    },
+    "str.print_assistant_print_front": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seite 1 drucken"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Print Side 1"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imprimer le côté 1"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1-tomonni chop etish"
+          }
+        },
+        "uz-UZ": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1-tomonni chop etish"
+          }
+        }
+      }
+    },
+    "str.print_assistant_print_back": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seite 2 drucken"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Print Side 2"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imprimer le côté 2"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2-tomonni chop etish"
+          }
+        },
+        "uz-UZ": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2-tomonni chop etish"
+          }
+        }
+      }
+    },
+    "str.print_assistant_done_button": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fertig"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminé"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tayyor"
+          }
+        },
+        "uz-UZ": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tayyor"
+          }
+        }
+      }
+    },
+    "str.print_assistant_not_now": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nicht jetzt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not now"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas maintenant"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hozir emas"
+          }
+        },
+        "uz-UZ": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hozir emas"
+          }
+        }
+      }
+    },
+    "str.print_assistant_error_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Druck konnte nicht vorbereitet werden"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn't prepare print"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de préparer l'impression"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chop etishga tayyorlab bo'lmadi"
+          }
+        },
+        "uz-UZ": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chop etishga tayyorlab bo'lmadi"
+          }
+        }
+      }
     }
   },
   "version": "1.1"

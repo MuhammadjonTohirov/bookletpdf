@@ -33,6 +33,9 @@ public final class DocumentConvertViewModel: ObservableObject {
     @Published var showRateAppAlert = false
     @Published var recentConversions: [RecentConversion] = []
 
+    private var cachedSplitBookletPDFs: SplitBookletPDFs?
+    private var cachedSplitSourceURL: URL?
+
     private let generatorFactory: BookletGeneratorFactory
     private let duplicateFileUseCase: DuplicateFileUseCase
     private let prepareBookletInputUseCase: PrepareBookletInputUseCase
@@ -164,6 +167,22 @@ public final class DocumentConvertViewModel: ObservableObject {
         showError = false
         bookletType = .type2
         coverImageData = nil
+        cachedSplitBookletPDFs = nil
+        cachedSplitSourceURL = nil
+    }
+
+    /// Splits the current merged booklet into front/back PDFs for the iOS
+    /// two-step print flow. Cached per merged URL so reopening the print
+    /// assistant doesn't re-split.
+    func prepareSplitBookletPDFs() async throws -> SplitBookletPDFs {
+        guard let url = pdfUrl else { throw BookletError.invalidDocument }
+        if let cached = cachedSplitBookletPDFs, cachedSplitSourceURL == url {
+            return cached
+        }
+        let split = try await MergedPDFSplitter().split(mergedURL: url)
+        cachedSplitBookletPDFs = split
+        cachedSplitSourceURL = url
+        return split
     }
 
     func refreshRecentConversions() {
