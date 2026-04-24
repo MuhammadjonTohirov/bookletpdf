@@ -346,3 +346,276 @@ private extension OSColor {
 
     #expect(brandedDoc.pageCount == bookletDoc.pageCount)
 }
+
+// MARK: - MergedTwoInOneGenerator Tests
+
+@Test func mergedTwoUpHalvesPageCountForAlignedInput() async throws {
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen, .testBlue, .testOrange],
+        name: "merged-4p.pdf"
+    )
+
+    let outputURL = try await MergedTwoInOneGeneratorUseCaseImpl().makeBookletPDF(url: sourceURL)
+    guard let doc = PDFDocument(url: outputURL) else { throw TestError.documentCreationFailed }
+
+    #expect(doc.pageCount == 2)
+}
+
+@Test func mergedTwoUpPadsToMultipleOfFour() async throws {
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen, .testBlue, .testOrange, .testPink],
+        name: "merged-5p.pdf"
+    )
+
+    let outputURL = try await MergedTwoInOneGeneratorUseCaseImpl().makeBookletPDF(url: sourceURL)
+    guard let doc = PDFDocument(url: outputURL) else { throw TestError.documentCreationFailed }
+
+    #expect(doc.pageCount == 4)
+}
+
+@Test func mergedTwoUpHandlesSinglePageInput() async throws {
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed],
+        name: "merged-1p.pdf"
+    )
+
+    let outputURL = try await MergedTwoInOneGeneratorUseCaseImpl().makeBookletPDF(url: sourceURL)
+    guard let doc = PDFDocument(url: outputURL) else { throw TestError.documentCreationFailed }
+
+    #expect(doc.pageCount == 2)
+}
+
+@Test func mergedTwoUpHandlesTwoPageInput() async throws {
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen],
+        name: "merged-2p.pdf"
+    )
+
+    let outputURL = try await MergedTwoInOneGeneratorUseCaseImpl().makeBookletPDF(url: sourceURL)
+    guard let doc = PDFDocument(url: outputURL) else { throw TestError.documentCreationFailed }
+
+    #expect(doc.pageCount == 2)
+}
+
+@Test func mergedTwoUpHandlesThreePageInput() async throws {
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen, .testBlue],
+        name: "merged-3p.pdf"
+    )
+
+    let outputURL = try await MergedTwoInOneGeneratorUseCaseImpl().makeBookletPDF(url: sourceURL)
+    guard let doc = PDFDocument(url: outputURL) else { throw TestError.documentCreationFailed }
+
+    #expect(doc.pageCount == 2)
+}
+
+@Test func mergedTwoUpOutputIsLandscape() async throws {
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen, .testBlue, .testOrange],
+        name: "merged-landscape.pdf"
+    )
+
+    guard let sourceDoc = PDFDocument(url: sourceURL),
+          let sourcePage = sourceDoc.page(at: 0) else {
+        throw TestError.documentCreationFailed
+    }
+    let sourceSize = sourcePage.bounds(for: .mediaBox).size
+
+    let outputURL = try await MergedTwoInOneGeneratorUseCaseImpl().makeBookletPDF(url: sourceURL)
+    guard let doc = PDFDocument(url: outputURL),
+          let outputPage = doc.page(at: 0) else {
+        throw TestError.documentCreationFailed
+    }
+    let outputSize = outputPage.bounds(for: .mediaBox).size
+
+    #expect(abs(outputSize.width - sourceSize.width * 2) < 1)
+    #expect(abs(outputSize.height - sourceSize.height) < 1)
+}
+
+@Test func mergedTwoUpPlacesLastAndFirstOnOuterSheet() async throws {
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen, .testBlue, .testOrange],
+        name: "merged-outer.pdf"
+    )
+
+    let outputURL = try await MergedTwoInOneGeneratorUseCaseImpl().makeBookletPDF(url: sourceURL)
+    guard let doc = PDFDocument(url: outputURL) else { throw TestError.documentCreationFailed }
+
+    #expect(try mergedSheet(at: 0, in: doc, leftMatches: .testOrange, rightMatches: .testRed))
+}
+
+@Test func mergedTwoUpPlacesInnerPagesOnInnerSheet() async throws {
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen, .testBlue, .testOrange],
+        name: "merged-inner.pdf"
+    )
+
+    let outputURL = try await MergedTwoInOneGeneratorUseCaseImpl().makeBookletPDF(url: sourceURL)
+    guard let doc = PDFDocument(url: outputURL) else { throw TestError.documentCreationFailed }
+
+    #expect(try mergedSheet(at: 1, in: doc, leftMatches: .testGreen, rightMatches: .testBlue))
+}
+
+// MARK: - MergedTwoInOneGenerator Split Tests (iOS manual-simplex flow)
+
+@Test func splitBookletProducesFrontAndBackForFourPageInput() async throws {
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen, .testBlue, .testOrange],
+        name: "split-4p.pdf"
+    )
+
+    let split = try await MergedTwoInOneGeneratorUseCaseImpl().makeSplitBookletPDFs(url: sourceURL)
+
+    guard let frontDoc = PDFDocument(url: split.front),
+          let backDoc = PDFDocument(url: split.back) else {
+        throw TestError.documentCreationFailed
+    }
+
+    // 4-page input → 2 merged sheets → 1 front + 1 back
+    #expect(frontDoc.pageCount == 1)
+    #expect(backDoc.pageCount == 1)
+}
+
+@Test func splitBookletEightPageInputHasTwoFrontsAndTwoBacks() async throws {
+    // 5-page source is padded to 8 → 4 merged sheets → 2 fronts + 2 backs
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen, .testBlue, .testOrange, .testPink],
+        name: "split-5p.pdf"
+    )
+
+    let split = try await MergedTwoInOneGeneratorUseCaseImpl().makeSplitBookletPDFs(url: sourceURL)
+
+    guard let frontDoc = PDFDocument(url: split.front),
+          let backDoc = PDFDocument(url: split.back) else {
+        throw TestError.documentCreationFailed
+    }
+
+    #expect(frontDoc.pageCount == 2)
+    #expect(backDoc.pageCount == 2)
+}
+
+@Test func splitBookletFrontContainsOutermostSheet() async throws {
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen, .testBlue, .testOrange],
+        name: "split-front.pdf"
+    )
+
+    let split = try await MergedTwoInOneGeneratorUseCaseImpl().makeSplitBookletPDFs(url: sourceURL)
+    guard let frontDoc = PDFDocument(url: split.front) else {
+        throw TestError.documentCreationFailed
+    }
+
+    // Outermost front sheet = [last page, first page] = [orange, red]
+    #expect(try mergedSheet(at: 0, in: frontDoc, leftMatches: .testOrange, rightMatches: .testRed))
+}
+
+@Test func splitBookletBackContainsInnerSheet() async throws {
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen, .testBlue, .testOrange],
+        name: "split-back.pdf"
+    )
+
+    let split = try await MergedTwoInOneGeneratorUseCaseImpl().makeSplitBookletPDFs(url: sourceURL)
+    guard let backDoc = PDFDocument(url: split.back) else {
+        throw TestError.documentCreationFailed
+    }
+
+    // Outermost back sheet = [green, blue] (simplex-flip layout)
+    #expect(try mergedSheet(at: 0, in: backDoc, leftMatches: .testGreen, rightMatches: .testBlue))
+}
+
+@Test func splitBookletOutputMatchesMergedInTotal() async throws {
+    // Merged page count should equal front + back combined.
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen, .testBlue, .testOrange, .testPink],
+        name: "split-total.pdf"
+    )
+
+    let generator = MergedTwoInOneGeneratorUseCaseImpl()
+    let mergedURL = try await generator.makeBookletPDF(url: sourceURL)
+    let split = try await generator.makeSplitBookletPDFs(url: sourceURL)
+
+    guard let mergedDoc = PDFDocument(url: mergedURL),
+          let frontDoc = PDFDocument(url: split.front),
+          let backDoc = PDFDocument(url: split.back) else {
+        throw TestError.documentCreationFailed
+    }
+
+    #expect(mergedDoc.pageCount == frontDoc.pageCount + backDoc.pageCount)
+}
+
+@Test func splitBookletOutputIsLandscape() async throws {
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen, .testBlue, .testOrange],
+        name: "split-landscape.pdf"
+    )
+
+    guard let sourceDoc = PDFDocument(url: sourceURL),
+          let sourcePage = sourceDoc.page(at: 0) else {
+        throw TestError.documentCreationFailed
+    }
+    let sourceSize = sourcePage.bounds(for: .mediaBox).size
+
+    let split = try await MergedTwoInOneGeneratorUseCaseImpl().makeSplitBookletPDFs(url: sourceURL)
+    guard let frontDoc = PDFDocument(url: split.front),
+          let frontPage = frontDoc.page(at: 0),
+          let backDoc = PDFDocument(url: split.back),
+          let backPage = backDoc.page(at: 0) else {
+        throw TestError.documentCreationFailed
+    }
+
+    let frontSize = frontPage.bounds(for: .mediaBox).size
+    let backSize = backPage.bounds(for: .mediaBox).size
+
+    #expect(abs(frontSize.width - sourceSize.width * 2) < 1)
+    #expect(abs(frontSize.height - sourceSize.height) < 1)
+    #expect(abs(backSize.width - sourceSize.width * 2) < 1)
+    #expect(abs(backSize.height - sourceSize.height) < 1)
+}
+
+private func mergedSheet(
+    at index: Int,
+    in document: PDFDocument,
+    leftMatches leftColor: OSColor,
+    rightMatches rightColor: OSColor
+) throws -> Bool {
+    guard let page = document.page(at: index) else {
+        throw TestError.pageCreationFailed
+    }
+
+    let thumbnail = page.thumbnail(of: .init(width: 64, height: 32), for: .mediaBox)
+    let leftActual = try sampleRGB(of: thumbnail, cropTo: CGRect(x: 8, y: 8, width: 16, height: 16))
+    let rightActual = try sampleRGB(of: thumbnail, cropTo: CGRect(x: 40, y: 8, width: 16, height: 16))
+
+    let leftExpected = try averageRGB(for: makeSolidImage(color: leftColor))
+    let rightExpected = try averageRGB(for: makeSolidImage(color: rightColor))
+
+    let tolerance = 40
+    let leftOK = zip(leftExpected, leftActual).allSatisfy { abs(Int($0) - Int($1)) <= tolerance }
+    let rightOK = zip(rightExpected, rightActual).allSatisfy { abs(Int($0) - Int($1)) <= tolerance }
+
+    return leftOK && rightOK
+}
+
+private func sampleRGB(of image: OSImage, cropTo rect: CGRect) throws -> [UInt8] {
+    guard let cgImage = image.cgImageRepresentation,
+          let cropped = cgImage.cropping(to: rect) else {
+        throw TestError.imageSamplingFailed
+    }
+
+    var pixel = [UInt8](repeating: 0, count: 4)
+    guard let context = CGContext(
+        data: &pixel,
+        width: 1,
+        height: 1,
+        bitsPerComponent: 8,
+        bytesPerRow: 4,
+        space: CGColorSpaceCreateDeviceRGB(),
+        bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+    ) else {
+        throw TestError.imageSamplingFailed
+    }
+
+    context.draw(cropped, in: CGRect(x: 0, y: 0, width: 1, height: 1))
+    return Array(pixel.prefix(3))
+}

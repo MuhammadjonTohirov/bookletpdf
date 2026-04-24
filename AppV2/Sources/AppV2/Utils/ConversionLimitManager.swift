@@ -12,6 +12,8 @@ public final class ConversionLimitManager: ObservableObject {
     private static let freeConversionLimit = 3
     /// Daily limit for macOS after free conversions are used
     private static let macOSDailyLimit = 1
+    /// Show an interstitial once every N eligible conversions (post free limit)
+    private static let interstitialCadence = 2
 
     @Published public private(set) var totalConversions: Int
 
@@ -24,12 +26,16 @@ public final class ConversionLimitManager: ObservableObject {
         totalConversions >= Self.freeConversionLimit
     }
 
-    /// Whether the user should see an interstitial ad (iOS)
+    /// Whether the user should see an interstitial ad (iOS).
+    /// After the free limit, shows once every `interstitialCadence` conversions
+    /// so users aren't hit with a full-screen ad on every single conversion.
     var shouldShowAd: Bool {
         #if DEBUG
         return true
         #else
-        return hasReachedFreeLimit
+        guard hasReachedFreeLimit else { return false }
+        let postFreeCount = totalConversions - Self.freeConversionLimit
+        return postFreeCount % Self.interstitialCadence == 0
         #endif
     }
 

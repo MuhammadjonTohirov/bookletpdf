@@ -26,4 +26,23 @@ final class PrinterService: @unchecked Sendable {
         return false
         #endif
     }
+
+    #if os(iOS)
+    /// Presents the iOS print sheet and resolves with whether the user
+    /// actually sent the job to the printer. Used by the guided two-step
+    /// flow to decide when to advance to the next side.
+    @MainActor
+    func printDocumentAwaitingCompletion(url: URL) async -> Bool {
+        guard UIPrintInteractionController.isPrintingAvailable else { return false }
+
+        let printController = UIPrintInteractionController.shared
+        printController.printingItem = url
+
+        return await withCheckedContinuation { continuation in
+            printController.present(animated: true) { _, completed, _ in
+                continuation.resume(returning: completed)
+            }
+        }
+    }
+    #endif
 }
