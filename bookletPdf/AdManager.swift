@@ -2,6 +2,7 @@
 import SwiftUI
 import UIKit
 import GoogleMobileAds
+import FirebaseAnalytics
 import AppV2
 
 @MainActor
@@ -29,7 +30,9 @@ final class AdManager: NSObject {
             "GADSimulatorID"
         ]
         #endif
-        MobileAds.shared.start { _ in }
+        MobileAds.shared.start { _ in
+            AdLog.event(AnalyticsEventName.adSdkConfigured)
+        }
         wireAdService()
         loadInterstitial()
     }
@@ -43,21 +46,49 @@ final class AdManager: NSObject {
             self?.loadInterstitial()
         }
 
-        AdService.bannerView = {
-            AnyView(BannerAdView(adUnitID: AdManager.bannerAdUnitID))
+        AdService.bannerView = { didChangeLoadState in
+            AnyView(
+                BannerAdView(
+                    adUnitID: AdManager.bannerAdUnitID,
+                    didChangeLoadState: didChangeLoadState
+                )
+            )
         }
     }
 
     private func loadInterstitial() {
-        AdLog.log("loadInterstitial begin unit=\(Self.interstitialAdUnitID)")
-        InterstitialAd.load(with: Self.interstitialAdUnitID) { [weak self] ad, error in
+        let interstitialAdUnitID = Self.interstitialAdUnitID
+        AdLog.log("loadInterstitial begin unit=\(interstitialAdUnitID)")
+        AdLog.event(
+            AnalyticsEventName.adInterstitialLoadRequested,
+            parameters: [
+                AnalyticsParamKey.adUnitID: interstitialAdUnitID,
+                AnalyticsParamKey.adFormat: "interstitial"
+            ]
+        )
+        InterstitialAd.load(with: interstitialAdUnitID) { [weak self] ad, error in
             if let error {
                 AdLog.log("Failed to load interstitial: \(error.localizedDescription)")
+                AdLog.event(
+                    AnalyticsEventName.adInterstitialLoadFailed,
+                    parameters: AdLog.errorParameters(
+                        error,
+                        adUnitID: interstitialAdUnitID,
+                        adFormat: "interstitial"
+                    )
+                )
                 return
             }
 
             DispatchQueue.main.async {
                 AdLog.log("Interstitial loaded successfully")
+                AdLog.event(
+                    AnalyticsEventName.adInterstitialLoaded,
+                    parameters: [
+                        AnalyticsParamKey.adUnitID: Self.interstitialAdUnitID,
+                        AnalyticsParamKey.adFormat: "interstitial"
+                    ]
+                )
                 self?.interstitialAd = ad
                 self?.interstitialAd?.fullScreenContentDelegate = self
             }
@@ -67,6 +98,13 @@ final class AdManager: NSObject {
     private func showInterstitial(completion: @escaping () -> Void) {
         guard let ad = interstitialAd else {
             AdLog.log("showInterstitial: no ad loaded, firing completion immediately; triggering reload")
+            AdLog.event(
+                AnalyticsEventName.adInterstitialUnavailable,
+                parameters: [
+                    AnalyticsParamKey.adUnitID: Self.interstitialAdUnitID,
+                    AnalyticsParamKey.adFormat: "interstitial"
+                ]
+            )
             loadInterstitial()
             completion()
             return
@@ -82,6 +120,13 @@ final class AdManager: NSObject {
         }
 
         AdLog.log("Presenting interstitial")
+        AdLog.event(
+            AnalyticsEventName.adInterstitialPresented,
+            parameters: [
+                AnalyticsParamKey.adUnitID: Self.interstitialAdUnitID,
+                AnalyticsParamKey.adFormat: "interstitial"
+            ]
+        )
         interstitialCompletion = completion
         ad.present(from: rootVC)
     }
@@ -90,6 +135,7 @@ final class AdManager: NSObject {
 extension AdManager: FullScreenContentDelegate {
     nonisolated func adDidDismissFullScreenContent(_ ad: FullScreenPresentingAd) {
         Task { @MainActor [weak self] in
+            AdLog.event(AnalyticsEventName.adInterstitialDismissed)
             self?.interstitialCompletion?()
             self?.interstitialCompletion = nil
             self?.interstitialAd = nil
@@ -99,6 +145,10 @@ extension AdManager: FullScreenContentDelegate {
 
     nonisolated func ad(_ ad: FullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
         Task { @MainActor [weak self] in
+            AdLog.event(
+                AnalyticsEventName.adInterstitialPresentationFailed,
+                parameters: AdLog.errorParameters(error, adFormat: "interstitial")
+            )
             self?.interstitialCompletion?()
             self?.interstitialCompletion = nil
             self?.loadInterstitial()
@@ -111,6 +161,24 @@ enum AdLog {
         #if DEBUG
         print("[Ads] \(message())")
         #endif
+    }
+
+    static func event(_ name: String, parameters: [String: Any]? = nil) {
+        Analytics.logEvent(name, parameters: parameters)
+    }
+
+    static func errorParameters(_ error: Error, adUnitID: String? = nil, adFormat: String) -> [String: Any] {
+        let nsError = error as NSError
+        var parameters: [String: Any] = [
+            AnalyticsParamKey.adFormat: adFormat,
+            AnalyticsParamKey.error: error.localizedDescription,
+            AnalyticsParamKey.errorCode: nsError.code,
+            AnalyticsParamKey.errorDomain: nsError.domain
+        ]
+        if let adUnitID {
+            parameters[AnalyticsParamKey.adUnitID] = adUnitID
+        }
+        return parameters
     }
 }
 #endif

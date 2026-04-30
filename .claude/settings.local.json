@@ -32,7 +32,13 @@
       "Bash(grep -r \"FirebaseAnalytics\\\\|FirebaseCrashlytics\\\\|FirebaseMessaging\" /Users/r/Documents/Development/Personal/Startups/bookletpdf --include=*.swift)",
       "Bash(find /Users/r/Documents/Development/Personal/Startups/bookletpdf -name *.swift -type f)",
       "Bash(find /Users/r/Documents/Development/Personal/Startups/bookletpdf/AppV2 -name *.swift -type f)",
-      "Bash(/usr/libexec/PlistBuddy -c \"Print :GOOGLE_APP_ID\" /Users/r/Documents/Development/Personal/Startups/bookletpdf/bookletPdf/GoogleService-Info.plist 2>&1)"
+      "Bash(/usr/libexec/PlistBuddy -c \"Print :GOOGLE_APP_ID\" /Users/r/Documents/Development/Personal/Startups/bookletpdf/bookletPdf/GoogleService-Info.plist 2>&1)",
+      "Bash(git tag *)",
+      "Bash(gh release create v1.1.2 --title 'Release 1.1.2 \\(iOS + macOS\\)' --notes ' *)",
+      "Skill(schedule)",
+      "Bash(git *)",
+      "Bash(gh pr *)",
+      "Bash(gh release *)"
     ]
   },
   "enableAllProjectMcpServers": false

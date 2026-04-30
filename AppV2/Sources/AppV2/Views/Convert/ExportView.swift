@@ -35,7 +35,7 @@ struct ExportView: View {
         }
         #if os(iOS)
         .sheet(isPresented: $showPrintAssistant) {
-            IOSPrintAssistantSheet {
+            IOSPrintAssistantSheet(bookletType: viewModel.bookletType) {
                 try await viewModel.prepareSplitBookletPDFs()
             }
         }
@@ -206,14 +206,9 @@ struct ExportView: View {
         printOp.showsProgressPanel = true
         printOp.runModal(for: window, delegate: nil, didRun: nil, contextInfo: nil)
         #elseif os(iOS)
-        // 2-up on iOS is routed through the guided two-step assistant because
-        // `UIPrintInteractionController` cannot filter odd/even sheets. 4-up
-        // falls back to a single print job (backs aren't required).
-        if viewModel.bookletType == .type2 {
-            showPrintAssistant = true
-        } else if let url = viewModel.pdfUrl {
-            let _ = PrinterService.shared.printDocument(url: url)
-        }
+        // iOS routes both 2-up and 4-up through the guided two-step assistant
+        // because `UIPrintInteractionController` cannot filter odd/even sheets.
+        showPrintAssistant = true
         #endif
     }
 

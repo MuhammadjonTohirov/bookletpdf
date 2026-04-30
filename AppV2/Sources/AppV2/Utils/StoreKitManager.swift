@@ -14,9 +14,10 @@ final class StoreKitManager: ObservableObject {
     static let shared = StoreKitManager()
 
     static let fourInOneProductID = "uz.tox.bookletPdf.fourinone"
+    private static let cachedPurchaseKey = "StoreKitManager.fourInOnePurchasedCache"
 
     @Published private(set) var fourInOneProduct: Product?
-    @Published private(set) var isFourInOnePurchased = false
+    @Published private(set) var isFourInOnePurchased: Bool = UserDefaults.standard.bool(forKey: StoreKitManager.cachedPurchaseKey)
 
     var isPro: Bool {
         #if DEBUG
@@ -112,6 +113,7 @@ final class StoreKitManager: ObservableObject {
     func refreshPurchaseStatus() async -> Bool {
         let isPurchased = await hasActiveEntitlement()
         isFourInOnePurchased = isPurchased
+        UserDefaults.standard.set(isPurchased, forKey: Self.cachedPurchaseKey)
 
         Logging.l(
             tag: "StoreKitManager",

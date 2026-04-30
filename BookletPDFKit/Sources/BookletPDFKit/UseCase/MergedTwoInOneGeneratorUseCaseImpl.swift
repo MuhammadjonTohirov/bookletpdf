@@ -19,7 +19,7 @@ public struct SplitBookletPDFs: Sendable {
     }
 }
 
-/// Emits a booklet as two separate PDFs — one for each side of the paper.
+/// Emits a booklet as two separate PDFs — o]ne for each side of the paper.
 ///
 /// Useful on platforms whose print dialog cannot filter odd/even sheets
 /// (notably iOS `UIPrintInteractionController`): the user prints `front`,
@@ -33,7 +33,7 @@ public protocol SplitBookletPDFGeneratorUseCase: Sendable {
 /// Each output page is **one physical sheet face** containing two source pages
 /// drawn side-by-side in saddle-stitch imposition order. Unlike
 /// `TwoInOnePdfGeneratorUseCaseImpl` (which only rearranges pages and relies
-/// on the print dialog's 2-up layout), this generator bakes the imposition
+/// on the print dialog's 2-up layout), this genera0tor bakes the imposition
 /// into the PDF itself — so the print dialog needs no layout/odd-even
 /// configuration.
 ///
