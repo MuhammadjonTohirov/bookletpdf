@@ -16,6 +16,7 @@ struct IOSPrintAssistantSheet: View {
     @State private var split: SplitBookletPDFs?
     @State private var loadError: String?
 
+    let bookletType: BookletType
     let prepareSplit: () async throws -> SplitBookletPDFs
 
     var body: some View {
@@ -172,7 +173,7 @@ struct IOSPrintAssistantSheet: View {
                 .font(.system(size: 16, weight: .medium))
                 .foregroundStyle(Color.accentColor)
 
-            Text("str.print_assistant_flip_hint".localize)
+            Text(flipHintKey.localize)
                 .font(Theme.Fonts.subtitle)
                 .foregroundStyle(Theme.Colors.primaryText)
                 .multilineTextAlignment(.leading)
@@ -195,8 +196,23 @@ struct IOSPrintAssistantSheet: View {
     private var bodyKey: String {
         switch step {
         case .front: return "str.print_assistant_front_body"
-        case .back: return "str.print_assistant_back_body"
-        case .done: return "str.print_assistant_done_body"
+        case .back:
+            switch bookletType {
+            case .type2: return "str.print_assistant_back_body_2in1"
+            case .type4: return "str.print_assistant_back_body_4in1"
+            }
+        case .done:
+            switch bookletType {
+            case .type2: return "str.print_assistant_done_body"
+            case .type4: return "str.print_assistant_done_body_4in1"
+            }
+        }
+    }
+
+    private var flipHintKey: String {
+        switch bookletType {
+        case .type2: return "str.print_assistant_flip_hint_2in1"
+        case .type4: return "str.print_assistant_flip_hint_4in1"
         }
     }
 

@@ -10,6 +10,7 @@ public struct MainView: View {
     @EnvironmentObject var languageManager: LanguageManager
     @Environment(\.scenePhase) private var scenePhase
     @ObservedObject private var storeManager = StoreKitManager.shared
+    @ObservedObject private var whatsNewManager = WhatsNewManager.shared
     @StateObject private var networkMonitor = NetworkMonitor()
     @StateObject private var updateChecker = AppUpdateChecker()
     @State private var showUpdateAlert = false
@@ -57,11 +58,28 @@ public struct MainView: View {
         } message: {
             Text("str.update_required_message".localize)
         }
+        .sheet(isPresented: whatsNewBinding) {
+            WhatsNewView(onDismiss: { whatsNewManager.markSeen() })
+                #if os(iOS)
+                .presentationDetents([.large])
+                .presentationDragIndicator(.visible)
+                .presentationCornerRadius(32)
+                #endif
+        }
         .overlay {
             if !storeManager.isPro && !networkMonitor.isConnected {
                 NoInternetOverlay()
             }
         }
+    }
+
+    private var whatsNewBinding: Binding<Bool> {
+        Binding(
+            get: { whatsNewManager.shouldPresent },
+            set: { newValue in
+                if !newValue { whatsNewManager.markSeen() }
+            }
+        )
     }
 
     private func openUpdateURL() {

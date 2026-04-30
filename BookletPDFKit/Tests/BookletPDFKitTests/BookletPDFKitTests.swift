@@ -108,6 +108,27 @@ private func makeSourcePDF(colors: [OSColor], name: String) throws -> URL {
     return url
 }
 
+private func makeSourcePDF(images: [OSImage], name: String) throws -> URL {
+    let document = PDFDocument()
+
+    for (index, image) in images.enumerated() {
+        guard let page = PDFPage(image: image) else {
+            throw TestError.pageCreationFailed
+        }
+
+        document.insert(page, at: index)
+    }
+
+    let url = FileManager.default.temporaryDirectory
+        .appendingPathComponent("\(UUID().uuidString)_\(name)")
+
+    guard document.write(to: url) else {
+        throw TestError.fileWriteFailed
+    }
+
+    return url
+}
+
 private func makeImageData(color: OSColor) throws -> Data {
     let image = makeSolidImage(color: color)
 
@@ -141,6 +162,31 @@ private func makeSolidImage(
     image.lockFocus()
     color.setFill()
     NSBezierPath(rect: CGRect(origin: .zero, size: size)).fill()
+    image.unlockFocus()
+    return image
+    #endif
+}
+
+private func makeTopBottomImage(
+    top: OSColor,
+    bottom: OSColor,
+    size: CGSize = .init(width: 160, height: 240)
+) -> OSImage {
+    #if canImport(UIKit)
+    let renderer = UIGraphicsImageRenderer(size: size)
+    return renderer.image { context in
+        top.setFill()
+        context.fill(CGRect(x: 0, y: 0, width: size.width, height: size.height / 2))
+        bottom.setFill()
+        context.fill(CGRect(x: 0, y: size.height / 2, width: size.width, height: size.height / 2))
+    }
+    #elseif canImport(AppKit)
+    let image = NSImage(size: size)
+    image.lockFocus()
+    bottom.setFill()
+    NSBezierPath(rect: CGRect(x: 0, y: 0, width: size.width, height: size.height / 2)).fill()
+    top.setFill()
+    NSBezierPath(rect: CGRect(x: 0, y: size.height / 2, width: size.width, height: size.height / 2)).fill()
     image.unlockFocus()
     return image
     #endif
@@ -571,6 +617,255 @@ private extension OSColor {
     #expect(abs(frontSize.height - sourceSize.height) < 1)
     #expect(abs(backSize.width - sourceSize.width * 2) < 1)
     #expect(abs(backSize.height - sourceSize.height) < 1)
+}
+
+// MARK: - MergedFourInOneGenerator Tests
+
+@Test func mergedFourUpQuartersPageCountForAlignedInput() async throws {
+    // 8 pages → 1 sheet → 2 output pages (front + back)
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen, .testBlue, .testOrange,
+                 .testPink, .testPurple, .testTeal, .testYellow],
+        name: "merged4-8p.pdf"
+    )
+
+    let outputURL = try await MergedFourInOneGeneratorUseCaseImpl().makeBookletPDF(url: sourceURL)
+    guard let doc = PDFDocument(url: outputURL) else { throw TestError.documentCreationFailed }
+
+    #expect(doc.pageCount == 2)
+}
+
+@Test func mergedFourUpPadsToMultipleOfEight() async throws {
+    // 5 pages → padded to 8 → 2 output pages
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen, .testBlue, .testOrange, .testPink],
+        name: "merged4-5p.pdf"
+    )
+
+    let outputURL = try await MergedFourInOneGeneratorUseCaseImpl().makeBookletPDF(url: sourceURL)
+    guard let doc = PDFDocument(url: outputURL) else { throw TestError.documentCreationFailed }
+
+    #expect(doc.pageCount == 2)
+}
+
+@Test func mergedFourUpHandlesSinglePageInput() async throws {
+    let sourceURL = try makeSourcePDF(colors: [.testRed], name: "merged4-1p.pdf")
+    let outputURL = try await MergedFourInOneGeneratorUseCaseImpl().makeBookletPDF(url: sourceURL)
+    guard let doc = PDFDocument(url: outputURL) else { throw TestError.documentCreationFailed }
+    #expect(doc.pageCount == 2)
+}
+
+@Test func mergedFourUpHandlesNinePageInput() async throws {
+    // 9 pages → padded to 16 → 2 sheets → 4 output pages
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen, .testBlue, .testOrange,
+                 .testPink, .testPurple, .testTeal, .testYellow, .testRed],
+        name: "merged4-9p.pdf"
+    )
+
+    let outputURL = try await MergedFourInOneGeneratorUseCaseImpl().makeBookletPDF(url: sourceURL)
+    guard let doc = PDFDocument(url: outputURL) else { throw TestError.documentCreationFailed }
+
+    #expect(doc.pageCount == 4)
+}
+
+@Test func mergedFourUpDistributesTenPageBlanksAcrossTwoSheets() async throws {
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen, .testBlue, .testOrange,
+                 .testPink, .testPurple, .testTeal, .testYellow,
+                 .testRed, .testGreen],
+        name: "merged4-10p.pdf"
+    )
+
+    let outputURL = try await MergedFourInOneGeneratorUseCaseImpl().makeBookletPDF(url: sourceURL)
+    guard let doc = PDFDocument(url: outputURL) else { throw TestError.documentCreationFailed }
+
+    #expect(doc.pageCount == 4)
+    #expect(try mergedQuadSheet(
+        at: 0, in: doc,
+        topLeft: .white, topRight: .testRed,
+        bottomLeft: .white, bottomRight: .testPink
+    ))
+    #expect(try mergedQuadSheet(
+        at: 1, in: doc,
+        topLeft: .testGreen, topRight: .white,
+        bottomLeft: .testPurple, bottomRight: .white
+    ))
+    #expect(try mergedQuadSheet(
+        at: 2, in: doc,
+        topLeft: .white, topRight: .testBlue,
+        bottomLeft: .testGreen, bottomRight: .testTeal
+    ))
+    #expect(try mergedQuadSheet(
+        at: 3, in: doc,
+        topLeft: .testOrange, topRight: .white,
+        bottomLeft: .testYellow, bottomRight: .testRed
+    ))
+}
+
+@Test func mergedFourUpOutputIsDoubleBothDimensions() async throws {
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen, .testBlue, .testOrange,
+                 .testPink, .testPurple, .testTeal, .testYellow],
+        name: "merged4-size.pdf"
+    )
+
+    guard let sourceDoc = PDFDocument(url: sourceURL),
+          let sourcePage = sourceDoc.page(at: 0) else {
+        throw TestError.documentCreationFailed
+    }
+    let sourceSize = sourcePage.bounds(for: .mediaBox).size
+
+    let outputURL = try await MergedFourInOneGeneratorUseCaseImpl().makeBookletPDF(url: sourceURL)
+    guard let doc = PDFDocument(url: outputURL),
+          let outputPage = doc.page(at: 0) else {
+        throw TestError.documentCreationFailed
+    }
+    let outputSize = outputPage.bounds(for: .mediaBox).size
+
+    #expect(abs(outputSize.width - sourceSize.width * 2) < 1)
+    #expect(abs(outputSize.height - sourceSize.height * 2) < 1)
+}
+
+@Test func mergedFourUpPlacesOuterSheetQuadrants() async throws {
+    // 8-page input. Sheet 0 front should carry [8, 1, 6, 3]
+    // in 2x2 grid as TL, TR, BL, BR respectively.
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen, .testBlue, .testOrange,
+                 .testPink, .testPurple, .testTeal, .testYellow],
+        name: "merged4-outer-front.pdf"
+    )
+
+    let outputURL = try await MergedFourInOneGeneratorUseCaseImpl().makeBookletPDF(url: sourceURL)
+    guard let doc = PDFDocument(url: outputURL) else { throw TestError.documentCreationFailed }
+
+    #expect(try mergedQuadSheet(
+        at: 0, in: doc,
+        topLeft: .testYellow, topRight: .testRed,
+        bottomLeft: .testPurple, bottomRight: .testBlue
+    ))
+}
+
+@Test func mergedFourUpPlacesOuterSheetBackQuadrants() async throws {
+    // Sheet 0 back should carry [2, 7, 4, 5].
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen, .testBlue, .testOrange,
+                 .testPink, .testPurple, .testTeal, .testYellow],
+        name: "merged4-outer-back.pdf"
+    )
+
+    let outputURL = try await MergedFourInOneGeneratorUseCaseImpl().makeBookletPDF(url: sourceURL)
+    guard let doc = PDFDocument(url: outputURL) else { throw TestError.documentCreationFailed }
+
+    #expect(try mergedQuadSheet(
+        at: 1, in: doc,
+        topLeft: .testGreen, topRight: .testTeal,
+        bottomLeft: .testOrange, bottomRight: .testPink
+    ))
+}
+
+@Test func mergedFourUpFourPageInputUsesOneCutStrip() async throws {
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen, .testBlue, .testOrange],
+        name: "merged4-4p-one-strip.pdf"
+    )
+
+    let outputURL = try await MergedFourInOneGeneratorUseCaseImpl().makeBookletPDF(url: sourceURL)
+    guard let doc = PDFDocument(url: outputURL) else { throw TestError.documentCreationFailed }
+
+    #expect(try mergedQuadSheet(
+        at: 0, in: doc,
+        topLeft: .white, topRight: .testRed,
+        bottomLeft: .white, bottomRight: .testBlue
+    ))
+    #expect(try mergedQuadSheet(
+        at: 1, in: doc,
+        topLeft: .testGreen, topRight: .white,
+        bottomLeft: .testOrange, bottomRight: .white
+    ))
+}
+
+@Test func mergedFourUpKeepsHorizontalCutStripsUpright() async throws {
+    let marker = makeTopBottomImage(top: .testRed, bottom: .testBlue)
+    let sourceURL = try makeSourcePDF(
+        images: Array(repeating: marker, count: 8),
+        name: "merged4-rotation.pdf"
+    )
+
+    let outputURL = try await MergedFourInOneGeneratorUseCaseImpl().makeBookletPDF(url: sourceURL)
+    guard let doc = PDFDocument(url: outputURL),
+          let frontPage = doc.page(at: 0),
+          let backPage = doc.page(at: 1) else {
+        throw TestError.documentCreationFailed
+    }
+
+    let front = frontPage.thumbnail(of: .init(width: 64, height: 64), for: .mediaBox)
+    let back = backPage.thumbnail(of: .init(width: 64, height: 64), for: .mediaBox)
+    let expectedTop = try averageRGB(for: makeSolidImage(color: .testRed))
+    let tolerance = 40
+
+    let frontTopRight = try sampleRGB(of: front, cropTo: CGRect(x: 40, y: 2, width: 8, height: 8))
+    let frontBottomRight = try sampleRGB(of: front, cropTo: CGRect(x: 40, y: 34, width: 8, height: 8))
+    let backTopRight = try sampleRGB(of: back, cropTo: CGRect(x: 40, y: 2, width: 8, height: 8))
+    let backBottomRight = try sampleRGB(of: back, cropTo: CGRect(x: 40, y: 34, width: 8, height: 8))
+
+    #expect(zip(expectedTop, frontTopRight).allSatisfy { abs(Int($0) - Int($1)) <= tolerance })
+    #expect(zip(expectedTop, frontBottomRight).allSatisfy { abs(Int($0) - Int($1)) <= tolerance })
+    #expect(zip(expectedTop, backTopRight).allSatisfy { abs(Int($0) - Int($1)) <= tolerance })
+    #expect(zip(expectedTop, backBottomRight).allSatisfy { abs(Int($0) - Int($1)) <= tolerance })
+}
+
+@Test func mergedFourUpSplitProducesFrontAndBack() async throws {
+    let sourceURL = try makeSourcePDF(
+        colors: [.testRed, .testGreen, .testBlue, .testOrange,
+                 .testPink, .testPurple, .testTeal, .testYellow],
+        name: "merged4-split.pdf"
+    )
+
+    let mergedURL = try await MergedFourInOneGeneratorUseCaseImpl().makeBookletPDF(url: sourceURL)
+    let split = try await MergedPDFSplitter().split(mergedURL: mergedURL)
+
+    guard let frontDoc = PDFDocument(url: split.front),
+          let backDoc = PDFDocument(url: split.back) else {
+        throw TestError.documentCreationFailed
+    }
+
+    // 1 sheet → 1 front + 1 back.
+    #expect(frontDoc.pageCount == 1)
+    #expect(backDoc.pageCount == 1)
+}
+
+private func mergedQuadSheet(
+    at index: Int,
+    in document: PDFDocument,
+    topLeft: OSColor,
+    topRight: OSColor,
+    bottomLeft: OSColor,
+    bottomRight: OSColor
+) throws -> Bool {
+    guard let page = document.page(at: index) else {
+        throw TestError.pageCreationFailed
+    }
+
+    let thumbnail = page.thumbnail(of: .init(width: 64, height: 64), for: .mediaBox)
+    // Image coords are top-left origin: low Y is the top of the image.
+    let tl = try sampleRGB(of: thumbnail, cropTo: CGRect(x: 8,  y: 8,  width: 16, height: 16))
+    let tr = try sampleRGB(of: thumbnail, cropTo: CGRect(x: 40, y: 8,  width: 16, height: 16))
+    let bl = try sampleRGB(of: thumbnail, cropTo: CGRect(x: 8,  y: 40, width: 16, height: 16))
+    let br = try sampleRGB(of: thumbnail, cropTo: CGRect(x: 40, y: 40, width: 16, height: 16))
+
+    let samples: [(OSColor, [UInt8])] = [
+        (topLeft, tl), (topRight, tr),
+        (bottomLeft, bl), (bottomRight, br)
+    ]
+
+    let tolerance = 50
+    for (expectedColor, actual) in samples {
+        let expected = try averageRGB(for: makeSolidImage(color: expectedColor))
+        let ok = zip(expected, actual).allSatisfy { abs(Int($0) - Int($1)) <= tolerance }
+        if !ok { return false }
+    }
+    return true
 }
 
 private func mergedSheet(

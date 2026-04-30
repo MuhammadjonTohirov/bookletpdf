@@ -78,79 +78,23 @@ struct HelpView: View {
     // MARK: - Printing 2-in-1
 
     private var printingSection2in1: some View {
-        helpCard {
-            VStack(alignment: .leading, spacing: 12) {
-                sectionHeader("str.help_print_2in1_title")
-
-                numberedStep(1, text: "str.help_print2_step1")
-                numberedStep(2, text: "str.help_print2_step2")
-                numberedStep(3, text: "str.help_print2_step3")
-                numberedStep(4, text: "str.help_print2_step4")
-
-                bulletGroup {
-                    bulletItem("str.help_print2_step4a")
-                    bulletItem("str.help_print2_step4b")
-                }
-
-                subsectionHeader("str.help_print2_manual_title")
-
-                numberedStep(5, text: "str.help_print2_step5")
-
-                bulletGroup {
-                    bulletItem("str.help_print2_step5a")
-                    bulletItem("str.help_print2_step5b")
-                }
-
-                numberedStep(6, text: "str.help_print2_step6")
-
-                bulletGroup {
-                    bulletItem("str.help_print2_step6a")
-                    bulletItem("str.help_print2_step6b")
-                    bulletItem("str.help_print2_step6c")
-                    bulletItem("str.help_print2_step6d")
-                }
-            }
-        }
+        printingSection(title: "str.help_print_2in1_title", type: .type2)
     }
 
     // MARK: - Printing 4-in-1
 
     private var printingSection4in1: some View {
+        printingSection(title: "str.help_print_4in1_title", type: .type4)
+    }
+
+    private func printingSection(title: LocalizedStringKey, type: BookletType) -> some View {
         helpCard {
             VStack(alignment: .leading, spacing: 12) {
-                sectionHeader("str.help_print_4in1_title")
+                sectionHeader(title)
 
-                numberedStep(1, text: "str.help_print4_step1")
-                numberedStep(2, text: "str.help_print4_step2")
-                numberedStep(3, text: "str.help_print4_step3")
-                numberedStep(4, text: "str.help_print4_step4")
-
-                bulletGroup {
-                    bulletItem("str.help_print4_step4a")
-                    bulletItem("str.help_print4_step4b")
+                ForEach(Array(type.printingSteps.enumerated()), id: \.offset) { pair in
+                    numberedStep(pair.offset + 1, text: LocalizedStringKey(pair.element))
                 }
-
-                subsectionHeader("str.help_print4_manual_title")
-
-                numberedStep(5, text: "str.help_print4_step5")
-
-                bulletGroup {
-                    bulletItem("str.help_print4_manual_a")
-                    bulletItem("str.help_print4_manual_b")
-                    bulletItem("str.help_print4_manual_c")
-                    bulletItem("str.help_print4_manual_d")
-                }
-
-                numberedStep(6, text: "str.help_print4_step6")
-
-                bulletGroup {
-                    bulletItem("str.help_print4_step6a")
-                    bulletItem("str.help_print4_step6b")
-                    bulletItem("str.help_print4_step6c")
-                    bulletItem("str.help_print4_step6d")
-                }
-
-                numberedStep(7, text: "str.help_print4_step7")
             }
         }
     }
@@ -205,13 +149,6 @@ struct HelpView: View {
         .padding(.bottom, 4)
     }
 
-    private func subsectionHeader(_ key: LocalizedStringKey) -> some View {
-        Text(key)
-            .font(Theme.Fonts.bodyMedium)
-            .foregroundStyle(Theme.Colors.primaryText)
-            .padding(.top, 2)
-    }
-
     private func featureRow(icon: String, title: LocalizedStringKey, desc: LocalizedStringKey) -> some View {
         HStack(alignment: .top, spacing: 12) {
             Image(systemName: icon)
@@ -245,13 +182,6 @@ struct HelpView: View {
                 .foregroundStyle(Theme.Colors.secondaryText)
                 .fixedSize(horizontal: false, vertical: true)
         }
-    }
-
-    private func bulletGroup<Content: View>(@ViewBuilder content: () -> Content) -> some View {
-        VStack(alignment: .leading, spacing: 6) {
-            content()
-        }
-        .padding(.leading, 36)
     }
 
     private func bulletItem(_ key: LocalizedStringKey) -> some View {

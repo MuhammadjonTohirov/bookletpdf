@@ -11,7 +11,7 @@ public final class ConversionLimitManager: ObservableObject {
     /// Number of free conversions before restrictions kick in
     private static let freeConversionLimit = 3
     /// Daily limit for macOS after free conversions are used
-    private static let macOSDailyLimit = 1
+    private static let macOSDailyLimit = 3
     /// Show an interstitial once every N eligible conversions (post free limit)
     private static let interstitialCadence = 2
 
@@ -39,7 +39,7 @@ public final class ConversionLimitManager: ObservableObject {
         #endif
     }
 
-    /// Whether the user can convert on macOS (1/day after free limit)
+    /// Whether the user can convert on macOS (3/day after free limit)
     var canConvertOnMacOS: Bool {
         guard hasReachedFreeLimit else { return true }
         return dailyConversionCount < Self.macOSDailyLimit || isNewDay
