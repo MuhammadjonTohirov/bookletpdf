@@ -10,5 +10,6 @@ public enum AdService {
     public static var loadInterstitial: (() -> Void)?
 
     /// Returns a banner ad view. Set by the main target on iOS. Nil on macOS.
-    public static var bannerView: (() -> AnyView)?
+    /// The callback reports whether an ad creative is actually available.
+    public static var bannerView: ((_ didChangeLoadState: @escaping (Bool) -> Void) -> AnyView)?
 }

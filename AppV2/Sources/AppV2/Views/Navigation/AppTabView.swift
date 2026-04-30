@@ -29,14 +29,14 @@ enum AppTab: String, CaseIterable {
 struct AppTabView: View {
     @State private var selectedTab: AppTab = .convert
     @State private var isBannerDismissed = false
+    @State private var isBannerLoaded = false
     @EnvironmentObject private var viewModel: DocumentConvertViewModel
     @EnvironmentObject private var languageManager: LanguageManager
     @ObservedObject private var storeManager = StoreKitManager.shared
-    @ObservedObject private var conversionLimit = ConversionLimitManager.shared
 
     var body: some View {
         VStack(spacing: 0) {
-            if !storeManager.isPro && conversionLimit.shouldShowAd && !isBannerDismissed,
+            if !storeManager.isPro && !isBannerDismissed,
                let banner = AdService.bannerView {
                 bannerSection(banner: banner)
             }
@@ -72,20 +72,27 @@ struct AppTabView: View {
         }
     }
 
-    private func bannerSection(banner: () -> AnyView) -> some View {
+    private func bannerSection(banner: @escaping (@escaping (Bool) -> Void) -> AnyView) -> some View {
         ZStack(alignment: .topTrailing) {
-            banner()
-                .frame(height: 50)
-            Button {
-                isBannerDismissed = true
-            } label: {
-                Image(systemName: "xmark.circle.fill")
-                    .font(.system(size: 18, weight: .semibold))
-                    .symbolRenderingMode(.palette)
-                    .foregroundStyle(Color(.systemGray), Color(.systemBackground))
+            banner { isLoaded in
+                isBannerLoaded = isLoaded
             }
-            .accessibilityLabel(Text("str.close".localize))
-            .padding(4)
+                .frame(height: isBannerLoaded ? 50 : 0)
+                .opacity(isBannerLoaded ? 1 : 0)
+                .clipped()
+
+            if isBannerLoaded {
+                Button {
+                    isBannerDismissed = true
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .font(.system(size: 18, weight: .semibold))
+                        .symbolRenderingMode(.palette)
+                        .foregroundStyle(Color(.systemGray), Color(.systemBackground))
+                }
+                .accessibilityLabel(Text("str.close".localize))
+                .padding(4)
+            }
         }
     }
 

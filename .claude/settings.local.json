@@ -37,7 +37,8 @@
       "Bash(gh release create v1.1.2 --title 'Release 1.1.2 \\(iOS + macOS\\)' --notes ' *)",
       "Skill(schedule)",
       "Bash(git *)",
-      "Bash(gh pr *)"
+      "Bash(gh pr *)",
+      "Bash(gh release *)"
     ]
   },
   "enableAllProjectMcpServers": false

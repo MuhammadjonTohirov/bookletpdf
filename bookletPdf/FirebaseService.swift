@@ -25,6 +25,7 @@ enum FirebaseService {
     static func configure() {
         Logging.l(tag: tag, "Configuring Firebase...")
         FirebaseApp.configure()
+        Analytics.setAnalyticsCollectionEnabled(true)
         Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(true)
 
         #if os(iOS)
