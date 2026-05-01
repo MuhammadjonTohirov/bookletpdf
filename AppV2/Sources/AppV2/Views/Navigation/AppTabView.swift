@@ -48,6 +48,15 @@ struct AppTabView: View {
             }
             .id(languageManager.currentLanguage)
         }
+        .onAppear {
+            Logging.l(tag: "Ads", "AppTabView appeared isPro=\(storeManager.isPro) bannerDismissed=\(isBannerDismissed) bannerWired=\(AdService.bannerView != nil)")
+        }
+        .onReceive(NotificationCenter.default.publisher(for: AdService.interstitialDismissedNotification)) { _ in
+            guard isBannerDismissed else { return }
+            Logging.l(tag: "Ads", "Interstitial dismissed -> restoring banner")
+            isBannerLoaded = false
+            isBannerDismissed = false
+        }
         .fileImporter(
             isPresented: $viewModel.showFileImporter,
             allowedContentTypes: [.pdf],
@@ -75,9 +84,10 @@ struct AppTabView: View {
     private func bannerSection(banner: @escaping (@escaping (Bool) -> Void) -> AnyView) -> some View {
         ZStack(alignment: .topTrailing) {
             banner { isLoaded in
+                Logging.l(tag: "Ads", "Banner load state changed isLoaded=\(isLoaded)")
                 isBannerLoaded = isLoaded
             }
-                .frame(height: isBannerLoaded ? 50 : 0)
+                .frame(height: 50)
                 .opacity(isBannerLoaded ? 1 : 0)
                 .clipped()
 

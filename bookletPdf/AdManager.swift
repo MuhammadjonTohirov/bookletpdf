@@ -1,6 +1,7 @@
 #if os(iOS)
 import SwiftUI
 import UIKit
+import Network
 import GoogleMobileAds
 import FirebaseAnalytics
 import AppV2
@@ -19,22 +20,105 @@ final class AdManager: NSObject {
 
     private var interstitialAd: InterstitialAd?
     private var interstitialCompletion: (() -> Void)?
+    private var isStarted = false
+    private var pendingReadyActions: [() -> Void] = []
+    private let networkMonitor = NWPathMonitor()
+    private var hasAttemptedStart = false
+    private var stabilityTask: Task<Void, Never>?
+
+    /// Runs `action` once the Google Mobile Ads SDK has finished initialization.
+    /// If the SDK is already started the action runs immediately; otherwise it is
+    /// queued and flushed inside the `MobileAds.shared.start` completion handler.
+    func whenStarted(_ action: @escaping () -> Void) {
+        if isStarted {
+            action()
+        } else {
+            pendingReadyActions.append(action)
+        }
+    }
 
     private override init() {
         super.init()
     }
 
     func configure() {
+        let appID = Bundle.main.object(forInfoDictionaryKey: "GADApplicationIdentifier") as? String ?? "<missing>"
+        AdLog.log("configure begin build=\(Self.buildConfiguration) appID=\(appID) banner=\(Self.bannerAdUnitID) interstitial=\(Self.interstitialAdUnitID)")
+
         #if DEBUG
         MobileAds.shared.requestConfiguration.testDeviceIdentifiers = [
             "GADSimulatorID"
         ]
+        AdLog.log("Test device identifiers set: \(MobileAds.shared.requestConfiguration.testDeviceIdentifiers ?? [])")
         #endif
-        MobileAds.shared.start { _ in
-            AdLog.event(AnalyticsEventName.adSdkConfigured)
-        }
+
         wireAdService()
-        loadInterstitial()
+        AdLog.log("AdService wired bannerSet=\(AdService.bannerView != nil) interstitialSet=\(AdService.showInterstitial != nil)")
+        awaitStableNetworkThenStart()
+    }
+
+    /// `MobileAds.shared.start()` caches an unsuccessful initialization for the
+    /// remainder of the process, so a launch with no network poisons every
+    /// subsequent ad request. Wait for the network path to be `.satisfied` and
+    /// remain so for one second (riding out wifi/cellular handoff flicker)
+    /// before triggering the single allowed `start()` call.
+    private func awaitStableNetworkThenStart() {
+        networkMonitor.pathUpdateHandler = { [weak self] path in
+            Task { @MainActor [weak self] in
+                guard let self, !self.hasAttemptedStart else { return }
+                self.stabilityTask?.cancel()
+                guard path.status == .satisfied else {
+                    AdLog.log("Network unavailable, holding MobileAds.start")
+                    return
+                }
+                self.stabilityTask = Task { @MainActor [weak self] in
+                    try? await Task.sleep(nanoseconds: 1_000_000_000)
+                    guard !Task.isCancelled, let self, !self.hasAttemptedStart else { return }
+                    self.hasAttemptedStart = true
+                    self.networkMonitor.cancel()
+                    AdLog.log("Network stable, calling MobileAds.start")
+                    self.startMobileAds()
+                }
+            }
+        }
+        networkMonitor.start(queue: DispatchQueue.global(qos: .utility))
+    }
+
+    private func startMobileAds() {
+        MobileAds.shared.start { [weak self] status in
+            let adapters = status.adapterStatusesByClassName
+            let allReady = !adapters.isEmpty && adapters.values.allSatisfy { $0.state == .ready }
+            AdLog.log("MobileAds.start completed adapters=\(adapters.count) allReady=\(allReady)")
+            for (name, adapter) in adapters {
+                AdLog.log("  adapter=\(name) state=\(adapter.state.rawValue) latency=\(adapter.latency) desc=\(adapter.description)")
+            }
+            AdLog.event(AnalyticsEventName.adSdkConfigured)
+            Task { @MainActor [weak self] in
+                guard let self else { return }
+                if allReady {
+                    self.flushPendingReadyActions()
+                    self.loadInterstitial()
+                } else {
+                    AdLog.log("MobileAds returned not-ready despite stable network. SDK is poisoned for this session — relaunch required.")
+                }
+            }
+        }
+    }
+
+    private func flushPendingReadyActions() {
+        isStarted = true
+        let actions = pendingReadyActions
+        pendingReadyActions.removeAll()
+        AdLog.log("SDK ready, flushing \(actions.count) pending action(s)")
+        actions.forEach { $0() }
+    }
+
+    private static var buildConfiguration: String {
+        #if DEBUG
+        return "DEBUG"
+        #else
+        return "RELEASE"
+        #endif
     }
 
     private func wireAdService() {
@@ -66,9 +150,10 @@ final class AdManager: NSObject {
                 AnalyticsParamKey.adFormat: "interstitial"
             ]
         )
-        InterstitialAd.load(with: interstitialAdUnitID) { [weak self] ad, error in
+        InterstitialAd.load(with: interstitialAdUnitID, request: Request()) { [weak self] ad, error in
             if let error {
-                AdLog.log("Failed to load interstitial: \(error.localizedDescription)")
+                let nsError = error as NSError
+                AdLog.log("Failed to load interstitial code=\(nsError.code) domain=\(nsError.domain) desc=\(error.localizedDescription)")
                 AdLog.event(
                     AnalyticsEventName.adInterstitialLoadFailed,
                     parameters: AdLog.errorParameters(
@@ -139,6 +224,7 @@ extension AdManager: FullScreenContentDelegate {
             self?.interstitialCompletion?()
             self?.interstitialCompletion = nil
             self?.interstitialAd = nil
+            NotificationCenter.default.post(name: AdService.interstitialDismissedNotification, object: nil)
             self?.loadInterstitial()
         }
     }

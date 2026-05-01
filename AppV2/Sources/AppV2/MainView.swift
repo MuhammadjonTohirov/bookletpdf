@@ -1,6 +1,5 @@
 import SwiftUI
 import BookletCore
-
 #if os(macOS)
 import AppKit
 #endif
@@ -14,10 +13,15 @@ public struct MainView: View {
     @StateObject private var networkMonitor = NetworkMonitor()
     @StateObject private var updateChecker = AppUpdateChecker()
     @State private var showUpdateAlert = false
+    @State private var showNoInternetAlert = false
 
     public init() {}
-
+    
     public var body: some View {
+        innerBody
+    }
+
+    public var innerBody: some View {
         Group {
             #if os(macOS)
             MacContentView()
@@ -44,8 +48,17 @@ public struct MainView: View {
                 showUpdateAlert = true
             }
 
+            if shouldRequireInternet {
+                showNoInternetAlert = true
+            }
+
             Task {
                 await storeManager.refreshStoreState()
+            }
+        }
+        .onChange(of: networkMonitor.isConnected) { _, _ in
+            if shouldRequireInternet {
+                showNoInternetAlert = true
             }
         }
         .alert(
@@ -58,6 +71,14 @@ public struct MainView: View {
         } message: {
             Text("str.update_required_message".localize)
         }
+        .alert(
+            Text("str.internet_required".localize),
+            isPresented: $showNoInternetAlert
+        ) {
+            Button("str.ok".localize, role: .cancel) {}
+        } message: {
+            Text("str.internet_required_message".localize)
+        }
         .sheet(isPresented: whatsNewBinding) {
             WhatsNewView(onDismiss: { whatsNewManager.markSeen() })
                 #if os(iOS)
@@ -66,11 +87,10 @@ public struct MainView: View {
                 .presentationCornerRadius(32)
                 #endif
         }
-        .overlay {
-            if !storeManager.isPro && !networkMonitor.isConnected {
-                NoInternetOverlay()
-            }
-        }
+    }
+
+    private var shouldRequireInternet: Bool {
+        !storeManager.isPro && !networkMonitor.isConnected
     }
 
     private var whatsNewBinding: Binding<Bool> {
