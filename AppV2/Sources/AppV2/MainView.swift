@@ -57,10 +57,15 @@ public struct MainView: View {
             }
         }
         .onChange(of: networkMonitor.isConnected) { _, _ in
-            if shouldRequireInternet {
-                showNoInternetAlert = true
-            }
+            showNoInternetAlert = shouldRequireInternet
         }
+        .onChange(of: showNoInternetAlert, { oldValue, newValue in
+            if newValue == false && oldValue != newValue {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                    showNoInternetAlert = networkMonitor.isConnected == false
+                }
+            }
+        })
         .alert(
             Text("str.update_required".localize),
             isPresented: $showUpdateAlert

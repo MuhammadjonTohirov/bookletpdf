@@ -97,7 +97,25 @@ final class StoreKitManager: ObservableObject {
         defer { isRestoring = false }
 
         Logging.l(tag: "StoreKitManager", "Starting restore flow")
-        try await AppStore.sync()
+
+        if await refreshPurchaseStatus() {
+            Logging.l(tag: "StoreKitManager", "Restore flow found an existing entitlement before sync")
+            AnalyticsReporter.logEvent?(AnalyticsEventName.purchaseRestored, nil)
+            return true
+        }
+
+        do {
+            try await AppStore.sync()
+        } catch {
+            Logging.l(tag: "StoreKitManager", "AppStore.sync failed during restore: \(error)")
+            if await refreshPurchaseStatus() {
+                Logging.l(tag: "StoreKitManager", "Restore flow found entitlement after failed sync")
+                AnalyticsReporter.logEvent?(AnalyticsEventName.purchaseRestored, nil)
+                return true
+            }
+
+            throw StoreError.restoreFailed
+        }
 
         let restored = await refreshPurchaseStatus()
         Logging.l(tag: "StoreKitManager", "Restore flow finished. Restored entitlement: \(restored)")
@@ -169,6 +187,7 @@ final class StoreKitManager: ObservableObject {
 enum StoreError: LocalizedError {
     case failedVerification
     case nothingToRestore
+    case restoreFailed
 
     var errorDescription: String? {
         switch self {
@@ -176,6 +195,8 @@ enum StoreError: LocalizedError {
             return "str.purchase_verification_failed".localize
         case .nothingToRestore:
             return "No previous 4-in-1 purchase was found for this Apple Account."
+        case .restoreFailed:
+            return "Unable to restore purchases right now. Make sure you are signed in to the App Store and try again."
         }
     }
 }

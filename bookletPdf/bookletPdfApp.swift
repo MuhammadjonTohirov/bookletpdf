@@ -70,15 +70,7 @@ extension AppDelegate: UIApplicationDelegate {
         FirebaseService.log(.appOpened)
         UNUserNotificationCenter.current().delegate = self
         Messaging.messaging().delegate = self
-        #if DEBUG
-        IDFAReporter.requestPermissionAndLog {
-            AdManager.shared.configure()
-        }
-        #else
-        IDFAReporter.requestPermission {
-            AdManager.shared.configure()
-        }
-        #endif
+        AdManager.shared.configure()
         return true
     }
 

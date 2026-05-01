@@ -8,8 +8,6 @@
 	<string>ca-app-pub-3869807878238093~8000759652</string>
 	<key>NSApplicationCrashOnExceptions</key>
 	<true/>
-	<key>NSUserTrackingUsageDescription</key>
-	<string>We use this to deliver more relevant ads and support the free version of the app.</string>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>
