@@ -45,25 +45,12 @@ public final class WhatsNewManager: ObservableObject {
         shouldPresent = false
     }
 
-    /// Decides whether to show the sheet on launch **and** records this
-    /// release as seen for brand-new installs. Side-effecting on purpose;
-    /// the name makes that intent explicit for future maintainers.
+    /// Suppressed for the 1.2.2 ad-bugfix release: the existing sheet copy
+    /// describes the 1.2.1 iOS print flow and would re-show stale content to
+    /// upgraders. Restore the version-gated logic (DEBUG always-show, Release
+    /// compare `currentReleaseKey` to `lastSeenReleaseKey`) when shipping new
+    /// What's New content alongside a marketing-version bump.
     private static func evaluateOnLaunch() -> Bool {
-        #if DEBUG
-        return true
-        #else
-        let defaults = UserDefaults.standard
-        let totalConversions = defaults.integer(forKey: totalConversionsKey)
-
-        // Brand-new install: silently mark this release as seen so the sheet
-        // never appears for users who installed on this version.
-        guard totalConversions > 0 else {
-            defaults.set(currentReleaseKey, forKey: lastSeenReleaseKey)
-            return false
-        }
-
-        let lastSeen = defaults.string(forKey: lastSeenReleaseKey)
-        return lastSeen != currentReleaseKey
-        #endif
+        return false
     }
 }

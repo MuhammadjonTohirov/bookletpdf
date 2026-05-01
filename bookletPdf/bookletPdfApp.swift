@@ -10,6 +10,7 @@ import BookletCore
 import AppV2
 import FirebaseMessaging
 import UserNotifications
+
 #if os(iOS)
 import UIKit
 #endif
@@ -69,7 +70,15 @@ extension AppDelegate: UIApplicationDelegate {
         FirebaseService.log(.appOpened)
         UNUserNotificationCenter.current().delegate = self
         Messaging.messaging().delegate = self
-        AdManager.shared.configure()
+        #if DEBUG
+        IDFAReporter.requestPermissionAndLog {
+            AdManager.shared.configure()
+        }
+        #else
+        IDFAReporter.requestPermission {
+            AdManager.shared.configure()
+        }
+        #endif
         return true
     }
 
@@ -128,8 +137,12 @@ struct bookletPdfApp: App {
     private var currentTheme: AppTheme {
         AppTheme(rawValue: themeRawValue) ?? .system
     }
-
+    
     var body: some Scene {
+        innerBody
+    }
+
+    private var innerBody: some Scene {
         WindowGroup(id: "main-window") {
             MainView()
                 .environmentObject(mainViewModel)
