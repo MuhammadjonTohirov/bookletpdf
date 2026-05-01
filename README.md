@@ -26,4 +26,4 @@ PDF Booklet Maker is a lightweight utility for macOS and iOS that transforms sta
 
 PDF Booklet Maker was designed to simplify the creation of professional-looking booklets without the need for specialized desktop publishing software. It's perfect for creating brochures, program booklets, zines, or any other document that needs to be folded and stapled.
 
-Developed by SBD LLC © 2025
+Developed by TOX LLC © 2025
