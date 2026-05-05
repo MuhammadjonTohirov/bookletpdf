@@ -6,17 +6,10 @@
 	<string>6760976459</string>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-3869807878238093~8000759652</string>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
 	<key>NSApplicationCrashOnExceptions</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Booklet Maker uses the camera to scan paper documents into PDFs you can convert to a booklet.</string>
-	<key>NSUserTrackingUsageDescription</key>
-	<string>This identifier will be used to deliver personalized ads to you.</string>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>
