@@ -134,6 +134,7 @@ struct bookletPdfApp: App {
         innerBody
     }
 
+    @SceneBuilder
     private var innerBody: some Scene {
         WindowGroup(id: "main-window") {
             MainView()

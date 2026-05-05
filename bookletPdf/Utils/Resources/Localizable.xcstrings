@@ -3816,6 +3816,36 @@
         }
       }
     },
+    "str.history_filter_all" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Alle" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "All" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Tous" } },
+        "uz" : { "stringUnit" : { "state" : "translated", "value" : "Barchasi" } },
+        "uz-UZ" : { "stringUnit" : { "state" : "translated", "value" : "Barchasi" } }
+      }
+    },
+    "str.history_filter_booklets" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Booklets" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Booklets" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Livrets" } },
+        "uz" : { "stringUnit" : { "state" : "translated", "value" : "Bukletlar" } },
+        "uz-UZ" : { "stringUnit" : { "state" : "translated", "value" : "Bukletlar" } }
+      }
+    },
+    "str.history_filter_scanned" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Gescannt" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Scanned" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Scannés" } },
+        "uz" : { "stringUnit" : { "state" : "translated", "value" : "Skanerlangan" } },
+        "uz-UZ" : { "stringUnit" : { "state" : "translated", "value" : "Skanerlangan" } }
+      }
+    },
     "str.how_to_print_mac" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4271,6 +4301,16 @@
         }
       }
     },
+    "str.make_booklet" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Booklet erstellen" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Make Booklet" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Créer un livret" } },
+        "uz" : { "stringUnit" : { "state" : "translated", "value" : "Buklet yaratish" } },
+        "uz-UZ" : { "stringUnit" : { "state" : "translated", "value" : "Buklet yaratish" } }
+      }
+    },
     "str.need_help_printing" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4619,6 +4659,16 @@
             "value" : "Ixtiyoriy — birinchi sahifa bo'ladi"
           }
         }
+      }
+    },
+    "str.or" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "oder" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "or" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "ou" } },
+        "uz" : { "stringUnit" : { "state" : "translated", "value" : "yoki" } },
+        "uz-UZ" : { "stringUnit" : { "state" : "translated", "value" : "yoki" } }
       }
     },
     "str.original_document" : {
@@ -6896,6 +6946,56 @@
         }
       }
     },
+    "str.scan_default_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Gescanntes Dokument" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Scanned Document" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Document scanné" } },
+        "uz" : { "stringUnit" : { "state" : "translated", "value" : "Skanerlangan hujjat" } },
+        "uz-UZ" : { "stringUnit" : { "state" : "translated", "value" : "Skanerlangan hujjat" } }
+      }
+    },
+    "str.scan_document" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Dokument scannen" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Scan Document" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Scanner un document" } },
+        "uz" : { "stringUnit" : { "state" : "translated", "value" : "Hujjatni skanerlash" } },
+        "uz-UZ" : { "stringUnit" : { "state" : "translated", "value" : "Hujjatni skanerlash" } }
+      }
+    },
+    "str.scan_document_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Mit der Kamera, dann Booklet erstellen" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Use your camera, then make a booklet" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Utilisez l’appareil photo, puis créez un livret" } },
+        "uz" : { "stringUnit" : { "state" : "translated", "value" : "Kameradan foydalaning, so'ng buklet yarating" } },
+        "uz-UZ" : { "stringUnit" : { "state" : "translated", "value" : "Kameradan foydalaning, so'ng buklet yarating" } }
+      }
+    },
+    "str.scan_preview_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Gescanntes Dokument" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Scanned Document" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Document scanné" } },
+        "uz" : { "stringUnit" : { "state" : "translated", "value" : "Skanerlangan hujjat" } },
+        "uz-UZ" : { "stringUnit" : { "state" : "translated", "value" : "Skanerlangan hujjat" } }
+      }
+    },
+    "str.scanned_badge" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Scan" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Scan" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Scan" } },
+        "uz" : { "stringUnit" : { "state" : "translated", "value" : "Skan" } },
+        "uz-UZ" : { "stringUnit" : { "state" : "translated", "value" : "Skan" } }
+      }
+    },
     "str.select_language" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6999,6 +7099,16 @@
             "value" : "Sozlamalar"
           }
         }
+      }
+    },
+    "str.share" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Teilen" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Share" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Partager" } },
+        "uz" : { "stringUnit" : { "state" : "translated", "value" : "Ulashish" } },
+        "uz-UZ" : { "stringUnit" : { "state" : "translated", "value" : "Ulashish" } }
       }
     },
     "str.share_pdf" : {
@@ -7209,6 +7319,16 @@
             "value" : "PDF tanlash uchun bosing"
           }
         }
+      }
+    },
+    "str.tap_to_select_pdf_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "PDF aus Dateien oder iCloud auswählen" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Pick a PDF from Files or iCloud" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Choisissez un PDF dans Fichiers ou iCloud" } },
+        "uz" : { "stringUnit" : { "state" : "translated", "value" : "Fayllar yoki iCloud’dan PDF tanlang" } },
+        "uz-UZ" : { "stringUnit" : { "state" : "translated", "value" : "Fayllar yoki iCloud’dan PDF tanlang" } }
       }
     },
     "str.theme" : {

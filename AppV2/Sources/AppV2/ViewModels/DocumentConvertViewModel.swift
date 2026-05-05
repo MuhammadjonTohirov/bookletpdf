@@ -33,8 +33,15 @@ public final class DocumentConvertViewModel: ObservableObject {
     @Published var showRateAppAlert = false
     @Published var recentConversions: [RecentConversion] = []
 
+    @Published var showScanner: Bool = false
+    @Published var showScanPreview: Bool = false
+    @Published var scannedPDFURL: URL?
+    @Published var scannedFileName: String = ""
+    @Published var scannedPageCount: Int = 0
+
     private var cachedSplitBookletPDFs: SplitBookletPDFs?
     private var cachedSplitSourceURL: URL?
+    private var scanOriginPending: Bool = false
 
     private let generatorFactory: BookletGeneratorFactory
     private let duplicateFileUseCase: DuplicateFileUseCase
@@ -63,7 +70,8 @@ public final class DocumentConvertViewModel: ObservableObject {
         }
     }
 
-    func setImportedDocument(_ url: URL) {
+    func setImportedDocument(_ url: URL, origin: RecentItemOrigin = .pdfImport) {
+        scanOriginPending = origin == .scan
         Task { @MainActor in
             do {
                 let duplicateURL = try duplicateFileUseCase.duplicateFile(at: url)
@@ -156,6 +164,42 @@ public final class DocumentConvertViewModel: ObservableObject {
         }
     }
 
+    #if os(iOS)
+    func saveScannedDocument(pdfURL: URL, pageCount: Int) {
+        let cachedURL = cache.moveFileToCache(
+            from: pdfURL,
+            fileName: pdfURL.lastPathComponent
+        ) ?? pdfURL
+        scannedPDFURL = cachedURL
+        scannedFileName = cachedURL.lastPathComponent
+        scannedPageCount = pageCount
+
+        let item = RecentConversion(
+            fileName: scanDisplayName(),
+            pageCount: pageCount,
+            bookletType: nil,
+            fileURL: cachedURL,
+            kind: .scan,
+            origin: .scan
+        )
+        recentStore.add(item)
+        recentConversions = recentStore.load()
+        AnalyticsReporter.logEvent?(AnalyticsEventName.documentImported, [AnalyticsParamKey.pageCount: pageCount])
+    }
+
+    func startBookletFromScan() {
+        guard let url = scannedPDFURL else { return }
+        showScanPreview = false
+        setImportedDocument(url, origin: .scan)
+    }
+
+    private func scanDisplayName() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMM yyyy, HH:mm"
+        return "str.scan_default_name".localize + " " + formatter.string(from: .now)
+    }
+    #endif
+
     func clearDocuments() {
         showExport = false
         showConfigureLayout = false
@@ -169,6 +213,12 @@ public final class DocumentConvertViewModel: ObservableObject {
         coverImageData = nil
         cachedSplitBookletPDFs = nil
         cachedSplitSourceURL = nil
+        scanOriginPending = false
+        scannedPDFURL = nil
+        scannedFileName = ""
+        scannedPageCount = 0
+        showScanner = false
+        showScanPreview = false
     }
 
     /// Splits the current merged booklet into front/back PDFs for the iOS
@@ -231,9 +281,12 @@ public final class DocumentConvertViewModel: ObservableObject {
             fileName: original.name,
             pageCount: original.document.pageCount,
             bookletType: bookletType == .type2 ? "2-up" : "4-up",
-            fileURL: pdfUrl
+            fileURL: pdfUrl,
+            kind: .booklet,
+            origin: scanOriginPending ? .scan : .pdfImport
         )
         recentStore.add(item)
         recentConversions = recentStore.load()
+        scanOriginPending = false
     }
 }

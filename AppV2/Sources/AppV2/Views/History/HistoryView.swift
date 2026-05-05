@@ -3,17 +3,27 @@ import BookletCore
 import PDFKit
 import BookletPDFKit
 
+enum HistoryFilter: Hashable, CaseIterable {
+    case all, scanned, booklets
+
+    var titleKey: String {
+        switch self {
+        case .all: return "str.history_filter_all"
+        case .scanned: return "str.history_filter_scanned"
+        case .booklets: return "str.history_filter_booklets"
+        }
+    }
+}
+
 struct HistoryView: View {
     @EnvironmentObject private var viewModel: DocumentConvertViewModel
     @State private var selectedItem: RecentConversion?
+    @State private var filter: HistoryFilter = .all
 
     var body: some View {
-        Group {
-            if viewModel.recentConversions.isEmpty {
-                emptyState
-            } else {
-                historyList
-            }
+        VStack(spacing: 0) {
+            filterPicker
+            content
         }
         .background(Theme.Colors.secondaryBackground.opacity(Theme.Opacity.faded))
         .onAppear { viewModel.refreshRecentConversions() }
@@ -23,6 +33,38 @@ struct HistoryView: View {
             } else {
                 fileNotFoundView(item)
             }
+        }
+        #if os(iOS)
+        .scanPreviewDestination(viewModel: viewModel)
+        #endif
+    }
+
+    private var filterPicker: some View {
+        Picker("", selection: $filter) {
+            ForEach(HistoryFilter.allCases, id: \.self) { option in
+                Text(option.titleKey.localize).tag(option)
+            }
+        }
+        .pickerStyle(.segmented)
+        .padding(.horizontal, Theme.Layout.screenPadding)
+        .padding(.top, 12)
+        .padding(.bottom, 8)
+    }
+
+    @ViewBuilder
+    private var content: some View {
+        if filteredItems.isEmpty {
+            emptyState
+        } else {
+            historyList
+        }
+    }
+
+    private var filteredItems: [RecentConversion] {
+        switch filter {
+        case .all: return viewModel.recentConversions
+        case .scanned: return viewModel.recentConversions.filter { $0.kind == .scan || $0.origin == .scan }
+        case .booklets: return viewModel.recentConversions.filter { $0.kind == .booklet }
         }
     }
 
@@ -48,8 +90,8 @@ struct HistoryView: View {
     private var historyList: some View {
         ScrollView {
             LazyVStack(spacing: 10) {
-                ForEach(viewModel.recentConversions) { item in
-                    Button(action: { selectedItem = item }) {
+                ForEach(filteredItems) { item in
+                    Button(action: { handleTap(item) }) {
                         historyRow(item)
                     }
                     .buttonStyle(.plain)
@@ -59,56 +101,21 @@ struct HistoryView: View {
         }
     }
 
+    private func handleTap(_ item: RecentConversion) {
+        #if os(iOS)
+        if item.kind == .scan, let url = item.fileURL, item.fileExists {
+            viewModel.scannedPDFURL = url
+            viewModel.scannedFileName = item.fileName
+            viewModel.scannedPageCount = item.pageCount
+            viewModel.showScanPreview = true
+            return
+        }
+        #endif
+        selectedItem = item
+    }
+
     private func historyRow(_ item: RecentConversion) -> some View {
-        HStack(spacing: Theme.Layout.itemSpacing) {
-            RoundedRectangle(cornerRadius: Theme.CornerRadius.medium)
-                .fill(Theme.Colors.secondaryBackground.opacity(Theme.Opacity.muted))
-                .frame(width: Theme.Layout.iconSize, height: Theme.Layout.iconSize)
-                .overlay {
-                    Image(systemName: "doc.text")
-                        .font(Theme.Fonts.smallIcon)
-                        .foregroundStyle(Theme.Colors.secondaryText)
-                }
-
-            VStack(alignment: .leading, spacing: 3) {
-                Text(item.fileName)
-                    .font(Theme.Fonts.cellTitle)
-                    .foregroundStyle(Theme.Colors.primaryText)
-                    .lineLimit(1)
-                    .truncationMode(.middle)
-
-                HStack(spacing: 8) {
-                    Text(item.bookletType)
-                        .font(Theme.Fonts.badge)
-                        .foregroundStyle(Color.accentColor)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 2)
-                        .background(Color.accentColor.opacity(Theme.Opacity.tint), in: Capsule())
-
-                    Text("\(item.pageCount) " + "str.pages_suffix".localize)
-                        .font(Theme.Fonts.badge)
-                        .foregroundStyle(Theme.Colors.tertiaryText)
-                }
-            }
-
-            Spacer(minLength: 0)
-
-            HStack(spacing: 6) {
-                Text(item.formattedDate)
-                    .font(Theme.Fonts.badge)
-                    .foregroundStyle(Theme.Colors.tertiaryText)
-
-                Image(systemName: "chevron.right")
-                    .font(.system(size: 11, weight: .semibold))
-                    .foregroundStyle(Theme.Colors.tertiaryText)
-            }
-        }
-        .padding(Theme.Layout.cardPadding)
-        .background(Theme.Colors.background, in: RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
-        .overlay {
-            RoundedRectangle(cornerRadius: Theme.CornerRadius.card)
-                .stroke(Theme.Colors.border.opacity(Theme.Opacity.half), lineWidth: Theme.Border.thin)
-        }
+        RecentItemRow(item: item)
     }
 
     private func fileNotFoundView(_ item: RecentConversion) -> some View {

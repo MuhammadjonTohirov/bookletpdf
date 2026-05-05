@@ -17,11 +17,16 @@ let package = Package(
     dependencies: [
         .package(path: "../BookletPDFKit"),
         .package(path: "../BookletCore"),
+        .package(path: "../DocumentScannerKit"),
     ],
     targets: [
         .target(
             name: "AppV2",
-            dependencies: ["BookletPDFKit", "BookletCore"]
+            dependencies: [
+                "BookletPDFKit",
+                "BookletCore",
+                .product(name: "DocumentScannerKit", package: "DocumentScannerKit", condition: .when(platforms: [.iOS]))
+            ]
         ),
     ]
 )
