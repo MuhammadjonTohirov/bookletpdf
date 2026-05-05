@@ -30,15 +30,23 @@ struct AppTabView: View {
     @State private var selectedTab: AppTab = .convert
     @State private var isBannerDismissed = false
     @State private var isBannerLoaded = false
+    
+    private var hasBanner: Bool {
+        !isBannerDismissed && isBannerLoaded
+    }
+    
     @EnvironmentObject private var viewModel: DocumentConvertViewModel
     @EnvironmentObject private var languageManager: LanguageManager
     @ObservedObject private var storeManager = StoreKitManager.shared
 
     var body: some View {
-        VStack(spacing: 0) {
-            if !storeManager.isPro && !isBannerDismissed,
+        ZStack {
+            if !isBannerDismissed,
                let banner = AdService.bannerView {
-                bannerSection(banner: banner)
+                VStack(spacing: 0) {
+                    bannerSection(banner: banner)
+                    Spacer()
+                }
             }
 
             TabView(selection: $selectedTab) {
@@ -46,6 +54,7 @@ struct AppTabView: View {
                 historyTab
                 settingsTab
             }
+            .padding(.top, hasBanner ? 50 : 0)
             .id(languageManager.currentLanguage)
         }
         .onAppear {
@@ -87,9 +96,9 @@ struct AppTabView: View {
                 Logging.l(tag: "Ads", "Banner load state changed isLoaded=\(isLoaded)")
                 isBannerLoaded = isLoaded
             }
-                .frame(height: 50)
-                .opacity(isBannerLoaded ? 1 : 0)
-                .clipped()
+            .frame(height: 50)
+            .opacity(isBannerLoaded ? 1 : 0)
+            .clipped()
 
             if isBannerLoaded {
                 Button {
