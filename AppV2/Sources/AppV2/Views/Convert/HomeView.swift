@@ -15,7 +15,10 @@ struct HomeView: View {
                 if !storeManager.isPro {
                     proUpgradeCard
                 }
-                UploadZoneView(action: { viewModel.showFileImporter = true })
+                UploadZoneView(
+                    onPickPDF: { viewModel.showFileImporter = true },
+                    onScanDocument: scanHandler
+                )
                 recentConversionsSection
             }
             .padding(Theme.Layout.screenPadding)
@@ -43,11 +46,20 @@ struct HomeView: View {
         .navigationDestination(isPresented: $viewModel.showConfigureLayout) {
             ConfigureLayoutView()
         }
+        .documentScannerHost(viewModel: viewModel)
         #endif
     }
 
     private var proUpgradeCard: some View {
         ProUpgradeCard(action: { showPurchase = true })
+    }
+
+    private var scanHandler: (() -> Void)? {
+        #if os(iOS)
+        { viewModel.showScanner = true }
+        #else
+        nil
+        #endif
     }
 
     @ViewBuilder
@@ -59,7 +71,7 @@ struct HomeView: View {
                     .foregroundStyle(Theme.Colors.primaryText)
 
                 ForEach(viewModel.recentConversions.prefix(5)) { item in
-                    Button(action: { selectedItem = item }) {
+                    Button(action: { handleRecentTap(item) }) {
                         recentConversionRow(item)
                     }
                     .buttonStyle(.plain)
@@ -70,49 +82,20 @@ struct HomeView: View {
     }
 
     private func recentConversionRow(_ item: RecentConversion) -> some View {
-        HStack(spacing: Theme.Layout.itemSpacing) {
-            RoundedRectangle(cornerRadius: Theme.CornerRadius.medium)
-                .fill(Theme.Colors.secondaryBackground.opacity(Theme.Opacity.muted))
-                .frame(width: Theme.Layout.smallIconSize, height: Theme.Layout.smallIconSize)
-                .overlay {
-                    Image(systemName: "doc.text")
-                        .font(Theme.Fonts.sectionTitle)
-                        .foregroundStyle(Theme.Colors.secondaryText)
-                }
+        RecentItemRow(item: item, iconSize: Theme.Layout.smallIconSize)
+    }
 
-            VStack(alignment: .leading, spacing: 3) {
-                Text(item.fileName)
-                    .font(Theme.Fonts.cellTitle)
-                    .foregroundStyle(Theme.Colors.primaryText)
-                    .lineLimit(1)
-                    .truncationMode(.middle)
-
-                HStack(spacing: 8) {
-                    Text(item.bookletType)
-                        .font(Theme.Fonts.badge)
-                        .foregroundStyle(Color.accentColor)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 2)
-                        .background(Color.accentColor.opacity(Theme.Opacity.tint), in: Capsule())
-
-                    Text(item.formattedDate)
-                        .font(Theme.Fonts.badge)
-                        .foregroundStyle(Theme.Colors.tertiaryText)
-                }
-            }
-
-            Spacer(minLength: 0)
-
-            Image(systemName: "chevron.right")
-                .font(.system(size: 11, weight: .semibold))
-                .foregroundStyle(Theme.Colors.tertiaryText)
+    private func handleRecentTap(_ item: RecentConversion) {
+        #if os(iOS)
+        if item.kind == .scan, let url = item.fileURL, item.fileExists {
+            viewModel.scannedPDFURL = url
+            viewModel.scannedFileName = item.fileName
+            viewModel.scannedPageCount = item.pageCount
+            viewModel.showScanPreview = true
+            return
         }
-        .padding(Theme.Layout.cardPadding)
-        .background(Theme.Colors.background, in: RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
-        .overlay {
-            RoundedRectangle(cornerRadius: Theme.CornerRadius.card)
-                .stroke(Theme.Colors.border.opacity(Theme.Opacity.half), lineWidth: Theme.Border.thin)
-        }
+        #endif
+        selectedItem = item
     }
 
     private func fileNotFoundView(_ item: RecentConversion) -> some View {

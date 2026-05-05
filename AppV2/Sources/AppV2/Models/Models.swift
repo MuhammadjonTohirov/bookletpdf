@@ -16,21 +16,55 @@ public struct PDFDocumentObject {
     public var url: URL?
 }
 
+enum RecentItemKind: String, Codable {
+    case booklet
+    case scan
+}
+
+enum RecentItemOrigin: String, Codable {
+    case pdfImport
+    case scan
+}
+
 struct RecentConversion: Codable, Identifiable {
     let id: UUID
     let fileName: String
     let pageCount: Int
-    let bookletType: String
+    let bookletType: String?
     let date: Date
     let fileURL: URL?
+    let kind: RecentItemKind
+    let origin: RecentItemOrigin
 
-    init(fileName: String, pageCount: Int, bookletType: String, fileURL: URL? = nil, date: Date = .now) {
+    init(
+        fileName: String,
+        pageCount: Int,
+        bookletType: String?,
+        fileURL: URL? = nil,
+        date: Date = .now,
+        kind: RecentItemKind = .booklet,
+        origin: RecentItemOrigin = .pdfImport
+    ) {
         self.id = UUID()
         self.fileName = fileName
         self.pageCount = pageCount
         self.bookletType = bookletType
         self.fileURL = fileURL
         self.date = date
+        self.kind = kind
+        self.origin = origin
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(UUID.self, forKey: .id)
+        self.fileName = try container.decode(String.self, forKey: .fileName)
+        self.pageCount = try container.decode(Int.self, forKey: .pageCount)
+        self.bookletType = try container.decodeIfPresent(String.self, forKey: .bookletType)
+        self.date = try container.decode(Date.self, forKey: .date)
+        self.fileURL = try container.decodeIfPresent(URL.self, forKey: .fileURL)
+        self.kind = try container.decodeIfPresent(RecentItemKind.self, forKey: .kind) ?? .booklet
+        self.origin = try container.decodeIfPresent(RecentItemOrigin.self, forKey: .origin) ?? .pdfImport
     }
 
     var fileExists: Bool {

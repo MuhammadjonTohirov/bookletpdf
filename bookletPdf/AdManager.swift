@@ -20,6 +20,9 @@ final class AdManager: NSObject {
 
     private var interstitialAd: InterstitialAd?
     private var interstitialCompletion: (() -> Void)?
+    private var isInterstitialLoading = false
+    private var interstitialRetryAttempt = 0
+    private var interstitialRetryTask: Task<Void, Never>?
     private var isStarted = false
     private var pendingReadyActions: [() -> Void] = []
     private let networkMonitor = NWPathMonitor()
@@ -87,20 +90,16 @@ final class AdManager: NSObject {
     private func startMobileAds() {
         MobileAds.shared.start { [weak self] status in
             let adapters = status.adapterStatusesByClassName
-            let allReady = !adapters.isEmpty && adapters.values.allSatisfy { $0.state == .ready }
-            AdLog.log("MobileAds.start completed adapters=\(adapters.count) allReady=\(allReady)")
+            let readyAdapters = adapters.values.filter { $0.state == .ready }.count
+            AdLog.log("MobileAds.start completed adapters=\(adapters.count) ready=\(readyAdapters)")
             for (name, adapter) in adapters {
                 AdLog.log("  adapter=\(name) state=\(adapter.state.rawValue) latency=\(adapter.latency) desc=\(adapter.description)")
             }
-            AdLog.event(AnalyticsEventName.adSdkConfigured)
+            AdLog.event(AnalyticsEventName.adSdkConfigured, parameters: AdLog.sessionParameters)
             Task { @MainActor [weak self] in
                 guard let self else { return }
-                if allReady {
-                    self.flushPendingReadyActions()
-                    self.loadInterstitial()
-                } else {
-                    AdLog.log("MobileAds returned not-ready despite stable network. SDK is poisoned for this session — relaunch required.")
-                }
+                self.flushPendingReadyActions()
+                self.loadInterstitial()
             }
         }
     }
@@ -141,42 +140,86 @@ final class AdManager: NSObject {
     }
 
     private func loadInterstitial() {
+        guard isStarted else {
+            AdLog.log("loadInterstitial queued until SDK start completes")
+            whenStarted { [weak self] in
+                self?.loadInterstitial()
+            }
+            return
+        }
+        guard interstitialAd == nil else {
+            AdLog.log("loadInterstitial skipped: ad already loaded")
+            return
+        }
+        guard !isInterstitialLoading else {
+            AdLog.log("loadInterstitial skipped: load already in progress")
+            return
+        }
+
+        isInterstitialLoading = true
+        interstitialRetryTask?.cancel()
+        let retryAttempt = interstitialRetryAttempt
         let interstitialAdUnitID = Self.interstitialAdUnitID
-        AdLog.log("loadInterstitial begin unit=\(interstitialAdUnitID)")
+        AdLog.log("loadInterstitial begin unit=\(interstitialAdUnitID) retry=\(retryAttempt)")
         AdLog.event(
             AnalyticsEventName.adInterstitialLoadRequested,
-            parameters: [
-                AnalyticsParamKey.adUnitID: interstitialAdUnitID,
-                AnalyticsParamKey.adFormat: "interstitial"
-            ]
+            parameters: AdLog.parameters(
+                adUnitID: interstitialAdUnitID,
+                adFormat: "interstitial",
+                retryAttempt: retryAttempt
+            )
         )
         InterstitialAd.load(with: interstitialAdUnitID, request: Request()) { [weak self] ad, error in
-            if let error {
-                let nsError = error as NSError
-                AdLog.log("Failed to load interstitial code=\(nsError.code) domain=\(nsError.domain) desc=\(error.localizedDescription)")
+            Task { @MainActor [weak self] in
+                guard let self else { return }
+                self.isInterstitialLoading = false
+
+                if let error {
+                    let nsError = error as NSError
+                    AdLog.log("Failed to load interstitial code=\(nsError.code) domain=\(nsError.domain) desc=\(error.localizedDescription)")
+                    AdLog.event(
+                        AnalyticsEventName.adInterstitialLoadFailed,
+                        parameters: AdLog.errorParameters(
+                            error,
+                            adUnitID: interstitialAdUnitID,
+                            adFormat: "interstitial",
+                            retryAttempt: retryAttempt
+                        )
+                    )
+                    self.scheduleInterstitialRetry()
+                    return
+                }
+
+                AdLog.log("Interstitial loaded successfully")
+                self.interstitialRetryTask?.cancel()
+                self.interstitialRetryAttempt = 0
                 AdLog.event(
-                    AnalyticsEventName.adInterstitialLoadFailed,
-                    parameters: AdLog.errorParameters(
-                        error,
-                        adUnitID: interstitialAdUnitID,
+                    AnalyticsEventName.adInterstitialLoaded,
+                    parameters: AdLog.parameters(
+                        adUnitID: Self.interstitialAdUnitID,
                         adFormat: "interstitial"
                     )
                 )
-                return
+                self.interstitialAd = ad
+                self.interstitialAd?.fullScreenContentDelegate = self
             }
+        }
+    }
 
-            DispatchQueue.main.async {
-                AdLog.log("Interstitial loaded successfully")
-                AdLog.event(
-                    AnalyticsEventName.adInterstitialLoaded,
-                    parameters: [
-                        AnalyticsParamKey.adUnitID: Self.interstitialAdUnitID,
-                        AnalyticsParamKey.adFormat: "interstitial"
-                    ]
-                )
-                self?.interstitialAd = ad
-                self?.interstitialAd?.fullScreenContentDelegate = self
-            }
+    private func scheduleInterstitialRetry() {
+        guard interstitialRetryAttempt < 3 else {
+            AdLog.log("Interstitial retry limit reached")
+            return
+        }
+
+        interstitialRetryAttempt += 1
+        let delaySeconds = min(30 * interstitialRetryAttempt, 120)
+        AdLog.log("Scheduling interstitial retry attempt=\(interstitialRetryAttempt) delay=\(delaySeconds)s")
+        interstitialRetryTask?.cancel()
+        interstitialRetryTask = Task { @MainActor [weak self] in
+            try? await Task.sleep(nanoseconds: UInt64(delaySeconds) * 1_000_000_000)
+            guard !Task.isCancelled else { return }
+            self?.loadInterstitial()
         }
     }
 
@@ -185,10 +228,10 @@ final class AdManager: NSObject {
             AdLog.log("showInterstitial: no ad loaded, firing completion immediately; triggering reload")
             AdLog.event(
                 AnalyticsEventName.adInterstitialUnavailable,
-                parameters: [
-                    AnalyticsParamKey.adUnitID: Self.interstitialAdUnitID,
-                    AnalyticsParamKey.adFormat: "interstitial"
-                ]
+                parameters: AdLog.parameters(
+                    adUnitID: Self.interstitialAdUnitID,
+                    adFormat: "interstitial"
+                )
             )
             loadInterstitial()
             completion()
@@ -207,10 +250,10 @@ final class AdManager: NSObject {
         AdLog.log("Presenting interstitial")
         AdLog.event(
             AnalyticsEventName.adInterstitialPresented,
-            parameters: [
-                AnalyticsParamKey.adUnitID: Self.interstitialAdUnitID,
-                AnalyticsParamKey.adFormat: "interstitial"
-            ]
+            parameters: AdLog.parameters(
+                adUnitID: Self.interstitialAdUnitID,
+                adFormat: "interstitial"
+            )
         )
         interstitialCompletion = completion
         ad.present(from: rootVC)
@@ -237,12 +280,20 @@ extension AdManager: FullScreenContentDelegate {
             )
             self?.interstitialCompletion?()
             self?.interstitialCompletion = nil
+            self?.interstitialAd = nil
             self?.loadInterstitial()
         }
     }
 }
 
 enum AdLog {
+    static var sessionParameters: [String: Any] {
+        [
+            AnalyticsParamKey.adServingMode: servingMode,
+            AnalyticsParamKey.buildConfiguration: buildConfiguration
+        ]
+    }
+
     static func log(_ message: @autoclosure () -> String) {
         #if DEBUG
         print("[Ads] \(message())")
@@ -253,18 +304,50 @@ enum AdLog {
         Analytics.logEvent(name, parameters: parameters)
     }
 
-    static func errorParameters(_ error: Error, adUnitID: String? = nil, adFormat: String) -> [String: Any] {
-        let nsError = error as NSError
+    static func parameters(adUnitID: String? = nil, adFormat: String, retryAttempt: Int? = nil) -> [String: Any] {
         var parameters: [String: Any] = [
             AnalyticsParamKey.adFormat: adFormat,
-            AnalyticsParamKey.error: error.localizedDescription,
-            AnalyticsParamKey.errorCode: nsError.code,
-            AnalyticsParamKey.errorDomain: nsError.domain
+            AnalyticsParamKey.adServingMode: servingMode,
+            AnalyticsParamKey.buildConfiguration: buildConfiguration
         ]
         if let adUnitID {
             parameters[AnalyticsParamKey.adUnitID] = adUnitID
         }
+        if let retryAttempt {
+            parameters[AnalyticsParamKey.retryAttempt] = retryAttempt
+        }
         return parameters
+    }
+
+    static func errorParameters(_ error: Error, adUnitID: String? = nil, adFormat: String, retryAttempt: Int? = nil) -> [String: Any] {
+        let nsError = error as NSError
+        var parameters = parameters(
+            adUnitID: adUnitID,
+            adFormat: adFormat,
+            retryAttempt: retryAttempt
+        )
+        parameters.merge([
+            AnalyticsParamKey.error: error.localizedDescription,
+            AnalyticsParamKey.errorCode: nsError.code,
+            AnalyticsParamKey.errorDomain: nsError.domain
+        ]) { _, new in new }
+        return parameters
+    }
+
+    private static var servingMode: String {
+        #if DEBUG
+        return "test"
+        #else
+        return "live"
+        #endif
+    }
+
+    private static var buildConfiguration: String {
+        #if DEBUG
+        return "DEBUG"
+        #else
+        return "RELEASE"
+        #endif
     }
 }
 #endif

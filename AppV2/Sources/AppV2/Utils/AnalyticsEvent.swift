@@ -38,6 +38,9 @@ public enum AnalyticsParamKey {
     public static let productID = "product_id"
     public static let adUnitID = "ad_unit_id"
     public static let adFormat = "ad_format"
+    public static let adServingMode = "ad_serving_mode"
+    public static let buildConfiguration = "build_configuration"
+    public static let retryAttempt = "retry_attempt"
     public static let errorCode = "error_code"
     public static let errorDomain = "error_domain"
 }
