@@ -41,7 +41,7 @@ struct AppTabView: View {
 
     var body: some View {
         ZStack {
-            if !isBannerDismissed,
+            if !storeManager.isPro && !isBannerDismissed,
                let banner = AdService.bannerView {
                 VStack(spacing: 0) {
                     bannerSection(banner: banner)
