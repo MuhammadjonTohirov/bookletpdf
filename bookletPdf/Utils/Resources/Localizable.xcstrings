@@ -36,6 +36,16 @@
         }
       }
     },
+    "str.ad_badge" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Anzeige" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Ad" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Annonce" } },
+        "uz" : { "stringUnit" : { "state" : "translated", "value" : "Reklama" } },
+        "uz-UZ" : { "stringUnit" : { "state" : "translated", "value" : "Reklama" } }
+      }
+    },
     "str.add_cover_image" : {
       "extractionState" : "manual",
       "localizations" : {

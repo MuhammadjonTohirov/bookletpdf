@@ -19,15 +19,18 @@ public final class AppUpdateChecker: ObservableObject {
 
         let lookupURLString: String
         #if os(macOS)
-        lookupURLString = "https://itunes.apple.com/lookup?bundleId=\(bundleId)&entity=macSoftware"
+        lookupURLString = "https://itunes.apple.com/lookup?bundleId=\(bundleId)&entity=macSoftware&country=us"
         #else
-        lookupURLString = "https://itunes.apple.com/lookup?bundleId=\(bundleId)"
+        lookupURLString = "https://itunes.apple.com/lookup?bundleId=\(bundleId)&country=us"
         #endif
 
         guard let url = URL(string: lookupURLString) else { return }
 
         do {
-            let (data, _) = try await URLSession.shared.data(from: url)
+            var request = URLRequest(url: url)
+            request.cachePolicy = .reloadIgnoringLocalCacheData
+            
+            let (data, _) = try await URLSession.shared.data(for: request)
             let response = try JSONDecoder().decode(AppStoreLookupResponse.self, from: data)
 
             guard let result = response.results.first else { return }

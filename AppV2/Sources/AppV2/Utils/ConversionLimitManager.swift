@@ -9,7 +9,7 @@ public final class ConversionLimitManager: ObservableObject {
     private static let dailyConversionCountKey = "bookletpdf.dailyConversionCount"
 
     /// Number of free conversions before restrictions kick in
-    private static let freeConversionLimit = 3
+    private static let freeConversionLimit = 0
     /// Daily limit for macOS after free conversions are used
     private static let macOSDailyLimit = 3
     /// Show an interstitial once every N eligible conversions (post free limit)

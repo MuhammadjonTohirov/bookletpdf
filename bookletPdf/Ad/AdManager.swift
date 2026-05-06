@@ -10,13 +10,16 @@ import AppV2
 final class AdManager: NSObject {
     static let shared = AdManager()
 
-    #if DEBUG
-    private static let bannerAdUnitID = "ca-app-pub-3940256099942544/2934735716"
-    private static let interstitialAdUnitID = "ca-app-pub-3940256099942544/4411468910"
-    #else
     private static let bannerAdUnitID = "ca-app-pub-3869807878238093/8930697948"
     private static let interstitialAdUnitID = "ca-app-pub-3869807878238093/7617616279"
-    #endif
+
+//    #if DEBUG
+//    private static let bannerAdUnitID = "ca-app-pub-3940256099942544/2934735716"
+//    private static let interstitialAdUnitID = "ca-app-pub-3940256099942544/4411468910"
+//    #else
+//    private static let bannerAdUnitID = "ca-app-pub-3869807878238093/8930697948"
+//    private static let interstitialAdUnitID = "ca-app-pub-3869807878238093/7617616279"
+//    #endif
 
     private var interstitialAd: InterstitialAd?
     private var interstitialCompletion: (() -> Void)?
@@ -48,16 +51,29 @@ final class AdManager: NSObject {
         let appID = Bundle.main.object(forInfoDictionaryKey: "GADApplicationIdentifier") as? String ?? "<missing>"
         AdLog.log("configure begin build=\(Self.buildConfiguration) appID=\(appID) banner=\(Self.bannerAdUnitID) interstitial=\(Self.interstitialAdUnitID)")
 
-        #if DEBUG
-        MobileAds.shared.requestConfiguration.testDeviceIdentifiers = [
-            "GADSimulatorID"
-        ]
-        AdLog.log("Test device identifiers set: \(MobileAds.shared.requestConfiguration.testDeviceIdentifiers ?? [])")
-        #endif
-
+        configureTestDevices()
         wireAdService()
         AdLog.log("AdService wired bannerSet=\(AdService.bannerView != nil) interstitialSet=\(AdService.showInterstitial != nil)")
         awaitStableNetworkThenStart()
+    }
+
+    /// Marks debug builds as test devices so live ad units serve real-rendered
+    /// ads flagged as test by Google — no policy risk from self-impressions/taps.
+    /// On first run, the SDK prints a line like:
+    /// `<Google> To get test ads on this device, set: testDeviceIdentifiers = @[ @"abc123..." ];`
+    /// Paste each device hash into `ids` below.
+    private func configureTestDevices() {
+        #if DEBUG
+        let idfv = UIDevice.current.identifierForVendor?.uuidString ?? "unknown"
+        AdLog.log("DEVICE IDFV=\(idfv)")
+        let ids: [String] = [
+            "00008120-000270902E39A01E",
+            "13D25292-5F86-4D79-8ED7-6B39F2860A31",
+            idfv
+        ]
+        MobileAds.shared.requestConfiguration.testDeviceIdentifiers = ids
+        AdLog.log("Test device identifiers set count=\(ids.count)")
+        #endif
     }
 
     /// `MobileAds.shared.start()` caches an unsuccessful initialization for the
@@ -283,71 +299,6 @@ extension AdManager: FullScreenContentDelegate {
             self?.interstitialAd = nil
             self?.loadInterstitial()
         }
-    }
-}
-
-enum AdLog {
-    static var sessionParameters: [String: Any] {
-        [
-            AnalyticsParamKey.adServingMode: servingMode,
-            AnalyticsParamKey.buildConfiguration: buildConfiguration
-        ]
-    }
-
-    static func log(_ message: @autoclosure () -> String) {
-        #if DEBUG
-        print("[Ads] \(message())")
-        #endif
-    }
-
-    static func event(_ name: String, parameters: [String: Any]? = nil) {
-        Analytics.logEvent(name, parameters: parameters)
-    }
-
-    static func parameters(adUnitID: String? = nil, adFormat: String, retryAttempt: Int? = nil) -> [String: Any] {
-        var parameters: [String: Any] = [
-            AnalyticsParamKey.adFormat: adFormat,
-            AnalyticsParamKey.adServingMode: servingMode,
-            AnalyticsParamKey.buildConfiguration: buildConfiguration
-        ]
-        if let adUnitID {
-            parameters[AnalyticsParamKey.adUnitID] = adUnitID
-        }
-        if let retryAttempt {
-            parameters[AnalyticsParamKey.retryAttempt] = retryAttempt
-        }
-        return parameters
-    }
-
-    static func errorParameters(_ error: Error, adUnitID: String? = nil, adFormat: String, retryAttempt: Int? = nil) -> [String: Any] {
-        let nsError = error as NSError
-        var parameters = parameters(
-            adUnitID: adUnitID,
-            adFormat: adFormat,
-            retryAttempt: retryAttempt
-        )
-        parameters.merge([
-            AnalyticsParamKey.error: error.localizedDescription,
-            AnalyticsParamKey.errorCode: nsError.code,
-            AnalyticsParamKey.errorDomain: nsError.domain
-        ]) { _, new in new }
-        return parameters
-    }
-
-    private static var servingMode: String {
-        #if DEBUG
-        return "test"
-        #else
-        return "live"
-        #endif
-    }
-
-    private static var buildConfiguration: String {
-        #if DEBUG
-        return "DEBUG"
-        #else
-        return "RELEASE"
-        #endif
     }
 }
 #endif

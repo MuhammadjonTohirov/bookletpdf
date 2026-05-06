@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,8 +13,6 @@
 		114395392F7973B7002FC19E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 114395382F7973B7002FC19E /* GoogleService-Info.plist */; };
 		1143953B2F7973CF002FC19E /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143953A2F7973CF002FC19E /* FirebaseService.swift */; };
 		1184B3312F86255D00C6EF1B /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 1184B3302F86255D00C6EF1B /* GoogleMobileAds */; };
-		1184B3342F86266C00C6EF1B /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1184B3332F86266C00C6EF1B /* BannerAdView.swift */; };
-		1184B3352F86266C00C6EF1B /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1184B3322F86266C00C6EF1B /* AdManager.swift */; };
 		11AABB022F90000000000002 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 11AABB012F90000000000001 /* PrivacyInfo.xcprivacy */; };
 		11D9EC722F70882B00969099 /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 11D9EC712F70882B00969099 /* Configuration.storekit */; };
 		2E2E44272AC3CC8E00DC757F /* bookletPdfApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E44262AC3CC8E00DC757F /* bookletPdfApp.swift */; };
@@ -48,8 +46,6 @@
 /* Begin PBXFileReference section */
 		114395382F7973B7002FC19E /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1143953A2F7973CF002FC19E /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
-		1184B3322F86266C00C6EF1B /* AdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManager.swift; sourceTree = "<group>"; };
-		1184B3332F86266C00C6EF1B /* BannerAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
 		11AABB012F90000000000001 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		11D9EC712F70882B00969099 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		2E0E4E162ADB30F900E846B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -69,6 +65,10 @@
 		B2C3D4E22F55730000BBCC02 /* AppV2 */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AppV2; sourceTree = "<group>"; };
 		D5C4001A2F90DE0000000001 /* DocumentScannerKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DocumentScannerKit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		110581BE2FAABA6200A0DD68 /* Ad */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Ad; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2E2E44202AC3CC8E00DC757F /* Frameworks */ = {
@@ -113,8 +113,7 @@
 		2E2E44252AC3CC8E00DC757F /* bookletPdf */ = {
 			isa = PBXGroup;
 			children = (
-				1184B3322F86266C00C6EF1B /* AdManager.swift */,
-				1184B3332F86266C00C6EF1B /* BannerAdView.swift */,
+				110581BE2FAABA6200A0DD68 /* Ad */,
 				11AABB012F90000000000001 /* PrivacyInfo.xcprivacy */,
 				1143953A2F7973CF002FC19E /* FirebaseService.swift */,
 				114395382F7973B7002FC19E /* GoogleService-Info.plist */,
@@ -181,6 +180,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				110581BE2FAABA6200A0DD68 /* Ad */,
 			);
 			name = bookletPdf;
 			productName = bookletPdf;
@@ -276,8 +278,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1143953B2F7973CF002FC19E /* FirebaseService.swift in Sources */,
-				1184B3342F86266C00C6EF1B /* BannerAdView.swift in Sources */,
-				1184B3352F86266C00C6EF1B /* AdManager.swift in Sources */,
 				2E2E44272AC3CC8E00DC757F /* bookletPdfApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,7 +413,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = bookletPdf/bookletPdf.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"bookletPdf/Preview Content\"";
 				DEVELOPMENT_TEAM = V3H6LJGQAD;
 				ENABLE_APP_SANDBOX = YES;
@@ -451,7 +451,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = uz.tox.bookletPdf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = NO;
@@ -472,7 +472,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = bookletPdf/bookletPdf.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"bookletPdf/Preview Content\"";
 				DEVELOPMENT_TEAM = V3H6LJGQAD;
 				ENABLE_APP_SANDBOX = YES;
@@ -510,7 +510,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = uz.tox.bookletPdf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = NO;
