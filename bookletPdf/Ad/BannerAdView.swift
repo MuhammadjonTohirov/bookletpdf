@@ -63,6 +63,7 @@ struct BannerAdView: UIViewRepresentable {
                         retryAttempt: currentRetryAttempt
                     )
                 )
+                
                 bannerView.load(Request())
             }
         }

@@ -28,21 +28,20 @@ enum AppTab: String, CaseIterable {
 
 struct AppTabView: View {
     @State private var selectedTab: AppTab = .convert
-    @State private var isBannerDismissed = false
     @State private var isBannerLoaded = false
-    
-    private var hasBanner: Bool {
-        !isBannerDismissed && isBannerLoaded
-    }
-    
+
     @EnvironmentObject private var viewModel: DocumentConvertViewModel
     @EnvironmentObject private var languageManager: LanguageManager
     @ObservedObject private var storeManager = StoreKitManager.shared
+    @ObservedObject private var houseAdManager = HouseAdManager.shared
+
+    private var bannerSlotVisible: Bool {
+        !storeManager.isPro && AdService.bannerView != nil
+    }
 
     var body: some View {
         ZStack {
-            if !storeManager.isPro && !isBannerDismissed,
-               let banner = AdService.bannerView {
+            if bannerSlotVisible, let banner = AdService.bannerView {
                 VStack(spacing: 0) {
                     bannerSection(banner: banner)
                     Spacer()
@@ -54,17 +53,15 @@ struct AppTabView: View {
                 historyTab
                 settingsTab
             }
-            .padding(.top, hasBanner ? 50 : 0)
+            .padding(.top, bannerSlotVisible ? 50 : 0)
             .id(languageManager.currentLanguage)
         }
         .onAppear {
-            Logging.l(tag: "Ads", "AppTabView appeared isPro=\(storeManager.isPro) bannerDismissed=\(isBannerDismissed) bannerWired=\(AdService.bannerView != nil)")
+            Logging.l(tag: "Ads", "AppTabView appeared isPro=\(storeManager.isPro) bannerWired=\(AdService.bannerView != nil)")
+            houseAdManager.start()
         }
         .onReceive(NotificationCenter.default.publisher(for: AdService.interstitialDismissedNotification)) { _ in
-            guard isBannerDismissed else { return }
-            Logging.l(tag: "Ads", "Interstitial dismissed -> restoring banner")
-            isBannerLoaded = false
-            isBannerDismissed = false
+            houseAdManager.rotate()
         }
         .fileImporter(
             isPresented: $viewModel.showFileImporter,
@@ -91,7 +88,11 @@ struct AppTabView: View {
     }
 
     private func bannerSection(banner: @escaping (@escaping (Bool) -> Void) -> AnyView) -> some View {
-        ZStack(alignment: .topTrailing) {
+        ZStack {
+            houseAdLayer
+                .frame(height: 50)
+                .opacity(isBannerLoaded ? 0 : 1)
+
             banner { isLoaded in
                 Logging.l(tag: "Ads", "Banner load state changed isLoaded=\(isLoaded)")
                 isBannerLoaded = isLoaded
@@ -99,19 +100,15 @@ struct AppTabView: View {
             .frame(height: 50)
             .opacity(isBannerLoaded ? 1 : 0)
             .clipped()
+        }
+    }
 
-            if isBannerLoaded {
-                Button {
-                    isBannerDismissed = true
-                } label: {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.system(size: 18, weight: .semibold))
-                        .symbolRenderingMode(.palette)
-                        .foregroundStyle(Color(.systemGray), Color(.systemBackground))
-                }
-                .accessibilityLabel(Text("str.close".localize))
-                .padding(4)
-            }
+    @ViewBuilder
+    private var houseAdLayer: some View {
+        if let ad = houseAdManager.currentAd {
+            HouseAdBannerView(ad: ad)
+        } else {
+            Color.clear
         }
     }
 
